@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file allows us to easily customize the look and language used
+    in our program's user interface. Note that this properties file is only
+    for the standard controls for an app from the Desktop Java Framework, so
+    it would not include things initialized for the workspace, which is
+    customizable.
+-->
+<properties>
+    <property_list>
+        <property name="APP_TITLE"	    value="课程网页软件"></property>
+	<property name="APP_LOGO"	    value="TAManagerLogo.png"></property>
+	<property name="APP_PATH_CSS"	    value="style/"></property>
+	<property name="APP_CSS"	    value="tam_style.css"></property>
+        
+        <!-- PROGRAM ICON FILES -->
+        <property name="NEW_ICON"	    value="New.png"></property>
+        <property name="LOAD_ICON"	    value="Load.png"></property>
+        <property name="SAVE_ICON"	    value="Save.png"></property>
+        <property name="SAVE_AS_ICON"	    value="SaveAs.png"></property>
+        <property name="EXPORT_ICON"	    value="Export.png"></property>
+        <property name="EXIT_ICON"          value="Exit.png"></property> 
+        
+        <!-- TOOLTIPS FOR BUTTONS -->
+        <property name="NEW_TOOLTIP"		value="建一个新文件"></property>
+        <property name="LOAD_TOOLTIP"		value="载入一个已存在文件"></property>
+        <property name="SAVE_TOOLTIP"		value="保存现在的文件"></property>
+        <property name="SAVE_AS_TOOLTIP"		value="保存现在的文件去新位置"></property>
+        <property name="EXPORT_TOOLTIP"		value="导出文件"></property>
+        <property name="EXIT_TOOLTIP"		value="离开软件"></property>
+        <!-- ERROR MESSAGES -->
+          <property name="CLOSE_BUTTON_TEXT"              value="关闭"></property>
+
+        <property name="NEW_ERROR_MESSAGE"              value="建立新文件时出现错误"></property>
+        <property name="NEW_ERROR_TITLE"		value="新文件错误"></property>
+        <property name="LOAD_ERROR_MESSAGE"             value="载入文件时出现错误"></property>
+        <property name="LOAD_ERROR_TITLE"		value="载入文件错误"></property>
+        <property name="SAVE_ERROR_MESSAGE"             value="保存文件时出现错误"></property>
+        <property name="SAVE_ERROR_TITLE"		value="保存文件错误"></property>
+        <property name="EXPORT_ERROR_MESSAGE"             value="导出文件时出现错误"></property>
+        <property name="EXPORT_ERROR_TITLE"		value="导出文件错误"></property>
+        <property name="PROPERTIES_LOAD_ERROR_MESSAGE"	value="导入属性文件时出现错误"></property>	
+        <property name="PROPERTIES_LOAD_ERROR_TITLE"	value="导入属性文件错误"></property>
+	
+        <!-- VERIFICATION MESSAGES -->
+	
+        <property name="NEW_COMPLETED_MESSAGE"		value="新文件准备就绪"></property>
+        <property name="NEW_COMPLETED_TITLE"		value="新文件已建"></property>
+        <property name="LOAD_COMPLETED_MESSAGE"		value="载入文件已完成"></property>
+        <property name="LOAD_COMPLETED_TITLE"		value="完成载入"></property>
+        <property name="SAVE_COMPLETED_MESSAGE"		value="文件保存完成"></property>
+        <property name="SAVE_COMPLETED_TITLE"		value="保存成功"></property>
+        <property name="SAVE_UNSAVED_WORK_MESSAGE"	value="需要保存未保存文件先吗？"></property>
+        <property name="SAVE_UNSAVED_WORK_TITLE"	value="保存未保存文件？"></property>
+         <property name="EXPORT_COMPLETED_MESSAGE"             value="文件导出完成"></property>
+        <property name="EXPORT_COMPLETED_TITLE"		value="导出成功"></property>
+      <property name="EXPORT_WORK_TITLE"	value="导出文件"></property>
+         <property name="EXPORT_WORK_MESSAGE"	value="需要导出文件吗？"></property>
+
+          <property name="CHANGETIME_WORK_TITLE"	value="Change the start time or end time"></property>
+         <property name="CHANGETIME_WORK_MESSAGE"	value="Do you want to change the start time or end time? The data may lost,"></property>
+	
+        <property name="NEW_CREATED_MESSAGE"		value="新文件已创，但未保存"></property>
+        <property name="WORK_LOADED_MESSAGE"		value="文件已载入"></property>
+        <property name="WORK_SAVED_MESSAGE"		value="文件已保存"></property>
+    
+	<property name="SAVE_WORK_TITLE"		value="保存你的文件"></property>
+	<property name="LOAD_WORK_TITLE"		value="选择文件载入"></property>
+	<property name="WORK_FILE_EXT"			value="json"></property>
+	<property name="WORK_FILE_EXT_DESC"		value="Course Site Generator"></property>
+
+        <!-- WORKSPACE CONTROLS STUFF -->        
+          <property name="TAS_HEADER_TEXT"                value="助教"></property>
+        <property name="NAME_COLUMN_TEXT"               value="名字"></property>
+        <property name="EMAIL_COLUMN_TEXT"              value="邮件"></property>
+        <property name="NAME_PROMPT_TEXT"               value="名字"></property>
+        <property name="EMAIL_PROMPT_TEXT"              value="邮件"></property>
+        <property name="ADD_BUTTON_TEXT"                value="添加助教"></property>
+        <property name="UPDATE_BUTTON_TEXT"                value="更新助教"></property>
+        <property name="CLEAR_BUTTON_TEXT"                value="清除"></property>
+        <property name="OFFICE_HOURS_SUBHEADER"         value="辅导时间表"></property>
+        
+        <!-- WORKSPACE ERROR MESSAGES -->
+     <property name="MISSING_TA_NAME_TITLE"          value="缺少名字"></property>
+        <property name="MISSING_TA_NAME_MESSAGE"        value="你必须填写助教名字"></property>
+        <property name="MISSING_TA_EMAIL_TITLE"         value="缺少邮箱"></property>
+        <property name="MISSING_TA_EMAIL_MESSAGE"       value="你必须提供邮箱"></property>
+        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_TITLE"     value="名字和邮箱不是唯一的"></property>
+        <property name="TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE"   value="你必须提供唯一的名字和邮箱"></property>
+        <property name="WRONG_TA_EMAIL_TITLE"   value="错误邮箱格式"></property>
+        <property name="WRONG_TA_EMAIL_MESSAGE"   value="你必须提供有效的邮箱"></property>
+        
+        
+        <property name="WRONG_STARTTIMEENDTIME_TITLE"   value="错误时间改变"></property>
+        <property name="WRONG_STARTTIMEENDTIME_MESSAGE"   value="起始时间需早于终止时间"></property>
+         <property name="WRONG_ENDTIMESTARTTIME_TITLE"   value="错误时间改变"></property>
+        <property name="WRONG_ENDTIMESTARTTIME_MESSAGE"   value="终止时间需晚于起始时间"></property>
+        
+    </property_list>
+    <property_options_list>
+        <property_options name="OFFICE_HOURS_TABLE_HEADERS">
+            <option>起始时间</option>
+            <option>结束时间</option>
+        </property_options>
+        <property_options name="DAYS_OF_WEEK">
+            <option>周一</option>
+            <option>周二</option>
+            <option>周三</option>
+            <option>周四</option>
+            <option>周五</option>
+        </property_options>
+    </property_options_list>
+</properties>
