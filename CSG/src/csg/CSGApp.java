@@ -31,10 +31,10 @@ public class CSGApp extends AppTemplate {
         // CONSTRUCT ALL FOUR COMPONENTS. NOTE THAT FOR THIS APP
         // THE WORKSPACE NEEDS THE DATA COMPONENT TO EXIST ALREADY
         // WHEN IT IS CONSTRUCTED, SO BE CAREFUL OF THE ORDER
-        dataComponent = new CSGData(this);
+       dataComponent = new CSGData(this);
         workspaceComponent = new CSGWorkspace(this);
      //   fileComponent = new CSGFiles(this);
-        styleComponent = new CSGStyle(this);
+        //styleComponent = new CSGStyle(this);
     }
     
     /**

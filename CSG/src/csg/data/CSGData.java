@@ -20,13 +20,13 @@ public class CSGData implements AppDataComponent{
     //}
 
     public CSGData(CSGApp initApp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
 
     @Override
     public void resetData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

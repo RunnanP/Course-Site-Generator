@@ -5,10 +5,26 @@
  */
 package csg.workspace;
 
+import csg.CSGApp;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
 /**
  *
  * @author runnan
  */
 public class CSGController {
     
+
+    CSGController(CSGApp app) {
+        
+}
+
+    
+   
+
+    
+  
 }

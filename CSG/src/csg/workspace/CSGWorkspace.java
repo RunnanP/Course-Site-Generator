@@ -6,32 +6,131 @@
 package csg.workspace;
 
 import csg.CSGApp;
+import csg.CSGAppProp;
 import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import properties_manager.PropertiesManager;
 
 /**
  *
  * @author runnan
  */
 public class CSGWorkspace extends AppWorkspaceComponent{
-    
-    
-//    public CSGWorkspace(CSGApp initApp){
-        
-   // }
-
+   CSGApp app;
+   CSGController controller;
+   
+   VBox workspaceBasicPane;   //use to put state bar and current state pane
+   HBox workspaceStateBar;
+   
+   Button workspaceCoursePartButton;
+   Button workspaceTAPartButton;
+   Button workspaceRecitationPartButton;
+   Button workspaceSchedulePartButton;
+   Button workspaceProjectPartButton;
+   
+   CSGCourseWorkspace csgCourseWorkspace;
+   CSGTAWorkspace csgTAWorkspace;
+   CSGRecitationWorkspace csgRecitationWorkspace;
+   CSGScheduleWorkspace csgScheduleWorkspace;
+   CSGProjectWorkspace csgProjectWorkspace;
+   Pane currentWorkspace;
     public CSGWorkspace(CSGApp initApp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        app=initApp;
+        PropertiesManager props=PropertiesManager.getPropertiesManager();
+        controller=new CSGController(app);
+        workspaceBasicPane=new VBox();
+        workspaceStateBar=new HBox();
+        currentWorkspace=new Pane();
+        
+        String workspaceCoursePartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_COURSE_PART_TEXT.toString());
+         String workspaceTAPartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_TA_PART_TEXT.toString());
+          String workspaceRecitationPartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_RECITATION_PART_TEXT.toString());
+           String workspaceSchedulePartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_SCHEDULE_PART_TEXT.toString());
+            String workspaceProjectPartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_PROJECT_PART_TEXT.toString());
+        
+         workspaceCoursePartButton=new Button(workspaceCoursePartButtonText);
+         workspaceTAPartButton=new Button(workspaceTAPartButtonText);
+         workspaceRecitationPartButton=new Button(workspaceRecitationPartButtonText);
+         workspaceSchedulePartButton=new Button(workspaceSchedulePartButtonText);
+         workspaceProjectPartButton=new Button(workspaceProjectPartButtonText);
+            
+         workspaceCoursePartButton.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(.2));
+         workspaceTAPartButton.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(.2));
+         workspaceRecitationPartButton.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(.2));
+          workspaceSchedulePartButton.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(.2));
+         workspaceProjectPartButton.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(.2));
+         workspaceStateBar.getChildren().addAll(workspaceCoursePartButton,workspaceTAPartButton,workspaceRecitationPartButton,workspaceSchedulePartButton,workspaceProjectPartButton);
+        workspaceBasicPane.getChildren().addAll(workspaceStateBar,currentWorkspace);
+         workspace=new BorderPane();
+         ((BorderPane)workspace).setCenter(workspaceBasicPane);
+          
+         initAllWorkspaceParts();
+         
+         
+         workspaceCoursePartButton.setOnAction(e->{
+            
+              workspaceBasicPane=new VBox();
+            workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgCourseWorkspace.getBasePane());
+            app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+         });
+         workspaceTAPartButton.setOnAction(e->{
+             //controller.handleChangeTAPart(this,workspaceStateBar,csgTAWorkspace.getBasePane());
+            // workspace=new Pane(csgTAWorkspace.getBasePane());
+            //app.getWorkspaceComponent().resetWorkspace();
+            //workspace=new Pane(csgTAWorkspace.getBasePane());
+            // workspace=new BorderPane();
+        // ((BorderPane)workspace).setCenter(csgCourseWorkspace.getBasePane());
+             //controller.handleChangeTAPart(app,this,workspaceStateBar,csgTAWorkspace.getBasePane());
+            // app.getWorkspaceComponent().activateWorkspace(app.getGUI().getAppPane());
+            workspaceBasicPane=new VBox();
+            workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgTAWorkspace.getBasePane());
+            app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+         });
+         workspaceRecitationPartButton.setOnAction(e->{
+            workspaceBasicPane=new VBox();
+            workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgRecitationWorkspace.getBasePane());
+            app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+         });
+         workspaceSchedulePartButton.setOnAction(e->{
+            workspaceBasicPane=new VBox();
+            workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgScheduleWorkspace.getBasePane());
+            app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+         });
+         workspaceProjectPartButton.setOnAction(e->{
+            workspaceBasicPane=new VBox();
+            workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgProjectWorkspace.getBasePane());
+            app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+         });
+         
+         
+         
     }
+  
+  
 
     @Override
     public void resetWorkspace() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // currentWorkspace.getChildren().clear();
     }
 
     @Override
     public void reloadWorkspace(AppDataComponent dataComponent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+    }
+    
+    public void initAllWorkspaceParts(){
+          csgCourseWorkspace=new CSGCourseWorkspace(app);
+          csgTAWorkspace=new CSGTAWorkspace(app);
+          csgRecitationWorkspace=new CSGRecitationWorkspace(app);
+          csgScheduleWorkspace=new CSGScheduleWorkspace(app);
+          csgProjectWorkspace=new CSGProjectWorkspace(app);
     }
     
 }

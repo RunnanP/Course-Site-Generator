@@ -5,22 +5,12 @@
  */
 package csg.workspace;
 
-import csg.CSGApp;
 import javafx.scene.layout.Pane;
 
 /**
  *
  * @author runnan
  */
-public class CSGScheduleWorkspace implements WorkspacePart{
-   Pane basePane;
-   public CSGScheduleWorkspace(CSGApp app) {
-        
-    }
-
-    @Override
-    public Pane getBasePane() {
-        return basePane;
-    }
-    
+public interface WorkspacePart {
+    public Pane getBasePane();
 }

@@ -263,6 +263,17 @@ public class AppFileController {
     }
     
     
+    public void handleUndoRequest(){
+        
+    }
+    
+    public void handleRedoRequest(){
+        
+    }
+    
+    public void handleAboutRequest(){
+        
+    }
  
     
  /**

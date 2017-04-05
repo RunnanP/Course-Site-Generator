@@ -97,7 +97,7 @@ public abstract class AppTemplate extends Application {
 	yesNoDialog.init(primaryStage);
 	PropertiesManager props = PropertiesManager.getPropertiesManager();
 
-	try {
+	//try {
 	    // LOAD APP PROPERTIES, BOTH THE BASIC UI STUFF FOR THE FRAMEWORK
 	    // AND THE CUSTOM UI STUFF FOR THE WORKSPACE
 	   // boolean success = loadProperties(APP_PROPERTIES_FILE_NAME);
@@ -147,14 +147,12 @@ public abstract class AppTemplate extends Application {
                 // CHILD CLASS
 		buildAppComponentsHook();
 	    } 
-	}catch (Exception e) {
-            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-           // if(result.get()=="中文"){
-            //dialog.show(props.getProperty(CHINESE_PROPERTIES_LOAD_ERROR_TITLE), props.getProperty(CHINESE_PROPERTIES_LOAD_ERROR_MESSAGE));
-            //}else{
-                 dialog.show(props.getProperty(PROPERTIES_LOAD_ERROR_TITLE), props.getProperty(PROPERTIES_LOAD_ERROR_MESSAGE));
-            //}
-	}
+	//}catch (Exception e) {
+        //    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+           
+         //        dialog.show(props.getProperty(PROPERTIES_LOAD_ERROR_TITLE), props.getProperty(PROPERTIES_LOAD_ERROR_MESSAGE));
+           
+	//}
     }
     
     /**

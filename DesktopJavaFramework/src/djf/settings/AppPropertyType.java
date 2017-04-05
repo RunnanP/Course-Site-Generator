@@ -25,6 +25,14 @@ public enum AppPropertyType {
     SAVE_AS_ICON,
     EXPORT_ICON,
     EXIT_ICON,
+    
+    UNDO_ICON,
+    REDO_ICON,
+    ABOUT_ICON,
+    
+    UNDO_BUTTON_TEXT,
+    REDO_BUTTON_TEXT,
+    ABOUT_BUTTON_TEXT,
         
     // FILE TOOLBAR TOOLTIPS FOR BUTTONS
     NEW_TOOLTIP,
@@ -33,6 +41,10 @@ public enum AppPropertyType {
     SAVE_AS_TOOLTIP,
     EXPORT_TOOLTIP,
     EXIT_TOOLTIP,
+    
+    UNDO_TOOLTIP,
+    REDO_TOOLTIP,
+    ABOUT_TOOLTIP,
 	
     // ERROR MESSAGES AND TITLES FOR DIALOG BOXES
     NEW_ERROR_MESSAGE,

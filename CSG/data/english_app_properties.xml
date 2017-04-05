@@ -20,6 +20,13 @@
         <property name="SAVE_AS_ICON"	    value="SaveAs.png"></property>
         <property name="EXPORT_ICON"	    value="Export.png"></property>
         <property name="EXIT_ICON"          value="Exit.png"></property> 
+         <property name="UNDO_ICON"          value="Remove.png"></property> 
+        <property name="REDO_ICON"          value="Add.png"></property> 
+        <property name="ABOUT_ICON"          value="About.png"></property> 
+         <!-- app info button text -->
+            <property name="UNDO_BUTTON_TEXT"          value="Undo"></property> 
+        <property name="REDO_BUTTON_TEXT"          value="Redo"></property> 
+        <property name="ABOUT_BUTTON_TEXT"          value="About"></property> 
         <!-- TOOLTIPS FOR BUTTONS -->
          <property name="NEW_TOOLTIP"		value="Build a new TA Grid"></property>
         <property name="LOAD_TOOLTIP"		value="Load an existing TA Grid"></property>
@@ -27,6 +34,10 @@
         <property name="SAVE_AS_TOOLTIP"		value="Save the current TA Grid to New Location"></property>
         <property name="EXPORT_TOOLTIP"		value="Export current TA Grid to syllabus.html"></property>
         <property name="EXIT_TOOLTIP"		value="Exit the Application"></property>
+        <property name="UNDO_TOOLTIP"		value="undo the transaction"></property>
+        <property name="REDO_TOOLTIP"		value="redo the transaction"></property>
+        <property name="ABOUT_TOOLTIP"		value="Application information"></property>
+
         <!-- ERROR MESSAGES -->
            <property name="CLOSE_BUTTON_TEXT"              value="Close"></property>
 
@@ -68,9 +79,23 @@
 	<property name="WORK_FILE_EXT"			value="json"></property>
 	<property name="WORK_FILE_EXT_DESC"		value="TA Office Hours"></property>
 
-
-        <!-- WORKSPACE CONTROLS STUFF -->        
+ <!-- COURSE WORKSPACE CONTROLS STUFF --> 
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_HEADER_TEXT"                value="Course Info"></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_SUBJECT_TEXT"                value="Subject: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_NUMBER_TEXT"                value="Number: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_SEMESTER_TEXT"                value="Semester: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT"                value="Title: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_YEAR_TEXT"                value="Year: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_NAME_TEXT"                value="Instructor Name: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT"                value="Instructor Home:"></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT"                value="Export Dir:"></property>
+    <property name="CHANGE_TEXT"                value="Change"></property>
+       
+        
+        <!-- TA WORKSPACE CONTROLS STUFF -->        
          <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
+         <property name="UNDERGRADE_COLUMN_TEXT"                value="Undergrade"></property>
+         
         <property name="NAME_COLUMN_TEXT"               value="Name"></property>
         <property name="EMAIL_COLUMN_TEXT"              value="Email"></property>
         <property name="NAME_PROMPT_TEXT"               value="Name"></property>
@@ -79,7 +104,26 @@
         <property name="UPDATE_BUTTON_TEXT"                value="Update TA"></property>
         <property name="CLEAR_BUTTON_TEXT"                value="Clear"></property>
         <property name="OFFICE_HOURS_SUBHEADER"         value="Office Hours Grid"></property>
+        <property name="START_HOURS"         value="Start:"></property>
+        <property name="END_HOURS"         value="End:"></property>
         
+     <!-- recitation WORKSPACE CONTROLS STUFF -->
+         <property name="RECITATION_HEADER_TEXT"         value="Recitation"></property>
+          <property name="SECTION_COLUMN_TEXT"         value="Section"></property>
+           <property name="INSTRUCTOR_COLUMN_TEXT"         value="Instructor"></property>
+            <property name="DAYTIME_COLUMN_TEXT"         value="Day/Time"></property>
+             <property name="LOCATION_COLUMN_TEXT"         value="Location"></property>
+              <property name="TA_COLUMN_TEXT"         value="TA"></property>
+               <property name="ADD_EDIT_TEXT"         value="Add/Edit"></property>
+                <property name="SUPERVISING_TA_TEXT"         value="Supervising TA"></property>
+                 <property name="ADD_UPDATE_TEXT"         value="Add/Update"></property>
+           
+         
+         
+         
+        
+       
+         
         <!-- WORKSPACE ERROR MESSAGES -->
        <property name="MISSING_TA_NAME_TITLE"          value="Missing TA Name"></property>
         <property name="MISSING_TA_NAME_MESSAGE"        value="You must provide a TA Name"></property>
@@ -95,7 +139,15 @@
         <property name="WRONG_STARTTIMEENDTIME_MESSAGE"   value="You must provide valid Start time which have to early than End time"></property>
          <property name="WRONG_ENDTIMESTARTTIME_TITLE"   value="Wrong Time change"></property>
         <property name="WRONG_ENDTIMESTARTTIME_MESSAGE"   value="You must provide valid End time which have to later than Start time"></property>
-        
+        <!--BASIC WORKSPACE STATE BUTTON TEXT -->
+         <property name="WORKSPACE_STATE_BUTTON_COURSE_PART_TEXT"   value="Course Detail"></property>
+            <property name="WORKSPACE_STATE_BUTTON_TA_PART_TEXT"   value="TA Data"></property>
+            <property name="WORKSPACE_STATE_BUTTON_RECITATION_PART_TEXT"   value="Recitation Data"></property>
+            <property name="WORKSPACE_STATE_BUTTON_SCHEDULE_PART_TEXT"   value="Schedule Data"></property>
+            <property name="WORKSPACE_STATE_BUTTON_PROJECT_PART_TEXT"   value="Project Data"></property>
+       
+          
+           
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

@@ -5,10 +5,19 @@
  */
 package csg.data;
 
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author runnan
  */
 public class CSGTAData {
+    
+    ObservableList<TeachingAssistant> teachingAssistants;
+    
+      public ObservableList getTeachingAssistants() {
+        return teachingAssistants;
+    }
+    
     
 }
