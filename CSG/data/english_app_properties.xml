@@ -8,10 +8,10 @@
 -->
 <properties>
     <property_list>
-        <property name="APP_TITLE"	    value="TA Manager"></property>
+        <property name="APP_TITLE"	    value="Course Site Generator"></property>
 	<property name="APP_LOGO"	    value="TAManagerLogo.png"></property>
 	<property name="APP_PATH_CSS"	    value="style/"></property>
-	<property name="APP_CSS"	    value="tam_style.css"></property>
+	<property name="APP_CSS"	    value="csg_style.css"></property>
         
         <!-- PROGRAM ICON FILES -->
         <property name="NEW_ICON"	    value="New.png"></property>
@@ -91,6 +91,26 @@
    <property name="COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT"                value="Export Dir:"></property>
     <property name="CHANGE_TEXT"                value="Change"></property>
        
+
+ <property name="COURSE_WORKSPACE_PART_CENTER_PANE_HEADER_TEXT"                value="Site Template"></property>
+   <property name="DESCRIPTION_DETAIL_TEXT"                value="The selected directory should contain the full site template, including the HTML files."></property>
+   <property name="TEMPLATE_BUTTON_TEXT"                value="Select Template Directory"></property>
+   <property name="SITE_PAGES_TEXT"                value="Site Pages:"></property>
+   <property name="USE_COLIMN_TEXT"                value="Use"></property>
+   <property name="NAVBAR_TITLE_COLUMN_TEXT"                value="Navbar Title"></property>
+   <property name="FILE_NAME_COLUMN_TEXT"                value="File Name"></property>
+    <property name="SCRIPT_COLUMN_TEXT"                value="Script"></property>
+
+       
+        <property name="BUTTOM_PANE_HEADER_LABEL_TEXT"                value="Page Style"></property>
+   <property name="BANNER_LABEL_TEXT"                value="Banner School Image"></property>
+   <property name="STYLESHEET_LABEL_TEXT"                value="Stylesheet:"></property>
+   <property name="LEFT_LABEL_TEXT"                value="Left Footer Image"></property>
+   <property name="RIGHT_LABEL_TEXT"                value="Right Footer Image"></property>
+   <property name="NOTE_DESCRIPTION_TEXT"                value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
+  
+
+
         
         <!-- TA WORKSPACE CONTROLS STUFF -->        
          <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>
@@ -119,8 +139,34 @@
                  <property name="ADD_UPDATE_TEXT"         value="Add/Update"></property>
            
          
+         <!-- schedule WORKSPACE CONTROLS STUFF -->
+         <property name="SCHEDULE_HEADER_TEXT"         value="Schedule"></property>
+          <property name="CALENDAR_HEADER_TEXT"         value="Calendar Boundaries"></property>
+           <property name="STARTING_DATE_TEXT"         value="Starting Monday"></property>
+            <property name="ENDING_DATE_TEXT"         value="Ending Friday"></property>
+             <property name="SCHEDULE_ITEMS_TEXT"         value="Schedule Items"></property>
+              <property name="TYPE_COLUMN_TEXT"         value="Type"></property>
+               <property name="DATE_COLUMN_TEXT"         value="Date"></property>
+                <property name="TITLE_COLUMN_TEXT"         value="Title"></property>
+                 <property name="TOPIC_COLUMN_TEXT"         value="Topic"></property>
+                       <property name="TIME_TEXT"         value="Time"></property>
+                 <property name="LINK_TEXT"         value="Link"></property>
+           <property name="CRITERIA_TEXT"         value="Criteria"></property>
          
-         
+        
+        <!-- project WORKSPACE CONTROLS STUFF -->
+         <property name="PROJECTS_HEADER_TEXT"         value="Projects"></property>
+          <property name="TEAMS_TEXT"         value="Teams"></property>
+           <property name="COLOR_COLUMN_TEXT"         value="Color(hex#)"></property>
+            <property name="TEXT_COLOR_COLUMN_TEXT"         value="Text Color(hex#)"></property>
+             <property name="COLOR_TEXT"         value="Color"></property>
+              <property name="TEXT_COLOR_TEXT"         value="Text Color"></property>
+               <property name="STUDENTS_TEXT"         value="Students"></property>
+                <property name="FIRST_NAME_COLUMN_TEXT"         value="First Name"></property>
+                 <property name="LAST_NAME_COLUMN_TEXT"         value="Last Name"></property>
+                       <property name="TEAM_TEXT"         value="Team"></property>
+                 <property name="ROLE_TEXT"         value="Role"></property>
+      
         
        
          

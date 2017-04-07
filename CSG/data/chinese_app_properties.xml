@@ -11,7 +11,7 @@
         <property name="APP_TITLE"	    value="课程网页软件"></property>
 	<property name="APP_LOGO"	    value="TAManagerLogo.png"></property>
 	<property name="APP_PATH_CSS"	    value="style/"></property>
-	<property name="APP_CSS"	    value="tam_style.css"></property>
+	<property name="APP_CSS"	    value="csg_style.css"></property>
         
         <!-- PROGRAM ICON FILES -->
         <property name="NEW_ICON"	    value="New.png"></property>
@@ -94,6 +94,25 @@
     <property name="CHANGE_TEXT"                value="改变"></property>
        
 
+
+ <property name="COURSE_WORKSPACE_PART_CENTER_PANE_HEADER_TEXT"                value="网站例子"></property>
+   <property name="DESCRIPTION_DETAIL_TEXT"                value="被选择的目录必须含有全部网站例子，包括HTML."></property>
+   <property name="TEMPLATE_BUTTON_TEXT"                value="选择例子目录"></property>
+   <property name="SITE_PAGES_TEXT"                value="网站页面"></property>
+   <property name="USE_COLIMN_TEXT"                value="使用"></property>
+   <property name="NAVBAR_TITLE_COLUMN_TEXT"                value="导航栏"></property>
+   <property name="FILE_NAME_COLUMN_TEXT"                value="文件名字"></property>
+    <property name="SCRIPT_COLUMN_TEXT"                value="脚本"></property>
+
+
+        <property name="BUTTOM_PANE_HEADER_LABEL_TEXT"                value="页面风格"></property>
+   <property name="BANNER_LABEL_TEXT"                value="横幅学校图片"></property>
+   <property name="STYLESHEET_LABEL_TEXT"                value="风格表:"></property>
+   <property name="LEFT_LABEL_TEXT"                value="左脚图片"></property>
+   <property name="RIGHT_LABEL_TEXT"                value="右脚图片"></property>
+   <property name="NOTE_DESCRIPTION_TEXT"                value="注意：新的风格表可能会被放在 work/css 去被选择"></property>
+
+
         <!--TA WORKSPACE CONTROLS STUFF -->        
           <property name="TAS_HEADER_TEXT"                value="助教"></property>
           <property name="UNDERGRADE_COLUMN_TEXT"                value="本科"></property>
@@ -120,8 +139,35 @@
                <property name="ADD_EDIT_TEXT"         value="添加/修改"></property>
                 <property name="SUPERVISING_TA_TEXT"         value="助教"></property>
                  <property name="ADD_UPDATE_TEXT"         value="添加/更新"></property>
+
+                  <!-- schedule WORKSPACE CONTROLS STUFF -->
+         <property name="SCHEDULE_HEADER_TEXT"         value="课程"></property>
+          <property name="CALENDAR_HEADER_TEXT"         value="日期边界"></property>
+           <property name="STARTING_DATE_TEXT"         value="开始周一"></property>
+            <property name="ENDING_DATE_TEXT"         value="结束周五"></property>
+             <property name="SCHEDULE_ITEMS_TEXT"         value="课程事件"></property>
+              <property name="TYPE_COLUMN_TEXT"         value="类型"></property>
+               <property name="DATE_COLUMN_TEXT"         value="日期"></property>
+                <property name="TITLE_COLUMN_TEXT"         value="题目"></property>
+                 <property name="TOPIC_COLUMN_TEXT"         value="课题"></property>
+                       <property name="TIME_TEXT"         value="事件"></property>
+                 <property name="LINK_TEXT"         value="连接"></property>
+           <property name="CRITERIA_TEXT"         value="重要"></property>
            
-        
+             <!-- project WORKSPACE CONTROLS STUFF -->
+         <property name="PROJECTS_HEADER_TEXT"         value="项目"></property>
+          <property name="TEAMS_TEXT"         value="队伍"></property>
+           <property name="COLOR_COLUMN_TEXT"         value="颜色(hex#)"></property>
+            <property name="TEXT_COLOR_COLUMN_TEXT"         value="文本颜色(hex#)"></property>
+             <property name="COLOR_TEXT"         value="颜色"></property>
+              <property name="TEXT_COLOR_TEXT"         value="文本颜色"></property>
+               <property name="STUDENTS_TEXT"         value="学生"></property>
+                <property name="FIRST_NAME_COLUMN_TEXT"         value="名"></property>
+                 <property name="LAST_NAME_COLUMN_TEXT"         value="姓"></property>
+                       <property name="TEAM_TEXT"         value="队伍"></property>
+                 <property name="ROLE_TEXT"         value="角色"></property>
+      
+
         <!-- WORKSPACE ERROR MESSAGES -->
      <property name="MISSING_TA_NAME_TITLE"          value="缺少名字"></property>
         <property name="MISSING_TA_NAME_MESSAGE"        value="你必须填写助教名字"></property>

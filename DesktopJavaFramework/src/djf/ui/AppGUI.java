@@ -307,6 +307,7 @@ public class AppGUI {
      */
     public void initFileToolbarStyle() {
 	fileToolbarPane.getStyleClass().add(CLASS_BORDERED_PANE);
+        infoToolbarPane.getStyleClass().add(CLASS_BORDERED_PANE);
 	newButton.getStyleClass().add(CLASS_FILE_BUTTON);
 	loadButton.getStyleClass().add(CLASS_FILE_BUTTON);
 	saveButton.getStyleClass().add(CLASS_FILE_BUTTON);

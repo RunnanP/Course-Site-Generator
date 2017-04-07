@@ -5,6 +5,7 @@
  */
 package csg.workspace;
 
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -12,5 +13,5 @@ import javafx.scene.layout.Pane;
  * @author runnan
  */
 public interface WorkspacePart {
-    public Pane getBasePane();
+    public ScrollPane getBasePane();
 }

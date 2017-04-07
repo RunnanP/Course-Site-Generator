@@ -12,6 +12,7 @@ import csg.data.TeachingAssistant;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,7 +29,7 @@ import properties_manager.PropertiesManager;
 public class CSGRecitationWorkspace implements WorkspacePart{
     CSGApp app;
     CSGController controller;
-    Pane basePane;
+    ScrollPane basePane;
     
     VBox secondBasePane;
     
@@ -130,14 +131,238 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           addeditRecitationPane.getChildren().addAll( addeditHeaderLabel,firstHBox,secondHBox,thirdHBox,fourthHBox,fifthHBox,sixthHBox,addRecitationBox);
           secondBasePane.getChildren().addAll(recitationHeaderLabel,recitationTable,addeditRecitationPane);
           
-          basePane=new Pane();
-          basePane.getChildren().add(secondBasePane);
+          basePane=new ScrollPane(secondBasePane);
+          //basePane.getChildren().add(secondBasePane);
           
     }
 
     @Override
-    public Pane getBasePane() {
+    public ScrollPane getBasePane() {
         return basePane;
+    }
+
+    public CSGApp getApp() {
+        return app;
+    }
+
+    public void setApp(CSGApp app) {
+        this.app = app;
+    }
+
+    public CSGController getController() {
+        return controller;
+    }
+
+    public void setController(CSGController controller) {
+        this.controller = controller;
+    }
+
+    public VBox getSecondBasePane() {
+        return secondBasePane;
+    }
+
+    public void setSecondBasePane(VBox secondBasePane) {
+        this.secondBasePane = secondBasePane;
+    }
+
+    public Label getRecitationHeaderLabel() {
+        return recitationHeaderLabel;
+    }
+
+    public void setRecitationHeaderLabel(Label recitationHeaderLabel) {
+        this.recitationHeaderLabel = recitationHeaderLabel;
+    }
+
+    public TableView<Recitation> getRecitationTable() {
+        return recitationTable;
+    }
+
+    public void setRecitationTable(TableView<Recitation> recitationTable) {
+        this.recitationTable = recitationTable;
+    }
+
+    public TableColumn<Recitation, String> getSectionColumn() {
+        return sectionColumn;
+    }
+
+    public void setSectionColumn(TableColumn<Recitation, String> sectionColumn) {
+        this.sectionColumn = sectionColumn;
+    }
+
+    public TableColumn<Recitation, String> getInstructorColumn() {
+        return instructorColumn;
+    }
+
+    public void setInstructorColumn(TableColumn<Recitation, String> instructorColumn) {
+        this.instructorColumn = instructorColumn;
+    }
+
+    public TableColumn<Recitation, String> getDaytimeColumn() {
+        return daytimeColumn;
+    }
+
+    public void setDaytimeColumn(TableColumn<Recitation, String> daytimeColumn) {
+        this.daytimeColumn = daytimeColumn;
+    }
+
+    public TableColumn<Recitation, String> getLocationColumn() {
+        return locationColumn;
+    }
+
+    public void setLocationColumn(TableColumn<Recitation, String> locationColumn) {
+        this.locationColumn = locationColumn;
+    }
+
+    public TableColumn<Recitation, TeachingAssistant> getFirstTAColumn() {
+        return firstTAColumn;
+    }
+
+    public void setFirstTAColumn(TableColumn<Recitation, TeachingAssistant> firstTAColumn) {
+        this.firstTAColumn = firstTAColumn;
+    }
+
+    public TableColumn<Recitation, TeachingAssistant> getSecondTAColumn() {
+        return secondTAColumn;
+    }
+
+    public void setSecondTAColumn(TableColumn<Recitation, TeachingAssistant> secondTAColumn) {
+        this.secondTAColumn = secondTAColumn;
+    }
+
+    public VBox getAddeditRecitationPane() {
+        return addeditRecitationPane;
+    }
+
+    public void setAddeditRecitationPane(VBox addeditRecitationPane) {
+        this.addeditRecitationPane = addeditRecitationPane;
+    }
+
+    public Label getAddeditHeaderLabel() {
+        return addeditHeaderLabel;
+    }
+
+    public void setAddeditHeaderLabel(Label addeditHeaderLabel) {
+        this.addeditHeaderLabel = addeditHeaderLabel;
+    }
+
+    public Label getSectionLabel() {
+        return sectionLabel;
+    }
+
+    public void setSectionLabel(Label sectionLabel) {
+        this.sectionLabel = sectionLabel;
+    }
+
+    public TextField getSectionTextField() {
+        return sectionTextField;
+    }
+
+    public void setSectionTextField(TextField sectionTextField) {
+        this.sectionTextField = sectionTextField;
+    }
+
+    public Label getInstructorLabel() {
+        return instructorLabel;
+    }
+
+    public void setInstructorLabel(Label instructorLabel) {
+        this.instructorLabel = instructorLabel;
+    }
+
+    public TextField getInstructorTextField() {
+        return instructorTextField;
+    }
+
+    public void setInstructorTextField(TextField instructorTextField) {
+        this.instructorTextField = instructorTextField;
+    }
+
+    public Label getDaytimeLabel() {
+        return daytimeLabel;
+    }
+
+    public void setDaytimeLabel(Label daytimeLabel) {
+        this.daytimeLabel = daytimeLabel;
+    }
+
+    public TextField getDaytimeTextField() {
+        return daytimeTextField;
+    }
+
+    public void setDaytimeTextField(TextField daytimeTextField) {
+        this.daytimeTextField = daytimeTextField;
+    }
+
+    public Label getLocationLabel() {
+        return locationLabel;
+    }
+
+    public void setLocationLabel(Label locationLabel) {
+        this.locationLabel = locationLabel;
+    }
+
+    public TextField getLocationTextField() {
+        return locationTextField;
+    }
+
+    public void setLocationTextField(TextField locationTextField) {
+        this.locationTextField = locationTextField;
+    }
+
+    public Label getFirstTALabel() {
+        return firstTALabel;
+    }
+
+    public void setFirstTALabel(Label firstTALabel) {
+        this.firstTALabel = firstTALabel;
+    }
+
+    public Label getSecondTALabel() {
+        return secondTALabel;
+    }
+
+    public void setSecondTALabel(Label secondTALabel) {
+        this.secondTALabel = secondTALabel;
+    }
+
+    public ComboBox<TeachingAssistant> getFirstTAComboBox() {
+        return firstTAComboBox;
+    }
+
+    public void setFirstTAComboBox(ComboBox<TeachingAssistant> firstTAComboBox) {
+        this.firstTAComboBox = firstTAComboBox;
+    }
+
+    public ComboBox<TeachingAssistant> getSecondTAComboBox() {
+        return secondTAComboBox;
+    }
+
+    public void setSecondTAComboBox(ComboBox<TeachingAssistant> secondTAComboBox) {
+        this.secondTAComboBox = secondTAComboBox;
+    }
+
+    public HBox getAddRecitationBox() {
+        return addRecitationBox;
+    }
+
+    public void setAddRecitationBox(HBox addRecitationBox) {
+        this.addRecitationBox = addRecitationBox;
+    }
+
+    public Button getRecitationPartAddUpdateButton() {
+        return RecitationPartAddUpdateButton;
+    }
+
+    public void setRecitationPartAddUpdateButton(Button RecitationPartAddUpdateButton) {
+        this.RecitationPartAddUpdateButton = RecitationPartAddUpdateButton;
+    }
+
+    public Button getRecitationPartClearrButton() {
+        return RecitationPartClearrButton;
+    }
+
+    public void setRecitationPartClearrButton(Button RecitationPartClearrButton) {
+        this.RecitationPartClearrButton = RecitationPartClearrButton;
     }
     
 }

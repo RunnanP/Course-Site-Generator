@@ -133,4 +133,142 @@ public class CSGWorkspace extends AppWorkspaceComponent{
           csgProjectWorkspace=new CSGProjectWorkspace(app);
     }
     
+    public CSGCourseWorkspace getCourseWorkspace(){
+        return csgCourseWorkspace;
+    }
+    public CSGTAWorkspace getTAWorkspace(){
+        return csgTAWorkspace;
+    }
+    public CSGProjectWorkspace getProjectWorkspace(){
+        return csgProjectWorkspace;
+    }
+    public CSGRecitationWorkspace getRecitationWorkspace(){
+       return csgRecitationWorkspace;       
+    }
+    public CSGScheduleWorkspace getScheduleWorkspace(){
+        return csgScheduleWorkspace;
+    }
+
+    public CSGApp getApp() {
+        return app;
+    }
+
+    public void setApp(CSGApp app) {
+        this.app = app;
+    }
+
+    public CSGController getController() {
+        return controller;
+    }
+
+    public void setController(CSGController controller) {
+        this.controller = controller;
+    }
+
+    public VBox getWorkspaceBasicPane() {
+        return workspaceBasicPane;
+    }
+
+    public void setWorkspaceBasicPane(VBox workspaceBasicPane) {
+        this.workspaceBasicPane = workspaceBasicPane;
+    }
+
+    public HBox getWorkspaceStateBar() {
+        return workspaceStateBar;
+    }
+
+    public void setWorkspaceStateBar(HBox workspaceStateBar) {
+        this.workspaceStateBar = workspaceStateBar;
+    }
+
+    public Button getWorkspaceCoursePartButton() {
+        return workspaceCoursePartButton;
+    }
+
+    public void setWorkspaceCoursePartButton(Button workspaceCoursePartButton) {
+        this.workspaceCoursePartButton = workspaceCoursePartButton;
+    }
+
+    public Button getWorkspaceTAPartButton() {
+        return workspaceTAPartButton;
+    }
+
+    public void setWorkspaceTAPartButton(Button workspaceTAPartButton) {
+        this.workspaceTAPartButton = workspaceTAPartButton;
+    }
+
+    public Button getWorkspaceRecitationPartButton() {
+        return workspaceRecitationPartButton;
+    }
+
+    public void setWorkspaceRecitationPartButton(Button workspaceRecitationPartButton) {
+        this.workspaceRecitationPartButton = workspaceRecitationPartButton;
+    }
+
+    public Button getWorkspaceSchedulePartButton() {
+        return workspaceSchedulePartButton;
+    }
+
+    public void setWorkspaceSchedulePartButton(Button workspaceSchedulePartButton) {
+        this.workspaceSchedulePartButton = workspaceSchedulePartButton;
+    }
+
+    public Button getWorkspaceProjectPartButton() {
+        return workspaceProjectPartButton;
+    }
+
+    public void setWorkspaceProjectPartButton(Button workspaceProjectPartButton) {
+        this.workspaceProjectPartButton = workspaceProjectPartButton;
+    }
+
+    public CSGCourseWorkspace getCsgCourseWorkspace() {
+        return csgCourseWorkspace;
+    }
+
+    public void setCsgCourseWorkspace(CSGCourseWorkspace csgCourseWorkspace) {
+        this.csgCourseWorkspace = csgCourseWorkspace;
+    }
+
+    public CSGTAWorkspace getCsgTAWorkspace() {
+        return csgTAWorkspace;
+    }
+
+    public void setCsgTAWorkspace(CSGTAWorkspace csgTAWorkspace) {
+        this.csgTAWorkspace = csgTAWorkspace;
+    }
+
+    public CSGRecitationWorkspace getCsgRecitationWorkspace() {
+        return csgRecitationWorkspace;
+    }
+
+    public void setCsgRecitationWorkspace(CSGRecitationWorkspace csgRecitationWorkspace) {
+        this.csgRecitationWorkspace = csgRecitationWorkspace;
+    }
+
+    public CSGScheduleWorkspace getCsgScheduleWorkspace() {
+        return csgScheduleWorkspace;
+    }
+
+    public void setCsgScheduleWorkspace(CSGScheduleWorkspace csgScheduleWorkspace) {
+        this.csgScheduleWorkspace = csgScheduleWorkspace;
+    }
+
+    public CSGProjectWorkspace getCsgProjectWorkspace() {
+        return csgProjectWorkspace;
+    }
+
+    public void setCsgProjectWorkspace(CSGProjectWorkspace csgProjectWorkspace) {
+        this.csgProjectWorkspace = csgProjectWorkspace;
+    }
+
+    public Pane getCurrentWorkspace() {
+        return currentWorkspace;
+    }
+
+    public void setCurrentWorkspace(Pane currentWorkspace) {
+        this.currentWorkspace = currentWorkspace;
+    }
+
+  
+    
 }

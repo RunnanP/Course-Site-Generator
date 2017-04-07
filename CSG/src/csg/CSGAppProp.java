@@ -43,8 +43,24 @@ public enum CSGAppProp {
         COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT, 
         COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT,
         CHANGE_TEXT,
-        
-        
+        //center pane
+            COURSE_WORKSPACE_PART_CENTER_PANE_HEADER_TEXT,
+        DESCRIPTION_DETAIL_TEXT,
+        TEMPLATE_BUTTON_TEXT,
+        SITE_PAGES_TEXT, 
+        USE_COLIMN_TEXT, 
+        NAVBAR_TITLE_COLUMN_TEXT,
+        FILE_NAME_COLUMN_TEXT,
+        SCRIPT_COLUMN_TEXT,
+        //bottom pane
+         
+        BUTTOM_PANE_HEADER_LABEL_TEXT,
+        BANNER_LABEL_TEXT, 
+        STYLESHEET_LABEL_TEXT,
+        LEFT_LABEL_TEXT,
+        RIGHT_LABEL_TEXT,
+        NOTE_DESCRIPTION_TEXT,
+   
         
         
         //recitations part
@@ -56,6 +72,36 @@ public enum CSGAppProp {
         TA_COLUMN_TEXT, 
         ADD_EDIT_TEXT, 
         SUPERVISING_TA_TEXT, 
-        ADD_UPDATE_TEXT 
+        ADD_UPDATE_TEXT,
+        //schedule part
+        SCHEDULE_HEADER_TEXT, 
+        CALENDAR_HEADER_TEXT, 
+        STARTING_DATE_TEXT,
+        ENDING_DATE_TEXT,
+        SCHEDULE_ITEMS_TEXT, 
+        TYPE_COLUMN_TEXT, 
+        DATE_COLUMN_TEXT,
+        TITLE_COLUMN_TEXT,
+        TOPIC_COLUMN_TEXT,
+        TIME_TEXT,
+        LINK_TEXT,
+        CRITERIA_TEXT,
+        
+        //project part
+        PROJECTS_HEADER_TEXT, 
+        TEAMS_TEXT,
+        COLOR_COLUMN_TEXT, 
+        TEXT_COLOR_COLUMN_TEXT,
+        COLOR_TEXT, 
+        TEXT_COLOR_TEXT,
+        STUDENTS_TEXT,
+        FIRST_NAME_COLUMN_TEXT,
+        LAST_NAME_COLUMN_TEXT, 
+        TEAM_TEXT, 
+        ROLE_TEXT 
+        
+      
+        
+  
   
 }
