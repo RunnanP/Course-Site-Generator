@@ -107,7 +107,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
     
     public CSGCourseWorkspace(CSGApp initapp){
          app=initapp;
-        
+         CSGWorkspace workspace=(CSGWorkspace)app.getWorkspaceComponent();
          initTopPane();
          initCenterPane();
          initBottomPane();
@@ -115,6 +115,8 @@ public class CSGCourseWorkspace implements WorkspacePart{
          secondBasePane.setTop(topPane);
          secondBasePane.setCenter(centerPane);
          secondBasePane.setBottom(bottomPane);
+         secondBasePane.setMinSize(100, 100);
+         //secondBasePane.se
          basePane=new ScrollPane(secondBasePane);
          //basePane.getChildren().add(secondBasePane);
          
@@ -213,6 +215,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
         sitePagesTable=new TableView<>();
         sitePagesTable.getColumns().addAll(useColumn,navBarTitleColumn,fileNameColumn,scriptColumn);
         
+        sitePagesTable.widthProperty().multiply(0.1);
         centerPane.getChildren().addAll(centralPaneHeaderLabel,descriptionText,templatesDirLabel,selectTemplateDirButton,sitePagesLabel,sitePagesTable);
         
         

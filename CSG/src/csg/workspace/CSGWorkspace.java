@@ -7,6 +7,7 @@ package csg.workspace;
 
 import csg.CSGApp;
 import csg.CSGAppProp;
+import csg.data.CSGData;
 import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
 import javafx.scene.control.Button;
@@ -74,6 +75,8 @@ public class CSGWorkspace extends AppWorkspaceComponent{
          initAllWorkspaceParts();
          
          
+         
+         
          workspaceCoursePartButton.setOnAction(e->{
             
               workspaceBasicPane=new VBox();
@@ -122,7 +125,16 @@ public class CSGWorkspace extends AppWorkspaceComponent{
 
     @Override
     public void reloadWorkspace(AppDataComponent dataComponent) {
+       CSGData data=(CSGData)dataComponent;
+      // this.getCsgCourseWorkspace().reloadWorkspace(data);
+       this.getCsgTAWorkspace().reloadWorkspace(data);
+       //this.getCsgRecitationWorkspace().reloadWorkspace(data);
+      // this.getCsgScheduleWorkspace().reloadWorkspace(data);
+       //this.getCsgProjectWorkspace().reloadWorkspace(data);
+               
        
+        
+        
     }
     
     public void initAllWorkspaceParts(){
@@ -267,6 +279,14 @@ public class CSGWorkspace extends AppWorkspaceComponent{
 
     public void setCurrentWorkspace(Pane currentWorkspace) {
         this.currentWorkspace = currentWorkspace;
+    }
+
+    public Pane getWorkspace() {
+        return workspace;
+    }
+
+    public void setWorkspace(Pane workspace) {
+        this.workspace = workspace;
     }
 
   

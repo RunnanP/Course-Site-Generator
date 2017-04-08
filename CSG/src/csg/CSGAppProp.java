@@ -98,10 +98,21 @@ public enum CSGAppProp {
         FIRST_NAME_COLUMN_TEXT,
         LAST_NAME_COLUMN_TEXT, 
         TEAM_TEXT, 
-        ROLE_TEXT 
+        ROLE_TEXT, 
         
-      
         
-  
+        //ta part
+        OFFICE_HOURS_TABLE_HEADERS, 
+        DAYS_OF_WEEK, 
+        
+      //ta wrong message
+        MISSING_TA_NAME_TITLE,
+        MISSING_TA_NAME_MESSAGE,
+        MISSING_TA_EMAIL_TITLE,
+        MISSING_TA_EMAIL_MESSAGE,
+        TA_NAME_AND_EMAIL_NOT_UNIQUE_TITLE,
+        TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE,
+        WRONG_TA_EMAIL_TITLE,
+        WRONG_TA_EMAIL_MESSAGE
   
 }

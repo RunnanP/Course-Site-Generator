@@ -11,7 +11,12 @@ import csg.CSGAppProp;
 import csg.data.CSGData;
 import csg.data.CSGTAData;
 import csg.data.TeachingAssistant;
+import csg.style.CSGStyle;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -28,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -94,11 +100,11 @@ public class CSGTAWorkspace implements WorkspacePart{
         
          taTable = new TableView();
         taTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-       // CSGData data=(CSGData) app.getDataComponent();
-       
-        //ObservableList<TeachingAssistant> tableData=data.getTeachingAssistants();
+        CSGData data=(CSGData) app.getDataComponent();
         
-        //taTable.setItems(tableData);
+        ObservableList<TeachingAssistant> tableData=data.getTeachingAssistants();
+        taTable.setItems(tableData);
+       
         String undergradeColumnText=props.getProperty(CSGAppProp.UNDERGRADE_COLUMN_TEXT.toString());
         String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
         String emailColumnText = props.getProperty(CSGAppProp.EMAIL_COLUMN_TEXT.toString());
@@ -106,9 +112,9 @@ public class CSGTAWorkspace implements WorkspacePart{
         nameColumn = new TableColumn(nameColumnText);
         emailColumn=new TableColumn(emailColumnText);
         
-        underGradeColumn.setCellValueFactory(
+      /*  underGradeColumn.setCellValueFactory(
                 new PropertyValueFactory<TeachingAssistant, CheckBox>("underGrad")
-        );
+        );*/
         nameColumn.setCellValueFactory(
                 new PropertyValueFactory<TeachingAssistant, String>("name")
         );
@@ -206,21 +212,100 @@ public class CSGTAWorkspace implements WorkspacePart{
         rightPane.getChildren().add(officeHoursHeaderBox);
         rightPane.getChildren().add(officeHoursGridPane);
         
-        
+        officeHoursHeaderBox.prefWidthProperty().bind(officeHoursGridPane.widthProperty().multiply(.1));
         
         
          SplitPane sPane = new SplitPane(leftPane, new ScrollPane(rightPane));
          basePane=new ScrollPane(sPane);
+         
         // basePane.getChildren().add(sPane);
         
        
         
+controller = new CSGController(app);
+
+        // CONTROLS FOR ADDING TAs
+        nameTextField.setOnAction(e -> {
+            controller.handleAddTA();
+            
+        });
+        emailTextField.setOnAction(e -> {
+            controller.handleAddTA();
+            
+        });
+        addButton.setOnAction(e -> {
+            controller.handleAddTA();
+        });
+        
+        updateButton.setOnAction(e ->{
+        
+            controller.handleUpdateTA();
+        
+        });
 
         
+         clearButton.setOnAction(e ->{
+             controller.handleClearField();
+        
+        
+        });
+        taTable.setFocusTraversable(true);
+   
+        taTable.setOnKeyPressed(e -> {
+            controller.handleKeyPress(e.getCode());
+           
+        });
+        
+       taTable.setOnMouseClicked(e->{
+            controller.handleAppearUpdateTA(this);
+        });
+            
+    
+
+    
+    
+    startTimeComboBox.setOnAction(e->{
+        if (startTimeComboBox.getSelectionModel().getSelectedIndex()!=-1){
+       
+            
+                controller.handleChangeStartTime(startTimeComboBox,startTimeComboBoxLabel);
+         
+          
+        }
+        
+    });
+    
+   endTimeComboBox.setOnAction(e->{
+        if (endTimeComboBox.getSelectionModel().getSelectedIndex()!=-1){
+      
+                controller.handleChangeEndTime(endTimeComboBox,endTimeComboBoxLabel);
+          
+          
+        }
+        
+    });
+   
+
+    
+
+
+/*basePane.setOnKeyPressed(e->{
+    if(e.isControlDown() && e.getCode()==KeyCode.Z){
+  
+        controller.handleUndoTransaction();
+        //jTPS.undoTransaction();
+    }else if(e.isControlDown() && e.getCode()==KeyCode.Y){
+
+        controller.handleDoTransaction();
+       // jTPS.doTransaction();
+    }
+
+});*/
+        
         
 
         
-        controller = new CSGController(app);
+    
 
         
         
@@ -532,6 +617,137 @@ public class CSGTAWorkspace implements WorkspacePart{
 
     public void setEndTimeLabel(Label endTimeLabel) {
         this.endTimeLabel = endTimeLabel;
+    }
+    
+    
+    public void reloadWorkspace(CSGData data){
+        reloadOfficeHoursGrid(data);
+    }
+
+    public void reloadOfficeHoursGrid(CSGData dataComponent) {
+       ArrayList<String> gridHeaders =dataComponent.getGridHeaders();
+       
+       for (int i=0;i<2;i++){
+            addCellToGrid(dataComponent, officeHoursGridTimeHeaderPanes, officeHoursGridTimeHeaderLabels, i, 0);
+            dataComponent.getCellTextProperty(i, 0).set(gridHeaders.get(i));
+       }
+       
+          for (int i = 2; i < 7; i++) {
+            addCellToGrid(dataComponent, officeHoursGridDayHeaderPanes, officeHoursGridDayHeaderLabels, i, 0);
+            dataComponent.getCellTextProperty(i, 0).set(gridHeaders.get(i));            
+        }
+       
+            int row = 1;
+                 int colhelp=0;
+           for (int i = dataComponent.getStartHour(); i < dataComponent.getEndHour(); i++) {
+            // START TIME COLUMN
+            int col = 0;
+            addCellToGrid(dataComponent, officeHoursGridTimeCellPanes, officeHoursGridTimeCellLabels, col, row);
+            dataComponent.getCellTextProperty(col, row).set(buildCellText(i, "00"));
+            addCellToGrid(dataComponent, officeHoursGridTimeCellPanes, officeHoursGridTimeCellLabels, col, row+1);
+            dataComponent.getCellTextProperty(col, row+1).set(buildCellText(i, "30"));
+
+            // END TIME COLUMN
+            col++;
+            int endHour = i;
+            addCellToGrid(dataComponent, officeHoursGridTimeCellPanes, officeHoursGridTimeCellLabels, col, row);
+            dataComponent.getCellTextProperty(col, row).set(buildCellText(endHour, "30"));
+            addCellToGrid(dataComponent, officeHoursGridTimeCellPanes, officeHoursGridTimeCellLabels, col, row+1);
+            dataComponent.getCellTextProperty(col, row+1).set(buildCellText(endHour+1, "00"));
+            col++;
+
+            // AND NOW ALL THE TA TOGGLE CELLS
+            while (col < 7) {
+                addCellToGrid(dataComponent, officeHoursGridTACellPanes, officeHoursGridTACellLabels, col, row);
+                addCellToGrid(dataComponent, officeHoursGridTACellPanes, officeHoursGridTACellLabels, col, row+1);
+                col++;
+            }
+           
+            row += 2;
+        }
+           
+           
+                for (Pane p : officeHoursGridTACellPanes.values()) {
+            p.setFocusTraversable(true);
+            p.setOnKeyPressed(e -> {
+                controller.handleKeyPress(e.getCode());
+            });
+            p.setOnMouseClicked(e -> {
+                controller.handleCellToggle((Pane) e.getSource());
+            });
+            p.setOnMouseExited(e -> {
+                //controller.handleGridCellMouseExited((Pane) e.getSource());
+            });
+            p.setOnMouseEntered(e -> {
+                //controller.handleGridCellMouseEntered((Pane) e.getSource());
+            });
+        }
+                
+             
+          CSGStyle taStyle = (CSGStyle)app.getStyleComponent();
+        taStyle.initOfficeHoursGridStyle();  
+                
+                
+          
+           
+           
+           
+       
+    }
+    
+    
+    
+      public void addCellToGrid(CSGData dataComponent, HashMap<String, Pane> panes, HashMap<String, Label> labels, int col, int row) {       
+        // MAKE THE LABEL IN A PANE
+        Label cellLabel = new Label("");
+        HBox cellPane = new HBox();
+        cellPane.setAlignment(Pos.CENTER);
+        cellPane.getChildren().add(cellLabel);
+
+        // BUILD A KEY TO EASILY UNIQUELY IDENTIFY THE CELL
+        String cellKey = dataComponent.getCellKey(col, row);
+        cellPane.setId(cellKey);
+        cellLabel.setId(cellKey);
+        
+        // NOW PUT THE CELL IN THE WORKSPACE GRID
+        officeHoursGridPane.add(cellPane, col, row);
+        
+        // AND ALSO KEEP IN IN CASE WE NEED TO STYLIZE IT
+        panes.put(cellKey, cellPane);
+        labels.put(cellKey, cellLabel);
+        
+        // AND FINALLY, GIVE THE TEXT PROPERTY TO THE DATA MANAGER
+        // SO IT CAN MANAGE ALL CHANGES
+        dataComponent.setCellProperty(col, row, cellLabel.textProperty());        
+    }
+    
+     public void removeCellFromGrid(CSGData dataComponent, HashMap<String, Pane> panes, HashMap<String, Label> labels,int row) {     
+         for(int i=1;i<=13;i+=2){
+          
+       // officeHoursGridPane.getChildren().remove(100);
+ ;
+       officeHoursGridPane.getChildren().remove(row*7-i);
+  
+      //panes.remove(dataComponent.getCellKey(i, row));
+         }
+        }
+     
+     public String buildCellKey(int col,int row){
+         return ""+col+"_"+row;
+     }
+        public String buildCellText(int militaryHour, String minutes) {
+        // FIRST THE START AND END CELLS
+        int hour = militaryHour;
+        if (hour > 12) {
+            hour -= 12;
+        }
+        String cellText = "" + hour + ":" + minutes;
+        if (militaryHour < 12) {
+            cellText += "am";
+        } else {
+            cellText += "pm";
+        }
+        return cellText;
     }
     
 }
