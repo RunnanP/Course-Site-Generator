@@ -99,8 +99,8 @@ public class CSGProjectWorkspace implements WorkspacePart{
          
          teamsVBox=new VBox();
          String teamsHeaderText = props.getProperty(CSGAppProp.TEAMS_TEXT.toString());
-         teamsLabel=new Label(teamsHeaderText);
-         teamsVBox.getChildren().add(teamsLabel);
+         teamsHeaderLabel=new Label(teamsHeaderText);
+         teamsVBox.getChildren().add(teamsHeaderLabel);
          String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
          String colorColumnText = props.getProperty(CSGAppProp.COLOR_COLUMN_TEXT.toString());
          String textColorColumnText = props.getProperty(CSGAppProp.TEXT_COLOR_COLUMN_TEXT.toString());
@@ -194,7 +194,13 @@ public class CSGProjectWorkspace implements WorkspacePart{
          
          secondBasePane=new VBox(projectHeaderLabel,teamsVBox,studentsVBox);
          basePane=new ScrollPane(secondBasePane);
-         
+           secondBasePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
+          secondBasePane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(1));
+          nameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+          linkTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+          firstNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+          lastNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+          roleTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
     }
 
    @Override

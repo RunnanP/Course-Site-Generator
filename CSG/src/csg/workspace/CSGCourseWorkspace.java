@@ -105,7 +105,11 @@ public class CSGCourseWorkspace implements WorkspacePart{
     HBox pageStyleThirdHBox;
     HBox pageStyleFourthHBox;
     
+   
+    
+    
     public CSGCourseWorkspace(CSGApp initapp){
+        
          app=initapp;
          CSGWorkspace workspace=(CSGWorkspace)app.getWorkspaceComponent();
          initTopPane();
@@ -113,6 +117,8 @@ public class CSGCourseWorkspace implements WorkspacePart{
          initBottomPane();
          secondBasePane=new BorderPane();
          secondBasePane.setTop(topPane);
+         topPane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
+         
          secondBasePane.setCenter(centerPane);
          secondBasePane.setBottom(bottomPane);
          secondBasePane.setMinSize(100, 100);
@@ -137,7 +143,16 @@ public class CSGCourseWorkspace implements WorkspacePart{
          numberComboBox=new ComboBox<Integer>();
          
          firstHBox=new HBox();
-         firstHBox.getChildren().addAll(subjectLabel,subjectComboBox,numberLabel,numberComboBox);
+         HBox aspace=new HBox();
+         aspace.setMinWidth(50);
+          HBox bspace=new HBox();
+         bspace.setMinWidth(50);
+          HBox cspace=new HBox();
+         cspace.setMinWidth(50);
+          HBox dspace=new HBox();
+         dspace.setMinWidth(50);
+         
+         firstHBox.getChildren().addAll(subjectLabel,aspace,subjectComboBox,bspace,numberLabel,cspace,numberComboBox);
          
          //second hbox
         String semesterLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_SEMESTER_TEXT.toString());
@@ -148,7 +163,15 @@ public class CSGCourseWorkspace implements WorkspacePart{
          yearComboBox=new ComboBox<Integer>();
          
          secondHBox=new HBox();
-         secondHBox.getChildren().addAll(semesterLabel,semesterComboBox,yearLabel,yearComboBox);
+            aspace=new HBox();
+         aspace.setMinWidth(48);
+          bspace=new HBox();
+         bspace.setMinWidth(50);
+           cspace=new HBox();
+         cspace.setMinWidth(56);
+          dspace=new HBox();
+         dspace.setMinWidth(50);
+         secondHBox.getChildren().addAll(semesterLabel,aspace,semesterComboBox,bspace,yearLabel,cspace,yearComboBox);
          //third hbox
          String titleLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT.toString());
       
@@ -215,9 +238,12 @@ public class CSGCourseWorkspace implements WorkspacePart{
         sitePagesTable=new TableView<>();
         sitePagesTable.getColumns().addAll(useColumn,navBarTitleColumn,fileNameColumn,scriptColumn);
         
+        HBox space=new HBox(sitePagesTable,new Pane());
         sitePagesTable.widthProperty().multiply(0.1);
-        centerPane.getChildren().addAll(centralPaneHeaderLabel,descriptionText,templatesDirLabel,selectTemplateDirButton,sitePagesLabel,sitePagesTable);
-        
+        centerPane.getChildren().addAll(centralPaneHeaderLabel,descriptionText,templatesDirLabel,selectTemplateDirButton,sitePagesLabel,space);
+        titleTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+        instructorNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+        instructorHomeTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
         
    }
    
@@ -727,5 +753,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
     public void setPageStyleFourthHBox(HBox pageStyleFourthHBox) {
         this.pageStyleFourthHBox = pageStyleFourthHBox;
     }
+
+   
     
 }

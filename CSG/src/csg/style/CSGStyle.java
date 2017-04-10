@@ -6,7 +6,7 @@
 package csg.style;
 
 import csg.CSGApp;
-import csg.data.CSGRecitationData;
+import csg.data.TeachingAssistant;
 import csg.workspace.CSGCourseWorkspace;
 import csg.workspace.CSGProjectWorkspace;
 import csg.workspace.CSGRecitationWorkspace;
@@ -15,6 +15,11 @@ import csg.workspace.CSGTAWorkspace;
 import csg.workspace.CSGWorkspace;
 import djf.AppTemplate;
 import djf.components.AppStyleComponent;
+import java.util.HashMap;
+import javafx.beans.binding.Bindings;
+import javafx.scene.Node;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  *
@@ -57,6 +62,7 @@ public class CSGStyle extends AppStyleComponent{
     
     //new 
     public static String HEADER_STYLE="header_style";
+    public static String BIG_HEADER_STYLE="big_header_style";
     public static String HEADER_PANE="header_pane";
     public static String BUTTON_STYLE="button_style";
     public static String LABEL_STYLE="label_style";
@@ -103,45 +109,137 @@ public class CSGStyle extends AppStyleComponent{
     private void initCSGWorkspaceStyle() {
         // LEFT SIDE - THE HEADER
         CSGWorkspace workspaceComponent = (CSGWorkspace)app.getWorkspaceComponent();
-        CSGCourseWorkspace courseWorkspace=workspaceComponent.getCourseWorkspace();
-        CSGTAWorkspace tAWorkspace=workspaceComponent.getTAWorkspace();
-        CSGRecitationWorkspace recitationWorkspace=workspaceComponent.getRecitationWorkspace();
-        CSGScheduleWorkspace scheduleWorkspace=workspaceComponent.getScheduleWorkspace();
-        CSGProjectWorkspace projectWorkspace=workspaceComponent.getProjectWorkspace();
+        CSGCourseWorkspace courseWorkspaceComponent=workspaceComponent.getCourseWorkspace();
+        CSGTAWorkspace tAWorkspaceComponent=workspaceComponent.getTAWorkspace();
+        CSGRecitationWorkspace recitationWorkspaceComponent=workspaceComponent.getRecitationWorkspace();
+        CSGScheduleWorkspace scheduleWorkspaceComponent=workspaceComponent.getScheduleWorkspace();
+        CSGProjectWorkspace projectWorkspaceComponent=workspaceComponent.getProjectWorkspace();
         
         workspaceComponent.getWorkspaceStateBar().getStyleClass().add(STATE_BAR_STYLE);
         //course workspace
-        courseWorkspace.getSecondBasePane().getStyleClass().add(SECOND_BASE_PANE_STYLE);
+     //   courseWorkspaceComponent.getSecondBasePane().getStyleClass().add(SECOND_BASE_PANE_STYLE);
        // courseWorkspace.getPageStyleFirstHBox().getStyleClass().add(FIRST_HBOX);
-       courseWorkspace.getTopPane().getStyleClass().add(COURSE_PART_TOP_PANE);
-       courseWorkspace.getCenterPane().getStyleClass().add(COURSE_PART_CENTER_PANE);
-       courseWorkspace.getBottomPane().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
+      
+       courseWorkspaceComponent.getTopPane().getStyleClass().add(COURSE_PART_TOP_PANE);
+       courseWorkspaceComponent.getCenterPane().getStyleClass().add(COURSE_PART_CENTER_PANE);
+       courseWorkspaceComponent.getBottomPane().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
+       courseWorkspaceComponent.getTopPaneHeaderLabel().getStyleClass().add(HEADER_STYLE);
+       courseWorkspaceComponent.getCentralPaneHeaderLabel().getStyleClass().add(HEADER_STYLE);
+       courseWorkspaceComponent.getButtomPaneHeaderLabel().getStyleClass().add(HEADER_STYLE);
+       courseWorkspaceComponent.getExportDirChangeButton().getStyleClass().add(BUTTON_STYLE);
+       courseWorkspaceComponent.getFirstChangeButton().getStyleClass().add(BUTTON_STYLE);
+       courseWorkspaceComponent.getSecondChangeButton().getStyleClass().add(BUTTON_STYLE);
+       courseWorkspaceComponent.getThirdChangeButton().getStyleClass().add(BUTTON_STYLE);
+       courseWorkspaceComponent.getSelectTemplateDirButton().getStyleClass().add(BUTTON_STYLE);
+       courseWorkspaceComponent.getSubjectLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getNumberLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getSemesterLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getYearLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getTitleLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getInstructorNameLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getInstructorHomeLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getExportDirLabel().getStyleClass().add(LABEL_STYLE);
+       
+       courseWorkspaceComponent.getSitePagesLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getBannerSchoolImageLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getLeftFooterImageLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getRightFooterImageLabel().getStyleClass().add(LABEL_STYLE);
+       courseWorkspaceComponent.getStyleSheetLabel().getStyleClass().add(LABEL_STYLE);
+       
+       
+       
+        
 
+       
+       //ta workspace
         // LEFT SIDE - THE TABLE
-     /*   TableView<TeachingAssistant> taTable = workspaceComponent.getTATable();
+         tAWorkspaceComponent.getTasHeaderBox().getStyleClass().add(CLASS_HEADER_PANE);
+        tAWorkspaceComponent.getTasHeaderLabel().getStyleClass().add(CLASS_HEADER_LABEL);
+       TableView<TeachingAssistant> taTable = tAWorkspaceComponent.getTaTable();
         taTable.getStyleClass().add(CLASS_TA_TABLE);
         for (TableColumn tableColumn : taTable.getColumns()) {
             tableColumn.getStyleClass().add(CLASS_TA_TABLE_COLUMN_HEADER);
         }
 
         // LEFT SIDE - THE TA DATA ENTRY
-        workspaceComponent.getAddBox().getStyleClass().add(CLASS_ADD_TA_PANE);
-        workspaceComponent.getNameTextField().getStyleClass().add(CLASS_ADD_TA_TEXT_FIELD);
-        workspaceComponent.getEmailTextField().getStyleClass().add(CLASS_ADD_TA_TEXT_FIELD);
-        workspaceComponent.getAddButton().getStyleClass().add(CLASS_ADD_TA_BUTTON);
-        workspaceComponent.getUpdateButton().getStyleClass().add(CLASS_UPDATE_TA_BUTTON);
-        workspaceComponent.getClearButton().getStyleClass().add(CLASS_CLEAR_TA_BUTTON);
+        tAWorkspaceComponent.getAddBox().getStyleClass().add(CLASS_ADD_TA_PANE);
+        tAWorkspaceComponent.getNameTextField().getStyleClass().add(CLASS_ADD_TA_TEXT_FIELD);
+        tAWorkspaceComponent.getEmailTextField().getStyleClass().add(CLASS_ADD_TA_TEXT_FIELD);
+        tAWorkspaceComponent.getAddButton().getStyleClass().add(CLASS_ADD_TA_BUTTON);
+        tAWorkspaceComponent.getUpdateButton().getStyleClass().add(CLASS_UPDATE_TA_BUTTON);
+        tAWorkspaceComponent.getClearButton().getStyleClass().add(CLASS_CLEAR_TA_BUTTON);
 
         // RIGHT SIDE - THE HEADER
-        workspaceComponent.getOfficeHoursSubheaderBox().getStyleClass().add(CLASS_HEADER_PANE);
-        workspaceComponent.getOfficeHoursSubheaderLabel().getStyleClass().add(CLASS_HEADER_LABEL);
-*/
+        tAWorkspaceComponent.getOfficeHoursHeaderBox().getStyleClass().add(CLASS_HEADER_PANE);
+        tAWorkspaceComponent.getOfficeHoursHeaderLabel().getStyleClass().add(CLASS_HEADER_LABEL);
+        
+        
+        //recitation workspace
+        recitationWorkspaceComponent.getAddeditHeaderLabel().getStyleClass().add(HEADER_STYLE);
+        recitationWorkspaceComponent.getRecitationHeaderLabel().getStyleClass().add(BIG_HEADER_STYLE);
+        recitationWorkspaceComponent.getRecitationPartAddUpdateButton().getStyleClass().add(BUTTON_STYLE);
+        recitationWorkspaceComponent.getRecitationPartClearrButton().getStyleClass().add(BUTTON_STYLE);
+        recitationWorkspaceComponent.getSectionLabel().getStyleClass().add(LABEL_STYLE);
+        recitationWorkspaceComponent.getInstructorLabel().getStyleClass().add(LABEL_STYLE);
+        recitationWorkspaceComponent.getDaytimeLabel().getStyleClass().add(LABEL_STYLE);
+        recitationWorkspaceComponent.getLocationLabel().getStyleClass().add(LABEL_STYLE);
+        recitationWorkspaceComponent.getFirstTALabel().getStyleClass().add(LABEL_STYLE);
+        recitationWorkspaceComponent.getSecondTALabel().getStyleClass().add(LABEL_STYLE);
+       recitationWorkspaceComponent.getBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+       recitationWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_CENTER_PANE);
+       recitationWorkspaceComponent.getAddeditRecitationPane().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
+        
+        
+        
+        
+        
+        //schedule workspace
+        scheduleWorkspaceComponent.getScheduleHeaderLabl().getStyleClass().add(BIG_HEADER_STYLE);
+        scheduleWorkspaceComponent.getCalendarHeaderLabel().getStyleClass().add(HEADER_STYLE);
+        scheduleWorkspaceComponent.getAddeditLabel().getStyleClass().add(HEADER_STYLE);
+        scheduleWorkspaceComponent.getAddupdateButton().getStyleClass().add(BUTTON_STYLE);
+        scheduleWorkspaceComponent.getClearButton().getStyleClass().add(BUTTON_STYLE);
+        scheduleWorkspaceComponent.getStartDateLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getEndDateLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getTypeLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getDateLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getTimeLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getTitleLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getTopicLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getLinkLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getCriteriaLabel().getStyleClass().add(LABEL_STYLE);
+        scheduleWorkspaceComponent.getBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+        scheduleWorkspaceComponent.getCalendarChooseBox().getStyleClass().add(COURSE_PART_CENTER_PANE);
+        scheduleWorkspaceComponent.getScheduleItemBox().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
+        scheduleWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+     
+        
+        //project workspace
+        projectWorkspaceComponent.getProjectHeaderLabel().getStyleClass().add(BIG_HEADER_STYLE);
+        projectWorkspaceComponent.getStudentsHeaderLabel().getStyleClass().add(HEADER_STYLE);
+        projectWorkspaceComponent.getTeamsHeaderLabel().getStyleClass().add(HEADER_STYLE);
+        projectWorkspaceComponent.getNameLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getColorLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getTextColorLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getLinkLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getFirstNameLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getLastNameLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getTeamsLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getRoleLabel().getStyleClass().add(LABEL_STYLE);
+        projectWorkspaceComponent.getBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+        projectWorkspaceComponent.getTeamsVBox().getStyleClass().add(COURSE_PART_CENTER_PANE);
+        projectWorkspaceComponent.getStudentsVBox().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
+        projectWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+        
+        
+
     }
     
     
     public void initOfficeHoursGridStyle() {
         // RIGHT SIDE - THE OFFICE HOURS GRID TIME HEADERS
-       /* TAWorkspace workspaceComponent = (TAWorkspace)app.getWorkspaceComponent();
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGTAWorkspace workspaceComponent=temp.getCsgTAWorkspace();
         workspaceComponent.getOfficeHoursGridPane().getStyleClass().add(CLASS_OFFICE_HOURS_GRID);
         setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTimeHeaderPanes(), CLASS_OFFICE_HOURS_GRID_TIME_COLUMN_HEADER_PANE);
         setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTimeHeaderLabels(), CLASS_OFFICE_HOURS_GRID_TIME_COLUMN_HEADER_LABEL);
@@ -150,15 +248,15 @@ public class CSGStyle extends AppStyleComponent{
         setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTimeCellPanes(), CLASS_OFFICE_HOURS_GRID_TIME_CELL_PANE);
         setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTimeCellLabels(), CLASS_OFFICE_HOURS_GRID_TIME_CELL_LABEL);
         setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTACellPanes(), CLASS_OFFICE_HOURS_GRID_TA_CELL_PANE);
-        setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTACellLabels(), CLASS_OFFICE_HOURS_GRID_TA_CELL_LABEL);*/
+        setStyleClassOnAll(workspaceComponent.getOfficeHoursGridTACellLabels(), CLASS_OFFICE_HOURS_GRID_TA_CELL_LABEL);
     }
     
 
-  //  private void setStyleClassOnAll(HashMap nodes, String styleClass) {
-       /* for (Object nodeObject : nodes.values()) {
+    private void setStyleClassOnAll(HashMap nodes, String styleClass) {
+        for (Object nodeObject : nodes.values()) {
             Node n = (Node)nodeObject;
             n.getStyleClass().add(styleClass);
-        }*/
-   // }
+        }
+    }
 
 }

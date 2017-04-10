@@ -6,11 +6,15 @@
 package csg.workspace;
 
 import csg.CSGApp;
+import csg.CSGAppProp;
 import static csg.CSGAppProp.*;
 import csg.data.CSGData;
 import csg.data.TeachingAssistant;
+import csg.file.CSGFiles;
+import csg.file.CSGTimeSlot;
 import djf.ui.AppGUI;
 import djf.ui.AppMessageDialogSingleton;
+import djf.ui.AppYesNoCancelDialogSingleton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.control.ComboBox;
@@ -228,7 +232,9 @@ public class CSGController {
     }
 
     public void handleChangeStartTime(ComboBox startTimeComboBox, Label startTimeComboBoxLabel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           
+       
+               
     }
 
     public void handleChangeEndTime(ComboBox endTimeComboBox, Label endTimeComboBoxLabel) {
@@ -264,6 +270,59 @@ public class CSGController {
     }
    
 
-    
+     public void changeTime(){
+        CSGData data = (CSGData)app.getDataComponent();
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        ComboBox startComboBox = workspace.getOfficeHour(true);
+        ComboBox endComboBox = workspace.getOfficeHour(false);
+        int startTime = data.getStartHour();
+        int endTime = data.getEndHour();
+        
+        int newStartTime = startComboBox.getSelectionModel().getSelectedIndex();
+        int newEndTime = endComboBox.getSelectionModel().getSelectedIndex();
+        
+        if(newStartTime > endTime || newEndTime < startTime){
+            startComboBox.getSelectionModel().select(startTime);
+            endComboBox.getSelectionModel().select(endTime);
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+            dialog.show(props.getProperty(CSGAppProp.START_OVER_END_TITLE.toString()), props.getProperty(CSGAppProp.START_OVER_END_MESSAGE.toString()));
+            return;
+        }
+        ArrayList<CSGTimeSlot> officeHours = CSGTimeSlot.buildOfficeHoursList(data);
+        if(officeHours.isEmpty()){
+            workspace.getOfficeHoursGridPane().getChildren().clear();
+            data.initHours("" + newStartTime, "" + newEndTime);
+        }
+        String firsttime = officeHours.get(0).getTime();
+         System.out.println(firsttime);
+        int firsthour = Integer.parseInt(firsttime.substring(0, firsttime.indexOf('_')));
+        if(firsttime.contains("pm"))
+            firsthour += 12;
+        if(firsttime.contains("12"))
+            firsthour -= 12;
+        String lasttime = officeHours.get(officeHours.size() - 1).getTime();
+        int lasthour = Integer.parseInt(lasttime.substring(0, lasttime.indexOf('_')));
+        if(lasttime.contains("pm"))
+            lasthour += 12;
+        if(lasttime.contains("12"))
+            lasthour -= 12;
+        if(firsthour < newStartTime || lasthour + 1 > newEndTime){
+            AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
+            yesNoDialog.show(props.getProperty(CSGAppProp.OFFICE_HOURS_REMOVED_TITLE.toString()), props.getProperty(CSGAppProp.OFFICE_HOURS_REMOVED_MESSAGE).toString());
+            String selection = yesNoDialog.getSelection();
+            if (!selection.equals(AppYesNoCancelDialogSingleton.YES)){
+                startComboBox.getSelectionModel().select(startTime);
+                endComboBox.getSelectionModel().select(endTime);
+                return;
+            }
+        }
+        
+        workspace.getOfficeHoursGridPane().getChildren().clear();
+        data.changeTime(newStartTime, newEndTime, officeHours);
+        
+        markWorkAsEdited();
+    }
   
 }

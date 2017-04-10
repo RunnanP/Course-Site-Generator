@@ -7,6 +7,9 @@ package csg.data;
 
 import csg.CSGApp;
 import csg.CSGAppProp;
+import csg.file.CSGTimeSlot;
+import csg.workspace.CSGTAWorkspace;
+import csg.workspace.CSGWorkspace;
 import djf.components.AppDataComponent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -386,6 +389,22 @@ public class CSGData implements AppDataComponent{
     public String getCellKey(int col, int row) {
         return col+"_"+row;
     }
+    
+    public String getCellKey(String day, String time) {
+        int col = gridHeaders.indexOf(day);
+        int row = 1;
+        int hour = Integer.parseInt(time.substring(0, time.indexOf("_")));
+        int milHour = hour;
+//        if (hour < startHour)
+        if(time.contains("pm"))
+            milHour += 12;
+        if(time.contains("12"))
+            milHour -= 12;
+        row += (milHour - startHour) * 2;
+        if (time.contains("_30"))
+            row += 1;
+        return getCellKey(col, row);
+    }
             
        public void toggleTAOfficeHours(String cellKey, String taName) {
       try{
@@ -411,5 +430,58 @@ public class CSGData implements AppDataComponent{
      public void setCellProperty(int col, int row, StringProperty prop) {
         String cellKey = getCellKey(col, row);
           officeHours.put(cellKey, prop);
-    }    
+    }  
+     
+        public int getNumRows() {
+        return ((endHour - startHour) * 2) + 1;
+    }
+         public void initHours(String startHourText, String endHourText) {
+        int initStartHour = Integer.parseInt(startHourText);
+        int initEndHour = Integer.parseInt(endHourText);
+        if ((initStartHour >= MIN_START_HOUR)
+                && (initEndHour <= MAX_END_HOUR)
+                && (initStartHour <= initEndHour)) {
+            // THESE ARE VALID HOURS SO KEEP THEM
+            initOfficeHours(initStartHour, initEndHour);
+        }
+    }
+         
+         
+            private void initOfficeHours(int initStartHour, int initEndHour) {
+        // NOTE THAT THESE VALUES MUST BE PRE-VERIFIED
+        startHour = initStartHour;
+        endHour = initEndHour;
+        
+        // EMPTY THE CURRENT OFFICE HOURS VALUES
+        officeHours.clear();
+            
+        // WE'LL BUILD THE USER INTERFACE COMPONENT FOR THE
+        // OFFICE HOURS GRID AND FEED THEM TO OUR DATA
+        // STRUCTURE AS WE GO
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGTAWorkspace workspaceComponent=temp.getCsgTAWorkspace();
+        workspaceComponent.reloadOfficeHoursGrid(this);
+        
+        workspaceComponent.getOfficeHour(true).getSelectionModel().select(startHour);
+        workspaceComponent.getOfficeHour(false).getSelectionModel().select(endHour);
+    }
+    
+      public void changeTime(int startTime, int endTime, ArrayList<CSGTimeSlot> officeHours){
+        initHours("" + startTime, "" + endTime);
+        for(CSGTimeSlot ts : officeHours){
+            String temp = ts.getTime();
+            int tempint = Integer.parseInt(temp.substring(0, temp.indexOf('_')));
+            if(temp.contains("pm"))
+                tempint += 12;
+            if(temp.contains("12"))
+                tempint -= 12;
+            if(tempint >= startTime && tempint <= endTime)
+                addOfficeHoursReservation(ts.getDay(), ts.getTime(), ts.getName());
+        }
+    }
+        public void addOfficeHoursReservation(String day, String time, String taName) {
+        String cellKey = getCellKey(day, time);
+        toggleTAOfficeHours(cellKey, taName);
+    }
+
 }

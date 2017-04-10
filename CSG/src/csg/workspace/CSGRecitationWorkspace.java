@@ -133,7 +133,12 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           
           basePane=new ScrollPane(secondBasePane);
           //basePane.getChildren().add(secondBasePane);
-          
+          secondBasePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
+          secondBasePane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(1));
+          sectionTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
+          instructorTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
+          daytimeTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
+          locationTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
     }
 
     @Override

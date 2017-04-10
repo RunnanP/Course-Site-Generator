@@ -9,7 +9,6 @@ import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.CSGData;
-import csg.data.CSGTAData;
 import csg.data.TeachingAssistant;
 import csg.style.CSGStyle;
 import java.io.IOException;
@@ -17,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -53,7 +54,7 @@ public class CSGTAWorkspace implements WorkspacePart{
     Label tasHeaderLabel;
     
     TableView<TeachingAssistant> taTable;
-    TableColumn<TeachingAssistant,CheckBox> underGradeColumn;
+    TableColumn<TeachingAssistant,Boolean> underGradeColumn;
     TableColumn<TeachingAssistant,String> nameColumn;
     TableColumn<TeachingAssistant,String> emailColumn;
     
@@ -112,11 +113,11 @@ public class CSGTAWorkspace implements WorkspacePart{
         nameColumn = new TableColumn(nameColumnText);
         emailColumn=new TableColumn(emailColumnText);
         
-      /*  underGradeColumn.setCellValueFactory(
-                new PropertyValueFactory<TeachingAssistant, CheckBox>("underGrad")
-        );*/
+        //underGradeColumn.setCellValueFactory(
+          //      new PropertyValueFactory<TeachingAssistant, Boolean>("underGrad")
+       // );
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<TeachingAssistant, String>("name")
+                new PropertyValueFactory<TeachingAssistant, String>("Name")
         );
         emailColumn.setCellValueFactory(
                 new PropertyValueFactory<TeachingAssistant, String>("email")
@@ -184,7 +185,7 @@ public class CSGTAWorkspace implements WorkspacePart{
         timeComboBox.getChildren().add(endTimeComboBox);
         
        HBox space=new HBox();
-       space.setHgrow(space, Priority.ALWAYS);
+      // space.setHgrow(space, Priority.ALWAYS);
         officeHoursHeaderBox.getChildren().add(space);
          officeHoursHeaderBox.getChildren().add(timeComboBox);
        officeHoursHeaderLabel.setAlignment(Pos.CENTER_LEFT);
@@ -212,16 +213,26 @@ public class CSGTAWorkspace implements WorkspacePart{
         rightPane.getChildren().add(officeHoursHeaderBox);
         rightPane.getChildren().add(officeHoursGridPane);
         
-        officeHoursHeaderBox.prefWidthProperty().bind(officeHoursGridPane.widthProperty().multiply(.1));
+        //officeHoursHeaderBox.prefWidthProperty().bind(officeHoursGridPane.widthProperty().multiply(.1));
         
         
+     //   officeHoursHeaderBox.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.1));
          SplitPane sPane = new SplitPane(leftPane, new ScrollPane(rightPane));
          basePane=new ScrollPane(sPane);
          
         // basePane.getChildren().add(sPane);
         
-       
+       taTable.prefHeightProperty().bind(basePane.heightProperty().multiply(.9));
         
+       
+       
+       CSGWorkspace oo=(CSGWorkspace)app.getWorkspaceComponent();
+        basePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
+        leftPane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.1));
+        leftPane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(.8));
+        rightPane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.9));
+        sPane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(.9));
+       
 controller = new CSGController(app);
 
         // CONTROLS FOR ADDING TAs
@@ -261,10 +272,27 @@ controller = new CSGController(app);
         });
             
     
+       
+         startTimeComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue ov, String t, String t1) {
+                if(t != null && t1 != null)
+                    if(startTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
+                        controller.changeTime();
+            }
+        });
+      
+           endTimeComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            
+            public void changed(ObservableValue ov, String t, String t1) {
+                if(t != null && t1 != null)
+                    if(endTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
+                        controller.changeTime();
+            }
+        });
 
     
     
-    startTimeComboBox.setOnAction(e->{
+   /* startTimeComboBox.setOnAction(e->{
         if (startTimeComboBox.getSelectionModel().getSelectedIndex()!=-1){
        
             
@@ -283,7 +311,7 @@ controller = new CSGController(app);
           
         }
         
-    });
+    });*/
    
 
     
@@ -310,22 +338,38 @@ controller = new CSGController(app);
         
         
     }
+    
+    
+    
+    public ComboBox getOfficeHour(boolean start){
+        if(start){
+            return startTimeComboBox;
+        }else{
+        
+        return endTimeComboBox;
+        }
+    }
+      
+      
+      
+      
     public void initTimeComboBox(){
+        
        startTimeTableView= FXCollections.observableArrayList();
         endTimeTableView= FXCollections.observableArrayList();
              startTimeComboBox=new ComboBox(startTimeTableView);
         endTimeComboBox=new ComboBox(endTimeTableView);
     
     
-         startTimeComboBox.getItems().addAll("12:00am");
+         startTimeComboBox.getItems().addAll("12 am");
          
-        endTimeComboBox.getItems().addAll("12:00am");
+        endTimeComboBox.getItems().addAll("12 am");
         for (int i=1;i<=11;i++){
                for (int j=1;j<=2;j++){
                    String s = Integer.toString(i);
                    if (j==1){            
-                       startTimeComboBox.getItems().add(s+ ":00am");
-                       endTimeComboBox.getItems().add(s+":00am");
+                       startTimeComboBox.getItems().add(s+ " am");
+                       endTimeComboBox.getItems().add(s+" am");
                    } else {
                      //  startTimeComboBox.getItems().add(s+ ":30am");
                        //endTimeComboBox.getItems().add(s+":30am");
@@ -334,14 +378,14 @@ controller = new CSGController(app);
              }
        // startTimeComboBox.getItems().addAll("12:00pm","12:30pm");
        // endTimeComboBox.getItems().addAll("12:00pm","12:30pm");
-             startTimeComboBox.getItems().addAll("12:00pm");
-        endTimeComboBox.getItems().addAll("12:00pm");
+             startTimeComboBox.getItems().addAll("12 pm");
+        endTimeComboBox.getItems().addAll("12 pm");
          for (int i=1;i<=11;i++){
                for (int j=1;j<=2;j++){
                    String s = Integer.toString(i);
                    if (j==1){            
-                       startTimeComboBox.getItems().add(s+ ":00pm");
-                       endTimeComboBox.getItems().add(s+":00pm");
+                       startTimeComboBox.getItems().add(s+ " pm");
+                       endTimeComboBox.getItems().add(s+" pm");
                    } else {
                   //     startTimeComboBox.getItems().add(s+ ":30pm");
                  //      endTimeComboBox.getItems().add(s+":30pm");
@@ -395,11 +439,11 @@ controller = new CSGController(app);
         this.taTable = taTable;
     }
 
-    public TableColumn<TeachingAssistant, CheckBox> getUnderGradeColumn() {
+    public TableColumn<TeachingAssistant, Boolean> getUnderGradeColumn() {
         return underGradeColumn;
     }
 
-    public void setUnderGradeColumn(TableColumn<TeachingAssistant, CheckBox> underGradeColumn) {
+    public void setUnderGradeColumn(TableColumn<TeachingAssistant, Boolean> underGradeColumn) {
         this.underGradeColumn = underGradeColumn;
     }
 

@@ -94,7 +94,10 @@ public class CSGWorkspace extends AppWorkspaceComponent{
             // app.getWorkspaceComponent().activateWorkspace(app.getGUI().getAppPane());
             workspaceBasicPane=new VBox();
             workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgTAWorkspace.getBasePane());
+          //  CSGWorkspace oo=(CSGWorkspace)app.getWorkspaceComponent();
+            workspaceBasicPane.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(1));
             app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+            
          });
          workspaceRecitationPartButton.setOnAction(e->{
             workspaceBasicPane=new VBox();

@@ -120,10 +120,10 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         
         scheduleItemsTable.getColumns().addAll(typeColumn,dateColumn,titleColumn,topicColumn);
         String addeditText=props.getProperty(CSGAppProp.ADD_EDIT_TEXT.toString());
-        Label addeditLabel=new Label(addeditText);
+        addeditLabel=new Label(addeditText);
         typeLabel=new Label(typeColumnText+":");
         typeComboBox=new ComboBox<>();
-        dateLabel=new Label(dateColumnText+";");
+        dateLabel=new Label(dateColumnText+":");
         datePicker=new DatePicker();
         datePicker.setShowWeekNumbers(true);
         String timeText=props.getProperty(CSGAppProp.TIME_TEXT.toString());
@@ -134,10 +134,10 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         topicLabel=new Label(topicColumnText+":");
         topicTextField=new TextField();
         String linkText=props.getProperty(CSGAppProp.LINK_TEXT.toString());
-        linkLabel=new Label(linkText);
+        linkLabel=new Label(linkText+":");
         linkTextField=new TextField();
         String criteriaText=props.getProperty(CSGAppProp.CRITERIA_TEXT.toString());
-        criteriaLabel=new Label(criteriaText);
+        criteriaLabel=new Label(criteriaText+":");
         criteriaTextField=new TextField();
         addBox=new HBox();
         String addupdateButtonText=props.getProperty(CSGAppProp.ADD_UPDATE_TEXT.toString());
@@ -157,6 +157,13 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         secondBasePane=new VBox();
         secondBasePane.getChildren().addAll(scheduleHeaderLabl,calendarChooseBox,scheduleItemBox);
         basePane=new ScrollPane(secondBasePane);
+          secondBasePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
+          secondBasePane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(1));
+          timeTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
+          titleTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
+          topicTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
+          linkTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
+          criteriaTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
     }
 
     @Override

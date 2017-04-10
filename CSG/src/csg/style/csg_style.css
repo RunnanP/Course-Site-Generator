@@ -15,6 +15,7 @@
 */
 .root{
     -fx-font-family: "Courier New";
+    -fx-font-size: 14pt;
 }
 
 .dialog_pane {
@@ -179,20 +180,50 @@
 }
 
 .course_part_top_pane{
-     -fx-background-color:#FFE4E1;
+     -fx-background-color:#FAEBD7;
        -fx-border: 5px;   
     -fx-border-color:black;
       -fx-border-style:solid;
+        -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;   
 }
 .course_part_center_pane{
-       -fx-background-color:#FFE4B5;
+       -fx-background-color:#00FFFF;
        -fx-border: 5px;   
     -fx-border-color:black;
       -fx-border-style:solid;
+        -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;   
 }
 .course_part_bottom_pane{
-       -fx-background-color:#FFDEAD;
+       -fx-background-color:#7FFFD4;
        -fx-border: 5px;   
        -fx-border-color:black;
       -fx-border-style:solid;
+        -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;   
+}
+.header_style{
+     -fx-font-size: 17pt;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10 5 10;
+    
+}
+
+.big_header_style{
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10 5 10;
+    
+}
+.button_style{
+       -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;  
+}
+.label_style{
+    
+     -fx-font-size: 16pt;
+     -fx-font-weight: bold;
 }

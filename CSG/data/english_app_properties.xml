@@ -103,10 +103,10 @@
 
        
         <property name="BUTTOM_PANE_HEADER_LABEL_TEXT"                value="Page Style"></property>
-   <property name="BANNER_LABEL_TEXT"                value="Banner School Image"></property>
+   <property name="BANNER_LABEL_TEXT"                value="Banner School Image:"></property>
    <property name="STYLESHEET_LABEL_TEXT"                value="Stylesheet:"></property>
-   <property name="LEFT_LABEL_TEXT"                value="Left Footer Image"></property>
-   <property name="RIGHT_LABEL_TEXT"                value="Right Footer Image"></property>
+   <property name="LEFT_LABEL_TEXT"                value="Left Footer Image:"></property>
+   <property name="RIGHT_LABEL_TEXT"                value="Right Footer Image:"></property>
    <property name="NOTE_DESCRIPTION_TEXT"                value="NOTE: New stylesheets may be placed in work/css to be selectable"></property>
   
 
@@ -159,8 +159,8 @@
           <property name="TEAMS_TEXT"         value="Teams"></property>
            <property name="COLOR_COLUMN_TEXT"         value="Color(hex#)"></property>
             <property name="TEXT_COLOR_COLUMN_TEXT"         value="Text Color(hex#)"></property>
-             <property name="COLOR_TEXT"         value="Color"></property>
-              <property name="TEXT_COLOR_TEXT"         value="Text Color"></property>
+             <property name="COLOR_TEXT"         value="Color:"></property>
+              <property name="TEXT_COLOR_TEXT"         value="Text Color:"></property>
                <property name="STUDENTS_TEXT"         value="Students"></property>
                 <property name="FIRST_NAME_COLUMN_TEXT"         value="First Name"></property>
                  <property name="LAST_NAME_COLUMN_TEXT"         value="Last Name"></property>
@@ -168,8 +168,16 @@
                  <property name="ROLE_TEXT"         value="Role"></property>
       
         
-       
+        <!-- combobox ERROR MESSAGES -->
+         <property name="START_OVER_END_TITLE"           value="Can not end before start!"></property>
+        <property name="START_OVER_END_MESSAGE"         value="Can not end before start!"></property>
+        <property name="OFFICE_HOURS_REMOVED_TITLE"         value="remove office hours"></property>
+        <property name="OFFICE_HOURS_REMOVED_MESSAGE"       value="office hours remove"></property>
          
+
+     
+        
+
         <!-- WORKSPACE ERROR MESSAGES -->
        <property name="MISSING_TA_NAME_TITLE"          value="Missing TA Name"></property>
         <property name="MISSING_TA_NAME_MESSAGE"        value="You must provide a TA Name"></property>

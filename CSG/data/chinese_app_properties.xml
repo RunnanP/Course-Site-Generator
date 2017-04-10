@@ -108,8 +108,8 @@
         <property name="BUTTOM_PANE_HEADER_LABEL_TEXT"                value="页面风格"></property>
    <property name="BANNER_LABEL_TEXT"                value="横幅学校图片"></property>
    <property name="STYLESHEET_LABEL_TEXT"                value="风格表:"></property>
-   <property name="LEFT_LABEL_TEXT"                value="左脚图片"></property>
-   <property name="RIGHT_LABEL_TEXT"                value="右脚图片"></property>
+   <property name="LEFT_LABEL_TEXT"                value="左脚图片:"></property>
+   <property name="RIGHT_LABEL_TEXT"                value="右脚图片:"></property>
    <property name="NOTE_DESCRIPTION_TEXT"                value="注意：新的风格表可能会被放在 work/css 去被选择"></property>
 
 
@@ -143,8 +143,8 @@
                   <!-- schedule WORKSPACE CONTROLS STUFF -->
          <property name="SCHEDULE_HEADER_TEXT"         value="课程"></property>
           <property name="CALENDAR_HEADER_TEXT"         value="日期边界"></property>
-           <property name="STARTING_DATE_TEXT"         value="开始周一"></property>
-            <property name="ENDING_DATE_TEXT"         value="结束周五"></property>
+           <property name="STARTING_DATE_TEXT"         value="开始周一:"></property>
+            <property name="ENDING_DATE_TEXT"         value="结束周五:"></property>
              <property name="SCHEDULE_ITEMS_TEXT"         value="课程事件"></property>
               <property name="TYPE_COLUMN_TEXT"         value="类型"></property>
                <property name="DATE_COLUMN_TEXT"         value="日期"></property>
@@ -159,13 +159,23 @@
           <property name="TEAMS_TEXT"         value="队伍"></property>
            <property name="COLOR_COLUMN_TEXT"         value="颜色(hex#)"></property>
             <property name="TEXT_COLOR_COLUMN_TEXT"         value="文本颜色(hex#)"></property>
-             <property name="COLOR_TEXT"         value="颜色"></property>
-              <property name="TEXT_COLOR_TEXT"         value="文本颜色"></property>
+             <property name="COLOR_TEXT"         value="颜色:"></property>
+              <property name="TEXT_COLOR_TEXT"         value="文本颜色:"></property>
                <property name="STUDENTS_TEXT"         value="学生"></property>
                 <property name="FIRST_NAME_COLUMN_TEXT"         value="名"></property>
                  <property name="LAST_NAME_COLUMN_TEXT"         value="姓"></property>
                        <property name="TEAM_TEXT"         value="队伍"></property>
                  <property name="ROLE_TEXT"         value="角色"></property>
+
+
+
+
+
+                   <!-- combobox ERROR MESSAGES -->
+         <property name="START_OVER_END_TITLE"           value="结束时间不能早于开始"></property>
+        <property name="START_OVER_END_MESSAGE"         value="结束时间不能早于开始"></property>
+        <property name="OFFICE_HOURS_REMOVED_TITLE"         value="移除办公时间"></property>
+        <property name="OFFICE_HOURS_REMOVED_MESSAGE"       value="移除办公时间"></property>
       
 
         <!-- WORKSPACE ERROR MESSAGES -->
