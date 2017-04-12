@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.Recitation;
 import csg.data.TeachingAssistant;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -34,6 +36,7 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     VBox secondBasePane;
     
     Label recitationHeaderLabel;
+    HBox recitationHeaderBox;
     
     TableView<Recitation> recitationTable;
     TableColumn<Recitation,String> sectionColumn;
@@ -70,7 +73,9 @@ public class CSGRecitationWorkspace implements WorkspacePart{
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         
         String recitationHeaderText=props.getProperty(CSGAppProp.RECITATION_HEADER_TEXT.toString());
+       
         recitationHeaderLabel=new Label(recitationHeaderText);
+        recitationHeaderBox=new HBox(recitationHeaderLabel);
         
         recitationTable=new TableView();
         recitationTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -89,8 +94,11 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           
           
           recitationTable.getColumns().addAll(sectionColumn,instructorColumn,daytimeColumn,locationColumn,firstTAColumn,secondTAColumn);
-          
-           addeditRecitationPane=new VBox();
+          recitationTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
+          recitationTable.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(0.5));
+          FlowPane tableFlowPane=new FlowPane(recitationTable);
+          tableFlowPane.setPadding(new Insets(11,12,13,14));
+          addeditRecitationPane=new VBox();
           String addeditText=props.getProperty(CSGAppProp.ADD_EDIT_TEXT.toString());
           String supervisingTAText=props.getProperty(CSGAppProp.SUPERVISING_TA_TEXT.toString());
          addeditHeaderLabel=new Label(addeditText);
@@ -124,12 +132,48 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     
          RecitationPartAddUpdateButton=new Button(addupdateText);
          RecitationPartClearrButton=new Button(clearText);
-          addRecitationBox=new HBox(RecitationPartAddUpdateButton,RecitationPartClearrButton);
-          
+         HBox s1=new HBox();
+         
+          addRecitationBox=new HBox(RecitationPartAddUpdateButton,s1,RecitationPartClearrButton);
+          s1.setPrefWidth(100);
           secondBasePane=new VBox();
           addeditRecitationPane=new VBox();
-          addeditRecitationPane.getChildren().addAll( addeditHeaderLabel,firstHBox,secondHBox,thirdHBox,fourthHBox,fifthHBox,sixthHBox,addRecitationBox);
-          secondBasePane.getChildren().addAll(recitationHeaderLabel,recitationTable,addeditRecitationPane);
+          addeditRecitationPane.setPadding(new Insets(11,12,13,14));
+          FlowPane tempflowpane=new FlowPane();
+          HBox t0=new HBox();
+          HBox t1=new HBox();
+          HBox t2=new HBox();
+          HBox t3=new HBox();
+          HBox t4=new HBox();
+          HBox t5=new HBox();
+          HBox t6=new HBox();
+          HBox t7=new HBox();
+          HBox t8=new HBox();
+          HBox t9=new HBox();
+          HBox t10=new HBox();
+          HBox t11=new HBox();
+          HBox t12=new HBox();
+          tempflowpane.getChildren().addAll(addeditHeaderLabel,t0,sectionLabel,t1,sectionTextField,t2,instructorLabel,t3,instructorTextField,t4,daytimeLabel,t5,daytimeTextField,t6,locationLabel,t7,locationTextField,t8,firstTALabel,t9,firstTAComboBox,t10,secondTALabel,t11,secondTAComboBox,t12,addRecitationBox);
+          t0.setPrefWidth(2000);
+          t1.setPrefWidth(90);
+          t2.setPrefWidth(2000);
+          t3.setPrefWidth(50);
+          t4.setPrefWidth(2000);
+          t5.setPrefWidth(80);
+          t6.setPrefWidth(2000);
+          t7.setPrefWidth(80);
+          t8.setPrefWidth(2000);
+          t9.setPrefWidth(100);
+          t10.setPrefWidth(2000);
+          t11.setPrefWidth(100);
+          t12.setPrefWidth(2000);
+         tempflowpane.setVgap(10);
+         firstTAComboBox.setPrefWidth(300);
+         secondTAComboBox.setPrefWidth(300);
+
+//addeditRecitationPane.getChildren().addAll( addeditHeaderLabel,firstHBox,secondHBox,thirdHBox,fourthHBox,fifthHBox,sixthHBox,addRecitationBox);
+            addeditRecitationPane.getChildren().addAll(tempflowpane);
+          secondBasePane.getChildren().addAll(recitationHeaderBox,tableFlowPane,addeditRecitationPane);
           
           basePane=new ScrollPane(secondBasePane);
           //basePane.getChildren().add(secondBasePane);
@@ -369,5 +413,14 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     public void setRecitationPartClearrButton(Button RecitationPartClearrButton) {
         this.RecitationPartClearrButton = RecitationPartClearrButton;
     }
+
+    public HBox getRecitationHeaderBox() {
+        return recitationHeaderBox;
+    }
+
+    public void setRecitationHeaderBox(HBox recitationHeaderBox) {
+        this.recitationHeaderBox = recitationHeaderBox;
+    }
+    
     
 }

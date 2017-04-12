@@ -59,12 +59,12 @@
 
 .ta_table{
     -fx-font-size:16pt;
-    -fx-background-color:#000066;
+    
 }
 
 .table-view .column-header.ta_table_column_header .label {
-    -fx-text-fill:white;
-    -fx-background-color:#000066;
+    -fx-text-fill:black;
+   
 }
 
 .add_ta_pane{
@@ -174,7 +174,7 @@
 }
 
 .second_pane_style{
-   -fx-background-color:#F5DEB3;
+   
   -fx-border-radius: 10 10 10 10;
   -fx-background-radius: 10 10 10 10;   
 }
@@ -211,6 +211,7 @@
 }
 
 .big_header_style{
+      -fx-background-color:#ccccff;
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
     -fx-padding: 5 10 5 10;
@@ -226,4 +227,7 @@
     
      -fx-font-size: 16pt;
      -fx-font-weight: bold;
+}
+.table_flowpane{
+    -fx-padding: 5 10 5 10;
 }

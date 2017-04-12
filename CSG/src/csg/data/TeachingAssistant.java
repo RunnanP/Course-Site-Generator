@@ -6,6 +6,7 @@
 package csg.data;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.CheckBox;
@@ -16,9 +17,13 @@ import javafx.scene.control.CheckBox;
  */
 public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>  {
     // THE TABLE WILL STORE TA NAMES AND EMAILS
-    private final StringProperty name;
     private final StringProperty email;
-    private BooleanProperty underGrad;
+    private final StringProperty name;
+    private  final BooleanProperty underGrad;
+    private final StringProperty kk;
+//    public boolean underornot;
+//    public CheckBox cb;
+//    public SimpleBooleanProperty test;
     
 
     /**
@@ -27,6 +32,10 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
     public TeachingAssistant(String initName, String initEmail) {
         name = new SimpleStringProperty(initName);
         email = new SimpleStringProperty(initEmail);
+      //  underGrad
+       underGrad=new SimpleBooleanProperty(true);
+       kk=new SimpleStringProperty("pp");
+     
     }
 
     // ACCESSORS AND MUTATORS FOR THE PROPERTIES
@@ -47,7 +56,7 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
         email.set(initEmail);
     }
      
-    public void setUnderGrad(boolean initUnderGrad){
+   public void setUnderGrad(boolean initUnderGrad){
          underGrad.set(initUnderGrad);
     }
     
@@ -63,4 +72,21 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
     public String toString() {
         return name.getValue();
     }
+
+//    public Boolean isSelected() {
+//        return underornot;
+//    }
+//
+//    public void setSelected(Boolean new_val) {
+//       underornot=new_val;
+//    }
+     
+    public String getKk(){
+        return kk.get();
+    }
+    public void setKk(String ii){
+        kk.set(ii);
+    }
+
+    
 }

@@ -8,6 +8,8 @@ package csg.workspace;
 import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.SitePage;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -18,8 +20,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import properties_manager.PropertiesManager;
@@ -34,6 +38,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
     ScrollPane basePane;
     
     BorderPane secondBasePane;
+    //VBox topPane;
     VBox topPane;
     VBox centerPane;
     VBox bottomPane;
@@ -80,6 +85,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
     Label templatesDirLabel;
     Button selectTemplateDirButton;
     Label sitePagesLabel;
+    FlowPane sitePageTablePane;
     TableView<SitePage>  sitePagesTable;
     TableColumn<SitePage,CheckBox> useColumn;
     TableColumn<SitePage,String> navBarTitleColumn;
@@ -139,8 +145,10 @@ public class CSGCourseWorkspace implements WorkspacePart{
        String numberLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_NUMBER_TEXT.toString());
          subjectLabel=new Label(subjectLabelText);
          subjectComboBox=new ComboBox<String>();
+         subjectComboBox.setPrefWidth(250);
          numberLabel=new Label(numberLabelText);
          numberComboBox=new ComboBox<Integer>();
+         numberComboBox.setPrefWidth(250);
          
          firstHBox=new HBox();
          HBox aspace=new HBox();
@@ -159,8 +167,10 @@ public class CSGCourseWorkspace implements WorkspacePart{
        String yearLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_YEAR_TEXT.toString());
          semesterLabel=new Label(semesterLabelText);
          semesterComboBox=new ComboBox<String>();
+         semesterComboBox.setPrefWidth(250);
          yearLabel=new Label(yearLabelText);
          yearComboBox=new ComboBox<Integer>();
+         yearComboBox.setPrefWidth(250);
          
          secondHBox=new HBox();
             aspace=new HBox();
@@ -208,8 +218,50 @@ public class CSGCourseWorkspace implements WorkspacePart{
          sixthHBox=new HBox();
          sixthHBox.getChildren().addAll(exportDirLabel,exportDirChangeButton);
          
+         //topPane=new VBox();
          topPane=new VBox();
-         topPane.getChildren().addAll( topPaneHeaderLabel,firstHBox,secondHBox,thirdHBox,fourthHBox,fifthHBox,sixthHBox);
+//         topPane.setHgap(10);
+//         topPane.setVgap(5);
+         topPane.setPadding(new Insets(11,12,13,14));
+//         TilePane temp=new TilePane();
+//         temp.setPrefColumns(10);
+//         temp.setAlignment(Pos.TOP_LEFT);
+      FlowPane temp=new FlowPane();
+         TilePane temp1=new TilePane();
+         
+         temp1.getChildren().addAll(subjectLabel,subjectComboBox,numberLabel,numberComboBox);
+         
+         TilePane temp2=new TilePane();
+         temp2.getChildren().addAll(semesterLabel,semesterComboBox,yearLabel,yearComboBox);
+        // ,titleLabel,titleTextField,instructorNameLabel,instructorNameTextField,instructorHomeLabel,instructorHomeTextField);
+        
+        TilePane temp3=new TilePane();
+        temp3.getChildren().addAll(titleLabel,titleTextField);
+        temp3.setAlignment(Pos.TOP_LEFT);
+        
+        TilePane temp4=new TilePane();
+        temp4.getChildren().addAll(instructorNameLabel,instructorNameTextField);
+         temp4.setAlignment(Pos.BASELINE_LEFT);
+         
+        TilePane temp5=new TilePane();
+        temp5.getChildren().addAll(instructorHomeLabel,instructorHomeTextField);
+         temp5.setAlignment(Pos.BASELINE_LEFT);
+       // temp3.setPrefColumns(2);
+       // temp3.setVgap(20);
+        //temp3.setAlignment(Pos.CENTER);
+        
+        TilePane temp6=new TilePane();
+        temp6.getChildren().setAll(exportDirLabel,new Label(),exportDirChangeButton);
+        temp6.setAlignment(Pos.CENTER);
+        temp.getChildren().addAll(temp1,temp2,temp3,temp4,temp5,temp6);
+        
+       temp.setHgap(20);
+         temp.setVgap(20);
+         //temp.setPrefColumns(2);
+         topPane.getChildren().addAll(topPaneHeaderLabel,temp);
+         
+         //topPane.setPadding(Insets.EMPTY);
+         //topPane.getChildren().addAll( topPaneHeaderLabel,new HBox(),firstHBox,secondHBox,thirdHBox,fourthHBox,fifthHBox,sixthHBox);
    }
    
    private void initCenterPane(){
@@ -238,12 +290,14 @@ public class CSGCourseWorkspace implements WorkspacePart{
         sitePagesTable=new TableView<>();
         sitePagesTable.getColumns().addAll(useColumn,navBarTitleColumn,fileNameColumn,scriptColumn);
         
-        HBox space=new HBox(sitePagesTable,new Pane());
-        sitePagesTable.widthProperty().multiply(0.1);
-        centerPane.getChildren().addAll(centralPaneHeaderLabel,descriptionText,templatesDirLabel,selectTemplateDirButton,sitePagesLabel,space);
-        titleTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
-        instructorNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
-        instructorHomeTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+      //  HBox space=new HBox(sitePagesTable,new Pane());
+        sitePagesTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.3));
+        sitePageTablePane=new FlowPane(sitePagesTable);
+        centerPane.getChildren().addAll(centralPaneHeaderLabel,descriptionText,templatesDirLabel,selectTemplateDirButton,sitePagesLabel,sitePageTablePane);
+        titleTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.2));
+        instructorNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.2));
+        instructorHomeTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.2));
+        centerPane.setPadding(new Insets(11,12,13,14));
         
    }
    
@@ -265,30 +319,47 @@ public class CSGCourseWorkspace implements WorkspacePart{
          bannerSchoolImageLabel=new Label(bannerSchoolImageLabelText);
          firstText=new Text("YALE UNIVERSITY");
          firstChangeButton=new Button(changeText);
-         pageStyleFirstHBox=new HBox(bannerSchoolImageLabel,firstText,firstChangeButton);
+         HBox t1=new HBox();
+         HBox t2=new HBox();
+         pageStyleFirstHBox=new HBox(bannerSchoolImageLabel,t1,firstText,t2,firstChangeButton);
+         t1.setPrefWidth(20);
+         t2.setPrefWidth(20);
          bottomPane.getChildren().add(pageStyleFirstHBox);
          
          leftFooterImageLabel=new Label(leftFooterImageLabelText);
          secondText=new Text("YALE UNIVERSITY");
          secondChangeButton=new Button(changeText);
-         pageStyleSecondHBox=new HBox(leftFooterImageLabel,secondText,secondChangeButton);
+         t1=new HBox();
+         t2=new HBox();
+         pageStyleSecondHBox=new HBox(leftFooterImageLabel,t1,secondText,t2,secondChangeButton);
+          t1.setPrefWidth(40);
+         t2.setPrefWidth(25);
          bottomPane.getChildren().add(pageStyleSecondHBox);
          
          rightFooterImageLabel=new Label(rightFooterImageLabelText);
          thirdText=new Text("YALE CS");
          thirdChangeButton=new Button(changeText);
-         pageStyleThirdHBox=new HBox(rightFooterImageLabel,thirdText,thirdChangeButton);
+         t1=new HBox();
+         t2=new HBox();
+         pageStyleThirdHBox=new HBox(rightFooterImageLabel,t1,thirdText,t2,thirdChangeButton);
+           t1.setPrefWidth(40);
+         t2.setPrefWidth(100);
          bottomPane.getChildren().add(pageStyleThirdHBox);
          
     
          styleSheetLabel=new Label(styleSheetLabelText);
          
         styleSheetComboBox=new ComboBox<>();
-        fourthHBox=new HBox(styleSheetLabel,styleSheetComboBox);
+        t1=new HBox();
+        fourthHBox=new HBox(styleSheetLabel,t1,styleSheetComboBox);
+        t1.setPrefWidth(20);
+        styleSheetComboBox.setPrefWidth(150);
         String noteDescriptionText=props.getProperty(CSGAppProp.NOTE_DESCRIPTION_TEXT.toString());
         noteDescription=new Text(noteDescriptionText);
         
         bottomPane.getChildren().addAll(fourthHBox,noteDescription);
+        bottomPane.setPadding(new Insets(11,12,13,14));
+        
    }
     public ScrollPane getBasePane() {
         return basePane;
@@ -752,6 +823,14 @@ public class CSGCourseWorkspace implements WorkspacePart{
 
     public void setPageStyleFourthHBox(HBox pageStyleFourthHBox) {
         this.pageStyleFourthHBox = pageStyleFourthHBox;
+    }
+
+    public FlowPane getSitePageTablePane() {
+        return sitePageTablePane;
+    }
+
+    public void setSitePageTablePane(FlowPane sitePageTablePane) {
+        this.sitePageTablePane = sitePageTablePane;
     }
 
    

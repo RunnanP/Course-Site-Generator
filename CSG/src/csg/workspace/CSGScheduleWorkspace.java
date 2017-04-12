@@ -8,6 +8,7 @@ package csg.workspace;
 import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.ScheduleItem;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -17,6 +18,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -33,6 +35,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
     
    VBox secondBasePane;
    Label scheduleHeaderLabl;
+   HBox scheduleHeaderBox;
    
    VBox calendarChooseBox;
    Label calendarHeaderLabel;
@@ -42,7 +45,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
    Label endDateLabel;
    DatePicker endDatePicker;
    
-   VBox scheduleItemBox;
+   FlowPane scheduleItemBox;
    Label scheduleItemHeaderLabel;
    TableView<ScheduleItem> scheduleItemsTable;
    TableColumn<ScheduleItem,String> typeColumn;
@@ -84,29 +87,36 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         
          String scheduleHeaderText = props.getProperty(CSGAppProp.SCHEDULE_HEADER_TEXT.toString());
          scheduleHeaderLabl=new Label(scheduleHeaderText);
+         scheduleHeaderBox=new HBox(scheduleHeaderLabl);
          
            calendarChooseBox=new VBox();
+             calendarChooseBox.setPadding(new Insets(11,12,13,14));
            String calendarHeaderText = props.getProperty(CSGAppProp.CALENDAR_HEADER_TEXT.toString());
           calendarHeaderLabel=new Label(calendarHeaderText);
          dateChooseBox=new HBox();
          String startDateText = props.getProperty(CSGAppProp.STARTING_DATE_TEXT.toString());
-        startDateLabel=new Label(startDateText);
+        startDateLabel=new Label(startDateText+":");
          startDatePicker=new DatePicker();
          startDatePicker.setShowWeekNumbers(true);
           String endDateText = props.getProperty(CSGAppProp.ENDING_DATE_TEXT.toString());
-    endDateLabel=new Label(endDateText);
+    endDateLabel=new Label(endDateText+":");
        endDatePicker=new DatePicker();
        endDatePicker.setShowWeekNumbers(true);
-        dateChooseBox.getChildren().addAll(startDateLabel,startDatePicker,endDateLabel,endDatePicker);
+       HBox a1=new HBox();
+        dateChooseBox.getChildren().addAll(startDateLabel,startDatePicker,a1,endDateLabel,endDatePicker);
+        a1.setPrefWidth(50);
         
         calendarChooseBox.getChildren().addAll(calendarHeaderLabel,dateChooseBox);
         
         
-        scheduleItemBox=new VBox();
+        scheduleItemBox=new FlowPane();
+        scheduleItemBox.setHgap(20);
+        scheduleItemBox.setPadding(new Insets(11,12,13,14));
         String scheduleItemsText = props.getProperty(CSGAppProp.SCHEDULE_ITEMS_TEXT.toString());
-        scheduleHeaderLabl=new Label(scheduleItemsText);
+        scheduleItemHeaderLabel=new Label(scheduleItemsText);
         
         scheduleItemsTable=new TableView<>();
+        scheduleItemsTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
         scheduleItemsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         String typeColumnText = props.getProperty(CSGAppProp.TYPE_COLUMN_TEXT.toString());
         String dateColumnText = props.getProperty(CSGAppProp.DATE_COLUMN_TEXT.toString());
@@ -127,7 +137,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         datePicker=new DatePicker();
         datePicker.setShowWeekNumbers(true);
         String timeText=props.getProperty(CSGAppProp.TIME_TEXT.toString());
-        timeLabel=new Label(timeText);
+        timeLabel=new Label(timeText+":");
         timeTextField=new TextField();
         titleLabel=new Label(titleColumnText+":");
         titleTextField=new TextField();
@@ -144,18 +154,60 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         addupdateButton=new Button(addupdateButtonText);
         String clearButtonText=props.getProperty(CSGAppProp.CLEAR_BUTTON_TEXT.toString());
         clearButton=new Button(clearButtonText);
-        addBox.getChildren().addAll(addupdateButton,clearButton);
+        HBox s0=new HBox();
+        addBox.getChildren().addAll(addupdateButton,s0,clearButton);
+        s0.setPrefWidth(20);
+              
+            HBox s1=new HBox();
+          HBox s2=new HBox();
+          HBox s3=new HBox();
+          HBox s4=new HBox();
+          HBox s5=new HBox();
+          HBox s6=new HBox();
+          HBox s7=new HBox();
+          firstHBox=new HBox(typeLabel,s1,typeComboBox);
+          typeComboBox.setPrefWidth(80);
+          secondHBox=new HBox(dateLabel,s2,datePicker);
+          thirdHBox=new HBox(timeLabel,s3,timeTextField);
+          fourthHBox=new HBox(titleLabel,s4,titleTextField);
+          fifthHBox=new HBox(topicLabel,s5,topicTextField);
+          sixthHBox=new HBox(linkLabel,s6,linkTextField);
+          seventhHBox=new HBox(criteriaLabel,s7,criteriaTextField);
+           s1.setPrefWidth(60);
+          s2.setPrefWidth(60);
+          s3.setPrefWidth(60);
+          s4.setPrefWidth(55);
+          s5.setPrefWidth(55);
+          s6.setPrefWidth(60);
+          s7.setPrefWidth(20);
+          
+          
+          
+          HBox t0=new HBox();
+            HBox t1=new HBox();
+          HBox t2=new HBox();
+          HBox t3=new HBox();
+          HBox t4=new HBox();
+          HBox t5=new HBox();
+          HBox t6=new HBox();
+          HBox t7=new HBox();
+          HBox t8=new HBox();
+          HBox t9=new HBox();
+        scheduleItemBox.getChildren().addAll(scheduleItemHeaderLabel,t1,scheduleItemsTable,t0,addeditLabel,t2,firstHBox,t3,secondHBox,t4,thirdHBox,t5,fourthHBox,t6,fifthHBox,t7,sixthHBox,t8,seventhHBox,t9,addBox);
+        scheduleItemBox.setVgap(20);
+        t0.setPrefWidth(300);
+        t1.setPrefWidth(2000);
+          t2.setPrefWidth(2000);
+          t3.setPrefWidth(2000);
+          t4.setPrefWidth(2000);
+          t5.setPrefWidth(2000);
+          t6.setPrefWidth(2000);
+          t7.setPrefWidth(2000);
+          t8.setPrefWidth(2000);
+          t9.setPrefWidth(2000);
         
-          firstHBox=new HBox(typeLabel,typeComboBox);
-          secondHBox=new HBox(dateLabel,datePicker);
-          thirdHBox=new HBox(timeLabel,timeTextField);
-          fourthHBox=new HBox(titleLabel,titleTextField);
-          fifthHBox=new HBox(topicLabel,topicTextField);
-          sixthHBox=new HBox(linkLabel,linkTextField);
-          seventhHBox=new HBox(criteriaLabel,criteriaTextField);
-        scheduleItemBox.getChildren().addAll(scheduleHeaderLabl,scheduleItemsTable,addeditLabel,firstHBox,secondHBox,thirdHBox,fourthHBox,fifthHBox,sixthHBox,seventhHBox,addBox);
         secondBasePane=new VBox();
-        secondBasePane.getChildren().addAll(scheduleHeaderLabl,calendarChooseBox,scheduleItemBox);
+        secondBasePane.getChildren().addAll(scheduleHeaderBox,calendarChooseBox,scheduleItemBox);
         basePane=new ScrollPane(secondBasePane);
           secondBasePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
           secondBasePane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(1));
@@ -259,11 +311,11 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         this.endDatePicker = endDatePicker;
     }
 
-    public VBox getScheduleItemBox() {
+    public FlowPane getScheduleItemBox() {
         return scheduleItemBox;
     }
 
-    public void setScheduleItemBox(VBox scheduleItemBox) {
+    public void setScheduleItemBox(FlowPane scheduleItemBox) {
         this.scheduleItemBox = scheduleItemBox;
     }
 
@@ -514,5 +566,14 @@ public class CSGScheduleWorkspace implements WorkspacePart{
     public void setSeventhHBox(HBox seventhHBox) {
         this.seventhHBox = seventhHBox;
     }
+
+    public HBox getScheduleHeaderBox() {
+        return scheduleHeaderBox;
+    }
+
+    public void setScheduleHeaderBox(HBox scheduleHeaderBox) {
+        this.scheduleHeaderBox = scheduleHeaderBox;
+    }
+    
     
 }

@@ -12,6 +12,7 @@ import csg.data.CSGData;
 import csg.data.TeachingAssistant;
 import csg.file.CSGFiles;
 import csg.file.CSGTimeSlot;
+import static csg.style.CSGStyle.*;
 import djf.ui.AppGUI;
 import djf.ui.AppMessageDialogSingleton;
 import djf.ui.AppYesNoCancelDialogSingleton;
@@ -324,5 +325,87 @@ public class CSGController {
         
         markWorkAsEdited();
     }
+
+   public void handleGridCellMouseExited(Pane pane) {
+        String cellKey = pane.getId();
+        CSGData data = (CSGData)app.getDataComponent();
+        int column = Integer.parseInt(cellKey.substring(0, cellKey.indexOf("_")));
+        int row = Integer.parseInt(cellKey.substring(cellKey.indexOf("_") + 1));
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
+
+        Pane mousedOverPane = workspace.getTACellPane(data.getCellKey(column, row));
+        mousedOverPane.getStyleClass().clear();
+        mousedOverPane.getStyleClass().add(CLASS_OFFICE_HOURS_GRID_TA_CELL_PANE);
+
+        // THE MOUSED OVER COLUMN HEADER
+        Pane headerPane = workspace.getOfficeHoursGridDayHeaderPanes().get(data.getCellKey(column, 0));
+        headerPane.getStyleClass().remove(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+
+        // THE MOUSED OVER ROW HEADERS
+        headerPane = workspace.getOfficeHoursGridTimeCellPanes().get(data.getCellKey(0, row));
+        headerPane.getStyleClass().remove(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        headerPane = workspace.getOfficeHoursGridTimeCellPanes().get(data.getCellKey(1, row));
+        headerPane.getStyleClass().remove(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        
+        // AND NOW UPDATE ALL THE CELLS IN THE SAME ROW TO THE LEFT
+        for (int i = 2; i < column; i++) {
+            cellKey = data.getCellKey(i, row);
+            Pane cell = workspace.getTACellPane(cellKey);
+            cell.getStyleClass().remove(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+            cell.getStyleClass().add(CLASS_OFFICE_HOURS_GRID_TA_CELL_PANE);
+        }
+
+        // AND THE CELLS IN THE SAME COLUMN ABOVE
+        for (int i = 1; i < row; i++) {
+            cellKey = data.getCellKey(column, i);
+            Pane cell = workspace.getTACellPane(cellKey);
+            cell.getStyleClass().remove(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+            cell.getStyleClass().add(CLASS_OFFICE_HOURS_GRID_TA_CELL_PANE);
+        }
+    }
+
+    public void handleGridCellMouseEntered(Pane pane) {
+        String cellKey = pane.getId();
+        CSGData data = (CSGData)app.getDataComponent();
+        int column = Integer.parseInt(cellKey.substring(0, cellKey.indexOf("_")));
+        int row = Integer.parseInt(cellKey.substring(cellKey.indexOf("_") + 1));
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
+        // THE MOUSED OVER PANE
+        Pane mousedOverPane = workspace.getTACellPane(data.getCellKey(column, row));
+        mousedOverPane.getStyleClass().clear();
+        mousedOverPane.getStyleClass().add(CLASS_HIGHLIGHTED_GRID_CELL);
+        
+        // THE MOUSED OVER COLUMN HEADER
+        Pane headerPane = workspace.getOfficeHoursGridDayHeaderPanes().get(data.getCellKey(column, 0));
+        headerPane.getStyleClass().add(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        
+        // THE MOUSED OVER ROW HEADERS
+        headerPane = workspace.getOfficeHoursGridTimeCellPanes().get(data.getCellKey(0, row));
+        headerPane.getStyleClass().add(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        headerPane = workspace.getOfficeHoursGridTimeCellPanes().get(data.getCellKey(1, row));
+        headerPane.getStyleClass().add(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        
+        // AND NOW UPDATE ALL THE CELLS IN THE SAME ROW TO THE LEFT
+        for (int i = 2; i < column; i++) {
+            cellKey = data.getCellKey(i, row);
+            Pane cell = workspace.getTACellPane(cellKey);
+            cell.getStyleClass().add(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        }
+
+        // AND THE CELLS IN THE SAME COLUMN ABOVE
+        for (int i = 1; i < row; i++) {
+            cellKey = data.getCellKey(column, i);
+            Pane cell = workspace.getTACellPane(cellKey);
+            cell.getStyleClass().add(CLASS_HIGHLIGHTED_GRID_ROW_OR_COLUMN);
+        }
+    }
+
+
+     
+     
+    
+      
   
 }

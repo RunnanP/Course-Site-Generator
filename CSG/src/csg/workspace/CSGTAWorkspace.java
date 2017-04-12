@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,15 +32,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import properties_manager.PropertiesManager;
 
 /**
@@ -55,6 +60,7 @@ public class CSGTAWorkspace implements WorkspacePart{
     
     TableView<TeachingAssistant> taTable;
     TableColumn<TeachingAssistant,Boolean> underGradeColumn;
+  //  TableColumn<TeachingAssistant,CheckBox> checkBoxColumn;
     TableColumn<TeachingAssistant,String> nameColumn;
     TableColumn<TeachingAssistant,String> emailColumn;
     
@@ -113,16 +119,87 @@ public class CSGTAWorkspace implements WorkspacePart{
         nameColumn = new TableColumn(nameColumnText);
         emailColumn=new TableColumn(emailColumnText);
         
-        //underGradeColumn.setCellValueFactory(
-          //      new PropertyValueFactory<TeachingAssistant, Boolean>("underGrad")
-       // );
+       /* underGradeColumn.setCellValueFactory(
+              //  new PropertyValueFactory<TeachingAssistant, Boolean>("underGrad")
+               new PropertyValueFactory<TeachingAssistant,Boolean>("test")
+        );*/
+       
+       
+     
+      // ObservableList<TableColumn<TeachingAssistant,?>> columns=taTable.getColumns();
+       //TableColumn<TeachingAssistant,Boolean> loadedColumn=new TableColumn<>("LOAD");
+      // loadedColumn.setCellValueFactory(f->f.getValue().test);
+       //loadedColumn.setCellFactory(qq->new CheckBoxTableCell<>());
+       //loadedColumn.editableProperty().getValue();
+       //columns.add(loadedColumn);
+       
+       
+     /*  TableColumn select = new TableColumn("CheckBox");
+        select.setMinWidth(200);
+        select.setCellValueFactory((TableColumn.CellDataFeatures<TeachingAssistant, CheckBox> arg0) -> {
+            TeachingAssistant user = arg0.getValue();
+            
+            CheckBox checkBox = new CheckBox();
+            
+            checkBox.selectedProperty().setValue(user.isSelected());
+            
+            
+            
+            checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                public void changed(ObservableValue<? extends Boolean> ov,
+                        Boolean old_val, Boolean new_val) {
+                    
+                    user.setSelected(new_val);
+                    
+                }
+            });
+            
+            return new SimpleObjectProperty<CheckBox>(checkBox);
+        });
+        taTable.getColumns().addAll( select);
+       */
+     
+    // TableColumn select = new TableColumn("CheckBox");
+//     select.setCellValueFactory((Object c) -> {
+//         TeachingAssistant kk=(TeachingAssistant)c;
+//            return new SimpleBooleanProperty(kk.getUnderGrad());
+//        });
+    taTable.setEditable(true);
+      
+     underGradeColumn.setCellValueFactory(new PropertyValueFactory<TeachingAssistant,Boolean> ("underGrad"));
+     //underGradeColumn.setCellFactory(tc ->new CheckBoxTableCell());
+     
+//         underGradeColumn.setCellFactory(new Callback<TableColumn<TeachingAssistant, Boolean>, TableCell<TeachingAssistant, Boolean>>() {
+//                    @Override
+//                    public TableCell<TeachingAssistant, Boolean> call(
+//                            TableColumn<TeachingAssistant, Boolean> param) {
+//                        CheckBoxTableCell<TeachingAssistant, Boolean> cell = new CheckBoxTableCell<>();
+//                        cell.setAlignment(Pos.CENTER);
+//                     //   cell.setGraphic(new CheckBox(true));
+//                        return cell;
+//                    }
+//                });
+      underGradeColumn.setCellFactory(new CheckBoxTableCell().forTableColumn(underGradeColumn)); 
+     
+   //  underGradeColumn.setEditable(true);
+       
+      // taTable.getColumns().add(select);
+       
         nameColumn.setCellValueFactory(
-                new PropertyValueFactory<TeachingAssistant, String>("Name")
+                new PropertyValueFactory<TeachingAssistant, String>("name")
         );
         emailColumn.setCellValueFactory(
                 new PropertyValueFactory<TeachingAssistant, String>("email")
         );
-           
+        
+        
+        TableColumn<TeachingAssistant,String> wwq=new TableColumn<>();
+        
+          wwq.setCellValueFactory(
+                new PropertyValueFactory<TeachingAssistant, String>("kk")
+        );
+        
+         taTable.getColumns().add(wwq);
         taTable.getColumns().add(underGradeColumn);
         taTable.getColumns().add(nameColumn);
         taTable.getColumns().add(emailColumn);
@@ -229,7 +306,8 @@ public class CSGTAWorkspace implements WorkspacePart{
        CSGWorkspace oo=(CSGWorkspace)app.getWorkspaceComponent();
         basePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
         leftPane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.1));
-        leftPane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(.8));
+        leftPane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(.5));
+        taTable.prefHeightProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.4));
         rightPane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.9));
         sPane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(.9));
        
@@ -270,14 +348,21 @@ controller = new CSGController(app);
        taTable.setOnMouseClicked(e->{
             controller.handleAppearUpdateTA(this);
         });
-            
-    
+   /*   Label t1=new Label("9 am");    
+        startTimeComboBox.setValue(t1);
+        Label t2=new Label("8 pm");
+        endTimeComboBox.setValue(t2);*/
        
+      startTimeComboBox.getSelectionModel().select(9);
+            endTimeComboBox.getSelectionModel().select(20);
          startTimeComboBox.valueProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue ov, String t, String t1) {
-                if(t != null && t1 != null)
-                    if(startTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
+                if(t != null && t1 != null){
+                    if(startTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour()){
+                        System.out.println("1");
                         controller.changeTime();
+                    }
+                }
             }
         });
       
@@ -286,6 +371,7 @@ controller = new CSGController(app);
             public void changed(ObservableValue ov, String t, String t1) {
                 if(t != null && t1 != null)
                     if(endTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
+                          System.out.println("2");
                         controller.changeTime();
             }
         });
@@ -667,6 +753,10 @@ controller = new CSGController(app);
     public void reloadWorkspace(CSGData data){
         reloadOfficeHoursGrid(data);
     }
+    
+      public Pane getTACellPane(String cellPane) {
+        return officeHoursGridTACellPanes.get(cellPane);
+    }
 
     public void reloadOfficeHoursGrid(CSGData dataComponent) {
        ArrayList<String> gridHeaders =dataComponent.getGridHeaders();
@@ -720,10 +810,10 @@ controller = new CSGController(app);
                 controller.handleCellToggle((Pane) e.getSource());
             });
             p.setOnMouseExited(e -> {
-                //controller.handleGridCellMouseExited((Pane) e.getSource());
+                controller.handleGridCellMouseExited((Pane) e.getSource());
             });
             p.setOnMouseEntered(e -> {
-                //controller.handleGridCellMouseEntered((Pane) e.getSource());
+                controller.handleGridCellMouseEntered((Pane) e.getSource());
             });
         }
                 

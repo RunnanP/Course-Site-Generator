@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.data.Student;
 import csg.data.Team;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -36,8 +38,9 @@ public class CSGProjectWorkspace implements WorkspacePart{
     VBox secondBasePane;
     
     Label projectHeaderLabel;
+    HBox projectHeaderBox;
     
-    VBox teamsVBox;
+    FlowPane teamsFlowPane;
     Label teamsHeaderLabel;
     TableView<Team> teamsTable;
     TableColumn<Team,String> nameColumn;
@@ -68,7 +71,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
     HBox studentThirdHBox;
     HBox studentFourthHBox;
     
-    VBox studentsVBox;
+    FlowPane studentsFlowPane;
     Label studentsHeaderLabel;
     TableView<Student> studentsTable;
     TableColumn<Student,String> firstNameColumn;
@@ -95,12 +98,60 @@ public class CSGProjectWorkspace implements WorkspacePart{
         
          String projectHeaderText = props.getProperty(CSGAppProp.PROJECTS_HEADER_TEXT.toString());
          projectHeaderLabel=new Label(projectHeaderText);
+         projectHeaderBox=new HBox(projectHeaderLabel);
          
          
-         teamsVBox=new VBox();
+         teamsFlowPane=new FlowPane();
+         teamsFlowPane.setPadding(new Insets(11,12,13,14));
+         teamsFlowPane.setVgap(20);
          String teamsHeaderText = props.getProperty(CSGAppProp.TEAMS_TEXT.toString());
          teamsHeaderLabel=new Label(teamsHeaderText);
-         teamsVBox.getChildren().add(teamsHeaderLabel);
+          HBox t1=new HBox();
+          HBox t2=new HBox();
+          HBox t3=new HBox();
+          HBox t4=new HBox();
+          HBox t5=new HBox();
+          HBox t6=new HBox();
+          HBox t7=new HBox();
+          HBox t8=new HBox();
+          HBox t9=new HBox();
+          HBox t10=new HBox();
+          HBox t11=new HBox();
+          HBox t12=new HBox();
+          HBox t13=new HBox();
+          HBox t14=new HBox();
+          HBox t15=new HBox();
+          HBox t16=new HBox();
+          HBox t17=new HBox();
+          HBox t18=new HBox();
+          HBox t19=new HBox();
+          HBox t20=new HBox();
+          HBox t21=new HBox();
+          HBox t22=new HBox();
+          
+            t1.setPrefWidth(2000);
+          t2.setPrefWidth(2000);
+          t3.setPrefWidth(1000);
+          t4.setPrefWidth(2000);
+          t5.setPrefWidth(1000);
+          t6.setPrefWidth(2000);
+          t7.setPrefWidth(400);
+          t8.setPrefWidth(2000);
+          t9.setPrefWidth(300);
+          t10.setPrefWidth(2000);
+          t11.setPrefWidth(200);
+          t12.setPrefWidth(2000);
+          t13.setPrefWidth(2000);
+          t14.setPrefWidth(2000);
+          t15.setPrefWidth(2000);
+          t16.setPrefWidth(60);
+          t17.setPrefWidth(75);
+          t18.setPrefWidth(130);
+          t19.setPrefWidth(130);
+          t20.setPrefWidth(60);
+          t21.setPrefWidth(60);
+          t22.setPrefWidth(60);
+         teamsFlowPane.getChildren().addAll(teamsHeaderLabel,t1);
          String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
          String colorColumnText = props.getProperty(CSGAppProp.COLOR_COLUMN_TEXT.toString());
          String textColorColumnText = props.getProperty(CSGAppProp.TEXT_COLOR_COLUMN_TEXT.toString());
@@ -115,7 +166,8 @@ public class CSGProjectWorkspace implements WorkspacePart{
          linkColumn=new TableColumn(linkColumnText);
          
          teamsTable.getColumns().addAll(nameColumn,colorColumn,textColumn,linkColumn);
-         teamsVBox.getChildren().add(teamsTable);
+         teamsTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
+         teamsFlowPane.getChildren().addAll(teamsTable,t2);
          
          String addEditText=props.getProperty(CSGAppProp.ADD_EDIT_TEXT.toString());
          teamsAddeditHeaderLabel=new Label(addEditText);
@@ -123,35 +175,40 @@ public class CSGProjectWorkspace implements WorkspacePart{
          String nameText=props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
          nameLabel=new Label(nameText+":");
          nameTextField=new TextField();
-         teamsFirstHBox=new HBox(nameLabel,nameTextField);
-         teamsVBox.getChildren().add(teamsFirstHBox);
+         teamsFirstHBox=new HBox(nameLabel,t22,nameTextField);
+         teamsFlowPane.getChildren().addAll(teamsFirstHBox,t3);
          
          String colorText=props.getProperty(CSGAppProp.COLOR_TEXT.toString());
          String textColorText=props.getProperty(CSGAppProp.TEXT_COLOR_TEXT.toString());
          colorLabel=new Label(colorText);
          colorCircle=new Circle();
+         colorCircle.setDisable(false);
          textColorLabel=new Label(textColorText);
          textColorCircle=new Circle();
-         teamsSecondHBox=new HBox(colorLabel,colorCircle,textColorLabel,textColorCircle);
-         teamsVBox.getChildren().add(teamsSecondHBox);
+         textColorCircle.setDisable(false);
+         teamsSecondHBox=new HBox(colorLabel,colorCircle,t7,textColorLabel,textColorCircle);
+         teamsFlowPane.getChildren().addAll(teamsSecondHBox,t4);
          
          String linkText=props.getProperty(CSGAppProp.LINK_TEXT.toString());
-         linkLabel=new Label(linkText);
+         linkLabel=new Label(linkText+":");
          linkTextField=new TextField();
-         teamsThirdHBox=new HBox(linkLabel,linkTextField);
-         teamsVBox.getChildren().add(teamsThirdHBox);
+         teamsThirdHBox=new HBox(linkLabel,t21,linkTextField);
+         teamsFlowPane.getChildren().addAll(teamsThirdHBox,t5);
          
          String addupdateText=props.getProperty(CSGAppProp.ADD_UPDATE_TEXT.toString());
          String clearText=props.getProperty(CSGAppProp.CLEAR_BUTTON_TEXT.toString());
          teamsAddUpdateButton=new Button(addupdateText);
          teamsClearButton=new Button(clearText);
-         teamsAddBox=new HBox(teamsAddUpdateButton,teamsClearButton);
-         teamsVBox.getChildren().add(teamsAddBox);
+         teamsAddBox=new HBox(teamsAddUpdateButton,t11,teamsClearButton);
+         teamsFlowPane.getChildren().addAll(teamsAddBox,t6);
          
-         studentsVBox=new VBox();
+         studentsFlowPane=new FlowPane();
          String studentsText=props.getProperty(CSGAppProp.STUDENTS_TEXT.toString());
           studentsHeaderLabel=new Label(studentsText);
-         studentsVBox.getChildren().add(studentsHeaderLabel);
+         studentsFlowPane.getChildren().addAll(studentsHeaderLabel,t8);
+         studentsFlowPane.setPadding(new Insets(11,12,13,14));
+         studentsFlowPane.setVgap(30);
+         
           
           String firstNameColumnText = props.getProperty(CSGAppProp.FIRST_NAME_COLUMN_TEXT.toString());
          String lastNameColumnText = props.getProperty(CSGAppProp.LAST_NAME_COLUMN_TEXT.toString());
@@ -159,6 +216,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
          String roleColumnText = props.getProperty(CSGAppProp.ROLE_TEXT.toString());
          
          studentsTable=new TableView<>();
+         studentsTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
          studentsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
          
          firstNameColumn=new TableColumn(firstNameColumnText);
@@ -167,32 +225,33 @@ public class CSGProjectWorkspace implements WorkspacePart{
          roleColumn=new TableColumn(roleColumnText);
          
          studentsTable.getColumns().addAll(firstNameColumn,lastNameColumn,teamColumn,roleColumn);
-         studentsVBox.getChildren().add(studentsTable);
+         studentsFlowPane.getChildren().addAll(studentsTable,t9);
          
          studentsAddeditHeaderLabel=new Label(addEditText);
-         studentsVBox.getChildren().add(studentsAddeditHeaderLabel);
+         studentsFlowPane.getChildren().addAll(studentsAddeditHeaderLabel,t10);
          firstNameLabel=new Label(firstNameColumnText+":");
          firstNameTextField=new TextField();
-         studentFirstHBox=new HBox(firstNameLabel,firstNameTextField);
+         studentFirstHBox=new HBox(firstNameLabel,t16,firstNameTextField);
          
          lastNameLabel=new Label(lastNameColumnText+":");
          lastNameTextField=new TextField();
-         studentSecondHBox=new HBox(lastNameLabel,lastNameTextField);
+         studentSecondHBox=new HBox(lastNameLabel,t17,lastNameTextField);
          
          teamsLabel=new Label(teamColumnText+":");
          teamsComboBox=new ComboBox<>();
-         studentThirdHBox=new HBox(teamsLabel,teamsComboBox);
+         teamsComboBox.setPrefWidth(150);
+         studentThirdHBox=new HBox(teamsLabel,t18,teamsComboBox);
          
          roleLabel=new Label(roleColumnText+":");
          roleTextField=new TextField();
-         studentFourthHBox=new HBox(roleLabel,roleTextField);
+         studentFourthHBox=new HBox(roleLabel,t19,roleTextField);
          
          studentAddUpdateButton=new Button(addupdateText);
          studentClearButton=new Button(clearText);
-         studentsAddBox=new HBox(studentAddUpdateButton,studentClearButton);
-         studentsVBox.getChildren().addAll(studentFirstHBox,studentSecondHBox,studentThirdHBox,studentFourthHBox,studentsAddBox);
+         studentsAddBox=new HBox(studentAddUpdateButton,t20,studentClearButton);
+         studentsFlowPane.getChildren().addAll(studentFirstHBox,t12,studentSecondHBox,t13,studentThirdHBox,t14,studentFourthHBox,t15,studentsAddBox);
          
-         secondBasePane=new VBox(projectHeaderLabel,teamsVBox,studentsVBox);
+         secondBasePane=new VBox(projectHeaderBox,teamsFlowPane,studentsFlowPane);
          basePane=new ScrollPane(secondBasePane);
            secondBasePane.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(1));
           secondBasePane.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(1));
@@ -240,12 +299,12 @@ public class CSGProjectWorkspace implements WorkspacePart{
         this.projectHeaderLabel = projectHeaderLabel;
     }
 
-    public VBox getTeamsVBox() {
-        return teamsVBox;
+    public FlowPane getTeamsFlowPane() {
+        return teamsFlowPane;
     }
 
-    public void setTeamsVBox(VBox teamsVBox) {
-        this.teamsVBox = teamsVBox;
+    public void setTeamsVBox(FlowPane teamsFlowPane) {
+        this.teamsFlowPane = teamsFlowPane;
     }
 
     public Label getTeamsHeaderLabel() {
@@ -464,12 +523,12 @@ public class CSGProjectWorkspace implements WorkspacePart{
         this.studentFourthHBox = studentFourthHBox;
     }
 
-    public VBox getStudentsVBox() {
-        return studentsVBox;
+    public FlowPane getStudentsFlowPane() {
+        return studentsFlowPane;
     }
 
-    public void setStudentsVBox(VBox studentsVBox) {
-        this.studentsVBox = studentsVBox;
+    public void setStudentsVBox(FlowPane studentsFlowPane) {
+        this.studentsFlowPane = studentsFlowPane;
     }
 
     public Label getStudentsHeaderLabel() {
@@ -615,4 +674,13 @@ public class CSGProjectWorkspace implements WorkspacePart{
     public void setStudentClearButton(Button studentClearButton) {
         this.studentClearButton = studentClearButton;
     }
+
+    public HBox getProjectHeaderBox() {
+        return projectHeaderBox;
+    }
+
+    public void setProjectHeaderBox(HBox projectHeaderBox) {
+        this.projectHeaderBox = projectHeaderBox;
+    }
+    
 }

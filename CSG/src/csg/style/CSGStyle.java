@@ -67,6 +67,7 @@ public class CSGStyle extends AppStyleComponent{
     public static String BUTTON_STYLE="button_style";
     public static String LABEL_STYLE="label_style";
     public static String PANE_STYLE="pane_style";
+    public static String TABLE_FLOWPANE="table_flowpane";
     
     //WORKSPACE 
     public static String STATE_BAR_STYLE="state_bar_style";
@@ -145,7 +146,7 @@ public class CSGStyle extends AppStyleComponent{
        courseWorkspaceComponent.getLeftFooterImageLabel().getStyleClass().add(LABEL_STYLE);
        courseWorkspaceComponent.getRightFooterImageLabel().getStyleClass().add(LABEL_STYLE);
        courseWorkspaceComponent.getStyleSheetLabel().getStyleClass().add(LABEL_STYLE);
-       
+       courseWorkspaceComponent.getSitePageTablePane().getStyleClass().add(TABLE_FLOWPANE);
        
        
         
@@ -188,7 +189,7 @@ public class CSGStyle extends AppStyleComponent{
        recitationWorkspaceComponent.getBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
        recitationWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_CENTER_PANE);
        recitationWorkspaceComponent.getAddeditRecitationPane().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
-        
+       recitationWorkspaceComponent.getRecitationHeaderBox().getStyleClass().add(BIG_HEADER_STYLE);
         
         
         
@@ -212,7 +213,8 @@ public class CSGStyle extends AppStyleComponent{
         scheduleWorkspaceComponent.getCalendarChooseBox().getStyleClass().add(COURSE_PART_CENTER_PANE);
         scheduleWorkspaceComponent.getScheduleItemBox().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
         scheduleWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
-     
+        scheduleWorkspaceComponent.getScheduleHeaderBox().getStyleClass().add(BIG_HEADER_STYLE);
+        scheduleWorkspaceComponent.getScheduleItemHeaderLabel().getStyleClass().add(HEADER_STYLE);
         
         //project workspace
         projectWorkspaceComponent.getProjectHeaderLabel().getStyleClass().add(BIG_HEADER_STYLE);
@@ -227,9 +229,16 @@ public class CSGStyle extends AppStyleComponent{
         projectWorkspaceComponent.getTeamsLabel().getStyleClass().add(LABEL_STYLE);
         projectWorkspaceComponent.getRoleLabel().getStyleClass().add(LABEL_STYLE);
         projectWorkspaceComponent.getBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
-        projectWorkspaceComponent.getTeamsVBox().getStyleClass().add(COURSE_PART_CENTER_PANE);
-        projectWorkspaceComponent.getStudentsVBox().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
-        projectWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+        projectWorkspaceComponent.getTeamsFlowPane().getStyleClass().add(COURSE_PART_CENTER_PANE);
+        projectWorkspaceComponent.getStudentsFlowPane().getStyleClass().add(COURSE_PART_BOTTOM_PANE);
+       // projectWorkspaceComponent.getSecondBasePane().getStyleClass().add(COURSE_PART_TOP_PANE);
+        projectWorkspaceComponent.getProjectHeaderBox().getStyleClass().add(BIG_HEADER_STYLE);
+        projectWorkspaceComponent.getTeamsAddeditHeaderLabel().getStyleClass().add(HEADER_STYLE);
+        projectWorkspaceComponent.getTeamsAddUpdateButton().getStyleClass().add(BUTTON_STYLE);
+        projectWorkspaceComponent.getTeamsClearButton().getStyleClass().add(BUTTON_STYLE);
+        projectWorkspaceComponent.getStudentAddUpdateButton().getStyleClass().add(BUTTON_STYLE);
+        projectWorkspaceComponent.getStudentClearButton().getStyleClass().add(BUTTON_STYLE);
+        projectWorkspaceComponent.getStudentsAddeditHeaderLabel().getStyleClass().add(HEADER_STYLE);
         
         
 
