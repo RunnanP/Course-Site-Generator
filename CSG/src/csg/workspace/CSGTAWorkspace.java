@@ -119,10 +119,7 @@ public class CSGTAWorkspace implements WorkspacePart{
         nameColumn = new TableColumn(nameColumnText);
         emailColumn=new TableColumn(emailColumnText);
         
-       /* underGradeColumn.setCellValueFactory(
-              //  new PropertyValueFactory<TeachingAssistant, Boolean>("underGrad")
-               new PropertyValueFactory<TeachingAssistant,Boolean>("test")
-        );*/
+  
        
        
      
