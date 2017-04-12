@@ -11,6 +11,7 @@ import csg.data.Student;
 import csg.data.Team;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -52,9 +53,11 @@ public class CSGProjectWorkspace implements WorkspacePart{
     TextField nameTextField;
     Label colorLabel;
     Circle colorCircle;
+    ColorPicker colorColorPicker;
     Label colorCircleText;
     Label textColorLabel;
     Circle textColorCircle;
+    ColorPicker textColorPicker;
     Label textColorCircleText;
     Label linkLabel;
     TextField linkTextField;
@@ -135,7 +138,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
           t4.setPrefWidth(2000);
           t5.setPrefWidth(1000);
           t6.setPrefWidth(2000);
-          t7.setPrefWidth(400);
+          t7.setPrefWidth(200);
           t8.setPrefWidth(2000);
           t9.setPrefWidth(300);
           t10.setPrefWidth(2000);
@@ -181,12 +184,14 @@ public class CSGProjectWorkspace implements WorkspacePart{
          String colorText=props.getProperty(CSGAppProp.COLOR_TEXT.toString());
          String textColorText=props.getProperty(CSGAppProp.TEXT_COLOR_TEXT.toString());
          colorLabel=new Label(colorText);
-         colorCircle=new Circle();
-         colorCircle.setDisable(false);
+//         colorCircle=new Circle();
+//         colorCircle.setDisable(false);
+         colorColorPicker=new ColorPicker();
          textColorLabel=new Label(textColorText);
-         textColorCircle=new Circle();
-         textColorCircle.setDisable(false);
-         teamsSecondHBox=new HBox(colorLabel,colorCircle,t7,textColorLabel,textColorCircle);
+//         textColorCircle=new Circle();
+//         textColorCircle.setDisable(false);
+          textColorPicker=new ColorPicker();
+         teamsSecondHBox=new HBox(colorLabel,colorColorPicker,t7,textColorLabel,textColorPicker);
          teamsFlowPane.getChildren().addAll(teamsSecondHBox,t4);
          
          String linkText=props.getProperty(CSGAppProp.LINK_TEXT.toString());

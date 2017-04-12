@@ -180,7 +180,7 @@ public class CSGTAWorkspace implements WorkspacePart{
 //                    }
 //                });
       underGradeColumn.setCellFactory(new CheckBoxTableCell().forTableColumn(underGradeColumn)); 
-     
+     underGradeColumn.setEditable(true);
    //  underGradeColumn.setEditable(true);
        
       // taTable.getColumns().add(select);
@@ -193,13 +193,9 @@ public class CSGTAWorkspace implements WorkspacePart{
         );
         
         
-        TableColumn<TeachingAssistant,String> wwq=new TableColumn<>();
+    
         
-          wwq.setCellValueFactory(
-                new PropertyValueFactory<TeachingAssistant, String>("kk")
-        );
         
-         taTable.getColumns().add(wwq);
         taTable.getColumns().add(underGradeColumn);
         taTable.getColumns().add(nameColumn);
         taTable.getColumns().add(emailColumn);

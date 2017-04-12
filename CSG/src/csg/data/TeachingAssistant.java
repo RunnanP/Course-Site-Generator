@@ -19,8 +19,8 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
     // THE TABLE WILL STORE TA NAMES AND EMAILS
     private final StringProperty email;
     private final StringProperty name;
-    private  final BooleanProperty underGrad;
-    private final StringProperty kk;
+    private  BooleanProperty underGrad;
+   
 //    public boolean underornot;
 //    public CheckBox cb;
 //    public SimpleBooleanProperty test;
@@ -33,8 +33,9 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
         name = new SimpleStringProperty(initName);
         email = new SimpleStringProperty(initEmail);
       //  underGrad
-       underGrad=new SimpleBooleanProperty(true);
-       kk=new SimpleStringProperty("pp");
+       //underGrad=new SimpleBooleanProperty(true);
+       underGrad=new SimpleBooleanProperty();
+      
      
     }
 
@@ -56,12 +57,25 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
         email.set(initEmail);
     }
      
-   public void setUnderGrad(boolean initUnderGrad){
-         underGrad.set(initUnderGrad);
+//   public void setUnderGrad(boolean initUnderGrad){
+//         underGrad.set(initUnderGrad);
+//    }
+//    
+//    public boolean getUnderGrad(){
+//        return underGrad.get();
+//    }
+    
+    public BooleanProperty underGradProperty(){
+        return underGrad;
     }
     
-    public boolean getUnderGrad(){
-        return underGrad.get();
+    /**
+     *
+     * @param test
+     * 
+     */
+    public void setUnderGrad(boolean test){
+        this.underGrad.set(test);
     }
     @Override
     public int compareTo(E otherTA) {
@@ -81,12 +95,6 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
 //       underornot=new_val;
 //    }
      
-    public String getKk(){
-        return kk.get();
-    }
-    public void setKk(String ii){
-        kk.set(ii);
-    }
-
+  
     
 }
