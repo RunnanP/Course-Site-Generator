@@ -167,7 +167,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           HBox s6=new HBox();
           HBox s7=new HBox();
           firstHBox=new HBox(typeLabel,s1,typeComboBox);
-          typeComboBox.setPrefWidth(80);
+          typeComboBox.setPrefWidth(120);
           secondHBox=new HBox(dateLabel,s2,datePicker);
           thirdHBox=new HBox(timeLabel,s3,timeTextField);
           fourthHBox=new HBox(titleLabel,s4,titleTextField);
@@ -177,10 +177,10 @@ public class CSGScheduleWorkspace implements WorkspacePart{
            s1.setPrefWidth(60);
           s2.setPrefWidth(60);
           s3.setPrefWidth(60);
-          s4.setPrefWidth(55);
-          s5.setPrefWidth(55);
+          s4.setPrefWidth(48);
+          s5.setPrefWidth(48);
           s6.setPrefWidth(60);
-          s7.setPrefWidth(20);
+          s7.setPrefWidth(10);
           
           
           

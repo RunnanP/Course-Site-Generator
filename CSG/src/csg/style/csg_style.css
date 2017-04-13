@@ -180,7 +180,7 @@
 }
 
 .course_part_top_pane{
-     -fx-background-color:#FAEBD7;
+     -fx-background-color:#FFF8DC;
        -fx-border: 5px;   
     -fx-border-color:black;
       -fx-border-style:solid;
@@ -188,7 +188,7 @@
   -fx-background-radius: 10 10 10 10;   
 }
 .course_part_center_pane{
-       -fx-background-color:#00FFFF;
+       -fx-background-color:#D3D3D3;
        -fx-border: 5px;   
     -fx-border-color:black;
       -fx-border-style:solid;
@@ -196,7 +196,7 @@
   -fx-background-radius: 10 10 10 10;   
 }
 .course_part_bottom_pane{
-       -fx-background-color:#7FFFD4;
+       -fx-background-color:#B0C4DE;
        -fx-border: 5px;   
        -fx-border-color:black;
       -fx-border-style:solid;

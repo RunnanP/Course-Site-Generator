@@ -135,7 +135,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
           HBox t21=new HBox();
           HBox t22=new HBox();
           
-            t1.setPrefWidth(2000);
+          t1.setPrefWidth(2000);
           t2.setPrefWidth(2000);
           t3.setPrefWidth(1000);
           t4.setPrefWidth(2000);
@@ -152,8 +152,8 @@ public class CSGProjectWorkspace implements WorkspacePart{
           t15.setPrefWidth(2000);
           t16.setPrefWidth(60);
           t17.setPrefWidth(75);
-          t18.setPrefWidth(130);
-          t19.setPrefWidth(130);
+          t18.setPrefWidth(140);
+          t19.setPrefWidth(140);
           t20.setPrefWidth(60);
           t21.setPrefWidth(60);
           t22.setPrefWidth(60);
@@ -195,7 +195,11 @@ public class CSGProjectWorkspace implements WorkspacePart{
 //         textColorCircle=new Circle();
 //         textColorCircle.setDisable(false);
           textColorPicker=new ColorPicker();
-         teamsSecondHBox=new HBox(colorLabel,colorColorPicker,t7,textColorLabel,textColorPicker);
+          HBox s1=new HBox();
+          HBox s2=new HBox();
+          s1.setPrefWidth(55);
+          s2.setPrefWidth(55);
+         teamsSecondHBox=new HBox(colorLabel,s1,colorColorPicker,t7,textColorLabel,s2,textColorPicker);
          teamsFlowPane.getChildren().addAll(teamsSecondHBox,t4);
          
          String linkText=props.getProperty(CSGAppProp.LINK_TEXT.toString());

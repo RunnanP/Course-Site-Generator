@@ -159,11 +159,11 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           t0.setPrefWidth(2000);
           t1.setPrefWidth(90);
           t2.setPrefWidth(2000);
-          t3.setPrefWidth(50);
+          t3.setPrefWidth(52);
           t4.setPrefWidth(2000);
-          t5.setPrefWidth(80);
+          t5.setPrefWidth(78);
           t6.setPrefWidth(2000);
-          t7.setPrefWidth(80);
+          t7.setPrefWidth(78);
           t8.setPrefWidth(2000);
           t9.setPrefWidth(100);
           t10.setPrefWidth(2000);

@@ -65,6 +65,21 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
 //        return underGrad.get();
 //    }
     
+//    public boolean getUnder(){
+//        
+//      return underGrad.get();
+//    }
+    
+    
+    public String getUnder(){
+        if(underGrad.get()){
+            return "true";
+        }else{
+            return "false";
+        }
+       
+    }
+    
     public BooleanProperty underGradProperty(){
         return underGrad;
     }
