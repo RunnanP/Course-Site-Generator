@@ -38,7 +38,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -70,6 +69,7 @@ public class CSGTAWorkspace implements WorkspacePart{
     Button addButton;
     Button updateButton;
     Button clearButton;
+    Button subButton;
     
     HBox officeHoursHeaderBox;
     Label officeHoursHeaderLabel;
@@ -103,7 +103,8 @@ public class CSGTAWorkspace implements WorkspacePart{
          tasHeaderBox = new HBox();
         String tasHeaderText = props.getProperty(CSGAppProp.TAS_HEADER_TEXT.toString());
         tasHeaderLabel = new Label(tasHeaderText);
-        tasHeaderBox.getChildren().add(tasHeaderLabel);
+        subButton=new Button("-");
+        tasHeaderBox.getChildren().addAll(tasHeaderLabel,subButton);
         
          taTable = new TableView();
         taTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -119,7 +120,10 @@ public class CSGTAWorkspace implements WorkspacePart{
         nameColumn = new TableColumn(nameColumnText);
         emailColumn=new TableColumn(emailColumnText);
         
-  
+       /* underGradeColumn.setCellValueFactory(
+              //  new PropertyValueFactory<TeachingAssistant, Boolean>("underGrad")
+               new PropertyValueFactory<TeachingAssistant,Boolean>("test")
+        );*/
        
        
      
@@ -336,6 +340,11 @@ controller = new CSGController(app);
         taTable.setOnKeyPressed(e -> {
             controller.handleKeyPress(e.getCode());
            
+        });
+        
+        subButton.setOnAction(e->{
+           controller.handleSubButtonPress();
+        
         });
         
        taTable.setOnMouseClicked(e->{

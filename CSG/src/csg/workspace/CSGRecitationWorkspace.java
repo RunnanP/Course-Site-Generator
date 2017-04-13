@@ -37,6 +37,7 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     
     Label recitationHeaderLabel;
     HBox recitationHeaderBox;
+    Button subButton;
     
     TableView<Recitation> recitationTable;
     TableColumn<Recitation,String> sectionColumn;
@@ -75,7 +76,8 @@ public class CSGRecitationWorkspace implements WorkspacePart{
         String recitationHeaderText=props.getProperty(CSGAppProp.RECITATION_HEADER_TEXT.toString());
        
         recitationHeaderLabel=new Label(recitationHeaderText);
-        recitationHeaderBox=new HBox(recitationHeaderLabel);
+         subButton=new Button("-");
+        recitationHeaderBox=new HBox(recitationHeaderLabel,subButton);
         
         recitationTable=new TableView();
         recitationTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

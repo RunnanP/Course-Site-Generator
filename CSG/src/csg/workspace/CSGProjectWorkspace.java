@@ -41,6 +41,9 @@ public class CSGProjectWorkspace implements WorkspacePart{
     Label projectHeaderLabel;
     HBox projectHeaderBox;
     
+    Button subButtonTeams;
+    Button subButtonStudent;
+    
     FlowPane teamsFlowPane;
     Label teamsHeaderLabel;
     TableView<Team> teamsTable;
@@ -154,7 +157,8 @@ public class CSGProjectWorkspace implements WorkspacePart{
           t20.setPrefWidth(60);
           t21.setPrefWidth(60);
           t22.setPrefWidth(60);
-         teamsFlowPane.getChildren().addAll(teamsHeaderLabel,t1);
+          subButtonTeams=new Button("-");
+         teamsFlowPane.getChildren().addAll(teamsHeaderLabel,subButtonTeams,t1);
          String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
          String colorColumnText = props.getProperty(CSGAppProp.COLOR_COLUMN_TEXT.toString());
          String textColorColumnText = props.getProperty(CSGAppProp.TEXT_COLOR_COLUMN_TEXT.toString());
@@ -210,7 +214,8 @@ public class CSGProjectWorkspace implements WorkspacePart{
          studentsFlowPane=new FlowPane();
          String studentsText=props.getProperty(CSGAppProp.STUDENTS_TEXT.toString());
           studentsHeaderLabel=new Label(studentsText);
-         studentsFlowPane.getChildren().addAll(studentsHeaderLabel,t8);
+          subButtonStudent=new Button("-");
+         studentsFlowPane.getChildren().addAll(studentsHeaderLabel,subButtonStudent,t8);
          studentsFlowPane.setPadding(new Insets(11,12,13,14));
          studentsFlowPane.setVgap(30);
          

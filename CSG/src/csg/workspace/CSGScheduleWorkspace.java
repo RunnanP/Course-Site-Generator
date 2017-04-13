@@ -47,6 +47,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
    
    FlowPane scheduleItemBox;
    Label scheduleItemHeaderLabel;
+   Button subButton;
    TableView<ScheduleItem> scheduleItemsTable;
    TableColumn<ScheduleItem,String> typeColumn;
    TableColumn<ScheduleItem,String> dateColumn;
@@ -193,7 +194,8 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           HBox t7=new HBox();
           HBox t8=new HBox();
           HBox t9=new HBox();
-        scheduleItemBox.getChildren().addAll(scheduleItemHeaderLabel,t1,scheduleItemsTable,t0,addeditLabel,t2,firstHBox,t3,secondHBox,t4,thirdHBox,t5,fourthHBox,t6,fifthHBox,t7,sixthHBox,t8,seventhHBox,t9,addBox);
+          subButton=new Button("-");
+        scheduleItemBox.getChildren().addAll(scheduleItemHeaderLabel,subButton,t1,scheduleItemsTable,t0,addeditLabel,t2,firstHBox,t3,secondHBox,t4,thirdHBox,t5,fourthHBox,t6,fifthHBox,t7,sixthHBox,t8,seventhHBox,t9,addBox);
         scheduleItemBox.setVgap(20);
         t0.setPrefWidth(300);
         t1.setPrefWidth(2000);

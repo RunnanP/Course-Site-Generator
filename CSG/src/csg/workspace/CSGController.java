@@ -175,7 +175,7 @@ public class CSGController {
     }
 
     public void handleKeyPress(KeyCode code) {
-         if (code == KeyCode.DELETE) {
+         if (code == KeyCode.DELETE ) {
             // GET THE TABLE
             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
             CSGTAWorkspace workspace=temp.getTAWorkspace();
@@ -210,6 +210,44 @@ public class CSGController {
                 markWorkAsEdited();
             }
         }
+    }
+    
+    
+    public void handleSubButtonPress(){
+        
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGTAWorkspace workspace=temp.getTAWorkspace();
+            TableView taTable = workspace.getTaTable();
+            
+            // IS A TA SELECTED IN THE TABLE?
+            Object selectedItem = taTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                TeachingAssistant ta = (TeachingAssistant)selectedItem;
+               
+                String taName = ta.getName();
+               String jtpstaname=taName;
+                String jtpstaemail=ta.getEmail();
+                CSGData data = (CSGData)app.getDataComponent();
+                data.removeTA(taName);
+                
+                // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
+                HashMap<String, Label> labels = workspace.getOfficeHoursGridTACellLabels();
+                ArrayList<Label> jtpsarray=new ArrayList<>(); 
+                for (Label label : labels.values()) {
+                    if (label.getText().equals(taName)
+                    || (label.getText().contains(taName + "\n"))
+                    || (label.getText().contains("\n" + taName))) {
+                      data.removeTAFromCell(label.textProperty(), taName);
+                        jtpsarray.add(label);
+                    }
+                }
+                // WE'VE CHANGED STUFF
+                //jTPS_Transaction transaction=new RemovingTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                //this.getJTPS().addTransaction(transaction);
+                markWorkAsEdited();
+            }
+        
     }
 
     public void handleAppearUpdateTA(CSGTAWorkspace workspace) {
