@@ -33,7 +33,7 @@ public class CSGApp extends AppTemplate {
         // WHEN IT IS CONSTRUCTED, SO BE CAREFUL OF THE ORDER
        dataComponent = new CSGData(this);
         workspaceComponent = new CSGWorkspace(this);
-       // fileComponent = new CSGFiles(this);
+        fileComponent = new CSGFiles(this);
         styleComponent = new CSGStyle(this);
     }
     

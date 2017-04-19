@@ -1,0 +1,46 @@
+
+{
+    "course_subject":"null",
+    "course_number":"0",
+    "course_semester":"null",
+    "course_year":"0",
+    "course_title":"null",
+    "course_intructor_name":"null",
+    "course_instructor_home":"null",
+    "startHour":"9",
+    "endHour":"20",
+    "tas":[
+        {
+            "name":"bhjj",
+            "email":"zszsz@hh.com",
+            "undergrad_tas":"true"
+        }
+    ],
+    "officeHours":[
+        {
+            "day":"FRIDAY",
+            "time":"10_30am",
+            "name":"bhjj"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"12_30pm",
+            "name":"bhjj"
+        },
+        {
+            "day":"FRIDAY",
+            "time":"2_00pm",
+            "name":"bhjj"
+        }
+    ],
+    "schedule_calendar_starting":"null",
+    "schedule_calendar_ending":"null",
+    "recitations":[
+    ],
+    "schedules":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

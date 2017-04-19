@@ -71,6 +71,14 @@ public class CSGData implements AppDataComponent{
     public CSGData(CSGApp initApp) {
         app=initApp;
         
+        //course part
+//         subject="";
+//       number=0;
+//       semester="";
+//       year=0;
+//       title="";
+//        instructorName="";
+//       instructorHome="";
         
         //TA PART
         teachingAssistants = FXCollections.observableArrayList();
@@ -83,6 +91,19 @@ public class CSGData implements AppDataComponent{
         gridHeaders = new ArrayList();
         gridHeaders.addAll(timeHeaders);
         gridHeaders.addAll(dowHeaders);
+        
+        
+        //recitation part
+        recitations=FXCollections.observableArrayList();
+        
+        //schedule part
+        scheduleItems=FXCollections.observableArrayList();
+        
+        //project part
+        teams=FXCollections.observableArrayList();
+        students=FXCollections.observableArrayList();
+        
+        
     }
 
 
@@ -330,6 +351,21 @@ public class CSGData implements AppDataComponent{
         // SORT THE TAS
         Collections.sort(teachingAssistants);
     }
+      
+          
+       public void addTA(String initName, String initEmail,boolean initUndergrad) {
+        // MAKE THE TA
+        TeachingAssistant ta = new TeachingAssistant(initName, initEmail,initUndergrad);
+
+        // ADD THE TA
+        if (!containsTA(initName, initEmail)) {
+            teachingAssistants.add(ta);
+        }
+
+        // SORT THE TAS
+        Collections.sort(teachingAssistants);
+    }     
+          
           
               public void removeTA(String name) {
         for (TeachingAssistant ta : teachingAssistants) {
@@ -483,5 +519,74 @@ public class CSGData implements AppDataComponent{
         String cellKey = getCellKey(day, time);
         toggleTAOfficeHours(cellKey, taName);
     }
+        
+        
+        //recitation part /////////////////////////////////////////////////////////////////////////////////
+        public void addRecitation(String initSection,String initInstructor,String initDaytime,String initLocation,String initFirstTa,String initSecondTa){
+           Recitation recitation = new Recitation(initSection,initInstructor,initDaytime,initLocation,initFirstTa,initSecondTa);
+            if (!containsRecitation(initSection)) {
+            recitations.add(recitation);
+        }
+
+        
+        Collections.sort(recitations);
+            
+            
+        }
+        
+        public boolean containsRecitation(String initSection){
+                for (Recitation recitation : recitations) {
+            if (recitation.getSection().equals(initSection)) {
+                return true;
+            }
+ 
+        }
+        return false;
+            
+        }
+        
+        
+        //Schedule part?????????????????????????????????????????????????????????????????????????
+        public void addScheduleItem (String initType,String initDate,String initTitle,String initTopic){
+            ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
+            scheduleItems.add(scheduleItem);
+            Collections.sort(scheduleItems);
+            }
+        
+        //project part//////////////////////////////////////////////////////////////////////
+        public void addTeam(String initName,String initColor,String initTextColor,String initLink){
+            Team team=new Team(initName,initColor,initTextColor,initLink);
+            if (!containsTeam(initName)){
+                teams.add(team);
+            }
+            Collections.sort(teams);
+        }
+        public boolean containsTeam(String initName){
+            
+            for (Team team:teams){
+                if (team.getName().equals(initName)){
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        
+        
+        public void addStudent(String initFirstName,String initLastName,String initTeam,String initRole){
+            Student student=new Student(initFirstName, initLastName, initTeam, initRole);
+            if(!containsStudent(initFirstName,initLastName)){
+                students.add(student);
+            }
+            Collections.sort(students);
+        }
+        public boolean containsStudent(String initFirstName,String initLastName){
+            for(Student student:students){
+                if(student.getFirstName().equals(initFirstName)&& student.getLastName().equals(initLastName)){
+                    return true;
+                }
+            }
+            return false;
+        }
 
 }

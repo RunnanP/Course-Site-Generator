@@ -86,10 +86,10 @@
    <property name="COURSE_WORKSPACE_PART_TOP_PANE_SUBJECT_TEXT"                value="类型: "></property>
    <property name="COURSE_WORKSPACE_PART_TOP_PANE_NUMBER_TEXT"                value="代号: "></property>
    <property name="COURSE_WORKSPACE_PART_TOP_PANE_SEMESTER_TEXT"                value="学期: "></property>
-   <property name="COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT"                value="标题: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT"                value="题: "></property>
    <property name="COURSE_WORKSPACE_PART_TOP_PANE_YEAR_TEXT"                value="学年: "></property>
-   <property name="COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_NAME_TEXT"                value="教授名称: "></property>
-   <property name="COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT"                value="教授主页:"></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_NAME_TEXT"                value="大学的教授名称: "></property>
+   <property name="COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT"                value="大学的教授主页:"></property>
    <property name="COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT"                value="导出地址:"></property>
     <property name="CHANGE_TEXT"                value="改变"></property>
        
@@ -106,10 +106,10 @@
 
 
         <property name="BUTTOM_PANE_HEADER_LABEL_TEXT"                value="页面风格"></property>
-   <property name="BANNER_LABEL_TEXT"                value="横幅学校图片"></property>
-   <property name="STYLESHEET_LABEL_TEXT"                value="风格表:"></property>
-   <property name="LEFT_LABEL_TEXT"                value="左脚图片:"></property>
-   <property name="RIGHT_LABEL_TEXT"                value="右脚图片:"></property>
+   <property name="BANNER_LABEL_TEXT"                value="横幅学校图片:"></property>
+   <property name="STYLESHEET_LABEL_TEXT"                value="风格:"></property>
+   <property name="LEFT_LABEL_TEXT"                value="左脚图片1:"></property>
+   <property name="RIGHT_LABEL_TEXT"                value="右脚图片是:"></property>
    <property name="NOTE_DESCRIPTION_TEXT"                value="注意：新的风格表可能会被放在 work/css 去被选择"></property>
 
 
@@ -131,10 +131,10 @@
 
            <!-- recitation WORKSPACE CONTROLS STUFF -->
          <property name="RECITATION_HEADER_TEXT"         value="练习课"></property>
-          <property name="SECTION_COLUMN_TEXT"         value="部分"></property>
-           <property name="INSTRUCTOR_COLUMN_TEXT"         value="教授"></property>
-            <property name="DAYTIME_COLUMN_TEXT"         value="日期/时间"></property>
-             <property name="LOCATION_COLUMN_TEXT"         value="地址"></property>
+          <property name="SECTION_COLUMN_TEXT"         value="部分1"></property>
+           <property name="INSTRUCTOR_COLUMN_TEXT"         value="大学教授"></property>
+            <property name="DAYTIME_COLUMN_TEXT"         value="时间是"></property>
+             <property name="LOCATION_COLUMN_TEXT"         value="地址是"></property>
               <property name="TA_COLUMN_TEXT"         value="助教"></property>
                <property name="ADD_EDIT_TEXT"         value="添加/修改"></property>
                 <property name="SUPERVISING_TA_TEXT"         value="助教"></property>
@@ -143,16 +143,16 @@
                   <!-- schedule WORKSPACE CONTROLS STUFF -->
          <property name="SCHEDULE_HEADER_TEXT"         value="课程"></property>
           <property name="CALENDAR_HEADER_TEXT"         value="日期边界"></property>
-           <property name="STARTING_DATE_TEXT"         value="开始周一:"></property>
-            <property name="ENDING_DATE_TEXT"         value="结束周五:"></property>
+           <property name="STARTING_DATE_TEXT"         value="开始周一"></property>
+            <property name="ENDING_DATE_TEXT"         value="结束周五"></property>
              <property name="SCHEDULE_ITEMS_TEXT"         value="课程事件"></property>
               <property name="TYPE_COLUMN_TEXT"         value="类型"></property>
                <property name="DATE_COLUMN_TEXT"         value="日期"></property>
-                <property name="TITLE_COLUMN_TEXT"         value="题目"></property>
-                 <property name="TOPIC_COLUMN_TEXT"         value="课题"></property>
+                <property name="TITLE_COLUMN_TEXT"         value="题目*"></property>
+                 <property name="TOPIC_COLUMN_TEXT"         value="课题*"></property>
                        <property name="TIME_TEXT"         value="事件"></property>
                  <property name="LINK_TEXT"         value="连接"></property>
-           <property name="CRITERIA_TEXT"         value="重要"></property>
+           <property name="CRITERIA_TEXT"         value="重要的是*"></property>
            
              <!-- project WORKSPACE CONTROLS STUFF -->
          <property name="PROJECTS_HEADER_TEXT"         value="项目"></property>
@@ -162,8 +162,8 @@
              <property name="COLOR_TEXT"         value="颜色:"></property>
               <property name="TEXT_COLOR_TEXT"         value="文本颜色:"></property>
                <property name="STUDENTS_TEXT"         value="学生"></property>
-                <property name="FIRST_NAME_COLUMN_TEXT"         value="名"></property>
-                 <property name="LAST_NAME_COLUMN_TEXT"         value="姓"></property>
+                <property name="FIRST_NAME_COLUMN_TEXT"         value="最前的那名字"></property>
+                 <property name="LAST_NAME_COLUMN_TEXT"         value="后一个名字"></property>
                        <property name="TEAM_TEXT"         value="队伍"></property>
                  <property name="ROLE_TEXT"         value="角色"></property>
 

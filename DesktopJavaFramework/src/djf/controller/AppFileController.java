@@ -143,7 +143,7 @@ public class AppFileController {
             boolean continueToOpen = true;
             if (!saved) {
                 // THE USER CAN OPT OUT HERE WITH A CANCEL
-                continueToOpen = promptToSave();
+               continueToOpen = promptToSave();
             }
 
             // IF THE USER REALLY WANTS TO OPEN A Course
