@@ -7,7 +7,10 @@ package csg.workspace;
 
 import csg.CSGApp;
 import csg.CSGAppProp;
+import csg.data.CSGData;
+import csg.data.Recitation;
 import csg.data.ScheduleItem;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -18,6 +21,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -119,6 +123,12 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         scheduleItemsTable=new TableView<>();
         scheduleItemsTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
         scheduleItemsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
+        CSGData data=(CSGData) app.getDataComponent();
+        
+        ObservableList<ScheduleItem> scheduleItemsData=data.getScheduleItems();
+        scheduleItemsTable.setItems(scheduleItemsData);
+        
         String typeColumnText = props.getProperty(CSGAppProp.TYPE_COLUMN_TEXT.toString());
         String dateColumnText = props.getProperty(CSGAppProp.DATE_COLUMN_TEXT.toString());
         String titleColumnText = props.getProperty(CSGAppProp.TITLE_COLUMN_TEXT.toString());
@@ -128,6 +138,12 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         dateColumn=new TableColumn(dateColumnText);
         titleColumn=new TableColumn(titleColumnText);
         topicColumn=new TableColumn(topicColumnText);
+        
+        typeColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String>("type"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String>("date"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String>("title"));
+        topicColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String>("topic"));
+        
         
         scheduleItemsTable.getColumns().addAll(typeColumn,dateColumn,titleColumn,topicColumn);
         String addeditText=props.getProperty(CSGAppProp.ADD_EDIT_TEXT.toString());

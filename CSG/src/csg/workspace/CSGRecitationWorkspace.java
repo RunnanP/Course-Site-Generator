@@ -7,8 +7,10 @@ package csg.workspace;
 
 import csg.CSGApp;
 import csg.CSGAppProp;
+import csg.data.CSGData;
 import csg.data.Recitation;
 import csg.data.TeachingAssistant;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -18,6 +20,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -44,8 +47,8 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     TableColumn<Recitation,String> instructorColumn;
     TableColumn<Recitation,String> daytimeColumn;
     TableColumn<Recitation,String> locationColumn;
-    TableColumn<Recitation,TeachingAssistant> firstTAColumn;
-    TableColumn<Recitation,TeachingAssistant> secondTAColumn;
+    TableColumn<Recitation,String> firstTAColumn;
+    TableColumn<Recitation,String> secondTAColumn;
     
     
     VBox addeditRecitationPane;
@@ -81,6 +84,14 @@ public class CSGRecitationWorkspace implements WorkspacePart{
         
         recitationTable=new TableView();
         recitationTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        
+      
+        CSGData data=(CSGData) app.getDataComponent();
+        
+        ObservableList<Recitation> recitationData=data.getRecitations();
+        recitationTable.setItems(recitationData);
+        
+        
         String sectionColumnText=props.getProperty(CSGAppProp.SECTION_COLUMN_TEXT.toString());
         String instructorColumnText=props.getProperty(CSGAppProp.INSTRUCTOR_COLUMN_TEXT.toString());
         String daytimeColumnText=props.getProperty(CSGAppProp.DAYTIME_COLUMN_TEXT.toString());
@@ -93,8 +104,26 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           firstTAColumn=new TableColumn(taColumnText);
           secondTAColumn=new TableColumn(taColumnText);
           
-          
-          
+           sectionColumn.setCellValueFactory(
+                new PropertyValueFactory<Recitation, String>("section")
+        );
+            instructorColumn.setCellValueFactory(
+                new PropertyValueFactory<Recitation, String>("instructor")
+        );
+              daytimeColumn.setCellValueFactory(
+                new PropertyValueFactory<Recitation, String>("daytime")
+        );
+                locationColumn.setCellValueFactory(
+                new PropertyValueFactory<Recitation, String>("location")
+        );
+                  firstTAColumn.setCellValueFactory(
+                new PropertyValueFactory<Recitation, String>("firstTa")
+        );
+                    secondTAColumn.setCellValueFactory(
+                new PropertyValueFactory<Recitation, String>("secondTa")
+        );
+           
+           
           recitationTable.getColumns().addAll(sectionColumn,instructorColumn,daytimeColumn,locationColumn,firstTAColumn,secondTAColumn);
           recitationTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
           recitationTable.prefHeightProperty().bind(app.getGUI().getWindow().heightProperty().multiply(0.5));
@@ -264,19 +293,19 @@ public class CSGRecitationWorkspace implements WorkspacePart{
         this.locationColumn = locationColumn;
     }
 
-    public TableColumn<Recitation, TeachingAssistant> getFirstTAColumn() {
+    public TableColumn<Recitation, String> getFirstTAColumn() {
         return firstTAColumn;
     }
 
-    public void setFirstTAColumn(TableColumn<Recitation, TeachingAssistant> firstTAColumn) {
+    public void setFirstTAColumn(TableColumn<Recitation, String> firstTAColumn) {
         this.firstTAColumn = firstTAColumn;
     }
 
-    public TableColumn<Recitation, TeachingAssistant> getSecondTAColumn() {
+    public TableColumn<Recitation, String> getSecondTAColumn() {
         return secondTAColumn;
     }
 
-    public void setSecondTAColumn(TableColumn<Recitation, TeachingAssistant> secondTAColumn) {
+    public void setSecondTAColumn(TableColumn<Recitation, String> secondTAColumn) {
         this.secondTAColumn = secondTAColumn;
     }
 

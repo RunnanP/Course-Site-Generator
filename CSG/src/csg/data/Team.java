@@ -13,20 +13,20 @@ import javafx.beans.property.StringProperty;
  * @author runnan
  */
 public class Team <E extends Comparable<E>> implements Comparable<E>{
-     private final StringProperty name;
+     private final StringProperty teamname;
     private final StringProperty color;
       private final StringProperty textcolor;
     private final StringProperty link;
 
     public Team(String initname, String initcolor, String inittextcolor, String initlink) {
-        name = new SimpleStringProperty(initname);
-        color=new SimpleStringProperty(inittextcolor);
+        teamname = new SimpleStringProperty(initname);
+        color=new SimpleStringProperty(initcolor);
         textcolor = new SimpleStringProperty(inittextcolor);
         link = new SimpleStringProperty(initlink);
     }
 
-    public String getName() {
-        return name.get();
+    public String getTeamname() {
+        return teamname.get();
     }
 
     public String getColor() {
@@ -41,8 +41,8 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
         return link.get();
     }
     
-       public void setName(String initname) {
-        name.set(initname);
+       public void setTeamname(String initname) {
+        teamname.set(initname);
     }
 
     public void setColor(String initcolor) {

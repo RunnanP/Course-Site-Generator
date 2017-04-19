@@ -7,8 +7,11 @@ package csg.workspace;
 
 import csg.CSGApp;
 import csg.CSGAppProp;
+import csg.data.CSGData;
+import csg.data.Recitation;
 import csg.data.Student;
 import csg.data.Team;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -19,6 +22,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -48,8 +52,8 @@ public class CSGProjectWorkspace implements WorkspacePart{
     Label teamsHeaderLabel;
     TableView<Team> teamsTable;
     TableColumn<Team,String> nameColumn;
-    TableColumn<Team,Color> colorColumn;
-    TableColumn<Team,Color> textColumn;
+    TableColumn<Team,String> colorColumn;
+    TableColumn<Team,String> textColorColumn;
     TableColumn<Team,String> linkColumn;
     Label teamsAddeditHeaderLabel;
     Label nameLabel;
@@ -82,7 +86,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
     TableView<Student> studentsTable;
     TableColumn<Student,String> firstNameColumn;
     TableColumn<Student,String> lastNameColumn;
-    TableColumn<Student,Team> teamColumn;
+    TableColumn<Student,String> teamColumn;
     TableColumn<Student,String> roleColumn;
     Label studentsAddeditHeaderLabel;
     Label firstNameLabel;
@@ -166,13 +170,37 @@ public class CSGProjectWorkspace implements WorkspacePart{
          
          teamsTable=new TableView<>();
          teamsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+         CSGData data=(CSGData) app.getDataComponent();
+        
+        ObservableList<Team> teamData=data.getTeams();
+        teamsTable.setItems(teamData);
          
          nameColumn=new TableColumn(nameColumnText);
          colorColumn=new TableColumn(colorColumnText);
-         textColumn=new TableColumn(textColorColumnText);
+         textColorColumn=new TableColumn(textColorColumnText);
          linkColumn=new TableColumn(linkColumnText);
          
-         teamsTable.getColumns().addAll(nameColumn,colorColumn,textColumn,linkColumn);
+         
+             nameColumn.setCellValueFactory(
+             new PropertyValueFactory<Team,String>("teamname")
+         
+         );
+         
+                 colorColumn.setCellValueFactory(
+             new PropertyValueFactory<Team,String>("color")
+         
+         );
+                     textColorColumn.setCellValueFactory(
+             new PropertyValueFactory<Team,String>("textcolor")
+         
+         );
+         linkColumn.setCellValueFactory(
+             new PropertyValueFactory<Team,String>("link")
+         
+         );
+             
+             
+         teamsTable.getColumns().addAll(nameColumn,colorColumn,textColorColumn,linkColumn);
          teamsTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
          teamsFlowPane.getChildren().addAll(teamsTable,t2);
          
@@ -230,6 +258,11 @@ public class CSGProjectWorkspace implements WorkspacePart{
          String roleColumnText = props.getProperty(CSGAppProp.ROLE_TEXT.toString());
          
          studentsTable=new TableView<>();
+         studentsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+       // CSGData data=(CSGData) app.getDataComponent();
+        
+        ObservableList<Student> studentData=data.getStudents();
+        studentsTable.setItems(studentData);
          studentsTable.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(0.8));
          studentsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
          
@@ -237,6 +270,28 @@ public class CSGProjectWorkspace implements WorkspacePart{
          lastNameColumn=new TableColumn(lastNameColumnText);
          teamColumn=new TableColumn(teamColumnText);
          roleColumn=new TableColumn(roleColumnText);
+         
+         firstNameColumn.setCellValueFactory(
+             new PropertyValueFactory<Student,String>("firstName")
+         
+         );
+         
+            lastNameColumn.setCellValueFactory(
+             new PropertyValueFactory<Student,String>("lastName")
+         
+         );
+         
+     teamColumn.setCellValueFactory(
+             new PropertyValueFactory<Student,String>("teamString")
+         
+         );
+            
+        roleColumn.setCellValueFactory(
+             new PropertyValueFactory<Student,String>("role")
+         
+         );
+    
+         
          
          studentsTable.getColumns().addAll(firstNameColumn,lastNameColumn,teamColumn,roleColumn);
          studentsFlowPane.getChildren().addAll(studentsTable,t9);
@@ -345,20 +400,20 @@ public class CSGProjectWorkspace implements WorkspacePart{
         this.nameColumn = nameColumn;
     }
 
-    public TableColumn<Team, Color> getColorColumn() {
+    public TableColumn<Team, String> getColorColumn() {
         return colorColumn;
     }
 
-    public void setColorColumn(TableColumn<Team, Color> colorColumn) {
+    public void setColorColumn(TableColumn<Team, String> colorColumn) {
         this.colorColumn = colorColumn;
     }
 
-    public TableColumn<Team, Color> getTextColumn() {
-        return textColumn;
+    public TableColumn<Team, String> getTextColumn() {
+        return textColorColumn;
     }
 
-    public void setTextColumn(TableColumn<Team, Color> textColumn) {
-        this.textColumn = textColumn;
+    public void setTextColumn(TableColumn<Team, String> textColumn) {
+        this.textColorColumn = textColumn;
     }
 
     public TableColumn<Team, String> getLinkColumn() {
@@ -577,11 +632,11 @@ public class CSGProjectWorkspace implements WorkspacePart{
         this.lastNameColumn = lastNameColumn;
     }
 
-    public TableColumn<Student, Team> getTeamColumn() {
+    public TableColumn<Student, String> getTeamColumn() {
         return teamColumn;
     }
 
-    public void setTeamColumn(TableColumn<Student, Team> teamColumn) {
+    public void setTeamColumn(TableColumn<Student, String> teamColumn) {
         this.teamColumn = teamColumn;
     }
 

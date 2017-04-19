@@ -90,7 +90,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
     public TestLoad(CSGApp initApp){
         app=initApp;
     }
-    public void loadData(AppDataComponent data, String filePath) throws IOException {
+    public void loadData(AppDataComponent data, String filePath)  throws IOException{
         CSGData dataManager = (CSGData)data;
         //ta part///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// LOAD THE JSON FILE WITH ALL THE DATA
@@ -165,19 +165,24 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String initcolor=jsonTeam.getString(JSON_PROJECT_TEAM_COLOR);
             String inittextcolor=jsonTeam.getString(JSON_PROJECT_TEAM_TEXTCOLOR);
             String initlink=jsonTeam.getString(JSON_PROJECT_TEAM_LINK);
+            
+              System.out.println(initname);
+              System.out.println(initcolor);
+              System.out.println(inittextcolor);
+              System.out.println(initlink);
      
-            dataManager.addScheduleItem(initname,initcolor,inittextcolor,initlink);
+            dataManager.addTeam(initname,initcolor,inittextcolor,initlink);
         }
         
              JsonArray jsonStudentArray=json.getJsonArray(JSON_STUDENT);
           for (int i=0;i<jsonStudentArray.size();i++){
-            JsonObject jsonStudent=jsonTeamArray.getJsonObject(i);
+            JsonObject jsonStudent=jsonStudentArray.getJsonObject(i);
             String initFirstname=jsonStudent.getString(JSON_PROJECT_STUDENT_FIRSTNAME);
             String initLastname=jsonStudent.getString(JSON_PROJECT_STUDENT_LASTNAME);
             String initTeam=jsonStudent.getString(JSON_PROJECT_STUDENT_TEAM);
             String initRole=jsonStudent.getString(JSON_PROJECT_STUDENT_ROLE);
      
-            dataManager.addScheduleItem(initFirstname,initLastname,initTeam,initRole);
+            dataManager.addStudent(initFirstname,initLastname,initTeam,initRole);
         }
           
         

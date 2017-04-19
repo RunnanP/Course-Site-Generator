@@ -56,17 +56,17 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
         return name.get();
     }
 
-    public void setName(String initName) {
-        name.set(initName);
-    }
+//    public void setName(String initName) {
+//        name.set(initName);
+//    }
 
     public String getEmail() {
         return email.get();
     }
 
-    public void setEmail(String initEmail) {
-        email.set(initEmail);
-    }
+//    public void setEmail(String initEmail) {
+//        email.set(initEmail);
+//    }
      
 //   public void setUnderGrad(boolean initUnderGrad){
 //         underGrad.set(initUnderGrad);
@@ -106,11 +106,13 @@ public class TeachingAssistant<E extends Comparable<E>> implements Comparable<E>
     @Override
     public int compareTo(E otherTA) {
         return getName().compareTo(((TeachingAssistant)otherTA).getName());
+      
     }
     
     @Override
     public String toString() {
         return name.getValue();
+       
     }
 
 //    public Boolean isSelected() {

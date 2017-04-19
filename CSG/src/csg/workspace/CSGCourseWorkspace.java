@@ -7,7 +7,10 @@ package csg.workspace;
 
 import csg.CSGApp;
 import csg.CSGAppProp;
+import csg.data.CSGData;
 import csg.data.SitePage;
+import csg.data.TeachingAssistant;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,9 +18,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -87,7 +93,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
     Label sitePagesLabel;
     FlowPane sitePageTablePane;
     TableView<SitePage>  sitePagesTable;
-    TableColumn<SitePage,CheckBox> useColumn;
+    TableColumn<SitePage,Boolean> useColumn;
     TableColumn<SitePage,String> navBarTitleColumn;
     TableColumn<SitePage,String> fileNameColumn;
     TableColumn<SitePage, String> scriptColumn;
@@ -318,6 +324,23 @@ public class CSGCourseWorkspace implements WorkspacePart{
         scriptColumn=new TableColumn(scriptColumnText);
         
         sitePagesTable=new TableView<>();
+        sitePagesTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        CSGData data=(CSGData)app.getDataComponent();
+        ObservableList<SitePage> sitePagesData=data.getSitePages();
+        sitePagesTable.setItems(sitePagesData);
+        
+       
+        useColumn.setCellValueFactory(new PropertyValueFactory<SitePage,Boolean>("used"));
+        useColumn.setCellFactory(new CheckBoxTableCell().forTableColumn(useColumn));
+        
+        
+        navBarTitleColumn.setCellValueFactory(new PropertyValueFactory<SitePage,String>("navbar"));
+        fileNameColumn.setCellValueFactory(new PropertyValueFactory<SitePage,String>("filename"));
+        scriptColumn.setCellValueFactory(new PropertyValueFactory<SitePage,String>("scriptname"));
+        
+         sitePagesTable.setEditable(true);
+        useColumn.setEditable(true);
+        
         sitePagesTable.getColumns().addAll(useColumn,navBarTitleColumn,fileNameColumn,scriptColumn);
         
       //  HBox space=new HBox(sitePagesTable,new Pane());
@@ -695,11 +718,11 @@ public class CSGCourseWorkspace implements WorkspacePart{
         this.sitePagesTable = sitePagesTable;
     }
 
-    public TableColumn<SitePage, CheckBox> getUseColumn() {
+    public TableColumn<SitePage, Boolean> getUseColumn() {
         return useColumn;
     }
 
-    public void setUseColumn(TableColumn<SitePage, CheckBox> useColumn) {
+    public void setUseColumn(TableColumn<SitePage, Boolean> useColumn) {
         this.useColumn = useColumn;
     }
 

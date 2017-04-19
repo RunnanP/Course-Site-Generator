@@ -15,16 +15,32 @@ import javafx.beans.property.StringProperty;
 public class Student <E extends Comparable<E>> implements Comparable<E>{
     private final StringProperty firstName;
     private final StringProperty lastName;
-    private  final StringProperty Team;
+    private  final StringProperty teamString;
     private final StringProperty role;
 
     public Student(String initfirstName, String initlastName, String initTeam, String initrole) {
        firstName=new SimpleStringProperty(initfirstName);
     lastName = new SimpleStringProperty(initlastName);
-       Team = new SimpleStringProperty(initTeam);
+       teamString = new SimpleStringProperty(initTeam);
         role =new SimpleStringProperty(initrole);
     }
 
+//    public StringProperty getFirstName() {
+//        return firstName;
+//    }
+//
+//    public StringProperty getLastName() {
+//        return lastName;
+//    }
+//
+//    public StringProperty getTeamString() {
+//        return teamString;
+//    }
+//
+//    public StringProperty getRole() {
+//        return role;
+//    }
+   
     public String getFirstName() {
          return firstName.get();
     }
@@ -33,8 +49,8 @@ public class Student <E extends Comparable<E>> implements Comparable<E>{
         return lastName.get();
     }
 
-    public String getTeam() {
-        return Team.get();
+    public String getTeamString() {
+        return teamString.get();
     }
 
     public String getRole() {
@@ -51,7 +67,7 @@ public class Student <E extends Comparable<E>> implements Comparable<E>{
     }
 
     public void setTeam(String initTeam) {
-         Team.set(initTeam);
+         teamString.set(initTeam);
     }
 
     public void setRole(String initRole) {

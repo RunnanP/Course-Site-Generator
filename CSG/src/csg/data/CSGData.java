@@ -26,6 +26,7 @@ import properties_manager.PropertiesManager;
  */
 public class CSGData implements AppDataComponent{
         CSGApp app;
+        
         ObservableList<TeachingAssistant> teachingAssistants;
         ObservableList<SitePage> sitePages;
         ObservableList<Recitation> recitations;
@@ -80,6 +81,10 @@ public class CSGData implements AppDataComponent{
 //        instructorName="";
 //       instructorHome="";
         
+        sitePages=FXCollections.observableArrayList();
+        initSitePage();
+     
+
         //TA PART
         teachingAssistants = FXCollections.observableArrayList();
         startHour = MIN_START_HOUR;
@@ -113,7 +118,10 @@ public class CSGData implements AppDataComponent{
         endHour = MAX_END_HOUR;
         teachingAssistants.clear();
         officeHours.clear();
-        
+        recitations.clear();
+        scheduleItems.clear();
+        teams.clear();
+        students.clear();
     }
 
     public CSGApp getApp() {
@@ -324,7 +332,15 @@ public class CSGData implements AppDataComponent{
         this.endingDate = endingDate;
     }
     
-    
+    ///course page////////////////////////////////////
+    public void initSitePage(){
+        SitePage homeSite=new SitePage("Home","index.html","HomeBuilder.js");
+        SitePage syllabusSite=new SitePage("Syllabus","syllabus.html","SyllabusBuilder.js");
+        SitePage scheduleSite=new SitePage("Schedule","schedule.html","ScheduleBuilder.js");
+        SitePage hwsSite=new SitePage("HWs","hws.html","HWsBuilder.js");
+        SitePage projectSite=new SitePage("Projects","projects.html","ProjectBuilder.js");
+        sitePages.addAll(homeSite,syllabusSite,scheduleSite,hwsSite,projectSite);
+    }
     
     ///////////////////////ta part
         public boolean containsTA(String testName, String testEmail) {
@@ -535,7 +551,7 @@ public class CSGData implements AppDataComponent{
         }
         
         public boolean containsRecitation(String initSection){
-                for (Recitation recitation : recitations) {
+           for (Recitation recitation : recitations) {
             if (recitation.getSection().equals(initSection)) {
                 return true;
             }
@@ -550,7 +566,8 @@ public class CSGData implements AppDataComponent{
         public void addScheduleItem (String initType,String initDate,String initTitle,String initTopic){
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
             scheduleItems.add(scheduleItem);
-            Collections.sort(scheduleItems);
+            System.out.println(scheduleItem.getTitle());
+          //  Collections.sort(scheduleItems);
             }
         
         //project part//////////////////////////////////////////////////////////////////////
@@ -559,12 +576,12 @@ public class CSGData implements AppDataComponent{
             if (!containsTeam(initName)){
                 teams.add(team);
             }
-            Collections.sort(teams);
+        //    Collections.sort(teams);
         }
         public boolean containsTeam(String initName){
             
             for (Team team:teams){
-                if (team.getName().equals(initName)){
+                if (team.getTeamname().equals(initName)){
                     return true;
                 }
             }
@@ -578,7 +595,7 @@ public class CSGData implements AppDataComponent{
             if(!containsStudent(initFirstName,initLastName)){
                 students.add(student);
             }
-            Collections.sort(students);
+          //  Collections.sort(students);
         }
         public boolean containsStudent(String initFirstName,String initLastName){
             for(Student student:students){

@@ -150,6 +150,8 @@ public class AppFileController {
             if (continueToOpen) {
                 // GO AHEAD AND PROCEED LOADING A Course
                 promptToOpen();
+              
+             
             }
         } catch (IOException ioe) {
             // SOMETHING WENT WRONG
@@ -496,7 +498,7 @@ public class AppFileController {
 
         // ONLY OPEN A NEW FILE IF THE USER SAYS OK
         if (selectedFile != null) {
-            try {
+         try {
                 // RESET THE WORKSPACE
 		app.getWorkspaceComponent().resetWorkspace();
 
@@ -516,7 +518,7 @@ public class AppFileController {
                 app.getGUI().updateToolbarControls(saved);
             } catch (Exception e) {
                 AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-                dialog.show(props.getProperty(LOAD_ERROR_TITLE), props.getProperty(LOAD_ERROR_MESSAGE));
+               dialog.show(props.getProperty(LOAD_ERROR_TITLE), props.getProperty(LOAD_ERROR_MESSAGE));
             }
         }
     }

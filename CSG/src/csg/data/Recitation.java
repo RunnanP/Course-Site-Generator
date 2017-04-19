@@ -22,6 +22,30 @@ public class Recitation <E extends Comparable<E>> implements Comparable<E>{
     private final StringProperty firstTa;
     private  final StringProperty secondTa;
 
+//    public StringProperty getSection() {
+//        return section;
+//    }
+//
+//    public StringProperty getInstructor() {
+//        return instructor;
+//    }
+//
+//    public StringProperty getDaytime() {
+//        return daytime;
+//    }
+//
+//    public StringProperty getLocation() {
+//        return location;
+//    }
+//
+//    public StringProperty getFirstTa() {
+//        return firstTa;
+//    }
+//
+//    public StringProperty getSecondTa() {
+//        return secondTa;
+//    }
+  
     public String getSection() {
         return section.get();
     }
@@ -94,7 +118,10 @@ public class Recitation <E extends Comparable<E>> implements Comparable<E>{
     
     @Override
     public int compareTo(E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
+    }
+    public String toString(){
+        return "";
     }
     
 }

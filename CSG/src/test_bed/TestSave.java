@@ -182,7 +182,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         for(Team team:teams){
             
             JsonObject teamJson=Json.createObjectBuilder()
-                    .add(JSON_PROJECT_TEAM_NAME,team.getName())
+                    .add(JSON_PROJECT_TEAM_NAME,team.getTeamname())
                     .add(JSON_PROJECT_TEAM_COLOR,team.getColor())
                     .add(JSON_PROJECT_TEAM_TEXTCOLOR,team.getTextcolor())
                     .add(JSON_PROJECT_TEAM_LINK,team.getLink()).build();
@@ -198,7 +198,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             JsonObject studentJson=Json.createObjectBuilder()
                     .add(JSON_PROJECT_STUDENT_FIRSTNAME,student.getFirstName())
                     .add(JSON_PROJECT_STUDENT_LASTNAME,student.getLastName())
-                    .add(JSON_PROJECT_STUDENT_TEAM,student.getTeam())
+                    .add(JSON_PROJECT_STUDENT_TEAM,student.getTeamString())
                     .add(JSON_PROJECT_STUDENT_ROLE,student.getRole()).build();
             studentArrayBuilder.add(studentJson);
         }

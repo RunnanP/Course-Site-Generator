@@ -197,9 +197,9 @@ public class CSGTAWorkspace implements WorkspacePart{
     
         
         
-        taTable.getColumns().add(underGradeColumn);
-        taTable.getColumns().add(nameColumn);
-        taTable.getColumns().add(emailColumn);
+        taTable.getColumns().addAll(underGradeColumn,nameColumn,emailColumn);
+//        taTable.getColumns().add(nameColumn);
+//        taTable.getColumns().add(emailColumn);
         
         
         
