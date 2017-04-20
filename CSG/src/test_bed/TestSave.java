@@ -225,6 +225,12 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         
 	// THEN PUT IT ALL TOGETHER IN A JsonObject
 	JsonObject dataManagerJSO = Json.createObjectBuilder()
+                .add(JSON_COURSE_JSHOME, dataManager.isJhome())
+                .add(JSON_COURSE_JSSYLLABUS, dataManager.isJsyllabus())
+                .add(JSON_COURSE_JSSCHEDULE, dataManager.isJschedule())
+                .add(JSON_COURSE_JSHWS, dataManager.isJhws())
+                .add(JSON_COURSE_JSPROJECTS, dataManager.isJproject())
+                
                 .add(JSON_COURSE_SUBJECT, ""+dataManager.getSubject())
                 .add(JSON_COURSE_NUMBER, ""+dataManager.getNumber())
                 .add(JSON_COURSE_SEMESTER, ""+dataManager.getSemester())

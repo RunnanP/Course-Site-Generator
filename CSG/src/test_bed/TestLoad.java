@@ -92,10 +92,37 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
     }
     public void loadData(AppDataComponent data, String filePath)  throws IOException{
         CSGData dataManager = (CSGData)data;
-        //ta part///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+       
 	// LOAD THE JSON FILE WITH ALL THE DATA
 	JsonObject json = loadJSONFile(TEST_PATH);
-
+        
+        
+        
+        
+        
+        //course part
+        String courseSubject=json.getString(JSON_COURSE_SUBJECT);
+        String courseNumber=json.getString(JSON_COURSE_NUMBER);
+        String courseSemster=json.getString(JSON_COURSE_SEMESTER);
+        String courseYear=json.getString(JSON_COURSE_YEAR);
+        String courseTitle=json.getString(JSON_COURSE_TITLE);
+        String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
+        String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
+        dataManager.initCourseInfo(courseSubject,courseNumber,courseSemster,courseYear,courseTitle,courseInstructorName,courseInstructorHome);
+        
+        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
+        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
+        Boolean courseJschedule=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSCHEDULE));
+        Boolean courseJhws=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHWS));
+        Boolean courseJproject=Boolean.parseBoolean(json.getString(JSON_COURSE_JSPROJECTS));
+        dataManager.setJhome(courseJhome);
+        dataManager.setJsyllabus(courseJsyllabus);
+        dataManager.setJschedule(courseJschedule);
+        dataManager.setJhws(courseJhws);
+        dataManager.setJproject(courseJproject);
+                
+         //ta part/////////////////////////////////////////////////////////////////////////////
 	// LOAD THE START AND END HOURS
 	String startHour = json.getString(JSON_START_HOUR);
         String endHour = json.getString(JSON_END_HOUR);
@@ -103,11 +130,14 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
          dataManager.initHours(startHour, endHour);
 
         // NOW RELOAD THE WORKSPACE WITH THE LOADED DATA
-        app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
-        CSGWorkspace temp=(CSGWorkspace) app.getWorkspaceComponent();
-        CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
+//        app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
+//        CSGWorkspace temp=(CSGWorkspace) app.getWorkspaceComponent();
+//        CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
+
+
+
        // workspace.clearCombobox();
-        
+        ///////////////
         // NOW LOAD ALL THE UNDERGRAD TAs
         JsonArray jsonTAArray = json.getJsonArray(JSON_TAS);
         for (int i = 0; i < jsonTAArray.size(); i++) {
@@ -115,7 +145,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String name = jsonTA.getString(JSON_NAME);
             String email = jsonTA.getString(JSON_EMAIL);
            Boolean underGrad=Boolean.parseBoolean(jsonTA.getString(JSON_UNDERGRAD_TAS));
-           System.out.println(jsonTA.getString(JSON_UNDERGRAD_TAS));
+           
             dataManager.addTA(name, email,underGrad);
         }
 
@@ -166,10 +196,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String inittextcolor=jsonTeam.getString(JSON_PROJECT_TEAM_TEXTCOLOR);
             String initlink=jsonTeam.getString(JSON_PROJECT_TEAM_LINK);
             
-              System.out.println(initname);
-              System.out.println(initcolor);
-              System.out.println(inittextcolor);
-              System.out.println(initlink);
+              
      
             dataManager.addTeam(initname,initcolor,inittextcolor,initlink);
         }

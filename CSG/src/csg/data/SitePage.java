@@ -22,11 +22,11 @@ public class SitePage <E extends Comparable<E>> implements Comparable<E>{
     private  BooleanProperty used;
    
     
-    public SitePage(String initNavbar,String initFile,String initScript){
+    public SitePage(boolean initUsed,String initNavbar,String initFile,String initScript){
         navbar=new SimpleStringProperty(initNavbar);
         filename=new SimpleStringProperty(initFile);
         scriptname=new SimpleStringProperty(initScript);
-        used=new SimpleBooleanProperty(true);
+        used=new SimpleBooleanProperty(initUsed);
         
         
         
@@ -62,8 +62,8 @@ public class SitePage <E extends Comparable<E>> implements Comparable<E>{
         return used;
     }
 
-    public void setUsed(BooleanProperty initused) {
-        used = initused;
+    public void setUsed(Boolean initused) {
+        used.set(initused);
     }
     public BooleanProperty usedProperty(){
         return used;

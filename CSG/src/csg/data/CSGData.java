@@ -51,6 +51,13 @@ public class CSGData implements AppDataComponent{
        boolean secondImage;
        boolean thirdImage;
        
+       
+       boolean jhome;
+       boolean jsyllabus;
+       boolean jschedule;
+       boolean jhws;
+       boolean jproject;
+       
        //ta part
          HashMap<String,StringProperty> officeHours;
        ArrayList<String> gridHeaders;
@@ -116,6 +123,7 @@ public class CSGData implements AppDataComponent{
     public void resetData() {
           startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
+        sitePages.clear();
         teachingAssistants.clear();
         officeHours.clear();
         recitations.clear();
@@ -331,16 +339,126 @@ public class CSGData implements AppDataComponent{
     public void setEndingDate(String endingDate) {
         this.endingDate = endingDate;
     }
+
+    public boolean isJhome() {
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Home")){
+              jhome=i.getUsed().get();
+          }
+        }
+        return jhome;
+    }
+
+    public void setJhome(boolean initjhome) {
+        this.jhome = initjhome;
+          for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Home")){
+              i.setUsed(jhome);
+          }
+        }
+    }
+
+    public boolean isJsyllabus() {
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Syllabus")){
+              jsyllabus=i.getUsed().get();
+          }
+        }
+        return jsyllabus;
+    }
+
+    public void setJsyllabus(boolean initjsyllabus) {
+        jsyllabus = initjsyllabus;
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Syllabus")){
+              i.setUsed(jsyllabus);
+          }
+        }
+    }
+
+    public boolean isJschedule() {
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Schedule")){
+              jschedule=i.getUsed().get();
+          }
+        }
+        return jschedule;
+    }
+
+    public void setJschedule(boolean initjschedule) {
+        jschedule = initjschedule;
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Schedule")){
+              i.setUsed(jschedule);
+          }
+        }
+    }
+
+    public boolean isJhws() {
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("HWs")){
+              jhws=i.getUsed().get();
+          }
+        }
+        return jhws;
+    }
+
+    public void setJhws(boolean initjhws) {
+        jhws = initjhws;
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("HWs")){
+              i.setUsed(jhws);
+          }
+        }
+    }
+
+    public boolean isJproject() {
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Project")){
+              jproject=i.getUsed().get();
+          }
+        }
+        
+        return jproject;
+    }
+
+    public void setJproject(boolean initjproject) {
+        jproject = initjproject;
+        for (SitePage i:sitePages){
+          if ( i.getNavbar().equals("Project")){
+              i.setUsed(jproject);
+          }
+        }
+    }
+    
     
     ///course page////////////////////////////////////
+    
+    public void initCourseInfo(String initsubject,String initnumber,String initsemester,String inityear,String inittitle,String initstructorname,String initinstructorhome){
+         subject=new String(initsubject);
+        number=Integer.parseInt(initnumber);
+        semester=new String(initsemester);
+        year=Integer.parseInt(inityear);
+        title=new String(inittitle);
+        instructorName=new String(initstructorname);
+         instructorHome=new String(initinstructorhome); 
+    }
     public void initSitePage(){
-        SitePage homeSite=new SitePage("Home","index.html","HomeBuilder.js");
-        SitePage syllabusSite=new SitePage("Syllabus","syllabus.html","SyllabusBuilder.js");
-        SitePage scheduleSite=new SitePage("Schedule","schedule.html","ScheduleBuilder.js");
-        SitePage hwsSite=new SitePage("HWs","hws.html","HWsBuilder.js");
-        SitePage projectSite=new SitePage("Projects","projects.html","ProjectBuilder.js");
+        jhome=false;
+        jsyllabus=false;
+        jschedule=false;
+        jhws=false;
+        jproject=false;
+        SitePage homeSite=new SitePage(jhome,"Home","index.html","HomeBuilder.js");
+        SitePage syllabusSite=new SitePage(jsyllabus,"Syllabus","syllabus.html","SyllabusBuilder.js");
+        SitePage scheduleSite=new SitePage(jschedule,"Schedule","schedule.html","ScheduleBuilder.js");
+        SitePage hwsSite=new SitePage(jhws,"HWs","hws.html","HWsBuilder.js");
+        SitePage projectSite=new SitePage(jproject,"Projects","projects.html","ProjectBuilder.js");
         sitePages.addAll(homeSite,syllabusSite,scheduleSite,hwsSite,projectSite);
     }
+    
+    
+    
     
     ///////////////////////ta part
         public boolean containsTA(String testName, String testEmail) {
