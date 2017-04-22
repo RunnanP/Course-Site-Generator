@@ -270,15 +270,15 @@ public class CSGController {
        }
     }
 
-    public void handleChangeStartTime(ComboBox startTimeComboBox, Label startTimeComboBoxLabel) {
-           
-       
-               
-    }
-
-    public void handleChangeEndTime(ComboBox endTimeComboBox, Label endTimeComboBoxLabel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public void handleChangeStartTime(ComboBox startTimeComboBox, Label startTimeComboBoxLabel) {
+//           
+//       
+//               
+//    }
+//
+//    public void handleChangeEndTime(ComboBox endTimeComboBox, Label endTimeComboBoxLabel) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     
         public void handleCellToggle(Pane pane) {
@@ -310,6 +310,7 @@ public class CSGController {
    
 
      public void changeTime(){
+         markWorkAsEdited();
         CSGData data = (CSGData)app.getDataComponent();
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
@@ -327,6 +328,7 @@ public class CSGController {
             endComboBox.getSelectionModel().select(endTime);
             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
             dialog.show(props.getProperty(CSGAppProp.START_OVER_END_TITLE.toString()), props.getProperty(CSGAppProp.START_OVER_END_MESSAGE.toString()));
+            //markWorkAsEdited();
             return;
         }
         ArrayList<CSGTimeSlot> officeHours = CSGTimeSlot.buildOfficeHoursList(data);
@@ -335,18 +337,24 @@ public class CSGController {
             data.initHours("" + newStartTime, "" + newEndTime);
         }
         String firsttime = officeHours.get(0).getTime();
-         System.out.println(firsttime);
+        // System.out.println(firsttime);
         int firsthour = Integer.parseInt(firsttime.substring(0, firsttime.indexOf('_')));
-        if(firsttime.contains("pm"))
+        if(firsttime.contains("pm")){
             firsthour += 12;
-        if(firsttime.contains("12"))
+        }
+        
+        if(firsttime.contains("12")){
             firsthour -= 12;
+        }
         String lasttime = officeHours.get(officeHours.size() - 1).getTime();
         int lasthour = Integer.parseInt(lasttime.substring(0, lasttime.indexOf('_')));
-        if(lasttime.contains("pm"))
+        if(lasttime.contains("pm")){
             lasthour += 12;
-        if(lasttime.contains("12"))
+        }
+            
+        if(lasttime.contains("12")){
             lasthour -= 12;
+        }
         if(firsthour < newStartTime || lasthour + 1 > newEndTime){
             AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
             yesNoDialog.show(props.getProperty(CSGAppProp.OFFICE_HOURS_REMOVED_TITLE.toString()), props.getProperty(CSGAppProp.OFFICE_HOURS_REMOVED_MESSAGE).toString());
@@ -354,6 +362,7 @@ public class CSGController {
             if (!selection.equals(AppYesNoCancelDialogSingleton.YES)){
                 startComboBox.getSelectionModel().select(startTime);
                 endComboBox.getSelectionModel().select(endTime);
+               // markWorkAsEdited();
                 return;
             }
         }
@@ -361,7 +370,7 @@ public class CSGController {
         workspace.getOfficeHoursGridPane().getChildren().clear();
         data.changeTime(newStartTime, newEndTime, officeHours);
         
-        markWorkAsEdited();
+       // markWorkAsEdited();
     }
 
    public void handleGridCellMouseExited(Pane pane) {

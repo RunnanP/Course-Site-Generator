@@ -10,6 +10,11 @@ import csg.CSGAppProp;
 import csg.data.CSGData;
 import csg.data.Recitation;
 import csg.data.ScheduleItem;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Date;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -236,6 +241,23 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           criteriaTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
     }
 
+   
+   
+   
+   public void loadCalendar(String initStart,String initEnd) throws ParseException{
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!initStart.equals("null")){
+     Date startDate=sdf.parse(initStart);
+      startDatePicker.setValue(LocalDate.of(startDate.getYear()+1900,startDate.getMonth()+1,startDate.getDate()));
+       }
+       
+       if(!initEnd.equals("null")){
+       Date endDate=sdf.parse(initEnd);
+       endDatePicker.setValue(LocalDate.of(endDate.getYear()+1900, endDate.getMonth()+1, endDate.getDate()));
+       }
+   }
+   
+  // public
     @Override
     public ScrollPane getBasePane() {
         return basePane;

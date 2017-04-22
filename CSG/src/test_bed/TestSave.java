@@ -55,7 +55,12 @@ public class TestSave {
      static final String JSON_COURSE_INSTRUCTOR_NAME="course_intructor_name";  
      static final String JSON_COURSE_INSTRUCTOR_HOME="course_instructor_home"; 
      static final String JSON_COURSE_EXPORT_DIR="course_export_dir";  
-     static final String JSON_COURSE_TEMPLATE_DIR="course_template_dir";  
+     static final String JSON_COURSE_TEMPLATE_DIR="course_template_dir";
+     static final String JSON_COURSE_FIRST_IMAGE_ADDRESS="course_first_image_address";
+     static final String JSON_COURSE_SECOND_IMAGE_ADDRESS="course_second_image_address";
+     static final String JSON_COURSE_THIRD_IMAGE_ADDRESS="course_third_image_address";
+      static final String JSON_COURSE_STYTLE_SHEET="course_stytle_sheet";
+      
      static final String JSON_COURSE_JSHOME="course_home";
     static final String JSON_COURSE_JSSYLLABUS="course_sysllabus";  
 static final String JSON_COURSE_JSSCHEDULE="course_schedule";  
@@ -238,6 +243,14 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
                 .add(JSON_COURSE_TITLE, ""+dataManager.getTitle())
                 .add(JSON_COURSE_INSTRUCTOR_NAME, ""+dataManager.getInstructorName())
                 .add(JSON_COURSE_INSTRUCTOR_HOME, ""+dataManager.getInstructorHome())
+                
+//                .add(JSON_COURSE_EXPORT_DIR, dataManager.getCourseExportDir())
+//                .add(JSON_COURSE_TEMPLATE_DIR, dataManager.getCourseTemplateAddress())
+//                
+//                .add(JSON_COURSE_FIRST_IMAGE_ADDRESS,dataManager.getFirstImageAddress())
+//                .add(JSON_COURSE_SECOND_IMAGE_ADDRESS,dataManager.getSecondImageAddress())
+//                .add(JSON_COURSE_THIRD_IMAGE_ADDRESS,dataManager.getThirdImageAddress())
+                  .add(JSON_COURSE_STYTLE_SHEET,""+dataManager.getStyleSheet())
                 
                 //
 		.add(JSON_START_HOUR, "" + dataManager.getStartHour())

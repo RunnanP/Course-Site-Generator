@@ -8,9 +8,12 @@ package csg.data;
 import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.file.CSGTimeSlot;
+import csg.workspace.CSGCourseWorkspace;
+import csg.workspace.CSGScheduleWorkspace;
 import csg.workspace.CSGTAWorkspace;
 import csg.workspace.CSGWorkspace;
 import djf.components.AppDataComponent;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,12 +47,14 @@ public class CSGData implements AppDataComponent{
        String title;
        String instructorName;
        String instructorHome;
+       
        String exportDir;
        String siteTempleDir;
        String styleSheet;
-       boolean firstImage;
-       boolean secondImage;
-       boolean thirdImage;
+       
+       String firstImageAdd;
+       String secondImageAdd;
+       String thirdImageAdd;
        
        
        boolean jhome;
@@ -63,14 +68,16 @@ public class CSGData implements AppDataComponent{
        ArrayList<String> gridHeaders;
        int startHour;
        int endHour;
+        public static final int MIN_START_HOUR=9;
+       public static final int MAX_END_HOUR=20;
        
        //recitation part
        
        //schedule part
        String startingDate;
        String endingDate;
-       public static final int MIN_START_HOUR=9;
-       public static final int MAX_END_HOUR=20;
+       
+      
        
        //teams part
     
@@ -124,12 +131,37 @@ public class CSGData implements AppDataComponent{
           startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
         sitePages.clear();
+        initSitePage();
         teachingAssistants.clear();
         officeHours.clear();
         recitations.clear();
         scheduleItems.clear();
         teams.clear();
         students.clear();
+    }
+
+    public String getFirstImageAdd() {
+        return firstImageAdd;
+    }
+
+    public void setFirstImageAdd(String firstImageAdd) {
+        this.firstImageAdd = firstImageAdd;
+    }
+
+    public String getSecondImageAdd() {
+        return secondImageAdd;
+    }
+
+    public void setSecondImageAdd(String secondImageAdd) {
+        this.secondImageAdd = secondImageAdd;
+    }
+
+    public String getThirdImageAdd() {
+        return thirdImageAdd;
+    }
+
+    public void setThirdImageAdd(String thirdImageAdd) {
+        this.thirdImageAdd = thirdImageAdd;
     }
 
     public CSGApp getApp() {
@@ -261,36 +293,21 @@ public class CSGData implements AppDataComponent{
     }
 
     public String getStyleSheet() {
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        styleSheet=workspace.getStyleSheetComboBox().getValue();
         return styleSheet;
     }
 
-    public void setStyleSheet(String styleSheet) {
-        this.styleSheet = styleSheet;
+    public void setStyleSheet(String initstyleSheet) {
+        styleSheet = initstyleSheet;
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        workspace.getStyleSheetComboBox().setValue(styleSheet);
+        
     }
 
-    public boolean isFirstImage() {
-        return firstImage;
-    }
 
-    public void setFirstImage(boolean firstImage) {
-        this.firstImage = firstImage;
-    }
-
-    public boolean isSecondImage() {
-        return secondImage;
-    }
-
-    public void setSecondImage(boolean secondImage) {
-        this.secondImage = secondImage;
-    }
-
-    public boolean isThirdImage() {
-        return thirdImage;
-    }
-
-    public void setThirdImage(boolean thirdImage) {
-        this.thirdImage = thirdImage;
-    }
 
     public HashMap<String, StringProperty> getOfficeHours() {
         return officeHours;
@@ -325,6 +342,11 @@ public class CSGData implements AppDataComponent{
     }
 
     public String getStartingDate() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                if(workspace.getStartDatePicker().getValue()!=null){
+               startingDate= workspace.getStartDatePicker().getValue().toString();
+                }        
         return startingDate;
     }
 
@@ -333,6 +355,10 @@ public class CSGData implements AppDataComponent{
     }
 
     public String getEndingDate() {
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                if(workspace.getEndDatePicker().getValue()!=null){
+               endingDate= workspace.getEndDatePicker().getValue().toString();}
         return endingDate;
     }
 
@@ -348,6 +374,10 @@ public class CSGData implements AppDataComponent{
         }
         return jhome;
     }
+    
+    
+
+    
 
     public void setJhome(boolean initjhome) {
         this.jhome = initjhome;
@@ -442,6 +472,11 @@ public class CSGData implements AppDataComponent{
         title=new String(inittitle);
         instructorName=new String(initstructorname);
          instructorHome=new String(initinstructorhome); 
+         //styleSheet=new String(initstylesheet);
+           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGCourseWorkspace workspace=temp.getCourseWorkspace();
+                workspace.loadCourseInfo(subject,number,semester,year,title,instructorName,instructorHome);
+        
     }
     public void initSitePage(){
         jhome=false;
@@ -681,6 +716,15 @@ public class CSGData implements AppDataComponent{
         
         
         //Schedule part?????????????????????????????????????????????????????????????????????????
+        public void initCalendar(String initStarting,String initEnding) throws ParseException{
+            startingDate=new String(initStarting);
+            endingDate=new String(initEnding);
+              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getScheduleWorkspace();
+                workspace.loadCalendar(startingDate,endingDate);
+            
+            
+        }
         public void addScheduleItem (String initType,String initDate,String initTitle,String initTopic){
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
             scheduleItems.add(scheduleItem);

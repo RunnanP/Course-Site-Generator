@@ -13,6 +13,7 @@ import djf.components.AppDataComponent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -37,7 +38,11 @@ public class TestLoad {
      static final String JSON_COURSE_INSTRUCTOR_NAME="course_intructor_name";  
      static final String JSON_COURSE_INSTRUCTOR_HOME="course_instructor_home"; 
      static final String JSON_COURSE_EXPORT_DIR="course_export_dir";  
-     static final String JSON_COURSE_TEMPLATE_DIR="course_template_dir";  
+     static final String JSON_COURSE_TEMPLATE_DIR="course_template_dir";
+       static final String JSON_COURSE_FIRST_IMAGE_ADDRESS="course_first_image_address";
+     static final String JSON_COURSE_SECOND_IMAGE_ADDRESS="course_second_image_address";
+     static final String JSON_COURSE_THIRD_IMAGE_ADDRESS="course_third_image_address";
+      static final String JSON_COURSE_STYTLE_SHEET="course_stytle_sheet";
      static final String JSON_COURSE_JSHOME="course_home";
     static final String JSON_COURSE_JSSYLLABUS="course_sysllabus";  
 static final String JSON_COURSE_JSSCHEDULE="course_schedule";  
@@ -90,7 +95,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
     public TestLoad(CSGApp initApp){
         app=initApp;
     }
-    public void loadData(AppDataComponent data, String filePath)  throws IOException{
+    public void loadData(AppDataComponent data, String filePath)  throws IOException, ParseException{
         CSGData dataManager = (CSGData)data;
         
        
@@ -102,25 +107,38 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         
         
         //course part
+        
         String courseSubject=json.getString(JSON_COURSE_SUBJECT);
+       
         String courseNumber=json.getString(JSON_COURSE_NUMBER);
         String courseSemster=json.getString(JSON_COURSE_SEMESTER);
         String courseYear=json.getString(JSON_COURSE_YEAR);
         String courseTitle=json.getString(JSON_COURSE_TITLE);
         String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
         String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
+         String styleSheet=json.getString(JSON_COURSE_STYTLE_SHEET);
+         
+        dataManager.setStyleSheet(styleSheet);
         dataManager.initCourseInfo(courseSubject,courseNumber,courseSemster,courseYear,courseTitle,courseInstructorName,courseInstructorHome);
-        
-        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
-        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
-        Boolean courseJschedule=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSCHEDULE));
-        Boolean courseJhws=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHWS));
-        Boolean courseJproject=Boolean.parseBoolean(json.getString(JSON_COURSE_JSPROJECTS));
+        //dataManager.setStyleSheet(styleSheet);
+//        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
+//        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
+//        Boolean courseJschedule=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSCHEDULE));
+//        Boolean courseJhws=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHWS));
+//        Boolean courseJproject=Boolean.parseBoolean(json.getString(JSON_COURSE_JSPROJECTS));
+       Boolean courseJhome=json.getBoolean(JSON_COURSE_JSHOME);
+        Boolean courseJsyllabus=json.getBoolean(JSON_COURSE_JSSYLLABUS);
+        Boolean courseJschedule=json.getBoolean(JSON_COURSE_JSSCHEDULE);
+        Boolean courseJhws=json.getBoolean(JSON_COURSE_JSHWS);
+        Boolean courseJproject=json.getBoolean(JSON_COURSE_JSPROJECTS);
         dataManager.setJhome(courseJhome);
         dataManager.setJsyllabus(courseJsyllabus);
         dataManager.setJschedule(courseJschedule);
         dataManager.setJhws(courseJhws);
         dataManager.setJproject(courseJproject);
+        
+        
+       
                 
          //ta part/////////////////////////////////////////////////////////////////////////////
 	// LOAD THE START AND END HOURS
@@ -176,6 +194,11 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         
         
         //schedule part
+        String scheduleCalendarStarting=json.getString(JSON_SCHEDULE_CALENDAR_STARTING);
+         String scheduleCalendarEnding=json.getString(JSON_SCHEDULE_CALENDAR_ENDING);
+         dataManager.initCalendar(scheduleCalendarStarting,scheduleCalendarEnding);
+             
+        
         JsonArray jsonScheduleArray=json.getJsonArray(JSON_SCHEDULE);
           for (int i=0;i<jsonScheduleArray.size();i++){
             JsonObject jsonSchedule=jsonScheduleArray.getJsonObject(i);

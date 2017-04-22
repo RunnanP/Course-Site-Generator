@@ -14,6 +14,9 @@ import djf.components.AppFileComponent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -101,7 +104,11 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
     @Override
     public void loadData(AppDataComponent data, String filePath) throws IOException {
         TestLoad test=new TestLoad(app);
-        test.loadData(data, filePath);
+         try {
+             test.loadData(data, filePath);
+         } catch (ParseException ex) {
+             Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
 //       private JsonObject loadJSONFile(String jsonFilePath) throws IOException {

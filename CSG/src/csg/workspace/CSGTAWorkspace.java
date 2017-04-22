@@ -357,6 +357,7 @@ controller = new CSGController(app);
        
       startTimeComboBox.getSelectionModel().select(9);
             endTimeComboBox.getSelectionModel().select(20);
+            
          startTimeComboBox.valueProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue ov, String t, String t1) {
                 if(t != null && t1 != null){

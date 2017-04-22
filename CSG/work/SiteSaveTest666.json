@@ -1,5 +1,10 @@
 
 {
+    "course_home":false,
+    "course_sysllabus":false,
+    "course_schedule":false,
+    "course_hws":false,
+    "course_project":false,
     "course_subject":"null",
     "course_number":"0",
     "course_semester":"null",
@@ -7,6 +12,7 @@
     "course_title":"null",
     "course_intructor_name":"null",
     "course_instructor_home":"null",
+    "course_stytle_sheet":"null",
     "startHour":"9",
     "endHour":"20",
     "tas":[

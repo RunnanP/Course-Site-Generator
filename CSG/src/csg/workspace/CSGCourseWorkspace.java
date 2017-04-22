@@ -422,6 +422,32 @@ public class CSGCourseWorkspace implements WorkspacePart{
         bottomPane.setPadding(new Insets(11,12,13,14));
         
    }
+   
+   
+   
+   public void loadCourseInfo(String initsubject,int initnumber,String initsemester,int inityear,String inittitle,String initinstructorName,String initinstructorHome){
+       
+       subjectComboBox.setValue(initsubject);
+         
+          numberComboBox.setValue(initnumber);
+        
+        
+          semesterComboBox.setValue(initsemester);
+          
+          yearComboBox.setValue(inityear);
+         
+        
+           titleTextField.setText(inittitle);
+         
+         
+          instructorNameTextField.setText(initinstructorName);
+      
+       instructorHomeTextField.setText(initinstructorHome);
+       
+      // styleSheetComboBox.setValue(initstyleSheet);
+       
+       
+   }
     public ScrollPane getBasePane() {
         return basePane;
     }
