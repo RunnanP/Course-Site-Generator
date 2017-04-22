@@ -13,6 +13,11 @@
     "course_intructor_name":"null",
     "course_instructor_home":"null",
     "course_stytle_sheet":"null",
+     "course_export_dir":"",
+    "course_template_dir":"",
+    "course_first_image_address":"file:./images/Remove.png",
+    "course_second_image_address":"file:./images/Remove.png",
+    "course_third_image_address":"file:./images/Remove.png",
     "startHour":"9",
     "endHour":"20",
     "tas":[

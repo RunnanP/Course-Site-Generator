@@ -21,6 +21,9 @@ import java.util.Observable;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import properties_manager.PropertiesManager;
 
 /**
@@ -141,27 +144,61 @@ public class CSGData implements AppDataComponent{
     }
 
     public String getFirstImageAdd() {
+       
+        
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        firstImageAdd=workspace.getFirstImageLocation();
         return firstImageAdd;
     }
 
-    public void setFirstImageAdd(String firstImageAdd) {
-        this.firstImageAdd = firstImageAdd;
+    public void setFirstImageAdd(String initfirstImageAdd) {
+      firstImageAdd = initfirstImageAdd;
+        
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        
+        workspace.setFirstImageLocation(firstImageAdd);
+         workspace.setFirstImageView(new Image(firstImageAdd));
     }
 
     public String getSecondImageAdd() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        secondImageAdd=workspace.getSecondImageLocation();
+       
         return secondImageAdd;
     }
 
-    public void setSecondImageAdd(String secondImageAdd) {
-        this.secondImageAdd = secondImageAdd;
+    public void setSecondImageAdd(String initsecondImageAdd) {
+          secondImageAdd = initsecondImageAdd;
+        
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        
+        workspace.setSecondImageLocation(secondImageAdd);
+         workspace.setSecondImageView(new Image(secondImageAdd));
     }
 
     public String getThirdImageAdd() {
+           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        thirdImageAdd=workspace.getThirdImageLocation();
+       
         return thirdImageAdd;
     }
 
-    public void setThirdImageAdd(String thirdImageAdd) {
-        this.thirdImageAdd = thirdImageAdd;
+    public void setThirdImageAdd(String initthirdImageAdd) {
+          thirdImageAdd = initthirdImageAdd;
+        
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        
+        workspace.setThirdImageLocation(thirdImageAdd);
+         workspace.setThirdImageView(new Image(thirdImageAdd));
     }
 
     public CSGApp getApp() {
@@ -277,19 +314,36 @@ public class CSGData implements AppDataComponent{
     }
 
     public String getExportDir() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        exportDir=workspace.getExporDirDisplayAddressLabel().getText();
         return exportDir;
     }
 
-    public void setExportDir(String exportDir) {
-        this.exportDir = exportDir;
+    public void setExportDir(String initexportDir) {
+            CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        exportDir = initexportDir;
+        workspace.setExporDirDisplayAddressLabel(exportDir);
     }
 
     public String getSiteTempleDir() {
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        siteTempleDir=workspace.getTemplatesDirLabel().getText();
         return siteTempleDir;
     }
 
-    public void setSiteTempleDir(String siteTempleDir) {
-        this.siteTempleDir = siteTempleDir;
+    public void setSiteTempleDir(String initsiteTempleDir) {
+       
+        
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        siteTempleDir = initsiteTempleDir;
+        workspace.setTemplatesDirLabel(siteTempleDir);
+        
     }
 
     public String getStyleSheet() {

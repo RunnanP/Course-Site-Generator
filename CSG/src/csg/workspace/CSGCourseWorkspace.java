@@ -24,6 +24,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -82,6 +84,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
 
     
           Label exporDirDisplayAddressLabel;
+          String exporDirDisplayAddressString;
           Button exportDirChangeButton;
           
       
@@ -109,6 +112,15 @@ public class CSGCourseWorkspace implements WorkspacePart{
     Label rightFooterImageLabel;
     Text thirdText;
     Button thirdChangeButton;
+    
+    ImageView firstImageView;
+    ImageView secondImageView;
+    ImageView thirdImageView;
+    String firstImageLocation;
+    String secondImageLocation;
+    String thirdImageLocation;
+    
+    
     Label styleSheetLabel;
     ComboBox<String> styleSheetComboBox;
     Text noteDescription;
@@ -189,43 +201,49 @@ public class CSGCourseWorkspace implements WorkspacePart{
          dspace.setMinWidth(50);
          secondHBox.getChildren().addAll(semesterLabel,aspace,semesterComboBox,bspace,yearLabel,cspace,yearComboBox);
          //third hbox
-         String titleLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT.toString());
-      
-         titleLabel=new Label(titleLabelText);
-         titleTextField=new TextField();
-         
-         thirdHBox=new HBox();
-         thirdHBox.getChildren().addAll(titleLabel,titleTextField);
-         
+//         String titleLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT.toString());
+//      
+//         titleLabel=new Label(titleLabelText);
+//         titleTextField=new TextField();
+//         
+//         thirdHBox=new HBox();
+//         thirdHBox.getChildren().addAll(titleLabel,titleTextField);
+//         
          //fourth hbox
-       String instructorNameLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_NAME_TEXT.toString());
-       
-         instructorNameLabel=new Label(instructorNameLabelText);
-         instructorNameTextField=new TextField();
-         
-         fourthHBox=new HBox();
-         fourthHBox.getChildren().addAll(instructorNameLabel,instructorNameTextField);
+//       String instructorNameLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_NAME_TEXT.toString());
+//       
+//         instructorNameLabel=new Label(instructorNameLabelText);
+//         instructorNameTextField=new TextField();
+//         
+//         fourthHBox=new HBox();
+//         fourthHBox.getChildren().addAll(instructorNameLabel,instructorNameTextField);
          //fifth hBOX
-          String instructorHomeLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT.toString());
-       
-         instructorHomeLabel=new Label(instructorHomeLabelText);
-         instructorHomeTextField=new TextField();
-         
-         fifthHBox=new HBox();
-         fifthHBox.getChildren().addAll(instructorHomeLabel,instructorHomeTextField);
+//          String instructorHomeLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT.toString());
+//       
+//         instructorHomeLabel=new Label(instructorHomeLabelText);
+//         instructorHomeTextField=new TextField();
+//         
+//         fifthHBox=new HBox();
+//         fifthHBox.getChildren().addAll(instructorHomeLabel,instructorHomeTextField);
          //sixth
-          String exportDirLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT.toString());
-          String exportDirButtorLabelText = props.getProperty(CSGAppProp.CHANGE_TEXT.toString());
-       
-         exportDirLabel=new Label(exportDirLabelText);
          
-         exportDirChangeButton=new Button(exportDirButtorLabelText);
          
-         sixthHBox=new HBox();
-         exporDirDisplayAddressLabel=new Label();
-         exporDirDisplayAddressLabel.setPrefWidth(200);
-         sixthHBox.getChildren().addAll(exportDirLabel,exporDirDisplayAddressLabel,exportDirChangeButton);
+//          String exportDirLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT.toString());
+//          String exportDirButtorLabelText = props.getProperty(CSGAppProp.CHANGE_TEXT.toString());
+//       
+//         exportDirLabel=new Label(exportDirLabelText);
+//         
+//         exportDirChangeButton=new Button(exportDirButtorLabelText);
+//         
+//         sixthHBox=new HBox();
+//         exporDirDisplayAddressLabel=new Label();
+//         exporDirDisplayAddressLabel.setPrefWidth(200);
+//         sixthHBox.getChildren().addAll(exportDirLabel,exporDirDisplayAddressLabel,exportDirChangeButton);
          
+
+
+
+
          //topPane=new VBox();
          topPane=new VBox();
 //         topPane.setHgap(10);
@@ -250,26 +268,43 @@ public class CSGCourseWorkspace implements WorkspacePart{
        HBox t3=new HBox();
        HBox t4=new HBox();
        HBox t5=new HBox();
+       
+       ////////3333333333333333333333333333333333333333333333333333333
+         String titleLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_TITLE_TEXT.toString());
+      
+         titleLabel=new Label(titleLabelText);
+         titleTextField=new TextField();
         temp3.getChildren().addAll(t0,titleLabel,t1,titleTextField,t2);
         t0.setPrefWidth(60);
         t1.setPrefWidth(150);
         t2.setPrefWidth(2000);
         temp3.setAlignment(Pos.TOP_LEFT);
-        
+        //444444444444444444444444444444444444444444444
         FlowPane temp4=new FlowPane();
          t0=new HBox();
         t1=new HBox();
         t2=new HBox();
+               String instructorNameLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_NAME_TEXT.toString());
+       
+         instructorNameLabel=new Label(instructorNameLabelText);
+         instructorNameTextField=new TextField();
         temp4.getChildren().addAll(t0,instructorNameLabel,t1,instructorNameTextField,t2);
          t0.setPrefWidth(60);
         t1.setPrefWidth(23);
         t2.setPrefWidth(2000);
          temp4.setAlignment(Pos.BASELINE_LEFT);
-         
+         //555555555555555555555555555555555555555555555555555
         FlowPane temp5=new FlowPane();
          t0=new HBox();
         t1=new HBox();
         t2=new HBox();
+        
+        
+           String instructorHomeLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_INCTRUCTOR_HOME_TEXT.toString());
+       
+         instructorHomeLabel=new Label(instructorHomeLabelText);
+         instructorHomeTextField=new TextField();
+        
         temp5.getChildren().addAll(t0,instructorHomeLabel,t1,instructorHomeTextField,t2);
           t0.setPrefWidth(60);
         t1.setPrefWidth(36);
@@ -278,15 +313,32 @@ public class CSGCourseWorkspace implements WorkspacePart{
        // temp3.setPrefColumns(2);
        // temp3.setVgap(20);
         //temp3.setAlignment(Pos.CENTER);
-        
+        //6666666666666666666666666666666666666666666666666666666666666666666666666
         FlowPane temp6=new FlowPane();
+        
+        temp6.setPrefWidth(1000);
+        
+            String exportDirLabelText = props.getProperty(CSGAppProp.COURSE_WORKSPACE_PART_TOP_PANE_EXPORT_DIR_TEXT.toString());
+          String exportDirButtorLabelText = props.getProperty(CSGAppProp.CHANGE_TEXT.toString());
+       
+         exportDirLabel=new Label(exportDirLabelText);
+         
+         exportDirChangeButton=new Button(exportDirButtorLabelText);
+         
+         
+        // exporDirDisplayAddressString=new String();
            exporDirDisplayAddressLabel=new Label();
+           
+           
          //exporDirDisplayAddressLabel.setPrefWidth(200);
          HBox Q1=new HBox(exporDirDisplayAddressLabel);
-         Q1.setPrefWidth(70);
+      
+         Q1.setPrefWidth(500);
          HBox Q0=new HBox();
          Q0.setPrefWidth(60);
-        temp6.getChildren().setAll(Q0,exportDirLabel,Q1,exportDirChangeButton);
+         HBox spaceTest=new HBox();
+         spaceTest.setPrefWidth(20);
+        temp6.getChildren().setAll(Q0,exportDirLabel,spaceTest,Q1,exportDirChangeButton);
       //  temp6.setAlignment(Pos.);
         temp.getChildren().addAll(temp1,temp2,temp3,temp4,temp5,temp6);
         
@@ -372,11 +424,15 @@ public class CSGCourseWorkspace implements WorkspacePart{
           bottomPane.getChildren().add(buttomPaneHeaderLabel);
           
          bannerSchoolImageLabel=new Label(bannerSchoolImageLabelText);
+         
+         firstImageLocation=new String("file:./images/1.jpg");
+         firstImageView=new ImageView(firstImageLocation);
+         
          firstText=new Text("YALE UNIVERSITY");
          firstChangeButton=new Button(changeText);
          HBox t1=new HBox();
          HBox t2=new HBox();
-         pageStyleFirstHBox=new HBox(bannerSchoolImageLabel,t1,firstText,t2,firstChangeButton);
+         pageStyleFirstHBox=new HBox(bannerSchoolImageLabel,t1,firstImageView,t2,firstChangeButton);
          t1.setPrefWidth(20);
          t2.setPrefWidth(20);
          HBox s1=new HBox();
@@ -384,25 +440,33 @@ public class CSGCourseWorkspace implements WorkspacePart{
          bottomPane.getChildren().addAll(pageStyleFirstHBox,s1);
          
          leftFooterImageLabel=new Label(leftFooterImageLabelText);
+         
+         secondImageLocation=new String("file:./images/2.png");
+         secondImageView=new ImageView(secondImageLocation);
+         
          secondText=new Text("YALE UNIVERSITY");
          secondChangeButton=new Button(changeText);
          t1=new HBox();
          t2=new HBox();
-         pageStyleSecondHBox=new HBox(leftFooterImageLabel,t1,secondText,t2,secondChangeButton);
+         pageStyleSecondHBox=new HBox(leftFooterImageLabel,t1,secondImageView,t2,secondChangeButton);
           t1.setPrefWidth(40);
-         t2.setPrefWidth(25);
+         t2.setPrefWidth(20);
          s1=new HBox();
          s1.setPrefHeight(20);
          bottomPane.getChildren().addAll(pageStyleSecondHBox,s1);
          
          rightFooterImageLabel=new Label(rightFooterImageLabelText);
+         
+          thirdImageLocation=new String("file:./images/3.png");
+         thirdImageView=new ImageView(thirdImageLocation);
          thirdText=new Text("YALE CS");
          thirdChangeButton=new Button(changeText);
          t1=new HBox();
          t2=new HBox();
-         pageStyleThirdHBox=new HBox(rightFooterImageLabel,t1,thirdText,t2,thirdChangeButton);
+         pageStyleThirdHBox=new HBox(rightFooterImageLabel,t1,thirdImageView,t2,thirdChangeButton);
+         
            t1.setPrefWidth(40);
-         t2.setPrefWidth(102);
+         t2.setPrefWidth(20);
           s1=new HBox();
          s1.setPrefHeight(20);
          bottomPane.getChildren().addAll(pageStyleThirdHBox,s1);
@@ -676,16 +740,16 @@ public class CSGCourseWorkspace implements WorkspacePart{
         return exportDirLabel;
     }
 
-    public void setExportDirLabel(Label exportDirLabel) {
-        this.exportDirLabel = exportDirLabel;
+    public void setExportDirLabel(Label initexportDirLabel) {
+        exportDirLabel = initexportDirLabel;
     }
 
     public Label getExporDirDisplayAddressLabel() {
         return exporDirDisplayAddressLabel;
     }
 
-    public void setExporDirDisplayAddressLabel(Label exporDirDisplayAddressLabel) {
-        this.exporDirDisplayAddressLabel = exporDirDisplayAddressLabel;
+    public void setExporDirDisplayAddressLabel(String init) {
+        exporDirDisplayAddressLabel.setText(init);
     }
 
     public Button getExportDirChangeButton() {
@@ -716,8 +780,8 @@ public class CSGCourseWorkspace implements WorkspacePart{
         return templatesDirLabel;
     }
 
-    public void setTemplatesDirLabel(Label templatesDirLabel) {
-        this.templatesDirLabel = templatesDirLabel;
+    public void setTemplatesDirLabel(String init) {
+        templatesDirLabel.setText(init);
     }
 
     public Button getSelectTemplateDirButton() {
@@ -918,6 +982,64 @@ public class CSGCourseWorkspace implements WorkspacePart{
 
     public void setSitePageTablePane(FlowPane sitePageTablePane) {
         this.sitePageTablePane = sitePageTablePane;
+    }
+
+    public String getExporDirDisplayAddressString() {
+        return exporDirDisplayAddressString;
+    }
+
+    public void setExporDirDisplayAddressString(String exporDirDisplayAddressString) {
+        this.exporDirDisplayAddressString = exporDirDisplayAddressString;
+    }
+
+    public ImageView getFirstImageView() {
+        return firstImageView;
+    }
+
+    public void setFirstImageView(Image initfirstImage) {
+        
+        firstImageView.setImage(initfirstImage);
+        
+    }
+
+    public ImageView getSecondImageView() {
+        return secondImageView;
+    }
+
+    public void setSecondImageView(Image initsecondImage) {
+        secondImageView.setImage(initsecondImage);
+    }
+
+    public ImageView getThirdImageView() {
+        return thirdImageView;
+    }
+
+    public void setThirdImageView(Image initthirdImage) {
+        thirdImageView.setImage(initthirdImage);
+    }
+
+    public String getFirstImageLocation() {
+        return firstImageLocation;
+    }
+
+    public void setFirstImageLocation(String firstImageLocation) {
+        this.firstImageLocation = firstImageLocation;
+    }
+
+    public String getSecondImageLocation() {
+        return secondImageLocation;
+    }
+
+    public void setSecondImageLocation(String secondImageLocation) {
+        this.secondImageLocation = secondImageLocation;
+    }
+
+    public String getThirdImageLocation() {
+        return thirdImageLocation;
+    }
+
+    public void setThirdImageLocation(String thirdImageLocation) {
+        this.thirdImageLocation = thirdImageLocation;
     }
 
    

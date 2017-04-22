@@ -120,7 +120,22 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
          
         dataManager.setStyleSheet(styleSheet);
         dataManager.initCourseInfo(courseSubject,courseNumber,courseSemster,courseYear,courseTitle,courseInstructorName,courseInstructorHome);
-        //dataManager.setStyleSheet(styleSheet);
+        
+        String exportDir=json.getString(JSON_COURSE_EXPORT_DIR);
+        dataManager.setExportDir(exportDir);
+
+        String templeDir=json.getString(JSON_COURSE_TEMPLATE_DIR);
+        dataManager.setSiteTempleDir(templeDir);
+        
+        String firstA=json.getString(JSON_COURSE_FIRST_IMAGE_ADDRESS);
+        dataManager.setFirstImageAdd(firstA);
+        
+        String secondA=json.getString(JSON_COURSE_SECOND_IMAGE_ADDRESS);
+        dataManager.setSecondImageAdd(secondA);
+        
+        String thirdA=json.getString(JSON_COURSE_THIRD_IMAGE_ADDRESS);
+        dataManager.setThirdImageAdd(thirdA);
+//dataManager.setStyleSheet(styleSheet);
 //        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
 //        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
 //        Boolean courseJschedule=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSCHEDULE));

@@ -12,69 +12,26 @@
     "course_title":"null",
     "course_intructor_name":"null",
     "course_instructor_home":"null",
+    "course_export_dir":"",
+    "course_template_dir":"",
+    "course_first_image_address":"file:./images/Remove.png",
+    "course_second_image_address":"file:./images/Remove.png",
+    "course_third_image_address":"file:./images/Remove.png",
     "course_stytle_sheet":"null",
     "startHour":"9",
     "endHour":"20",
     "tas":[
-        {
-            "name":"bhjj",
-            "email":"zszsz@hh.com",
-            "undergrad_tas":"true"
-        }
     ],
     "officeHours":[
-        {
-            "day":"FRIDAY",
-            "time":"10_30am",
-            "name":"bhjj"
-        },
-        {
-            "day":"WEDNESDAY",
-            "time":"12_30pm",
-            "name":"bhjj"
-        },
-        {
-            "day":"FRIDAY",
-            "time":"2_00pm",
-            "name":"bhjj"
-        }
     ],
     "schedule_calendar_starting":"null",
     "schedule_calendar_ending":"null",
     "recitations":[
-        {
-            "recitation_section":"R02",
-            "recitation_instructor":"kk",
-            "recitation_daytime":"wed 8.9",
-            "recitation_location":"old cs 213",
-            "recitation_first_ta":"janee",
-            "recitation_second_ta":"ddff"
-        }
     ],
     "schedules":[
-        {
-            "schedule_type":"holiday",
-            "schedule_date":"2/9/2017",
-            "schedule_title":"letucre3",
-            "schedule_topic":"uml"
-
-        }
     ],
     "teams":[
-        {
-         "project_team_name":"c4 comics",
-         "project_team_color":"444422",
-         "project_team_textcolor": "ffffffff",
-         "project_team_link":"eeee.ccok.com"
-        }
     ],
     "students":[
-        {
-           "project_student_firstname":"ffffddfd",
-           "project_student_lastname" :"rrtoii",
-           "project_student_team":"dfderrr",
-           "project_student_role":"dfdf"
-
-        }
     ]
 }

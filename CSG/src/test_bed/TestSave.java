@@ -244,12 +244,12 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
                 .add(JSON_COURSE_INSTRUCTOR_NAME, ""+dataManager.getInstructorName())
                 .add(JSON_COURSE_INSTRUCTOR_HOME, ""+dataManager.getInstructorHome())
                 
-//                .add(JSON_COURSE_EXPORT_DIR, dataManager.getCourseExportDir())
-//                .add(JSON_COURSE_TEMPLATE_DIR, dataManager.getCourseTemplateAddress())
+                 .add(JSON_COURSE_EXPORT_DIR, ""+dataManager.getExportDir())
+                .add(JSON_COURSE_TEMPLATE_DIR, ""+dataManager.getSiteTempleDir())
 //                
-//                .add(JSON_COURSE_FIRST_IMAGE_ADDRESS,dataManager.getFirstImageAddress())
-//                .add(JSON_COURSE_SECOND_IMAGE_ADDRESS,dataManager.getSecondImageAddress())
-//                .add(JSON_COURSE_THIRD_IMAGE_ADDRESS,dataManager.getThirdImageAddress())
+                .add(JSON_COURSE_FIRST_IMAGE_ADDRESS,""+dataManager.getFirstImageAdd())
+                .add(JSON_COURSE_SECOND_IMAGE_ADDRESS,""+dataManager.getSecondImageAdd())
+                .add(JSON_COURSE_THIRD_IMAGE_ADDRESS,""+dataManager.getThirdImageAdd())
                   .add(JSON_COURSE_STYTLE_SHEET,""+dataManager.getStyleSheet())
                 
                 //
