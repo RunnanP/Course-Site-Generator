@@ -227,7 +227,8 @@ public class AppFileController {
         try {
             boolean continueToExport = true;
          
-                promptToExport();
+              //  promptToExport();
+              app.getFileComponent().exportData(app.getDataComponent(), "");
             
         } catch (IOException ioe) {
 	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();

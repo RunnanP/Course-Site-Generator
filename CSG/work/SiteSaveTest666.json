@@ -44,8 +44,13 @@
             "name":"bhjj"
         }
     ],
-    "schedule_calendar_starting":"null",
-    "schedule_calendar_ending":"null",
+     "schedule_calendar_starting":"2017-04-09",
+    "schedule_calendar_ending":"2017-04-24",
+    "startingMondayMonth":"4",
+    "startingMondayDay":"9",
+    "endingFridayMonth":"4",
+    "endingFridayDay":"24",
+    
     "recitations":[
         {
             "recitation_section":"R02",

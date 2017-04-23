@@ -65,7 +65,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
    
    Label addeditLabel;
    Label typeLabel;
-   ComboBox<ScheduleItem> typeComboBox;
+   ComboBox<String> typeComboBox;
    Label dateLabel;
    DatePicker datePicker;
    Label timeLabel;
@@ -155,6 +155,8 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         addeditLabel=new Label(addeditText);
         typeLabel=new Label(typeColumnText+":");
         typeComboBox=new ComboBox<>();
+        
+        typeComboBox.getItems().addAll("Holiday","Lecture","Reference","HW");
         dateLabel=new Label(dateColumnText+":");
         datePicker=new DatePicker();
         datePicker.setShowWeekNumbers(true);
@@ -188,7 +190,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           HBox s6=new HBox();
           HBox s7=new HBox();
           firstHBox=new HBox(typeLabel,s1,typeComboBox);
-          typeComboBox.setPrefWidth(120);
+          typeComboBox.setPrefWidth(200);
           secondHBox=new HBox(dateLabel,s2,datePicker);
           thirdHBox=new HBox(timeLabel,s3,timeTextField);
           fourthHBox=new HBox(titleLabel,s4,titleTextField);
@@ -423,11 +425,11 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         this.typeLabel = typeLabel;
     }
 
-    public ComboBox<ScheduleItem> getTypeComboBox() {
+    public ComboBox<String> getTypeComboBox() {
         return typeComboBox;
     }
 
-    public void setTypeComboBox(ComboBox<ScheduleItem> typeComboBox) {
+    public void setTypeComboBox(ComboBox<String> typeComboBox) {
         this.typeComboBox = typeComboBox;
     }
 

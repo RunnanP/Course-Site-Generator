@@ -394,7 +394,56 @@ public class CSGData implements AppDataComponent{
     public void setEndHour(int endHour) {
         this.endHour = endHour;
     }
-
+    
+    public int getStartMonth(){
+        int test=0;
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                if(workspace.getStartDatePicker().getValue()!=null){
+                test= workspace.getStartDatePicker().getValue().getMonthValue();
+                }        
+        return test;
+        
+    }
+    
+       public int getStartDate(){
+        int test=0;
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                if(workspace.getStartDatePicker().getValue()!=null){
+                test= workspace.getStartDatePicker().getValue().getDayOfMonth();
+                }        
+        return test;
+        
+    }
+       
+       
+         public int getEndMonth(){
+        int test=0;
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                if(workspace.getEndDatePicker().getValue()!=null){
+                test= workspace.getEndDatePicker().getValue().getMonthValue();
+                }        
+        return test;
+        
+    }
+    
+       public int getEndDate(){
+        int test=0;
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                if(workspace.getEndDatePicker().getValue()!=null){
+                test= workspace.getEndDatePicker().getValue().getDayOfMonth();
+                }        
+        return test;
+        
+    }
+       
+       
+       
+       
+       
     public String getStartingDate() {
          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
                 CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();

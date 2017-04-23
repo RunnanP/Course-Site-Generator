@@ -5,8 +5,10 @@
  */
 package csg.data;
 
+import java.util.ArrayList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -17,14 +19,31 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
     private final StringProperty color;
       private final StringProperty textcolor;
     private final StringProperty link;
+    private ArrayList<String> studentList;
+    private Color acColor;
 
     public Team(String initname, String initcolor, String inittextcolor, String initlink) {
         teamname = new SimpleStringProperty(initname);
         color=new SimpleStringProperty(initcolor);
         textcolor = new SimpleStringProperty(inittextcolor);
         link = new SimpleStringProperty(initlink);
+        studentList=new ArrayList<>();
+      //  acColor=Color.parseColor();
+      
+    }
+   
+//    public int getRed(){
+//        
+//    }
+    public ArrayList<String> getStudentList() {
+        return studentList;
     }
 
+    public void setStudentList(ArrayList<String> studentList) {
+        this.studentList = studentList;
+    }
+
+    
     public String getTeamname() {
         return teamname.get();
     }

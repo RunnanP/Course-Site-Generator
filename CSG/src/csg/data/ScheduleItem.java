@@ -5,6 +5,10 @@
  */
 package csg.data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -17,20 +21,35 @@ public class ScheduleItem <E extends Comparable<E>> implements Comparable<E>{
     private final StringProperty date;
     private  final StringProperty title;
     private final StringProperty topic;
+    private final StringProperty link;
+    private final StringProperty criteria;
 
     public ScheduleItem(String initType, String initDate, String initTitle, String initTopic) {
         type=new SimpleStringProperty(initType);
         date=new SimpleStringProperty(initDate);
         title=new SimpleStringProperty(initTitle);
         topic=new SimpleStringProperty(initTopic);
+        link=new SimpleStringProperty();
+        criteria=new SimpleStringProperty();
     }
       public ScheduleItem(String initType, String initDate, String initTitle) {
         type=new SimpleStringProperty(initType);
         date=new SimpleStringProperty(initDate);
         title=new SimpleStringProperty(initTitle);
         topic=new SimpleStringProperty("");
+        link=new SimpleStringProperty("");
+        criteria=new SimpleStringProperty("");
     }
-
+    
+      
+    public String getLink(){ 
+    
+       return link.get();
+    }
+    
+    public String getCriteria(){
+        return criteria.get();
+    }
     public String getType() {
         return type.get();
     }
@@ -62,6 +81,24 @@ public class ScheduleItem <E extends Comparable<E>> implements Comparable<E>{
 
     public void setTopic(String initTopic) {
         topic.set(initTopic);
+    }
+    
+    public int getMonth() throws ParseException{
+          SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!date.get().equals("null")){
+     Date startDate=sdf.parse(date.get());
+         return startDate.getMonth()+1;
+       }
+       return 0;
+    }
+    
+      public int getDay() throws ParseException{
+          SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!date.get().equals("null")){
+     Date startDate=sdf.parse(date.get());
+         return startDate.getDate();
+       }
+       return 0;
     }
     
     
