@@ -228,8 +228,8 @@ public class AppFileController {
         try {
             boolean continueToExport = true;
          
-              //  promptToExport();
-              app.getFileComponent().exportData(app.getDataComponent(), "");
+                promptToExport();
+             // app.getFileComponent().exportData(app.getDataComponent(), "");
             
         } catch (IOException ioe) {
 	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
@@ -285,10 +285,10 @@ public class AppFileController {
   * @param selectedFile the path that user want to export
   * @throws IOException 
   */
-    private void exportWork(File selectedFile) throws IOException{
+    private void exportWork(File selectedFile) throws IOException, ParseException{
        
       
-        String sourceFile="..\\\\TAManagerTester\\\\public_html";
+        String sourceFile="..\\\\exportExample\\\\public_html";
      //   String targetFile=selectedFile.getPath().replaceAll("\\\\"+selectedFile.getName(),"\\\\public_html\\\\");
        String targetFile=selectedFile.getPath().substring(0,selectedFile.getPath().length()-selectedFile.getName().length())+"public_html\\";
         boolean temp=(new File(targetFile)).mkdirs();
@@ -304,9 +304,9 @@ public class AppFileController {
        }
         
         
-        String jsonlocation=targetFile+"js"+File.separator+"OfficeHoursGridData.json";
+        String jsonlocation=targetFile+"data"+File.separator+"SiteSaveTestExport.json";
      
-        app.getFileComponent().saveData(app.getDataComponent(), jsonlocation);
+        app.getFileComponent().exportData(app.getDataComponent(), jsonlocation);
 	  AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	PropertiesManager props = PropertiesManager.getPropertiesManager();
         dialog.show(props.getProperty(EXPORT_COMPLETED_TITLE),props.getProperty(EXPORT_COMPLETED_MESSAGE));
@@ -392,7 +392,7 @@ public class AppFileController {
  * this function was used to prompt to export
  * @throws IOException 
  */
-    private void promptToExport() throws IOException{
+    private void promptToExport() throws IOException, ParseException{
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
         yesNoDialog.show(props.getProperty(EXPORT_WORK_TITLE), props.getProperty(EXPORT_WORK_MESSAGE));
@@ -407,7 +407,7 @@ public class AppFileController {
 		fc.setInitialDirectory(new File(PATH_WORK));
 		fc.setTitle(props.getProperty(EXPORT_WORK_TITLE));
                 
-                fc.setInitialFileName("OfficeHoursGridData.json");
+                fc.setInitialFileName("SiteSaveTestExport.json");
 
 		File selectedFile = fc.showSaveDialog(app.getGUI().getWindow());
                  

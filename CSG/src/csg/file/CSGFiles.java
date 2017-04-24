@@ -207,9 +207,9 @@ CSGData dataManager = (CSGData)data;
             
             
 	    JsonObject taJson = Json.createObjectBuilder()
-		    .add(JSON_NAME, ta.getName())
-		    .add(JSON_EMAIL, ta.getEmail())
-                    .add(JSON_UNDERGRAD_TAS,ta.getUnder()).build();
+		    .add(JSON_NAME, ""+ta.getName())
+		    .add(JSON_EMAIL, ""+ta.getEmail())
+                    .add(JSON_UNDERGRAD_TAS,""+ta.getUnder()).build();
 	    taArrayBuilder.add(taJson);
 	}
 	JsonArray undergradTAsArray = taArrayBuilder.build();
@@ -219,9 +219,9 @@ CSGData dataManager = (CSGData)data;
 	ArrayList<CSGTimeSlot> officeHours = CSGTimeSlot.buildOfficeHoursList(dataManager);
 	for (CSGTimeSlot ts : officeHours) {	    
 	    JsonObject tsJson = Json.createObjectBuilder()
-		    .add(JSON_DAY, ts.getDay())
-		    .add(JSON_TIME, ts.getTime())
-		    .add(JSON_NAME, ts.getName()).build();
+		    .add(JSON_DAY, ""+ts.getDay())
+		    .add(JSON_TIME, ""+ts.getTime())
+		    .add(JSON_NAME, ""+ts.getName()).build();
 	    timeSlotArrayBuilder.add(tsJson);
 	}
 	JsonArray timeSlotsArray = timeSlotArrayBuilder.build();
@@ -234,12 +234,12 @@ CSGData dataManager = (CSGData)data;
         for(Recitation recitation:recitations){
             
             JsonObject recitationJson=Json.createObjectBuilder()
-                    .add(JSON_RECITATION_SECTION,recitation.getSection())
-                    .add(JSON_RECITATION_INSTRUCTOR,recitation.getInstructor())
-                    .add(JSON_RECITATION_DAYTIME,recitation.getDaytime())
-                    .add(JSON_RECITATION_LOCATION,recitation.getLocation())
-                    .add(JSON_RECITATION_FIRST_TA,recitation.getFirstTa())
-                    .add(JSON_RECITATION_SECOND_TA,recitation.getSecondTa()).build();
+                    .add(JSON_RECITATION_SECTION,""+recitation.getSection())
+                    .add(JSON_RECITATION_INSTRUCTOR,""+recitation.getInstructor())
+                    .add(JSON_RECITATION_DAYTIME,""+recitation.getDaytime())
+                    .add(JSON_RECITATION_LOCATION,""+recitation.getLocation())
+                    .add(JSON_RECITATION_FIRST_TA,""+recitation.getFirstTa())
+                    .add(JSON_RECITATION_SECOND_TA,""+recitation.getSecondTa()).build();
             recitationArrayBuilder.add(recitationJson);
         }
         JsonArray recitationArray=recitationArrayBuilder.build();
@@ -252,10 +252,10 @@ CSGData dataManager = (CSGData)data;
         for(ScheduleItem scheduleItem:schedules){
             
             JsonObject scheduleJson=Json.createObjectBuilder()
-                    .add(JSON_SCHEDULE_TYPE,scheduleItem.getType())
-                    .add(JSON_SCHEDULE_DATE,scheduleItem.getDate())
-                    .add(JSON_SCHEDULE_TITLE,scheduleItem.getTitle())
-                    .add(JSON_SCHEDULE_TOPIC,scheduleItem.getTopic()).build();
+                    .add(JSON_SCHEDULE_TYPE,""+scheduleItem.getType())
+                    .add(JSON_SCHEDULE_DATE,""+scheduleItem.getDate())
+                    .add(JSON_SCHEDULE_TITLE,""+scheduleItem.getTitle())
+                    .add(JSON_SCHEDULE_TOPIC,""+scheduleItem.getTopic()).build();
             scheduleArrayBuilder.add(scheduleJson);
         }
         JsonArray scheduleArray=scheduleArrayBuilder.build();
@@ -269,10 +269,10 @@ CSGData dataManager = (CSGData)data;
         for(Team team:teams){
             
             JsonObject teamJson=Json.createObjectBuilder()
-                    .add(JSON_PROJECT_TEAM_NAME,team.getTeamname())
-                    .add(JSON_PROJECT_TEAM_COLOR,team.getColor())
-                    .add(JSON_PROJECT_TEAM_TEXTCOLOR,team.getTextcolor())
-                    .add(JSON_PROJECT_TEAM_LINK,team.getLink()).build();
+                    .add(JSON_PROJECT_TEAM_NAME,""+team.getTeamname())
+                    .add(JSON_PROJECT_TEAM_COLOR,""+team.getColor())
+                    .add(JSON_PROJECT_TEAM_TEXTCOLOR,""+team.getTextcolor())
+                    .add(JSON_PROJECT_TEAM_LINK,""+team.getLink()).build();
             teamArrayBuilder.add(teamJson);
         }
         JsonArray teamArray=teamArrayBuilder.build();
@@ -283,10 +283,10 @@ CSGData dataManager = (CSGData)data;
         for(Student student:students){
             
             JsonObject studentJson=Json.createObjectBuilder()
-                    .add(JSON_PROJECT_STUDENT_FIRSTNAME,student.getFirstName())
-                    .add(JSON_PROJECT_STUDENT_LASTNAME,student.getLastName())
-                    .add(JSON_PROJECT_STUDENT_TEAM,student.getTeamString())
-                    .add(JSON_PROJECT_STUDENT_ROLE,student.getRole()).build();
+                    .add(JSON_PROJECT_STUDENT_FIRSTNAME,""+student.getFirstName())
+                    .add(JSON_PROJECT_STUDENT_LASTNAME,""+student.getLastName())
+                    .add(JSON_PROJECT_STUDENT_TEAM,""+student.getTeamString())
+                    .add(JSON_PROJECT_STUDENT_ROLE,""+student.getRole()).build();
             studentArrayBuilder.add(studentJson);
         }
         JsonArray studentArray=studentArrayBuilder.build();
@@ -380,16 +380,16 @@ CSGData dataManager = (CSGData)data;
 	jsonWriter.close();
  
 	// INIT THE WRITER
-	//OutputStream os = new FileOutputStream(filePath);
-        OutputStream os = new FileOutputStream(TEST_PATH);//////////////////////////////////////////
+	OutputStream os = new FileOutputStream(filePath);
+       // OutputStream os = new FileOutputStream(TEST_PATH);//////////////////////////////////////////
 	JsonWriter jsonFileWriter = Json.createWriter(os);
         
 	jsonFileWriter.writeObject(dataManagerJSO);
        
 	String prettyPrinted = sw.toString();
     
-	//PrintWriter pw = new PrintWriter(filePath);
-        PrintWriter pw = new PrintWriter(TEST_PATH);/////////////////////////////////////////////
+	PrintWriter pw = new PrintWriter(filePath);
+        //PrintWriter pw = new PrintWriter(TEST_PATH);/////////////////////////////////////////////
 	pw.write(prettyPrinted);
 	pw.close();
          
@@ -406,12 +406,12 @@ CSGData dataManager = (CSGData)data;
 //         }
 
 
-CSGData dataManager = (CSGData)data;
+       CSGData dataManager = (CSGData)data;
         
        
 	// LOAD THE JSON FILE WITH ALL THE DATA
-	JsonObject json = loadJSONFile(TEST_PATH);
-        
+	//JsonObject json = loadJSONFile(TEST_PATH);
+        JsonObject json = loadJSONFile(filePath);
         
         
         
@@ -426,25 +426,31 @@ CSGData dataManager = (CSGData)data;
         String courseTitle=json.getString(JSON_COURSE_TITLE);
         String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
         String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
-         String styleSheet=json.getString(JSON_COURSE_STYTLE_SHEET);
-         
-        dataManager.setStyleSheet(styleSheet);
-        dataManager.initCourseInfo(courseSubject,courseNumber,courseSemster,courseYear,courseTitle,courseInstructorName,courseInstructorHome);
+          dataManager.initCourseInfo(courseSubject,courseNumber,courseSemster,courseYear,courseTitle,courseInstructorName,courseInstructorHome);
+        
+          
+          
+        String styleSheet=json.getString(JSON_COURSE_STYTLE_SHEET);
+        dataManager.setStyleSheet(""+styleSheet);
+          
+       
         
         String exportDir=json.getString(JSON_COURSE_EXPORT_DIR);
-        dataManager.setExportDir(exportDir);
-
+        dataManager.setExportDir(""+exportDir);
+         
+          
+          
         String templeDir=json.getString(JSON_COURSE_TEMPLATE_DIR);
-        dataManager.setSiteTempleDir(templeDir);
+        dataManager.setSiteTempleDir(""+templeDir);
         
         String firstA=json.getString(JSON_COURSE_FIRST_IMAGE_ADDRESS);
-        dataManager.setFirstImageAdd(firstA);
+        dataManager.setFirstImageAdd(""+firstA);
         
         String secondA=json.getString(JSON_COURSE_SECOND_IMAGE_ADDRESS);
-        dataManager.setSecondImageAdd(secondA);
+        dataManager.setSecondImageAdd(""+secondA);
         
         String thirdA=json.getString(JSON_COURSE_THIRD_IMAGE_ADDRESS);
-        dataManager.setThirdImageAdd(thirdA);
+        dataManager.setThirdImageAdd(""+thirdA);
 //dataManager.setStyleSheet(styleSheet);
 //        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
 //        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
@@ -470,7 +476,7 @@ CSGData dataManager = (CSGData)data;
 	String startHour = json.getString(JSON_START_HOUR);
         String endHour = json.getString(JSON_END_HOUR);
 
-         dataManager.initHours(startHour, endHour);
+         dataManager.initHours(""+startHour, ""+endHour);
 
         // NOW RELOAD THE WORKSPACE WITH THE LOADED DATA
 //        app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
@@ -487,6 +493,8 @@ CSGData dataManager = (CSGData)data;
             JsonObject jsonTA = jsonTAArray.getJsonObject(i);
             String name = jsonTA.getString(JSON_NAME);
             String email = jsonTA.getString(JSON_EMAIL);
+            System.out.println(jsonTA.getString(JSON_UNDERGRAD_TAS));
+            
            Boolean underGrad=Boolean.parseBoolean(jsonTA.getString(JSON_UNDERGRAD_TAS));
            
             dataManager.addTA(name, email,underGrad);
@@ -659,9 +667,9 @@ CSGData dataManager = (CSGData)data;
             JsonArray studentArray=makeStudentArray(dataManager,team);
             
 	    JsonObject projectteamJson = Json.createObjectBuilder()
-		    .add(ADD_JSON_PROJECT_NAME, team.getTeamname())
+		    .add(ADD_JSON_PROJECT_NAME, ""+team.getTeamname())
 		    .add(ADD_JSON_PROJECT_STUDENT, studentArray)
-                    .add(ADD_JSON_PROJECT_LINK,team.getLink())
+                    .add(ADD_JSON_PROJECT_LINK,""+team.getLink())
                     .build();
 	    projectArrayBuilder.add(projectteamJson);
 	}
@@ -687,9 +695,9 @@ CSGData dataManager = (CSGData)data;
 	ArrayList<CSGTimeSlot> officeHours = CSGTimeSlot.buildOfficeHoursList(dataManager);
 	for (CSGTimeSlot ts : officeHours) {	    
 	    JsonObject tsJson = Json.createObjectBuilder()
-		    .add(ADD_JSON_OFFICE_DAY, ts.getDay())
-		    .add(ADD_JSON_OFFICE_TIME, ts.getTime())
-		    .add(ADD_JSON_OFFICE_NAME, ts.getName()).build();
+		    .add(ADD_JSON_OFFICE_DAY, ""+ts.getDay())
+		    .add(ADD_JSON_OFFICE_TIME, ""+ts.getTime())
+		    .add(ADD_JSON_OFFICE_NAME, ""+ts.getName()).build();
 	    timeSlotArrayBuilder.add(tsJson);
 	}
 	JsonArray officeHourArray = timeSlotArrayBuilder.build();
@@ -702,9 +710,9 @@ CSGData dataManager = (CSGData)data;
             
             
 	    JsonObject taJson = Json.createObjectBuilder()
-		    .add(JSON_NAME, ta.getName())
-		    .add(JSON_EMAIL, ta.getEmail())
-                    .add(JSON_UNDERGRAD_TAS,ta.getUnder()).build();
+		    .add(JSON_NAME, ""+ta.getName())
+		    .add(JSON_EMAIL, ""+ta.getEmail())
+                    .add(JSON_UNDERGRAD_TAS,""+ta.getUnder()).build();
 	    taArrayBuilder.add(taJson);
 	}
 	JsonArray underTaArray = taArrayBuilder.build();
@@ -717,11 +725,11 @@ CSGData dataManager = (CSGData)data;
             
             
 	    JsonObject recitationJson = Json.createObjectBuilder()
-		    .add(ADD_JSON_RECITATION_SECTION, re.getSection())
-		    .add(ADD_JSON_RECITATION_DAYTIME, re.getDaytime())
-                    .add(ADD_JSON_RECITATION_LOCATION,re.getLocation())
-                    .add(ADD_JSON_RECITATION_FIRSTTA, re.getFirstTa())
-                    .add(ADD_JSON_RECITATION_SECONDTA, re.getSecondTa())
+		    .add(ADD_JSON_RECITATION_SECTION, ""+re.getSection())
+		    .add(ADD_JSON_RECITATION_DAYTIME, ""+re.getDaytime())
+                    .add(ADD_JSON_RECITATION_LOCATION,""+re.getLocation())
+                    .add(ADD_JSON_RECITATION_FIRSTTA, ""+re.getFirstTa())
+                    .add(ADD_JSON_RECITATION_SECONDTA, ""+re.getSecondTa())
                     .build();
 	    recitationArrayBuilder.add(recitationJson);
 	}
@@ -735,11 +743,11 @@ CSGData dataManager = (CSGData)data;
             
             
 	    JsonObject teamsJson = Json.createObjectBuilder()
-		    .add(ADD_JSON_TS_NAME, te.getTeamname())
+		    .add(ADD_JSON_TS_NAME, ""+te.getTeamname())
 		    .add(ADD_JSON_TS_RED, ""+te.getRed())
                     .add(ADD_JSON_TS_GREEN,""+te.getGreen())
                     .add(ADD_JSON_TS_BLUE, ""+te.getBlue())
-                    .add(ADD_JSON_TS_TEXTCOLOR, te.getTextcolor())
+                    .add(ADD_JSON_TS_TEXTCOLOR, ""+te.getTextcolor())
                     .build();
 	    teamsArrayBuilder.add(teamsJson);
 	}
@@ -754,10 +762,10 @@ CSGData dataManager = (CSGData)data;
             
             
 	    JsonObject teamStudentsJson = Json.createObjectBuilder()
-		    .add(ADD_JSON_TS_LASTNAME, st.getLastName())
-		    .add(ADD_JSON_TS_FIRSTNAME, st.getFirstName())
-                    .add(ADD_JSON_TS_TEAM,st.getTeamString())
-                    .add(ADD_JSON_TS_ROLE, st.getRole())
+		    .add(ADD_JSON_TS_LASTNAME, ""+st.getLastName())
+		    .add(ADD_JSON_TS_FIRSTNAME, ""+st.getFirstName())
+                    .add(ADD_JSON_TS_TEAM,""+st.getTeamString())
+                    .add(ADD_JSON_TS_ROLE, ""+st.getRole())
               
                     .build();
 	    teamStudentsArrayBuilder.add(teamStudentsJson);
@@ -826,16 +834,16 @@ CSGData dataManager = (CSGData)data;
 	jsonWriter.close();
  
 	
-	//OutputStream os = new FileOutputStream(filePath);
-        OutputStream os = new FileOutputStream(TEST_EXPORT_PATH);//////////////////////////////////////////
+	OutputStream os = new FileOutputStream(filePath);
+        //OutputStream os = new FileOutputStream(TEST_EXPORT_PATH);//////////////////////////////////////////
 	JsonWriter jsonFileWriter = Json.createWriter(os);
         
 	jsonFileWriter.writeObject(dataManagerJSO);
        
 	String prettyPrinted = sw.toString();
     
-	//PrintWriter pw = new PrintWriter(filePath);
-        PrintWriter pw = new PrintWriter(TEST_EXPORT_PATH);/////////////////////////////////////////////
+	PrintWriter pw = new PrintWriter(filePath);
+        //PrintWriter pw = new PrintWriter(TEST_EXPORT_PATH);/////////////////////////////////////////////
 	pw.write(prettyPrinted);
 	pw.close();
        

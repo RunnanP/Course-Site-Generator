@@ -75,7 +75,7 @@
 	<property name="SAVE_WORK_TITLE"		value="Save your work"></property>
 	<property name="LOAD_WORK_TITLE"		value="Select work file to load"></property>
 	<property name="WORK_FILE_EXT"			value=".json"></property>
-	<property name="WORK_FILE_EXT_DESC"		value="TA Office Hours"></property>
+	<property name="WORK_FILE_EXT_DESC"		value="Course Site Generator"></property>
 
         <!-- WORKSPACE CONTROLS STUFF -->        
         <property name="TAS_HEADER_TEXT"                value="Teaching Assistants"></property>

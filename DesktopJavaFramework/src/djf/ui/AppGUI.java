@@ -20,6 +20,9 @@ import static djf.settings.AppStartupConstants.PATH_IMAGES;
 import djf.components.AppStyleComponent;
 import static djf.components.AppStyleComponent.CLASS_BORDERED_PANE;
 import static djf.components.AppStyleComponent.CLASS_FILE_BUTTON;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.layout.HBox;
 
 /**
@@ -186,7 +189,11 @@ public class AppGUI {
         });
         
         exportButton.setOnAction(e ->{
-          fileController.handleExportRequest();
+            try {
+                fileController.handleExportRequest();
+            } catch (ParseException ex) {
+                Logger.getLogger(AppGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         exitButton.setOnAction(e -> {

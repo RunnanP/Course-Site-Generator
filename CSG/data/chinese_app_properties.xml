@@ -78,7 +78,7 @@
     
 	<property name="SAVE_WORK_TITLE"		value="保存你的文件"></property>
 	<property name="LOAD_WORK_TITLE"		value="选择文件载入"></property>
-	<property name="WORK_FILE_EXT"			value="json"></property>
+	<property name="WORK_FILE_EXT"			value=".json"></property>
 	<property name="WORK_FILE_EXT_DESC"		value="Course Site Generator"></property>
 
         <!-- COURSE WORKSPACE CONTROLS STUFF --> 
