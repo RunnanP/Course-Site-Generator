@@ -39,6 +39,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.ParseException;
 
 /**
  * This class provides the event programmed responses for the file controls
@@ -223,7 +224,7 @@ public class AppFileController {
         
     }
   
-    public void handleExportRequest(){
+    public void handleExportRequest() throws ParseException{
         try {
             boolean continueToExport = true;
          

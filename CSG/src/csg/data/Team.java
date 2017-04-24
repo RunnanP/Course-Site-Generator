@@ -5,6 +5,7 @@
  */
 package csg.data;
 
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import java.util.ArrayList;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -20,7 +21,7 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
       private final StringProperty textcolor;
     private final StringProperty link;
     private ArrayList<String> studentList;
-    private Color acColor;
+  //  private Color acColor;
 
     public Team(String initname, String initcolor, String inittextcolor, String initlink) {
         teamname = new SimpleStringProperty(initname);
@@ -28,13 +29,44 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
         textcolor = new SimpleStringProperty(inittextcolor);
         link = new SimpleStringProperty(initlink);
         studentList=new ArrayList<>();
-      //  acColor=Color.parseColor();
-      
+       // initColor();
+        
     }
    
-//    public int getRed(){
-//        
-//    }
+    public void initColor(){
+        String temp=getColor();
+        temp=temp.substring(4);
+     
+ }
+    public int getRed(){
+        
+         String temp=getColor();
+        temp=temp.substring(4);
+        temp=temp.substring(0, 2);
+        int r=Integer.parseInt(temp, 16);
+        
+        return r;
+    }
+    
+    public int getGreen(){
+        String temp=getColor();
+        temp=temp.substring(4);
+        temp=temp.substring(2,4);
+        int r=Integer.parseInt(temp, 16);
+        
+        return r;
+    }
+    
+    public int getBlue(){
+         String temp=getColor();
+        temp=temp.substring(4);
+        temp=temp.substring(4);
+        int r=Integer.parseInt(temp, 16);
+        
+        return r;
+    }
+    
+    
     public ArrayList<String> getStudentList() {
         return studentList;
     }

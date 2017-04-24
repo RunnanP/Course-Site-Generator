@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.data.CSGData;
 import csg.data.Recitation;
 import csg.data.ScheduleItem;
+import csg.data.Student;
 import csg.data.TeachingAssistant;
 import csg.data.Team;
 import csg.file.CSGTimeSlot;
@@ -152,9 +153,9 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
       //teams and student json
       static final String ADD_JSON_TS_TEAMS="teams";
            static final String ADD_JSON_TS_NAME="name";
-           static final String ADD_JSOM_TS_RED="red";
-           static final String ADD_JSOM_TS_GREEN="green";
-           static final String ADD_JSOM_TS_BLUE="blue";
+           static final String ADD_JSON_TS_RED="red";
+           static final String ADD_JSON_TS_GREEN="green";
+           static final String ADD_JSON_TS_BLUE="blue";
            static final String ADD_JSON_TS_TEXTCOLOR="text_color";
            
       static final String ADD_JSON_TS_STUDENTS="students";
@@ -163,7 +164,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
            static final String ADD_JSON_TS_TEAM="team";
            static final String ADD_JSON_TS_ROLE="role";
     //common 
-    static final String TEST_PATH="..\\\\CSG\\\\work\\\\SiteSaveTestExport.json";
+    static final String TEST_EXPORT_PATH="..\\\\CSG\\\\work\\\\SiteSaveTestExport.json";
       public TestExport(CSGApp initApp){
         app=initApp;
     }
@@ -241,16 +242,16 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         
         
        JsonArrayBuilder projectArrayBuilder = Json.createArrayBuilder();
-	ObservableList<Team> teams = dataManager.getTeams();
-	for (Team team : teams) {	
+	ObservableList<Team> projectteams = dataManager.getTeams();
+	for (Team team : projectteams) {	
             JsonArray studentArray=makeStudentArray(dataManager,team);
             
-	    JsonObject teamJson = Json.createObjectBuilder()
+	    JsonObject projectteamJson = Json.createObjectBuilder()
 		    .add(ADD_JSON_PROJECT_NAME, team.getTeamname())
 		    .add(ADD_JSON_PROJECT_STUDENT, studentArray)
                     .add(ADD_JSON_PROJECT_LINK,team.getLink())
                     .build();
-	    projectArrayBuilder.add(teamJson);
+	    projectArrayBuilder.add(projectteamJson);
 	}
 	JsonArray projectArray = projectArrayBuilder.build();
       
@@ -314,8 +315,42 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 	}
 	JsonArray recitationArray = recitationArrayBuilder.build();
       
+      //teams array
+      
+         JsonArrayBuilder teamsArrayBuilder = Json.createArrayBuilder();
+	ObservableList<Team> teams = dataManager.getTeams();
+	for (Team te : teams) {	
+            
+            
+	    JsonObject teamsJson = Json.createObjectBuilder()
+		    .add(ADD_JSON_TS_NAME, te.getTeamname())
+		    .add(ADD_JSON_TS_RED, ""+te.getRed())
+                    .add(ADD_JSON_TS_GREEN,""+te.getGreen())
+                    .add(ADD_JSON_TS_BLUE, ""+te.getBlue())
+                    .add(ADD_JSON_TS_TEXTCOLOR, te.getTextcolor())
+                    .build();
+	    teamsArrayBuilder.add(teamsJson);
+	}
+	JsonArray teamsArray = teamsArrayBuilder.build();
+      
+      //teamStudent array
       
       
+          JsonArrayBuilder teamStudentsArrayBuilder = Json.createArrayBuilder();
+	ObservableList<Student> students = dataManager.getStudents();
+	for (Student st : students) {	
+            
+            
+	    JsonObject teamStudentsJson = Json.createObjectBuilder()
+		    .add(ADD_JSON_TS_LASTNAME, st.getLastName())
+		    .add(ADD_JSON_TS_FIRSTNAME, st.getFirstName())
+                    .add(ADD_JSON_TS_TEAM,st.getTeamString())
+                    .add(ADD_JSON_TS_ROLE, st.getRole())
+              
+                    .build();
+	    teamStudentsArrayBuilder.add(teamStudentsJson);
+	}
+	JsonArray teamStudentsArray = teamStudentsArrayBuilder.build();
       
       
       
@@ -358,6 +393,13 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
                
                //recitation
                .add(ADD_JSON_RECITATION_RECITATIONS, recitationArray)
+               
+               //teams and student
+               
+               .add(ADD_JSON_TS_TEAMS, teamsArray)
+               .add(ADD_JSON_TS_STUDENTS,teamStudentsArray)
+               
+               
                .build();
        
        
@@ -373,7 +415,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
  
 	
 	//OutputStream os = new FileOutputStream(filePath);
-        OutputStream os = new FileOutputStream(TEST_PATH);//////////////////////////////////////////
+        OutputStream os = new FileOutputStream(TEST_EXPORT_PATH);//////////////////////////////////////////
 	JsonWriter jsonFileWriter = Json.createWriter(os);
         
 	jsonFileWriter.writeObject(dataManagerJSO);
@@ -381,7 +423,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 	String prettyPrinted = sw.toString();
     
 	//PrintWriter pw = new PrintWriter(filePath);
-        PrintWriter pw = new PrintWriter(TEST_PATH);/////////////////////////////////////////////
+        PrintWriter pw = new PrintWriter(TEST_EXPORT_PATH);/////////////////////////////////////////////
 	pw.write(prettyPrinted);
 	pw.close();
        

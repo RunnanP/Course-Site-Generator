@@ -219,6 +219,10 @@ public class CSGProjectWorkspace implements WorkspacePart{
 //         colorCircle=new Circle();
 //         colorCircle.setDisable(false);
          colorColorPicker=new ColorPicker();
+         
+         
+         
+         
          textColorLabel=new Label(textColorText);
 //         textColorCircle=new Circle();
 //         textColorCircle.setDisable(false);
@@ -329,6 +333,31 @@ public class CSGProjectWorkspace implements WorkspacePart{
           firstNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
           lastNameTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
           roleTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.4));
+          
+          
+          
+          
+          colorColorPicker.setOnAction(e->{
+              System.out.println(colorColorPicker.getValue());
+              String temp=colorColorPicker.getValue().toString();
+             temp=temp.substring(4);
+        String red=temp.substring(0, 2);
+        int r=Integer.parseInt(red, 16);
+        
+        String green=temp.substring(2, 4);
+        int g=Integer.parseInt(green, 16);
+        
+        String blue=temp.substring(4);
+        int b=Integer.parseInt(blue, 16);
+        
+              System.out.println(red+" "+r);
+             System.out.println(green+" "+g);
+             System.out.println(blue+" "+b);
+        
+        
+        
+          
+          });
     }
 
    @Override

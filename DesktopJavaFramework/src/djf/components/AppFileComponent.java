@@ -1,6 +1,7 @@
 package djf.components;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * This interface provides the structure for file components in
@@ -28,7 +29,7 @@ public interface AppFileComponent {
      * This function must be overridden in the actual component and would
      * be used for exporting app data into another format.
      */
-    public void exportData(AppDataComponent data, String filePath) throws IOException;
+    public void exportData(AppDataComponent data, String filePath) throws IOException,ParseException;
 
     /**
      * This function must be overridden in the actual component and would
