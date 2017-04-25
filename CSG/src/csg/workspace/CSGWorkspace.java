@@ -42,6 +42,14 @@ public class CSGWorkspace extends AppWorkspaceComponent{
    CSGScheduleWorkspace csgScheduleWorkspace;
    CSGProjectWorkspace csgProjectWorkspace;
    Pane currentWorkspace;
+   
+   
+   public CSGWorkspace(CSGApp initApp,String k){
+       app=initApp;
+        PropertiesManager props=PropertiesManager.getPropertiesManager();
+        controller=new CSGController(app);
+       initAllWorkspaceParts();
+   }
     public CSGWorkspace(CSGApp initApp) {
         app=initApp;
         PropertiesManager props=PropertiesManager.getPropertiesManager();
@@ -55,6 +63,7 @@ public class CSGWorkspace extends AppWorkspaceComponent{
           String workspaceRecitationPartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_RECITATION_PART_TEXT.toString());
            String workspaceSchedulePartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_SCHEDULE_PART_TEXT.toString());
             String workspaceProjectPartButtonText=props.getProperty(CSGAppProp.WORKSPACE_STATE_BUTTON_PROJECT_PART_TEXT.toString());
+            
         
          workspaceCoursePartButton=new Button(workspaceCoursePartButtonText);
          workspaceTAPartButton=new Button(workspaceTAPartButtonText);

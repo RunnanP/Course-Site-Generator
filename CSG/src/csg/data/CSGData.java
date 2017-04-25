@@ -109,10 +109,13 @@ public class CSGData implements AppDataComponent{
         officeHours=new HashMap();
          PropertiesManager props = PropertiesManager.getPropertiesManager();
         ArrayList<String> timeHeaders = props.getPropertyOptionsList(CSGAppProp.OFFICE_HOURS_TABLE_HEADERS);
+     
         ArrayList<String> dowHeaders = props.getPropertyOptionsList(CSGAppProp.DAYS_OF_WEEK);
         gridHeaders = new ArrayList();
-        gridHeaders.addAll(timeHeaders);
-        gridHeaders.addAll(dowHeaders);
+//         ArrayList<String> timeHeaders =new ArrayList<>();
+//          ArrayList<String> dowHeaders=new ArrayList<>();
+       gridHeaders.addAll(timeHeaders);
+       gridHeaders.addAll(dowHeaders);
         
         
         //recitation part
@@ -547,7 +550,7 @@ public class CSGData implements AppDataComponent{
 
     public boolean isJproject() {
         for (SitePage i:sitePages){
-          if ( i.getNavbar().equals("Project")){
+          if ( i.getNavbar().equals("Projects")){
               jproject=i.getUsed().get();
           }
         }
@@ -558,10 +561,11 @@ public class CSGData implements AppDataComponent{
     public void setJproject(boolean initjproject) {
         jproject = initjproject;
         for (SitePage i:sitePages){
-          if ( i.getNavbar().equals("Project")){
+          if ( i.getNavbar().equals("Projects")){
               i.setUsed(jproject);
           }
         }
+        
     }
     
     
@@ -835,6 +839,13 @@ public class CSGData implements AppDataComponent{
           //  Collections.sort(scheduleItems);
             }
         
+        
+              public void addScheduleItem (String initType,String initDate,String initTime,String initTitle,String initTopic,String initLink,String initCriteria){
+            ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTime,initTitle, initTopic,initLink,initCriteria);
+            scheduleItems.add(scheduleItem);
+            System.out.println(scheduleItem.getTitle());
+          //  Collections.sort(scheduleItems);
+            }
         //project part//////////////////////////////////////////////////////////////////////
         public void addTeam(String initName,String initColor,String initTextColor,String initLink){
             Team team=new Team(initName,initColor,initTextColor,initLink);

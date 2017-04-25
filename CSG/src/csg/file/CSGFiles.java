@@ -16,6 +16,7 @@ import csg.workspace.CSGTAWorkspace;
 import csg.workspace.CSGWorkspace;
 import djf.components.AppDataComponent;
 import djf.components.AppFileComponent;
+import djf.ui.AppYesNoCancelDialogSingleton;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -105,8 +106,11 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
     
     static final String JSON_SCHEDULE_TYPE="schedule_type";
     static final String JSON_SCHEDULE_DATE="schedule_date";
+    static final String JSON_SCHEDULE_TIME="schedule_time";
     static final String JSON_SCHEDULE_TITLE="schedule_title";
     static final String JSON_SCHEDULE_TOPIC="schedule_topic";
+    static final String JSON_SCHEDULE_LINK="schedule_link";
+    static final String JSON_SCHEDULE_CRITERIA="schedule_criteria";
     //project part
     static final String JSON_TEAM="teams";
     static final String JSON_PROJECT_TEAM_NAME="project_team_name";
@@ -127,7 +131,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
     //projectsData.json
     static final String ADD_JSON_PROJECT_WORK="work";
       static final String ADD_JSON_PROJECT_SEMESTER="semester";
-      static final String ADD_JSON_PROJECT_PROJECT="project";
+      static final String ADD_JSON_PROJECT_PROJECT="projects";
          static final String ADD_JSON_PROJECT_NAME="name";
          static final String ADD_JSON_PROJECT_STUDENT="students";
          static final String ADD_JSON_PROJECT_LINK="link";
@@ -194,12 +198,19 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 
     @Override
     public void saveData(AppDataComponent data, String filePath) throws IOException {
-//       TestSave test =new TestSave(app);
-//       test.saveData(data, filePath);
-
-
-CSGData dataManager = (CSGData)data;
+        CSGData dataManager = (CSGData)data;
+        
+       
+   AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
+            yesNoDialog.show("test save","test save? yes for test hard code, other for regular save");
+            String selection = yesNoDialog.getSelection();
       
+            if (selection.equals(AppYesNoCancelDialogSingleton.YES)){
+
+    TestSave test =new TestSave(app);
+    test.saveDataWithHardCode(dataManager);
+    filePath=TEST_PATH;
+            }  
 	// NOW BUILD THE TA JSON OBJCTS TO SAVE
 	JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
 	ObservableList<TeachingAssistant> tas = dataManager.getTeachingAssistants();
@@ -254,8 +265,12 @@ CSGData dataManager = (CSGData)data;
             JsonObject scheduleJson=Json.createObjectBuilder()
                     .add(JSON_SCHEDULE_TYPE,""+scheduleItem.getType())
                     .add(JSON_SCHEDULE_DATE,""+scheduleItem.getDate())
+                    .add(JSON_SCHEDULE_TIME, ""+scheduleItem.getTime())
                     .add(JSON_SCHEDULE_TITLE,""+scheduleItem.getTitle())
-                    .add(JSON_SCHEDULE_TOPIC,""+scheduleItem.getTopic()).build();
+                    .add(JSON_SCHEDULE_TOPIC,""+scheduleItem.getTopic())
+                    .add(JSON_SCHEDULE_LINK, ""+scheduleItem.getLink())
+                    .add(JSON_SCHEDULE_CRITERIA, ""+scheduleItem.getCriteria())
+                    .build();
             scheduleArrayBuilder.add(scheduleJson);
         }
         JsonArray scheduleArray=scheduleArrayBuilder.build();
@@ -421,12 +436,14 @@ CSGData dataManager = (CSGData)data;
         String courseSubject=json.getString(JSON_COURSE_SUBJECT);
        
         String courseNumber=json.getString(JSON_COURSE_NUMBER);
+        
         String courseSemster=json.getString(JSON_COURSE_SEMESTER);
         String courseYear=json.getString(JSON_COURSE_YEAR);
         String courseTitle=json.getString(JSON_COURSE_TITLE);
         String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
         String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
-          dataManager.initCourseInfo(courseSubject,courseNumber,courseSemster,courseYear,courseTitle,courseInstructorName,courseInstructorHome);
+        System.out.println(courseInstructorHome);
+      dataManager.initCourseInfo(""+courseSubject,""+courseNumber,""+courseSemster,""+courseYear,""+courseTitle,""+courseInstructorName,""+courseInstructorHome);
         
           
           
@@ -493,11 +510,11 @@ CSGData dataManager = (CSGData)data;
             JsonObject jsonTA = jsonTAArray.getJsonObject(i);
             String name = jsonTA.getString(JSON_NAME);
             String email = jsonTA.getString(JSON_EMAIL);
-            System.out.println(jsonTA.getString(JSON_UNDERGRAD_TAS));
+            
             
            Boolean underGrad=Boolean.parseBoolean(jsonTA.getString(JSON_UNDERGRAD_TAS));
            
-            dataManager.addTA(name, email,underGrad);
+            dataManager.addTA(""+name, ""+email,underGrad);
         }
 
         // AND THEN ALL THE OFFICE HOURS
@@ -507,7 +524,7 @@ CSGData dataManager = (CSGData)data;
             String day = jsonOfficeHours.getString(JSON_DAY);
             String time = jsonOfficeHours.getString(JSON_TIME);
             String name = jsonOfficeHours.getString(JSON_NAME);
-            dataManager.addOfficeHoursReservation(day, time, name);
+            dataManager.addOfficeHoursReservation(""+day, ""+time, ""+name);
         }
         
         //recitation part////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -522,7 +539,7 @@ CSGData dataManager = (CSGData)data;
             String initlocation=jsonRecitation.getString(JSON_RECITATION_LOCATION);
             String initfirstTA=jsonRecitation.getString(JSON_RECITATION_FIRST_TA);
             String initsecondTA=jsonRecitation.getString(JSON_RECITATION_SECOND_TA);
-            dataManager.addRecitation(initsection, initinstructor, initdaytime, initlocation, initfirstTA, initsecondTA);
+            dataManager.addRecitation(""+initsection, ""+initinstructor, ""+initdaytime, ""+initlocation, ""+initfirstTA, ""+initsecondTA);
         }
         
         
@@ -530,7 +547,7 @@ CSGData dataManager = (CSGData)data;
         String scheduleCalendarStarting=json.getString(JSON_SCHEDULE_CALENDAR_STARTING);
          String scheduleCalendarEnding=json.getString(JSON_SCHEDULE_CALENDAR_ENDING);
          try {
-             dataManager.initCalendar(scheduleCalendarStarting,scheduleCalendarEnding);
+             dataManager.initCalendar(""+scheduleCalendarStarting,""+scheduleCalendarEnding);
          } catch (ParseException ex) {
              Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -541,10 +558,13 @@ CSGData dataManager = (CSGData)data;
             JsonObject jsonSchedule=jsonScheduleArray.getJsonObject(i);
             String inittype=jsonSchedule.getString(JSON_SCHEDULE_TYPE);
             String initdate=jsonSchedule.getString(JSON_SCHEDULE_DATE);
+            String inittime=jsonSchedule.getString(JSON_SCHEDULE_TIME);
             String inittitle=jsonSchedule.getString(JSON_SCHEDULE_TITLE);
             String inittopic=jsonSchedule.getString(JSON_SCHEDULE_TOPIC);
+              String initLink=jsonSchedule.getString(JSON_SCHEDULE_LINK);
+            String initCriteria=jsonSchedule.getString(JSON_SCHEDULE_CRITERIA);
      
-            dataManager.addScheduleItem(inittype,initdate,inittitle,inittopic);
+            dataManager.addScheduleItem(""+inittype,""+initdate,""+inittime,""+inittitle,""+inittopic,""+initLink,""+initCriteria);
         }
           
           //project part////////////////////////////////////////////////////////////////////////////////////////////////
@@ -558,7 +578,7 @@ CSGData dataManager = (CSGData)data;
             
               
      
-            dataManager.addTeam(initname,initcolor,inittextcolor,initlink);
+            dataManager.addTeam(""+initname,""+initcolor,""+inittextcolor,""+initlink);
         }
         
              JsonArray jsonStudentArray=json.getJsonArray(JSON_STUDENT);
@@ -569,8 +589,203 @@ CSGData dataManager = (CSGData)data;
             String initTeam=jsonStudent.getString(JSON_PROJECT_STUDENT_TEAM);
             String initRole=jsonStudent.getString(JSON_PROJECT_STUDENT_ROLE);
      
-            dataManager.addStudent(initFirstname,initLastname,initTeam,initRole);
+            dataManager.addStudent(""+initFirstname,""+initLastname,""+initTeam,""+initRole);
     }
+          
+          
+          
+          
+          
+          
+          
+          
+    }
+    
+    
+    /**
+     * this method use to test junit
+     * @param data
+     * @param filePath
+     */
+    public void loadDataTest(AppDataComponent data, String filePath) throws IOException{
+        
+       CSGData dataManager = (CSGData)data;
+        
+       
+	// LOAD THE JSON FILE WITH ALL THE DATA
+	//JsonObject json = loadJSONFile(TEST_PATH);
+        JsonObject json = loadJSONFile(filePath);
+        
+        
+        
+        //course part
+        
+        String courseSubject=json.getString(JSON_COURSE_SUBJECT);
+       
+        String courseNumber=json.getString(JSON_COURSE_NUMBER);
+        
+        String courseSemster=json.getString(JSON_COURSE_SEMESTER);
+        String courseYear=json.getString(JSON_COURSE_YEAR);
+        String courseTitle=json.getString(JSON_COURSE_TITLE);
+        String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
+        String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
+        
+      //dataManager.initCourseInfo(""+courseSubject,""+courseNumber,""+courseSemster,""+courseYear,""+courseTitle,""+courseInstructorName,""+courseInstructorHome);
+        
+          
+          
+        String styleSheet=json.getString(JSON_COURSE_STYTLE_SHEET);
+      //  dataManager.setStyleSheet(""+styleSheet);
+          
+       
+        
+        String exportDir=json.getString(JSON_COURSE_EXPORT_DIR);
+      //  dataManager.setExportDir(""+exportDir);
+         
+          
+          
+        String templeDir=json.getString(JSON_COURSE_TEMPLATE_DIR);
+       // dataManager.setSiteTempleDir(""+templeDir);
+        
+        String firstA=json.getString(JSON_COURSE_FIRST_IMAGE_ADDRESS);
+      //  dataManager.setFirstImageAdd(""+firstA);
+        
+        String secondA=json.getString(JSON_COURSE_SECOND_IMAGE_ADDRESS);
+     //   dataManager.setSecondImageAdd(""+secondA);
+        
+        String thirdA=json.getString(JSON_COURSE_THIRD_IMAGE_ADDRESS);
+     //   dataManager.setThirdImageAdd(""+thirdA);
+     
+     
+     
+//dataManager.setStyleSheet(styleSheet);
+//        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
+//        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
+//        Boolean courseJschedule=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSCHEDULE));
+//        Boolean courseJhws=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHWS));
+//        Boolean courseJproject=Boolean.parseBoolean(json.getString(JSON_COURSE_JSPROJECTS));
+
+       Boolean courseJhome=json.getBoolean(JSON_COURSE_JSHOME);
+        Boolean courseJsyllabus=json.getBoolean(JSON_COURSE_JSSYLLABUS);
+        Boolean courseJschedule=json.getBoolean(JSON_COURSE_JSSCHEDULE);
+        Boolean courseJhws=json.getBoolean(JSON_COURSE_JSHWS);
+        Boolean courseJproject=json.getBoolean(JSON_COURSE_JSPROJECTS);
+//        dataManager.setJhome(courseJhome);
+//        dataManager.setJsyllabus(courseJsyllabus);
+//        dataManager.setJschedule(courseJschedule);
+//        dataManager.setJhws(courseJhws);
+//        dataManager.setJproject(courseJproject);
+        
+        
+       
+                
+         //ta part/////////////////////////////////////////////////////////////////////////////
+	// LOAD THE START AND END HOURS
+	String startHour = json.getString(JSON_START_HOUR);
+        String endHour = json.getString(JSON_END_HOUR);
+
+//         dataManager.initHours(""+startHour, ""+endHour);
+
+        // NOW RELOAD THE WORKSPACE WITH THE LOADED DATA
+//        app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
+//        CSGWorkspace temp=(CSGWorkspace) app.getWorkspaceComponent();
+//        CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
+
+
+
+       // workspace.clearCombobox();
+        ///////////////
+        // NOW LOAD ALL THE UNDERGRAD TAs
+        JsonArray jsonTAArray = json.getJsonArray(JSON_TAS);
+        for (int i = 0; i < jsonTAArray.size(); i++) {
+            JsonObject jsonTA = jsonTAArray.getJsonObject(i);
+            String name = jsonTA.getString(JSON_NAME);
+            String email = jsonTA.getString(JSON_EMAIL);
+            System.out.println(jsonTA.getString(JSON_UNDERGRAD_TAS));
+            
+           Boolean underGrad=Boolean.parseBoolean(jsonTA.getString(JSON_UNDERGRAD_TAS));
+           
+         //   dataManager.addTA(name, email,underGrad);
+        }
+
+        // AND THEN ALL THE OFFICE HOURS
+        JsonArray jsonOfficeHoursArray = json.getJsonArray(JSON_OFFICE_HOURS);
+        for (int i = 0; i < jsonOfficeHoursArray.size(); i++) {
+            JsonObject jsonOfficeHours = jsonOfficeHoursArray.getJsonObject(i);
+            String day = jsonOfficeHours.getString(JSON_DAY);
+            String time = jsonOfficeHours.getString(JSON_TIME);
+            String name = jsonOfficeHours.getString(JSON_NAME);
+        //    dataManager.addOfficeHoursReservation(day, time, name);
+        }
+        
+        //recitation part////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        JsonArray jsonRecitionArray=json.getJsonArray(JSON_RECITATION);
+        for (int i=0;i<jsonRecitionArray.size();i++){
+            JsonObject jsonRecitation=jsonRecitionArray.getJsonObject(i);
+            String initsection=jsonRecitation.getString(JSON_RECITATION_SECTION);
+            String initinstructor=jsonRecitation.getString(JSON_RECITATION_INSTRUCTOR);
+            String initdaytime=jsonRecitation.getString(JSON_RECITATION_DAYTIME);
+            String initlocation=jsonRecitation.getString(JSON_RECITATION_LOCATION);
+            String initfirstTA=jsonRecitation.getString(JSON_RECITATION_FIRST_TA);
+            String initsecondTA=jsonRecitation.getString(JSON_RECITATION_SECOND_TA);
+          //  dataManager.addRecitation(initsection, initinstructor, initdaytime, initlocation, initfirstTA, initsecondTA);
+        }
+        
+        
+        //schedule part
+        String scheduleCalendarStarting=json.getString(JSON_SCHEDULE_CALENDAR_STARTING);
+         String scheduleCalendarEnding=json.getString(JSON_SCHEDULE_CALENDAR_ENDING);
+//         try {
+//       //      dataManager.initCalendar(scheduleCalendarStarting,scheduleCalendarEnding);
+//         } catch (ParseException ex) {
+//             Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+//             
+        
+        JsonArray jsonScheduleArray=json.getJsonArray(JSON_SCHEDULE);
+          for (int i=0;i<jsonScheduleArray.size();i++){
+            JsonObject jsonSchedule=jsonScheduleArray.getJsonObject(i);
+            String inittype=jsonSchedule.getString(JSON_SCHEDULE_TYPE);
+            String initdate=jsonSchedule.getString(JSON_SCHEDULE_DATE);
+            String inittime=jsonSchedule.getString(JSON_SCHEDULE_TIME);
+            String inittitle=jsonSchedule.getString(JSON_SCHEDULE_TITLE);
+            String inittopic=jsonSchedule.getString(JSON_SCHEDULE_TOPIC);
+            String initLink=jsonSchedule.getString(JSON_SCHEDULE_LINK);
+            String initCriteria=jsonSchedule.getString(JSON_SCHEDULE_CRITERIA);
+     
+         //   dataManager.addScheduleItem(inittype,initdate,inittitle,inittopic);
+        }
+          
+          //project part////////////////////////////////////////////////////////////////////////////////////////////////
+          JsonArray jsonTeamArray=json.getJsonArray(JSON_TEAM);
+          for (int i=0;i<jsonTeamArray.size();i++){
+            JsonObject jsonTeam=jsonTeamArray.getJsonObject(i);
+            String initname=jsonTeam.getString(JSON_PROJECT_TEAM_NAME);
+            String initcolor=jsonTeam.getString(JSON_PROJECT_TEAM_COLOR);
+            String inittextcolor=jsonTeam.getString(JSON_PROJECT_TEAM_TEXTCOLOR);
+            String initlink=jsonTeam.getString(JSON_PROJECT_TEAM_LINK);
+            
+              
+     
+        //    dataManager.addTeam(initname,initcolor,inittextcolor,initlink);
+        }
+        
+             JsonArray jsonStudentArray=json.getJsonArray(JSON_STUDENT);
+          for (int i=0;i<jsonStudentArray.size();i++){
+            JsonObject jsonStudent=jsonStudentArray.getJsonObject(i);
+            String initFirstname=jsonStudent.getString(JSON_PROJECT_STUDENT_FIRSTNAME);
+            String initLastname=jsonStudent.getString(JSON_PROJECT_STUDENT_LASTNAME);
+            String initTeam=jsonStudent.getString(JSON_PROJECT_STUDENT_TEAM);
+            String initRole=jsonStudent.getString(JSON_PROJECT_STUDENT_ROLE);
+     
+         //   dataManager.addStudent(initFirstname,initLastname,initTeam,initRole);
+    }
+          
+          
+          
+        
     }
        private JsonObject loadJSONFile(String jsonFilePath) throws IOException {
 	InputStream is = new FileInputStream(jsonFilePath);

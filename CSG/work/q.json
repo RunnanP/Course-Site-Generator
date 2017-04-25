@@ -27,8 +27,8 @@
             "under_tas":"true"
         },
         {
-            "name":"hh",
-            "email":"tt@aa.com",
+            "name":"ddd",
+            "email":"sfsf@xx.com",
             "under_tas":"false"
         }
     ],
@@ -46,6 +46,11 @@
         {
             "day":"FRIDAY",
             "time":"2_00pm",
+            "name":"bhjj"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"2_30pm",
             "name":"bhjj"
         }
     ],
@@ -66,27 +71,9 @@
         }
     ],
     "schedules":[
-        {
-            "schedule_type":"holiday",
-            "schedule_date":"2/9/2017",
-            "schedule_title":"letucre3",
-            "schedule_topic":"uml"
-        }
     ],
     "teams":[
-        {
-            "project_team_name":"c4 comics",
-            "project_team_color":"444422",
-            "project_team_textcolor":"ffffffff",
-            "project_team_link":"eeee.ccok.com"
-        }
     ],
     "students":[
-        {
-            "project_student_firstname":"ffffddfd",
-            "project_student_lastname":"rrtoii",
-            "project_student_team":"dfderrr",
-            "project_student_role":"dfdf"
-        }
     ]
 }

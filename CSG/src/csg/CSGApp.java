@@ -37,6 +37,21 @@ public class CSGApp extends AppTemplate {
         styleComponent = new CSGStyle(this);
     }
     
+    
+    
+    public void setDataComponent(CSGApp app){
+        dataComponent = new CSGData(app);
+    }
+    
+      public void setWorkspaceComponent(CSGApp app){
+           workspaceComponent = new CSGWorkspace(app,"");
+    }
+        public void setFileComponent(CSGApp app){
+        fileComponent = new CSGFiles(app);
+    }
+          public void setStyleComponent(CSGApp app){
+      styleComponent = new CSGStyle(app);
+    }
     /**
      * This is where program execution begins. Since this is a JavaFX app it
      * will simply call launch, which gets JavaFX rolling, resulting in sending
