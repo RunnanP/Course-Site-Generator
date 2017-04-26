@@ -61,7 +61,7 @@ public class CSGFiles implements AppFileComponent{
      static final String JSON_COURSE_SEMESTER="course_semester";  
      static final String JSON_COURSE_YEAR="course_year";  
      static final String JSON_COURSE_TITLE="course_title";  
-     static final String JSON_COURSE_INSTRUCTOR_NAME="course_intructor_name";  
+     static final String JSON_COURSE_INSTRUCTOR_NAME="course_instructor_name";  
      static final String JSON_COURSE_INSTRUCTOR_HOME="course_instructor_home"; 
      static final String JSON_COURSE_EXPORT_DIR="course_export_dir";  
      static final String JSON_COURSE_TEMPLATE_DIR="course_template_dir";

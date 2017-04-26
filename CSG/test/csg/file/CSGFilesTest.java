@@ -235,12 +235,23 @@ public class CSGFilesTest {
         }
         //assertEquals(new ScheduleItem<>("Holiday", "2017-04-08", "whole day", "SNOW DAY", "..", ".."), testscheduleItemArray.get(0));
         assertEquals("Holiday", testscheduleItemArray.get(0).getType());
-        assertEquals("2017-04-08", testscheduleItemArray.get(0).getDate());
+        assertEquals("2017-04-19", testscheduleItemArray.get(0).getDate());
         assertEquals("whole day", testscheduleItemArray.get(0).getTime());
         assertEquals("SNOW DAY", testscheduleItemArray.get(0).getTitle());
         assertEquals( "..", testscheduleItemArray.get(0).getTopic());
         assertEquals( "..", testscheduleItemArray.get(0).getLink());
         assertEquals( "..", testscheduleItemArray.get(0).getCriteria());
+        
+        
+          assertEquals("HW", testscheduleItemArray.get(1).getType());
+        assertEquals("2017-04-27", testscheduleItemArray.get(1).getDate());
+        assertEquals("8:00", testscheduleItemArray.get(1).getTime());
+        assertEquals("hw1", testscheduleItemArray.get(1).getTitle());
+        assertEquals( "game play", testscheduleItemArray.get(1).getTopic());
+        assertEquals( "www.google.com", testscheduleItemArray.get(1).getLink());
+        assertEquals( "nothing", testscheduleItemArray.get(1).getCriteria());
+        
+       
         
         
         

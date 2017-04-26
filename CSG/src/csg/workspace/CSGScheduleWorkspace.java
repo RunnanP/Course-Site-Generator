@@ -259,6 +259,25 @@ public class CSGScheduleWorkspace implements WorkspacePart{
        }
    }
    
+   
+   public void loadCalendarStart(String initStart) throws ParseException{
+           SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!initStart.equals("null")){
+     Date startDate=sdf.parse(initStart);
+      startDatePicker.setValue(LocalDate.of(startDate.getYear()+1900,startDate.getMonth()+1,startDate.getDate()));
+       }
+   }
+   
+   public void loadCalendarEnd(String initEnd) throws ParseException{
+       SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!initEnd.equals("null")){
+       Date endDate=sdf.parse(initEnd);
+       endDatePicker.setValue(LocalDate.of(endDate.getYear()+1900, endDate.getMonth()+1, endDate.getDate()));
+       }
+   }
+   
+   
+   
   // public
     @Override
     public ScrollPane getBasePane() {

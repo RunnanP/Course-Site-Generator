@@ -456,8 +456,11 @@ public class CSGData implements AppDataComponent{
         return startingDate;
     }
 
-    public void setStartingDate(String startingDate) {
-        this.startingDate = startingDate;
+    public void setStartingDate(String initstartingDate) throws ParseException {
+           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                workspace.loadCalendarStart(initstartingDate);
+        startingDate = initstartingDate;
     }
 
     public String getEndingDate() {
@@ -468,8 +471,11 @@ public class CSGData implements AppDataComponent{
         return endingDate;
     }
 
-    public void setEndingDate(String endingDate) {
-        this.endingDate = endingDate;
+    public void setEndingDate(String initendingDate) throws ParseException {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+                workspace.loadCalendarEnd(initendingDate);
+        endingDate = initendingDate;
     }
 
     public boolean isJhome() {

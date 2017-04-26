@@ -28,6 +28,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -322,7 +323,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
      
      
      
-        public void saveDataWithHardCode(CSGData data){
+        public void saveDataWithHardCode(CSGData data) throws ParseException{
          data.setSubject("CSE");
         data.setNumber(219);
         data.setSemester("Spring");
@@ -355,7 +356,10 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         
         data.setStartingDate("2017-04-03");
         data.setEndingDate("2017-05-05");
-        data.addScheduleItem("Holiday", "2017-04-08", "whole day", "SNOW DAY", "..", "..","..");
+        
+      
+         data.addScheduleItem("Holiday", "2017-04-19", "whole day", "SNOW DAY", "..", "..","..");
+        data.addScheduleItem("HW","2017-04-27" , "8:00", "hw1","game play","www.google.com","nothing");
        
       
         data.addTeam("Atomic Comics", "552211", "ffffff", "http://atomiccomic.com");
@@ -369,65 +373,66 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 
 }
      //hard code       
-          public static void test ()throws IOException {
-        CSGApp app = new CSGApp();
-        CSGData data = new CSGData(app);
-        
- 
-        
-        app.loadProperties(ENGLISH_APP_PROPERTIES_FILE_NAME);
-        app.setDataComponent(app);
-        
-        
-        
-       // app.setWorkspaceComponent(app);
-       
-//        AppDataComponent data = app.getDataComponent();
-//        String filePath = "..\\\\CSG\\\\work\\\\k.json";
-//        CSGFiles instance = new CSGFiles(app);
-        //course part
-        data.setSubject("CSE");
-        data.setNumber(219);
-        data.setSemester("Spring");
-        data.setYear(2017);
-        data.setTitle("Computer Science III");
-        data.setInstructorName("Ritwik Banerjee");
-        data.setInstructorHome("http://www3.cs.stonybrook.edu/~rbanerjee/");
-        data.setExportDir("../CSE219/public");
-        data.setSiteTempleDir("./templates/CSE219");
-        data.setJhome(true);
-        data.setJsyllabus(true);
-        data.setJschedule(true);
-        data.setJhws(true);
-        data.setJproject(true);
-       
-       
-        data.addTA( "Jane Dow", "jane.doe@yahoo.com",true);
-        data.addTA( "Joe Shmo", "joe.shmo@yale.edu",false);
-        data.addOfficeHoursReservation("MONDAY", "11_00am", "Jane Dow");
-        data.addOfficeHoursReservation("WEDNESDAY", "14_00pm", "Jane Dow");
-        data.addOfficeHoursReservation("TUESDAY", "12_00pm", "Joe Shmo");
-        data.addOfficeHoursReservation("MONDAY", "8_00pm", "Joe Shmo");
-       
-        
-        
-        
-        data.addRecitation("R02", "McKenna", "Wed 3:30pm-4:23pm", "Old CS 2114", "bill","mike");
-        data.addRecitation("R05", "Banerjee", "Tues 5:30pm-6:23pm", "Old CS 2114", "pol", "amy");
-       
-        
-        data.setStartingDate("2017-04-03");
-        data.setEndingDate("2017-05-05");
-        data.addScheduleItem("Holiday", "2017-04-08", "whole day", "SNOW DAY", "..", "..","..");
-       
-      
-        data.addTeam("Atomic Comics", "552211", "ffffff", "http://atomiccomic.com");
-        data.addTeam("C4 Comics", "235399", "ffffff", "http://c4-comics.com");
-        data.addStudent("Beau", "Brummell", "Atomic Comics", "Lead Designer");
-        data.addStudent("Jane", "Doe", "C4 Comics", "Lead Programmer");
-       
-//        CSGFiles file = new CSGFiles(app);
-//        file.saveData(data, "..\\\\CSG\\\\work\\\\SiteSaveTest.json");
+          public static void test ()throws IOException, ParseException {
+//        CSGApp app = new CSGApp();
+//        CSGData data = new CSGData(app);
+//        
+// 
+//        
+//        app.loadProperties(ENGLISH_APP_PROPERTIES_FILE_NAME);
+//        app.setDataComponent(app);
+//        
+//        
+//        
+//       // app.setWorkspaceComponent(app);
+//       
+////        AppDataComponent data = app.getDataComponent();
+////        String filePath = "..\\\\CSG\\\\work\\\\k.json";
+////        CSGFiles instance = new CSGFiles(app);
+//        //course part
+//        data.setSubject("CSE");
+//        data.setNumber(219);
+//        data.setSemester("Spring");
+//        data.setYear(2017);
+//        data.setTitle("Computer Science III");
+//        data.setInstructorName("Ritwik Banerjee");
+//        data.setInstructorHome("http://www3.cs.stonybrook.edu/~rbanerjee/");
+//        data.setExportDir("../CSE219/public");
+//        data.setSiteTempleDir("./templates/CSE219");
+//        data.setJhome(true);
+//        data.setJsyllabus(true);
+//        data.setJschedule(true);
+//        data.setJhws(true);
+//        data.setJproject(true);
+//       
+//       
+//        data.addTA( "Jane Dow", "jane.doe@yahoo.com",true);
+//        data.addTA( "Joe Shmo", "joe.shmo@yale.edu",false);
+//        data.addOfficeHoursReservation("MONDAY", "11_00am", "Jane Dow");
+//        data.addOfficeHoursReservation("WEDNESDAY", "14_00pm", "Jane Dow");
+//        data.addOfficeHoursReservation("TUESDAY", "12_00pm", "Joe Shmo");
+//        data.addOfficeHoursReservation("MONDAY", "8_00pm", "Joe Shmo");
+//       
+//        
+//        
+//        
+//        data.addRecitation("R02", "McKenna", "Wed 3:30pm-4:23pm", "Old CS 2114", "bill","mike");
+//        data.addRecitation("R05", "Banerjee", "Tues 5:30pm-6:23pm", "Old CS 2114", "pol", "amy");
+//       
+//        
+//        data.setStartingDate("2017-04-03");
+//        data.setEndingDate("2017-05-05");
+//        data.addScheduleItem("Holiday", "2017-04-19", "whole day", "SNOW DAY", "..", "..","..");
+//        data.addScheduleItem("HW","2017-04-27" , "8:00", "hw1","game play","www.google.com","nothing");
+//       
+//      
+//        data.addTeam("Atomic Comics", "552211", "ffffff", "http://atomiccomic.com");
+//        data.addTeam("C4 Comics", "235399", "ffffff", "http://c4-comics.com");
+//        data.addStudent("Beau", "Brummell", "Atomic Comics", "Lead Designer");
+//        data.addStudent("Jane", "Doe", "C4 Comics", "Lead Programmer");
+//       
+////        CSGFiles file = new CSGFiles(app);
+////        file.saveData(data, "..\\\\CSG\\\\work\\\\SiteSaveTest.json");
     }
         
         

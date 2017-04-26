@@ -81,21 +81,12 @@
     "schedules":[
         {
             "schedule_type":"Holiday",
-            "schedule_date":"2017-04-19",
+            "schedule_date":"2017-04-08",
             "schedule_time":"whole day",
             "schedule_title":"SNOW DAY",
             "schedule_topic":"..",
             "schedule_link":"..",
             "schedule_criteria":".."
-        },
-        {
-            "schedule_type":"HW",
-            "schedule_date":"2017-04-27",
-            "schedule_time":"8:00",
-            "schedule_title":"hw1",
-            "schedule_topic":"game play",
-            "schedule_link":"www.google.com",
-            "schedule_criteria":"nothing"
         }
     ],
     "teams":[
