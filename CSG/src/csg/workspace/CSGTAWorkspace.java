@@ -862,7 +862,7 @@ controller = new CSGController(app);
          for(int i=1;i<=13;i+=2){
           
        // officeHoursGridPane.getChildren().remove(100);
- ;
+ 
        officeHoursGridPane.getChildren().remove(row*7-i);
   
       //panes.remove(dataComponent.getCellKey(i, row));

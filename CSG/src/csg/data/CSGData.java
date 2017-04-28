@@ -14,8 +14,11 @@ import csg.workspace.CSGTAWorkspace;
 import csg.workspace.CSGWorkspace;
 import djf.components.AppDataComponent;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Observable;
 import javafx.beans.property.StringProperty;
@@ -68,7 +71,9 @@ public class CSGData implements AppDataComponent{
        
        //ta part
          HashMap<String,StringProperty> officeHours;
+         HashMap<String ,String>officeHoursTest;
        ArrayList<String> gridHeaders;
+       ArrayList<String> gridHeadersTest;
        int startHour;
        int endHour;
         public static final int MIN_START_HOUR=9;
@@ -79,7 +84,10 @@ public class CSGData implements AppDataComponent{
        //schedule part
        String startingDate;
        String endingDate;
-       
+       int startMonth;
+       int startDay;
+       int endMonth;
+       int endDay;
       
        
        //teams part
@@ -107,15 +115,20 @@ public class CSGData implements AppDataComponent{
         startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
         officeHours=new HashMap();
+        officeHoursTest=new HashMap();
          PropertiesManager props = PropertiesManager.getPropertiesManager();
         ArrayList<String> timeHeaders = props.getPropertyOptionsList(CSGAppProp.OFFICE_HOURS_TABLE_HEADERS);
      
         ArrayList<String> dowHeaders = props.getPropertyOptionsList(CSGAppProp.DAYS_OF_WEEK);
         gridHeaders = new ArrayList();
+        gridHeadersTest = new ArrayList();
 //         ArrayList<String> timeHeaders =new ArrayList<>();
 //          ArrayList<String> dowHeaders=new ArrayList<>();
        gridHeaders.addAll(timeHeaders);
        gridHeaders.addAll(dowHeaders);
+       
+         gridHeadersTest.addAll(timeHeaders);
+       gridHeadersTest.addAll(dowHeaders);
         
         
         //recitation part
@@ -154,7 +167,17 @@ public class CSGData implements AppDataComponent{
         firstImageAdd=workspace.getFirstImageLocation();
         return firstImageAdd;
     }
+    
+      public String getFirstImageAddTest() {
+        return firstImageAdd;
+    }
 
+      
+      
+      
+      
+      
+      
     public void setFirstImageAdd(String initfirstImageAdd) {
       firstImageAdd = initfirstImageAdd;
         
@@ -165,6 +188,17 @@ public class CSGData implements AppDataComponent{
         workspace.setFirstImageLocation(firstImageAdd);
          workspace.setFirstImageView(new Image(firstImageAdd));
     }
+    
+      public void setFirstImageAddTest(String initfirstImageAdd) {
+      firstImageAdd = initfirstImageAdd;
+    }
+    
+    
+    
+      
+      
+      
+      
 
     public String getSecondImageAdd() {
          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -174,6 +208,15 @@ public class CSGData implements AppDataComponent{
         return secondImageAdd;
     }
 
+      public String getSecondImageAddTest() {
+       
+        return secondImageAdd;
+    }
+      
+      
+      
+      
+      
     public void setSecondImageAdd(String initsecondImageAdd) {
           secondImageAdd = initsecondImageAdd;
         
@@ -184,7 +227,21 @@ public class CSGData implements AppDataComponent{
         workspace.setSecondImageLocation(secondImageAdd);
          workspace.setSecondImageView(new Image(secondImageAdd));
     }
+    
+        public void setSecondImageAddTest(String initsecondImageAdd) {
+          secondImageAdd = initsecondImageAdd;
+       
+    }
+    
 
+        
+        
+        
+        
+        
+        
+        
+        
     public String getThirdImageAdd() {
            CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
@@ -193,6 +250,13 @@ public class CSGData implements AppDataComponent{
         return thirdImageAdd;
     }
 
+      public String getThirdImageAddTest() {
+        return thirdImageAdd;
+    }
+    
+    
+    
+    
     public void setThirdImageAdd(String initthirdImageAdd) {
           thirdImageAdd = initthirdImageAdd;
         
@@ -203,7 +267,16 @@ public class CSGData implements AppDataComponent{
         workspace.setThirdImageLocation(thirdImageAdd);
          workspace.setThirdImageView(new Image(thirdImageAdd));
     }
+        public void setThirdImageAddTest(String initthirdImageAdd) {
+          thirdImageAdd = initthirdImageAdd;
+    }
 
+        
+        
+        
+        
+        
+        
     public CSGApp getApp() {
         return app;
     }
@@ -316,13 +389,24 @@ public class CSGData implements AppDataComponent{
         this.instructorHome = instructorHome;
     }
 
+    
+    
+    
+    
     public String getExportDir() {
          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
         exportDir=workspace.getExporDirDisplayAddressLabel().getText();
         return exportDir;
     }
-
+  public String getExportDirTest() {
+        return exportDir;
+    }
+    
+    
+    
+  
+    
     public void setExportDir(String initexportDir) {
             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
@@ -330,6 +414,16 @@ public class CSGData implements AppDataComponent{
         exportDir = initexportDir;
         workspace.setExporDirDisplayAddressLabel(exportDir);
     }
+      public void setExportDirTest(String initexportDir) {
+        exportDir = initexportDir;
+       
+    }
+      
+      
+      
+      
+      
+      
 
     public String getSiteTempleDir() {
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -337,25 +431,50 @@ public class CSGData implements AppDataComponent{
         siteTempleDir=workspace.getTemplatesDirLabel().getText();
         return siteTempleDir;
     }
+       public String getSiteTempleDirTest() {
+        return siteTempleDir;
+    }
+       
+       
+       
+       
 
     public void setSiteTempleDir(String initsiteTempleDir) {
        
         
-             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
         
         siteTempleDir = initsiteTempleDir;
         workspace.setTemplatesDirLabel(siteTempleDir);
         
     }
+        public void setSiteTempleDirTest(String initsiteTempleDir) {
+        siteTempleDir = initsiteTempleDir;
+     
+        
+    }
+        
 
+        
+        
+        
+        
+        
     public String getStyleSheet() {
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
         styleSheet=workspace.getStyleSheetComboBox().getValue();
         return styleSheet;
     }
-
+     public String getStyleSheetTest() {
+      
+        return styleSheet;
+    }
+    
+    
+    
+    
     public void setStyleSheet(String initstyleSheet) {
         styleSheet = initstyleSheet;
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -363,24 +482,52 @@ public class CSGData implements AppDataComponent{
         workspace.getStyleSheetComboBox().setValue(styleSheet);
         
     }
+     public void setStyleSheetTest(String initstyleSheet) {
+        styleSheet = initstyleSheet;
+        
+    }
 
 
+     
+     
 
     public HashMap<String, StringProperty> getOfficeHours() {
         return officeHours;
     }
-
-    public void setOfficeHours(HashMap<String, StringProperty> officeHours) {
-        this.officeHours = officeHours;
+   public HashMap<String, String> getOfficeHoursTest() {
+        return officeHoursTest;
     }
+   
+   
+   
+   
+    public void setOfficeHours(HashMap<String, StringProperty> initofficeHours) {
+        this.officeHours = initofficeHours;
+    }
+       public void setOfficeHoursTest(HashMap<String, String> initofficeHours) {
+        this.officeHoursTest = initofficeHours;
+    }
+       
+       
+       
 
     public ArrayList<String> getGridHeaders() {
         return gridHeaders;
     }
+    public ArrayList<String> getGridHeadersTest() {
+        return gridHeadersTest;
+    }
+    
 
     public void setGridHeaders(ArrayList<String> gridHeaders) {
         this.gridHeaders = gridHeaders;
     }
+      public void setGridHeadersTest(ArrayList<String> gridHeaders) {
+        this.gridHeadersTest = gridHeaders;
+    }
+      
+      
+      
 
     public int getStartHour() {
         return startHour;
@@ -398,6 +545,7 @@ public class CSGData implements AppDataComponent{
         this.endHour = endHour;
     }
     
+    
     public int getStartMonth(){
         int test=0;
          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -408,6 +556,23 @@ public class CSGData implements AppDataComponent{
         return test;
         
     }
+     public int getStartMonthTest() throws ParseException{
+                     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!startingDate.equals("null")){
+       Date startDate=sdf.parse(startingDate);
+       startMonth=startDate.getMonth()+1;
+       }
+        return startMonth;
+        
+    }
+    
+     
+     
+     
+     
+     
+     
+     
     
        public int getStartDate(){
         int test=0;
@@ -419,6 +584,24 @@ public class CSGData implements AppDataComponent{
         return test;
         
     }
+      public int getStartDateTest() throws ParseException{
+              SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!startingDate.equals("null")){
+       Date startDate=sdf.parse(startingDate);
+       startDay=startDate.getDate();
+       }
+        return startDay;
+        
+    }
+            
+            
+            
+            
+            
+            
+            
+            
+            
        
        
          public int getEndMonth(){
@@ -431,6 +614,25 @@ public class CSGData implements AppDataComponent{
         return test;
         
     }
+       public int getEndMonthTest() throws ParseException{
+         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!endingDate.equals("null")){
+       Date endDate=sdf.parse(endingDate);
+       endMonth=endDate.getMonth()+1;
+       }
+         
+        return endMonth;
+        
+    }
+                
+                
+                
+                
+                
+                
+                
+                
+                
     
        public int getEndDate(){
         int test=0;
@@ -442,10 +644,27 @@ public class CSGData implements AppDataComponent{
         return test;
         
     }
+        public int getEndDateTest() throws ParseException{
+         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!endingDate.equals("null")){
+       Date endDate=sdf.parse(endingDate);
+       endDay=endDate.getDate();
+       }
+        return endDay;
+        
+    }
+        
+        
+        
+        
+        
+        
        
        
        
        
+        
+        
        
     public String getStartingDate() {
          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -455,13 +674,36 @@ public class CSGData implements AppDataComponent{
                 }        
         return startingDate;
     }
-
+ public String getStartingDateTest() {
+             
+        return startingDate;
+    }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     public void setStartingDate(String initstartingDate) throws ParseException {
            CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
                 CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
                 workspace.loadCalendarStart(initstartingDate);
         startingDate = initstartingDate;
     }
+        public void setStartingDateTest(String initstartingDate) throws ParseException {
+          
+        startingDate = initstartingDate;
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
     public String getEndingDate() {
           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -470,6 +712,18 @@ public class CSGData implements AppDataComponent{
                endingDate= workspace.getEndDatePicker().getValue().toString();}
         return endingDate;
     }
+       public String getEndingDateTest() {
+       
+        return endingDate;
+    }
+       
+       
+       
+       
+       
+       
+       
+       
 
     public void setEndingDate(String initendingDate) throws ParseException {
          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -477,6 +731,18 @@ public class CSGData implements AppDataComponent{
                 workspace.loadCalendarEnd(initendingDate);
         endingDate = initendingDate;
     }
+      public void setEndingDateTest(String initendingDate) throws ParseException {
+     
+        endingDate = initendingDate;
+    }
+      
+      
+      
+      
+      
+      
+      
+      
 
     public boolean isJhome() {
         for (SitePage i:sitePages){
@@ -591,6 +857,29 @@ public class CSGData implements AppDataComponent{
                 workspace.loadCourseInfo(subject,number,semester,year,title,instructorName,instructorHome);
         
     }
+        public void initCourseInfoTest(String initsubject,String initnumber,String initsemester,String inityear,String inittitle,String initstructorname,String initinstructorhome){
+         subject=new String(initsubject);
+        number=Integer.parseInt(initnumber);
+        semester=new String(initsemester);
+        year=Integer.parseInt(inityear);
+        title=new String(inittitle);
+        instructorName=new String(initstructorname);
+         instructorHome=new String(initinstructorhome); 
+         //styleSheet=new String(initstylesheet);
+         
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     public void initSitePage(){
         jhome=false;
         jsyllabus=false;
@@ -688,6 +977,46 @@ public class CSGData implements AppDataComponent{
     }
         
         
+           public void removeTAFromCellTest(String cellkey,String cellProp, String taName) {
+        // GET THE CELL TEXT
+        String cellText = cellProp;
+        // IS IT THE ONLY TA IN THE CELL?
+        if (cellText.equals(taName)) {
+            officeHoursTest.put(cellkey, "");
+            System.out.println(officeHoursTest.get(cellkey));
+            
+        }
+        // IS IT THE FIRST TA IN A CELL WITH MULTIPLE TA'S?
+        else if (cellText.indexOf(taName) == 0) {
+            int startIndex = cellText.indexOf("\n") + 1;
+            cellText = cellText.substring(startIndex);
+            officeHoursTest.put(cellkey, cellText);
+            System.out.println(officeHoursTest.get(cellkey));
+        }
+        // IS IT IN THE MIDDLE OF A LIST OF TAs
+        else if (cellText.indexOf(taName) < cellText.indexOf("\n", cellText.indexOf(taName))) {
+            int startIndex = cellText.indexOf("\n" + taName);
+            int endIndex = startIndex + taName.length() + 1;
+            cellText = cellText.substring(0, startIndex) + cellText.substring(endIndex);
+            officeHoursTest.put(cellkey, cellText);
+            System.out.println(officeHoursTest.get(cellkey));
+        }
+        // IT MUST BE THE LAST TA
+        else {
+            int startIndex = cellText.indexOf("\n" + taName);
+            cellText = cellText.substring(0, startIndex);
+           officeHoursTest.put(cellkey, cellText);
+           System.out.println(officeHoursTest.get(cellkey));
+        }
+    }
+        
+        
+        
+        
+        
+        
+        
+        
             public void addTAToCell(StringProperty cellProp,String taName){
         String cellText=cellProp.getValue();
         if (cellText.length() == 0) {
@@ -703,11 +1032,26 @@ public class CSGData implements AppDataComponent{
       String cellKey = getCellKey(col, row);
       return officeHours.get(cellKey);
     }
+      public String getCellTextPropertyTest(int col, int row) {
+      String cellKey = getCellKeyTest(col, row);
+      return officeHoursTest.get(cellKey);
+    }
+      
+      
+      
+      
 
     public String getCellKey(int col, int row) {
         return col+"_"+row;
     }
+     public String getCellKeyTest(int col, int row) {
+        return col+"_"+row;
+    }
     
+     
+     
+     
+     
     public String getCellKey(String day, String time) {
         int col = gridHeaders.indexOf(day);
         int row = 1;
@@ -723,6 +1067,25 @@ public class CSGData implements AppDataComponent{
             row += 1;
         return getCellKey(col, row);
     }
+       public String getCellKeyTest(String day, String time) {
+        int col = gridHeadersTest.indexOf(day);
+        int row = 1;
+        int hour = Integer.parseInt(time.substring(0, time.indexOf("_")));
+        int milHour = hour;
+//        if (hour < startHour)
+        if(time.contains("pm"))
+            milHour += 12;
+        if(time.contains("12"))
+            milHour -= 12;
+        row += (milHour - startHour) * 2;
+        if (time.contains("_30"))
+            row += 1;
+        return getCellKeyTest(col, row);
+    }
+       
+       
+       
+       
             
        public void toggleTAOfficeHours(String cellKey, String taName) {
       try{
@@ -744,15 +1107,60 @@ public class CSGData implements AppDataComponent{
       
       
       }
+          public void toggleTAOfficeHoursTest(String cellKey, String taName) {
+      if(officeHoursTest.get(cellKey)!=null){
+              try{
+        String cellProp = officeHoursTest.get(cellKey);
+          System.out.println(cellProp);
+        String cellText = cellProp;
+          System.out.println("2222    "+cellKey+"   "+taName  );
+
+        // IF IT ALREADY HAS THE TA, REMOVE IT
+        if (cellText.contains(taName)) {
+            removeTAFromCellTest(cellKey,cellProp, taName);
+        } // OTHERWISE ADD IT
+        else if (cellText.length() == 0) {
+            officeHoursTest.put(cellKey, taName);
+            System.out.println(officeHoursTest.get(cellKey));
+        } else {
+             officeHoursTest.put(cellKey, cellText + "\n" + taName);
+              System.out.println(officeHoursTest.get(cellKey));
+            
+        }
+      }catch(Exception e){
+          return;
+      }
+      }else{
+           officeHoursTest.put(cellKey, taName);
+      }
+      
+      }
+          
+          
+          
+          
+          
+          
+          
             
      public void setCellProperty(int col, int row, StringProperty prop) {
         String cellKey = getCellKey(col, row);
           officeHours.put(cellKey, prop);
     }  
      
+     public void setCellPropertyTest(int col,int row,String prop){
+             String cellKey = getCellKeyTest(col, row);
+          officeHoursTest.put(cellKey, prop);
+          System.out.println(officeHoursTest.get(cellKey));
+     }
+     
+     
         public int getNumRows() {
         return ((endHour - startHour) * 2) + 1;
     }
+        
+        
+        
          public void initHours(String startHourText, String endHourText) {
         int initStartHour = Integer.parseInt(startHourText);
         int initEndHour = Integer.parseInt(endHourText);
@@ -763,6 +1171,23 @@ public class CSGData implements AppDataComponent{
             initOfficeHours(initStartHour, initEndHour);
         }
     }
+                  public void initHoursTest(String startHourText, String endHourText) {
+        int initStartHour = Integer.parseInt(startHourText);
+        int initEndHour = Integer.parseInt(endHourText);
+        if ((initStartHour >= MIN_START_HOUR)
+                && (initEndHour <= MAX_END_HOUR)
+                && (initStartHour <= initEndHour)) {
+            // THESE ARE VALID HOURS SO KEEP THEM
+            initOfficeHoursTest(initStartHour, initEndHour);
+        }
+    }
+         
+         
+         
+         
+                  
+                  
+         
          
          
             private void initOfficeHours(int initStartHour, int initEndHour) {
@@ -783,6 +1208,29 @@ public class CSGData implements AppDataComponent{
         workspaceComponent.getOfficeHour(true).getSelectionModel().select(startHour);
         workspaceComponent.getOfficeHour(false).getSelectionModel().select(endHour);
     }
+         private void initOfficeHoursTest(int initStartHour, int initEndHour) {
+        // NOTE THAT THESE VALUES MUST BE PRE-VERIFIED
+        startHour = initStartHour;
+        endHour = initEndHour;
+        
+        // EMPTY THE CURRENT OFFICE HOURS VALUES
+        officeHours.clear();
+            
+        // WE'LL BUILD THE USER INTERFACE COMPONENT FOR THE
+        // OFFICE HOURS GRID AND FEED THEM TO OUR DATA
+        // STRUCTURE AS WE GO
+   
+    }
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
     
       public void changeTime(int startTime, int endTime, ArrayList<CSGTimeSlot> officeHours){
         initHours("" + startTime, "" + endTime);
@@ -800,6 +1248,12 @@ public class CSGData implements AppDataComponent{
         public void addOfficeHoursReservation(String day, String time, String taName) {
         String cellKey = getCellKey(day, time);
         toggleTAOfficeHours(cellKey, taName);
+    }
+              public void addOfficeHoursReservationTest(String day, String time, String taName) {
+        String cellKey = getCellKeyTest(day, time);
+      //  officeHoursTest.put(cellKey,taName);
+        toggleTAOfficeHoursTest(cellKey, taName);
+                  System.out.println("1111111111111");
     }
         
         
@@ -838,6 +1292,20 @@ public class CSGData implements AppDataComponent{
             
             
         }
+            public void initCalendarTest(String initStarting,String initEnding) throws ParseException{
+            startingDate=new String(initStarting);
+            endingDate=new String(initEnding);
+        
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
         public void addScheduleItem (String initType,String initDate,String initTitle,String initTopic){
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
             scheduleItems.add(scheduleItem);

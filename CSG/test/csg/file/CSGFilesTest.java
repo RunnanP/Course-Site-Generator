@@ -21,6 +21,8 @@ import static djf.settings.AppStartupConstants.ENGLISH_APP_PROPERTIES_FILE_NAME;
 import static djf.settings.AppPropertyType.*;
 import static djf.settings.AppStartupConstants.*;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import javax.json.Json;
@@ -95,6 +97,10 @@ public class CSGFilesTest {
 
 
        // instance.loadDataTest(data, filePath);
+       
+       testDataGet();
+       
+       
         assertEquals("CSE", json.getString(JSON_COURSE_SUBJECT));
         assertEquals("219", json.getString(JSON_COURSE_NUMBER));
         assertEquals("Spring", json.getString(JSON_COURSE_SEMESTER));
@@ -315,8 +321,180 @@ public class CSGFilesTest {
        
         // TODO review the generated test code and remove the default call to fail.
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
+    public void testDataGet() throws FileNotFoundException, IOException{
+             System.out.println("loadData");
+        CSGApp app=new CSGApp();
+        
+       app.loadProperties(ENGLISH_APP_PROPERTIES_FILE_NAME);
+        app.setDataComponent(app);
+       // app.setWorkspaceComponent(app);
+       
+        AppDataComponent data = app.getDataComponent();
+        String filePath = "..\\\\CSG\\\\work\\\\SiteSaveTest.json";
+        CSGFiles instance = new CSGFiles(app);
+        
+        
+        //loadJSONFile
+         InputStream is = new FileInputStream(filePath);
+	JsonReader jsonReader = Json.createReader(is);
+	JsonObject json = jsonReader.readObject();
+	jsonReader.close();
+	is.close();
 
+
+
+       instance.loadDataTest(data, filePath);
+       CSGData testData=(CSGData)data;
+       
+       
+       
+        assertEquals("CSE", testData.getSubject());
+        assertEquals(219, testData.getNumber());
+        assertEquals("Spring", testData.getSemester());
+        assertEquals(2017, testData.getYear());
+        assertEquals("Computer Science III", testData.getTitle());
+        assertEquals("Ritwik Banerjee", testData.getInstructorName());
+        assertEquals("http://www3.cs.stonybrook.edu/~rbanerjee/", testData.getInstructorHome());
+       // assertEquals("../CSE219/public", json.getString(JSON_COURSE_STYTLE_SHEET));
+        assertEquals("../CSE219/public",testData.getExportDirTest());
+        assertEquals("./templates/CSE219", testData.getSiteTempleDirTest());
+      //  assertEquals("CSE", json.getString(JSON_COURSE_FIRST_IMAGE_ADDRESS));
+       // assertEquals("CSE", json.getString(JSON_COURSE_SECOND_IMAGE_ADDRESS));
+       // assertEquals("CSE", json.getString(JSON_COURSE_THIRD_IMAGE_ADDRESS));
+        assertTrue( json.getBoolean(JSON_COURSE_JSHOME));
+        assertTrue( json.getBoolean(JSON_COURSE_JSSYLLABUS));
+        assertTrue( json.getBoolean(JSON_COURSE_JSSCHEDULE));
+        assertTrue( json.getBoolean(JSON_COURSE_JSHWS));
+        assertTrue( json.getBoolean(JSON_COURSE_JSPROJECTS));
+        
+        
+        
+        
+        
+         assertEquals("Jane Doe",testData.getTeachingAssistants().get(0).getName());
+         assertEquals("jane.doe@yahoo.com",testData.getTeachingAssistants().get(0).getEmail());
+         assertEquals("true",testData.getTeachingAssistants().get(0).getUnder());
+         
+         assertEquals( "Joe Shmo",testData.getTeachingAssistants().get(1).getName());
+         assertEquals( "joe.shmo@yale.edu",testData.getTeachingAssistants().get(1).getEmail());
+         assertEquals( "false",testData.getTeachingAssistants().get(1).getUnder());
+         
+         
+         
+//         System.out.println(testData.getCellKeyTest("MONDAY", "11_00am"));
+//       
+       assertEquals("Jane Dow", testData.getOfficeHoursTest().get(testData.getCellKeyTest("MONDAY", "11_00am")));
+////         assertEquals("11_00am", testOfficeHousArray.get(0).getTime());
+////         assertEquals("Jane Dow", testOfficeHousArray.get(0).getName());
+//         
+     assertEquals("Jane Dow", testData.getOfficeHoursTest().get(testData.getCellKeyTest("WEDNESDAY", "7_00pm")));
+////           assertEquals("WEDNESDAY", testOfficeHousArray.get(3).getDay());
+////         assertEquals("7_00pm", testOfficeHousArray.get(3).getTime());
+////         assertEquals("Jane Dow", testOfficeHousArray.get(3).getName());
+////         
+     assertEquals("Joe Shmo", testData.getOfficeHoursTest().get(testData.getCellKeyTest("TUESDAY", "12_00pm")));
+////           assertEquals("TUESDAY", testOfficeHousArray.get(1).getDay());
+////         assertEquals("12_00pm", testOfficeHousArray.get(1).getTime());
+////         assertEquals("Joe Shmo", testOfficeHousArray.get(1).getName());
+////         
+//
+    assertEquals("Joe Shmo", testData.getOfficeHoursTest().get(testData.getCellKeyTest("MONDAY", "5_00pm")));
+////           assertEquals("MONDAY", testOfficeHousArray.get(2).getDay());
+////         assertEquals("5_00pm", testOfficeHousArray.get(2).getTime());
+////         assertEquals("Joe Shmo", testOfficeHousArray.get(2).getName());
+//            
+
+
+      
+         
+         
+      
+        assertEquals("R02", testData.getRecitations().get(0).getSection());
+        assertEquals("McKenna", testData.getRecitations().get(0).getInstructor());
+         assertEquals( "Wed 3:30pm-4:23pm", testData.getRecitations().get(0).getDaytime());
+        assertEquals("Old CS 2114", testData.getRecitations().get(0).getLocation());
+         assertEquals("bill", testData.getRecitations().get(0).getFirstTa());
+        assertEquals("mike", testData.getRecitations().get(0).getSecondTa());
+        
+           assertEquals("R05", testData.getRecitations().get(1).getSection());
+        assertEquals("Banerjee", testData.getRecitations().get(1).getInstructor());
+         assertEquals("Tues 5:30pm-6:23pm", testData.getRecitations().get(1).getDaytime());
+        assertEquals("Old CS 2114", testData.getRecitations().get(1).getLocation());
+         assertEquals("pol", testData.getRecitations().get(1).getFirstTa());
+        assertEquals( "amy", testData.getRecitations().get(1).getSecondTa());
+        
+        
+        
+        assertEquals("2017-04-03", testData.getStartingDateTest());
+        assertEquals("2017-05-05", testData.getEndingDateTest());
+        
+        
+        
+     
+        assertEquals("Holiday", testData.getScheduleItems().get(0).getType());
+        assertEquals("2017-04-19", testData.getScheduleItems().get(0).getDate());
+        assertEquals("whole day", testData.getScheduleItems().get(0).getTime());
+        assertEquals("SNOW DAY", testData.getScheduleItems().get(0).getTitle());
+        assertEquals( "..", testData.getScheduleItems().get(0).getTopic());
+        assertEquals( "..", testData.getScheduleItems().get(0).getLink());
+        assertEquals( "..", testData.getScheduleItems().get(0).getCriteria());
+        
+        
+          assertEquals("HW", testData.getScheduleItems().get(1).getType());
+        assertEquals("2017-04-27", testData.getScheduleItems().get(1).getDate());
+        assertEquals("8:00", testData.getScheduleItems().get(1).getTime());
+        assertEquals("hw1", testData.getScheduleItems().get(1).getTitle());
+        assertEquals( "game play", testData.getScheduleItems().get(1).getTopic());
+        assertEquals( "www.google.com", testData.getScheduleItems().get(1).getLink());
+        assertEquals( "nothing", testData.getScheduleItems().get(1).getCriteria());
+        
+       
+        
+        
+        
+     
+         assertEquals("Atomic Comics" ,testData.getTeams().get(0).getTeamname());
+        assertEquals("552211", testData.getTeams().get(0).getColor());
+         assertEquals("ffffff",  testData.getTeams().get(0).getTextcolor());
+        assertEquals("http://atomiccomic.com", testData.getTeams().get(0).getLink());
+        
+          assertEquals("C4 Comics" ,testData.getTeams().get(1).getTeamname());
+        assertEquals("235399", testData.getTeams().get(1).getColor());
+         assertEquals("ffffff",  testData.getTeams().get(1).getTextcolor());
+        assertEquals("http://c4-comics.com", testData.getTeams().get(1).getLink());
+        
+        
+      
+         assertEquals("Beau", testData.getStudents().get(0).getFirstName());
+     assertEquals("Brummell", testData.getStudents().get(0).getLastName());
+      assertEquals("Atomic Comics", testData.getStudents().get(0).getTeamString());
+     assertEquals("Lead Designer", testData.getStudents().get(0).getRole());
+     
+        
+     
+        assertEquals("Jane", testData.getStudents().get(1).getFirstName());
+     assertEquals( "Doe", testData.getStudents().get(1).getLastName());
+      assertEquals("C4 Comics", testData.getStudents().get(1).getTeamString());
+     assertEquals( "Lead Programmer",testData.getStudents().get(1).getRole());
+      
+        
+        
+        
+        
+        
+    }
     /**
      * Test of exportData method, of class CSGFiles.
      */

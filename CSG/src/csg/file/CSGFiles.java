@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -208,7 +210,11 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             if (selection.equals(AppYesNoCancelDialogSingleton.YES)){
 
     TestSave test =new TestSave(app);
-    test.saveDataWithHardCode(dataManager);
+            try {
+                test.saveDataWithHardCode(dataManager);
+            } catch (ParseException ex) {
+                Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
+            }
     filePath=TEST_PATH;
             }  
 	// NOW BUILD THE TA JSON OBJCTS TO SAVE
@@ -609,12 +615,13 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
      */
     public void loadDataTest(AppDataComponent data, String filePath) throws IOException{
         
-       CSGData dataManager = (CSGData)data;
+     CSGData dataManager = (CSGData)data;
         
        
 	// LOAD THE JSON FILE WITH ALL THE DATA
 	//JsonObject json = loadJSONFile(TEST_PATH);
         JsonObject json = loadJSONFile(filePath);
+        
         
         
         
@@ -629,52 +636,48 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         String courseTitle=json.getString(JSON_COURSE_TITLE);
         String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
         String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
-        
-      //dataManager.initCourseInfo(""+courseSubject,""+courseNumber,""+courseSemster,""+courseYear,""+courseTitle,""+courseInstructorName,""+courseInstructorHome);
+    
+      dataManager.initCourseInfoTest(""+courseSubject,""+courseNumber,""+courseSemster,""+courseYear,""+courseTitle,""+courseInstructorName,""+courseInstructorHome);
         
           
           
         String styleSheet=json.getString(JSON_COURSE_STYTLE_SHEET);
-      //  dataManager.setStyleSheet(""+styleSheet);
+        dataManager.setStyleSheetTest(""+styleSheet);
           
        
         
         String exportDir=json.getString(JSON_COURSE_EXPORT_DIR);
-      //  dataManager.setExportDir(""+exportDir);
+        dataManager.setExportDirTest(""+exportDir);
          
           
           
         String templeDir=json.getString(JSON_COURSE_TEMPLATE_DIR);
-       // dataManager.setSiteTempleDir(""+templeDir);
+        dataManager.setSiteTempleDirTest(""+templeDir);
         
         String firstA=json.getString(JSON_COURSE_FIRST_IMAGE_ADDRESS);
-      //  dataManager.setFirstImageAdd(""+firstA);
+        dataManager.setFirstImageAddTest(""+firstA);
         
         String secondA=json.getString(JSON_COURSE_SECOND_IMAGE_ADDRESS);
-     //   dataManager.setSecondImageAdd(""+secondA);
+        dataManager.setSecondImageAddTest(""+secondA);
         
         String thirdA=json.getString(JSON_COURSE_THIRD_IMAGE_ADDRESS);
-     //   dataManager.setThirdImageAdd(""+thirdA);
-     
-     
-     
+        dataManager.setThirdImageAddTest(""+thirdA);
 //dataManager.setStyleSheet(styleSheet);
 //        Boolean courseJhome=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHOME));
 //        Boolean courseJsyllabus=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSYLLABUS));
 //        Boolean courseJschedule=Boolean.parseBoolean(json.getString(JSON_COURSE_JSSCHEDULE));
 //        Boolean courseJhws=Boolean.parseBoolean(json.getString(JSON_COURSE_JSHWS));
 //        Boolean courseJproject=Boolean.parseBoolean(json.getString(JSON_COURSE_JSPROJECTS));
-
        Boolean courseJhome=json.getBoolean(JSON_COURSE_JSHOME);
         Boolean courseJsyllabus=json.getBoolean(JSON_COURSE_JSSYLLABUS);
         Boolean courseJschedule=json.getBoolean(JSON_COURSE_JSSCHEDULE);
         Boolean courseJhws=json.getBoolean(JSON_COURSE_JSHWS);
         Boolean courseJproject=json.getBoolean(JSON_COURSE_JSPROJECTS);
-//        dataManager.setJhome(courseJhome);
-//        dataManager.setJsyllabus(courseJsyllabus);
-//        dataManager.setJschedule(courseJschedule);
-//        dataManager.setJhws(courseJhws);
-//        dataManager.setJproject(courseJproject);
+        dataManager.setJhome(courseJhome);
+        dataManager.setJsyllabus(courseJsyllabus);
+        dataManager.setJschedule(courseJschedule);
+        dataManager.setJhws(courseJhws);
+        dataManager.setJproject(courseJproject);
         
         
        
@@ -684,7 +687,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 	String startHour = json.getString(JSON_START_HOUR);
         String endHour = json.getString(JSON_END_HOUR);
 
-//         dataManager.initHours(""+startHour, ""+endHour);
+         dataManager.initHoursTest(""+startHour, ""+endHour);
 
         // NOW RELOAD THE WORKSPACE WITH THE LOADED DATA
 //        app.getWorkspaceComponent().reloadWorkspace(app.getDataComponent());
@@ -701,21 +704,24 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             JsonObject jsonTA = jsonTAArray.getJsonObject(i);
             String name = jsonTA.getString(JSON_NAME);
             String email = jsonTA.getString(JSON_EMAIL);
-            System.out.println(jsonTA.getString(JSON_UNDERGRAD_TAS));
+            
             
            Boolean underGrad=Boolean.parseBoolean(jsonTA.getString(JSON_UNDERGRAD_TAS));
            
-         //   dataManager.addTA(name, email,underGrad);
+            dataManager.addTA(""+name, ""+email,underGrad);
         }
 
         // AND THEN ALL THE OFFICE HOURS
+        
+        
         JsonArray jsonOfficeHoursArray = json.getJsonArray(JSON_OFFICE_HOURS);
         for (int i = 0; i < jsonOfficeHoursArray.size(); i++) {
             JsonObject jsonOfficeHours = jsonOfficeHoursArray.getJsonObject(i);
             String day = jsonOfficeHours.getString(JSON_DAY);
             String time = jsonOfficeHours.getString(JSON_TIME);
             String name = jsonOfficeHours.getString(JSON_NAME);
-        //    dataManager.addOfficeHoursReservation(day, time, name);
+            dataManager.addOfficeHoursReservationTest(""+day, ""+time, ""+name);
+           // System.out.println(dataManager.getOfficeHoursTest().get(dataManager.getCellKeyTest(""+day, ""+time)));
         }
         
         //recitation part////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -730,19 +736,19 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String initlocation=jsonRecitation.getString(JSON_RECITATION_LOCATION);
             String initfirstTA=jsonRecitation.getString(JSON_RECITATION_FIRST_TA);
             String initsecondTA=jsonRecitation.getString(JSON_RECITATION_SECOND_TA);
-          //  dataManager.addRecitation(initsection, initinstructor, initdaytime, initlocation, initfirstTA, initsecondTA);
+            dataManager.addRecitation(""+initsection, ""+initinstructor, ""+initdaytime, ""+initlocation, ""+initfirstTA, ""+initsecondTA);
         }
         
         
         //schedule part
         String scheduleCalendarStarting=json.getString(JSON_SCHEDULE_CALENDAR_STARTING);
          String scheduleCalendarEnding=json.getString(JSON_SCHEDULE_CALENDAR_ENDING);
-//         try {
-//       //      dataManager.initCalendar(scheduleCalendarStarting,scheduleCalendarEnding);
-//         } catch (ParseException ex) {
-//             Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
-//         }
-//             
+         try {
+             dataManager.initCalendarTest(""+scheduleCalendarStarting,""+scheduleCalendarEnding);
+         } catch (ParseException ex) {
+             Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
+         }
+             
         
         JsonArray jsonScheduleArray=json.getJsonArray(JSON_SCHEDULE);
           for (int i=0;i<jsonScheduleArray.size();i++){
@@ -752,10 +758,10 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String inittime=jsonSchedule.getString(JSON_SCHEDULE_TIME);
             String inittitle=jsonSchedule.getString(JSON_SCHEDULE_TITLE);
             String inittopic=jsonSchedule.getString(JSON_SCHEDULE_TOPIC);
-            String initLink=jsonSchedule.getString(JSON_SCHEDULE_LINK);
+              String initLink=jsonSchedule.getString(JSON_SCHEDULE_LINK);
             String initCriteria=jsonSchedule.getString(JSON_SCHEDULE_CRITERIA);
      
-         //   dataManager.addScheduleItem(inittype,initdate,inittitle,inittopic);
+            dataManager.addScheduleItem(""+inittype,""+initdate,""+inittime,""+inittitle,""+inittopic,""+initLink,""+initCriteria);
         }
           
           //project part////////////////////////////////////////////////////////////////////////////////////////////////
@@ -769,7 +775,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             
               
      
-        //    dataManager.addTeam(initname,initcolor,inittextcolor,initlink);
+            dataManager.addTeam(""+initname,""+initcolor,""+inittextcolor,""+initlink);
         }
         
              JsonArray jsonStudentArray=json.getJsonArray(JSON_STUDENT);
@@ -780,8 +786,15 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String initTeam=jsonStudent.getString(JSON_PROJECT_STUDENT_TEAM);
             String initRole=jsonStudent.getString(JSON_PROJECT_STUDENT_ROLE);
      
-         //   dataManager.addStudent(initFirstname,initLastname,initTeam,initRole);
+            dataManager.addStudent(""+initFirstname,""+initLastname,""+initTeam,""+initRole);
     }
+          
+          
+          
+          
+          
+          
+    
           
           
           
