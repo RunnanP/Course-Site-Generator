@@ -10,6 +10,7 @@ import csg.CSGAppProp;
 import static csg.CSGAppProp.*;
 import csg.data.CSGData;
 import csg.data.Recitation;
+import csg.data.ScheduleItem;
 import csg.data.TeachingAssistant;
 import csg.file.CSGFiles;
 import csg.file.CSGTimeSlot;
@@ -17,9 +18,14 @@ import static csg.style.CSGStyle.*;
 import djf.ui.AppGUI;
 import djf.ui.AppMessageDialogSingleton;
 import djf.ui.AppYesNoCancelDialogSingleton;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -91,6 +97,7 @@ public class CSGController {
             
             // ADD THE NEW TA TO THE DATA
               data.addTA(name, email);
+              //addTAtoReciCombobox(name);
            // jTPS_Transaction transaction=new AddingTA_Transaction(data, name, email);
             //this.getJTPS().addTransaction(transaction);
             
@@ -129,7 +136,10 @@ public class CSGController {
           if(  emailValidator.validate(newEmail)){
             
              data.removeTA(taName);
+         //    removeTAfromReciCombobox(taName);
                  data.addTA(newName, newEmail);
+         //   addTAtoReciCombobox(newName);
+            
                   HashMap<String, Label> labels = workspace.getOfficeHoursGridTACellLabels();
                ArrayList<Label> jtpsarray=new ArrayList<Label>();
                 for (Label label : labels.values()) {
@@ -550,7 +560,7 @@ public class CSGController {
 //                 }
           }else {
               AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	    dialog.show(props.getProperty(WRONG_TA_EMAIL_TITLE), props.getProperty(WRONG_TA_EMAIL_MESSAGE)); 
+	 //   dialog.show(props.getProperty(WRONG_TA_EMAIL_TITLE), props.getProperty(WRONG_TA_EMAIL_MESSAGE)); 
           }
          
      }
@@ -631,8 +641,223 @@ public class CSGController {
      
      
     //schedule part///////////////////////////////////////////////////////////////
+     public void handleEditScheduleItem() throws ParseException{
+         
+                CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView scheduleItemTable = workspace.getScheduleItemsTable();
+            Object selectedItem = scheduleItemTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+        if (selectedItem != null) {
+               ScheduleItem sche = (ScheduleItem)selectedItem;
+               
+                String type = sche.getType();
+                String date=sche.getDate();
+                String time=sche.getTime();
+                String title=sche.getTitle();
+                String topic=sche.getTopic();
+                String link=sche.getLink();
+                String criteria=sche.getCriteria();
+                
+                
+        
+        
+                 workspace.getTypeComboBox().setValue(type);
+                  SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+       if(!date.equals("null")){
+       Date endDate=sdf.parse(date);
+      workspace.getDatePicker().setValue(LocalDate.of(endDate.getYear()+1900, endDate.getMonth()+1, endDate.getDate()));
+       }else{
+           workspace.getDatePicker().setValue(null);
+       }
+                // workspace.getDatePicker().setValue(null);
+        workspace.getTimeTextField().setText(time);
+       workspace.getTitleTextField().setText(title);
+        workspace.getTopicTextField().setText(topic);
+        workspace.getLinkTextField().setText(link);
+        workspace.getCriteriaTextField().setText(criteria);
+             
+                markWorkAsEdited();
+            
+              // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
+              
+               
+//                 if(!((taName.equals(newName))&&(taEmail.equals(newEmail)))){
+//                 markWorkAsEdited();
+//                 }
+          }else {
+              AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	 //   dialog.show(props.getProperty(WRONG_TA_EMAIL_TITLE), props.getProperty(WRONG_TA_EMAIL_MESSAGE)); 
+          }
+         
+     }
+     
+     public void handleScheduleItemKeyPress(KeyCode code){
+            if (code == KeyCode.DELETE ) {
+                CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGScheduleWorkspace workspace=temp.getScheduleWorkspace();
+            TableView scheduleTable = workspace.getScheduleItemsTable();
+        
+            Object selectedItem = scheduleTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                ScheduleItem sche = (ScheduleItem)selectedItem;
+                 CSGData data = (CSGData)app.getDataComponent();
+              //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
+                data.removeScheduleItem(sche);
+                
+           workspace.getTypeComboBox().setValue("");
+       
+       workspace.getDatePicker().setValue(null);
+        workspace.getTimeTextField().setText("");
+       workspace.getTitleTextField().setText("");
+        workspace.getTopicTextField().setText("");
+        workspace.getLinkTextField().setText("");
+        workspace.getCriteriaTextField().setText("");
+             
+                markWorkAsEdited();
+            }
+        }
+         
+     }
+     public void handleScheduleItemRemove(){
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGScheduleWorkspace workspace=temp.getScheduleWorkspace();
+            TableView scheduleTable = workspace.getScheduleItemsTable();
+        
+            Object selectedItem = scheduleTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+          
+                ScheduleItem sche = (ScheduleItem)selectedItem;
+               
+                String type = sche.getType();
+                String date=sche.getDate();
+                String time=sche.getTime();
+                String title=sche.getTitle();
+                String topic=sche.getTopic();
+                String link=sche.getLink();
+                String criteria=sche.getCriteria();
+//               String jtpstaname=taName;
+//                String jtpstaemail=ta.getEmail();
+                CSGData data = (CSGData)app.getDataComponent();
+              //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
+                data.removeScheduleItem(sche);
+                
+           workspace.getTypeComboBox().setValue("");
+       workspace.getDatePicker().setValue(null);
+        workspace.getTimeTextField().setText("");
+       workspace.getTitleTextField().setText("");
+        workspace.getTopicTextField().setText("");
+        workspace.getLinkTextField().setText("");
+        workspace.getCriteriaTextField().setText("");
+                
+                // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
+           
+                // WE'VE CHANGED STUFF
+                //jTPS_Transaction transaction=new RemovingTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                //this.getJTPS().addTransaction(transaction);
+                markWorkAsEdited();
+            }
+     }
+     public void handleScheduleItemUpdate(){
+         
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView scheduleItemsTable = workspace.getScheduleItemsTable();
+            Object selectedItem = scheduleItemsTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+       
+        
+         String type=workspace.getTypeComboBox().getValue()+"";
+         String date=workspace.getDatePicker().getValue().toString()+"";
+         String time=workspace.getTimeTextField().getText()+"";
+         String title=workspace.getTitleTextField().getText()+"";
+         String topic=workspace.getTopicTextField().getText()+"";
+         String link=workspace.getLinkTextField().getText()+"";
+         String criteria=workspace.getCriteriaTextField().getText()+"";
+         ScheduleItem newschedule=new ScheduleItem(type, date, time, title,topic,link,criteria);
+          if (selectedItem == null) {
+         data.getScheduleItems().add(newschedule);
+         
+          workspace.getTypeComboBox().setValue("");
+       workspace.getDatePicker().setValue(null);
+        workspace.getTimeTextField().setText("");
+       workspace.getTitleTextField().setText("");
+        workspace.getTopicTextField().setText("");
+        workspace.getLinkTextField().setText("");
+        workspace.getCriteriaTextField().setText("");
+        }else{
+         ScheduleItem oldsche=(ScheduleItem)selectedItem;
+          data.getScheduleItems().remove(oldsche);
+         data.getScheduleItems().add(newschedule);
+         
+          workspace.getTypeComboBox().setValue("");
+       workspace.getDatePicker().setValue(null);
+        workspace.getTimeTextField().setText("");
+       workspace.getTitleTextField().setText("");
+        workspace.getTopicTextField().setText("");
+        workspace.getLinkTextField().setText("");
+        workspace.getCriteriaTextField().setText("");
+            
+            
+        }
+       markWorkAsEdited();
+         
+         
+         
+         
+     }
+     
+     public void handleScheduleClear(){
+          PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+       workspace.getTypeComboBox().setValue("");
+       
+       workspace.getDatePicker().setValue(null);
+        workspace.getTimeTextField().setText("");
+       workspace.getTitleTextField().setText("");
+        workspace.getTopicTextField().setText("");
+        workspace.getLinkTextField().setText("");
+        workspace.getCriteriaTextField().setText("");
+     }
+     
+     
+     
      
      //project part////////////////////////////////
       
   
+     
+     
+     
+     
+     
+     
+     
+     
+     //connect to recitation workspace
+//     
+//             public void addTAtoReciCombobox(String inittaName){
+//            CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+//            CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+//            workspace.getFirstTAComboBox().getItems().add(inittaName);
+//            workspace.getSecondTAComboBox().getItems().add(inittaName);
+//            
+//        }
+//             
+//             public void removeTAfromReciCombobox(String inittaname){
+//                 
+//                  CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+//            CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+//           //  workspace.getFirstTAComboBox().getItems()
+//         //   for (String k:workspace.getFirstTAComboBox().getItems()){
+//           //     if(k==inittaname)
+//            workspace.getFirstTAComboBox().getItems().remove(inittaname);
+//         //   }
+//            workspace.getSecondTAComboBox().getItems().remove(inittaname);
+//                 
+//             }
 }

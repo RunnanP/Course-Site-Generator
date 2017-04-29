@@ -241,6 +241,51 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           topicTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
           linkTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
           criteriaTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.7));
+          
+          
+          
+          
+          
+          
+          
+          
+          controller=new CSGController(app);
+          
+          
+          
+          
+          
+          
+          
+          scheduleItemsTable.setFocusTraversable(true);
+          scheduleItemsTable.setEditable(true);
+          scheduleItemsTable.setOnMouseClicked(e->{
+          
+              controller.handleEditScheduleItem();
+          
+          });
+          
+          
+          scheduleItemsTable.setOnKeyPressed(e->{
+               controller.handleScheduleItemKeyPress(e.getCode());
+          });
+          
+          subButton.setOnAction(e->{
+                controller.handleScheduleItemRemove();
+          
+          });
+          
+          addupdateButton.setOnAction(e->{
+             controller.handleScheduleItemUpdate();
+          });
+          
+          clearButton.setOnAction(e->{
+              controller.handleScheduleClear();
+          });
+          
+          
+          
+          
     }
 
    

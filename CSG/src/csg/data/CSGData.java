@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.file.CSGTimeSlot;
 import csg.workspace.CSGCourseWorkspace;
+import csg.workspace.CSGRecitationWorkspace;
 import csg.workspace.CSGScheduleWorkspace;
 import csg.workspace.CSGTAWorkspace;
 import csg.workspace.CSGWorkspace;
@@ -917,6 +918,8 @@ public class CSGData implements AppDataComponent{
         // ADD THE TA
         if (!containsTA(initName, initEmail)) {
             teachingAssistants.add(ta);
+            addTAtoReciCombobox(initName);
+            
         }
 
         // SORT THE TAS
@@ -931,6 +934,7 @@ public class CSGData implements AppDataComponent{
         // ADD THE TA
         if (!containsTA(initName, initEmail)) {
             teachingAssistants.add(ta);
+            addTAtoReciCombobox(initName);
         }
 
         // SORT THE TAS
@@ -942,6 +946,7 @@ public class CSGData implements AppDataComponent{
         for (TeachingAssistant ta : teachingAssistants) {
             if (name.equals(ta.getName())) {
                 teachingAssistants.remove(ta);
+                removeTAfromReciCombobox(name);
                 return;
             }
         }
@@ -1063,6 +1068,7 @@ public class CSGData implements AppDataComponent{
         if(time.contains("12"))
             milHour -= 12;
         row += (milHour - startHour) * 2;
+        
         if (time.contains("_30"))
             row += 1;
         return getCellKey(col, row);
@@ -1253,7 +1259,7 @@ public class CSGData implements AppDataComponent{
         String cellKey = getCellKeyTest(day, time);
       //  officeHoursTest.put(cellKey,taName);
         toggleTAOfficeHoursTest(cellKey, taName);
-                  System.out.println("1111111111111");
+             
     }
         
         
@@ -1330,6 +1336,26 @@ public class CSGData implements AppDataComponent{
             System.out.println(scheduleItem.getTitle());
           //  Collections.sort(scheduleItems);
             }
+              
+              
+              
+              
+              
+//              public void removeScheduleItem(String inittype,String initdate,String inittime,String inittitle,String inittopic,String initlink,String initcriteria){
+//                  for (ScheduleItem sche : scheduleItems) {
+//            if (inittype.equals(sche.getType())) {
+//                scheduleItems.remove(sche);
+//                return;
+//            }
+//        }
+//              }
+//              
+              
+              public void removeScheduleItem(ScheduleItem sche){
+                  
+                  scheduleItems.remove(sche);
+              }
+              
         //project part//////////////////////////////////////////////////////////////////////
         public void addTeam(String initName,String initColor,String initTextColor,String initLink){
             Team team=new Team(initName,initColor,initTextColor,initLink);
@@ -1365,5 +1391,29 @@ public class CSGData implements AppDataComponent{
             }
             return false;
         }
+        
+        
+        //connect to workspace
+        //connect to recitation part
+        public void addTAtoReciCombobox(String inittaName){
+            CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+            CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+            workspace.getFirstTAComboBox().getItems().add(inittaName);
+            workspace.getSecondTAComboBox().getItems().add(inittaName);
+            
+        }
+        
+           public void removeTAfromReciCombobox(String inittaname){
+                 
+                  CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+            CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+           //  workspace.getFirstTAComboBox().getItems()
+         //   for (String k:workspace.getFirstTAComboBox().getItems()){
+           //     if(k==inittaname)
+            workspace.getFirstTAComboBox().getItems().remove(inittaname);
+         //   }
+            workspace.getSecondTAComboBox().getItems().remove(inittaname);
+                 
+             }
 
 }

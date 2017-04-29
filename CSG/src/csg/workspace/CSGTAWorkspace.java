@@ -362,7 +362,7 @@ controller = new CSGController(app);
             public void changed(ObservableValue ov, String t, String t1) {
                 if(t != null && t1 != null){
                     if(startTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour()){
-                        System.out.println("1");
+                        
                         controller.changeTime();
                     }
                 }
@@ -374,7 +374,7 @@ controller = new CSGController(app);
             public void changed(ObservableValue ov, String t, String t1) {
                 if(t != null && t1 != null)
                     if(endTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
-                          System.out.println("2");
+                          
                         controller.changeTime();
             }
         });
