@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGAppProp;
 import static csg.CSGAppProp.*;
 import csg.data.CSGData;
+import csg.data.Recitation;
 import csg.data.TeachingAssistant;
 import csg.file.CSGFiles;
 import csg.file.CSGTimeSlot;
@@ -47,8 +48,12 @@ public class CSGController {
         
     }
 
+    //course part//////////////////////////////////////////////////////////////////////////////////////
     
-    //TA part
+    
+    
+    
+    //TA part///////////////////////////////////////////////////////////////////////////////////////////////
     public void handleAddTA() {
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGTAWorkspace workspace=temp.getTAWorkspace();
@@ -450,9 +455,184 @@ public class CSGController {
     }
 
 
+     ////////recitation part/////////////////////////////////////////////////////////////////
+     public void handleRecitationUpdate(){
+            CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView recitationTable = workspace.getRecitationTable();
+            Object selectedItem = recitationTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+       
+        
+         String initsection=workspace.getSectionTextField().getText()+"";
+         String initinstructor=workspace.getInstructorTextField().getText()+"";
+         String initdaytime=workspace.getDaytimeTextField().getText()+"";
+         String initlocation=workspace.getLocationTextField().getText()+"";
+         String initFirstta=workspace.getFirstTAComboBox().getValue()+"";
+         String initSecondta=workspace.getSecondTAComboBox().getValue()+"";
+         Recitation newreci=new Recitation(initsection, initinstructor,initdaytime,initlocation,initFirstta,initSecondta);
+          if (selectedItem == null) {
+         data.getRecitations().add(newreci);
+         
+         workspace.getSectionTextField().setText("");
+       workspace.getInstructorTextField().setText("");
+        workspace.getDaytimeTextField().setText("");
+       workspace.getLocationTextField().setText("");
+        workspace.getFirstTAComboBox().setValue("");
+        workspace.getSecondTAComboBox().setValue("");
+        }else{
+         Recitation oldreci=(Recitation)selectedItem;
+         data.getRecitations().remove(oldreci);
+         data.getRecitations().add(newreci);
+         
+         
+            workspace.getSectionTextField().setText("");
+       workspace.getInstructorTextField().setText("");
+        workspace.getDaytimeTextField().setText("");
+       workspace.getLocationTextField().setText("");
+        workspace.getFirstTAComboBox().setValue("");
+        workspace.getSecondTAComboBox().setValue("");
+            
+            
+        }
+       markWorkAsEdited();
+        }
      
      
-    
+     public void handleRecitationClear(){
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+        CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+       workspace.getSectionTextField().setText("");
+       workspace.getInstructorTextField().setText("");
+        workspace.getDaytimeTextField().setText("");
+       workspace.getLocationTextField().setText("");
+        workspace.getFirstTAComboBox().setValue("");
+        workspace.getSecondTAComboBox().setValue("");
+      
+        
+     }
+     
+     public void handleEditRecitation(){
+           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView recitationTable = workspace.getRecitationTable();
+            Object selectedItem = recitationTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+        if (selectedItem != null) {
+                Recitation reci = (Recitation)selectedItem;
+                String section = reci.getSection();
+                String instructor=reci.getInstructor();
+                String daytime=reci.getDaytime();
+                String location=reci.getLocation();
+                String firstTa=reci.getFirstTa();
+                String secondTa=reci.getSecondTa();
+                
+                
+        
+        
+                 
+                 workspace.getSectionTextField().setText(""+section);
+                 workspace.getInstructorTextField().setText(""+instructor);
+             //    workspace.getSectionTextField().requestFocus();
+                 workspace.getDaytimeTextField().setText(""+daytime);
+                 workspace.getLocationTextField().setText(""+location);
+                 workspace.getFirstTAComboBox().setValue(""+firstTa);
+                 workspace.getSecondTAComboBox().setValue(""+secondTa);
+            
+              // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
+              
+               
+//                 if(!((taName.equals(newName))&&(taEmail.equals(newEmail)))){
+//                 markWorkAsEdited();
+//                 }
+          }else {
+              AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(WRONG_TA_EMAIL_TITLE), props.getProperty(WRONG_TA_EMAIL_MESSAGE)); 
+          }
+         
+     }
+     
+     
+     public void handleRecitationKeyPress(KeyCode code){
+             if (code == KeyCode.DELETE ) {
+            // GET THE TABLE
+            CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGRecitationWorkspace workspace=temp.getRecitationWorkspace();
+            TableView reciTable = workspace.getRecitationTable();
+            
+            // IS A TA SELECTED IN THE TABLE?
+            Object selectedItem = reciTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                Recitation reci = (Recitation)selectedItem;
+               
+                String section = reci.getSection();
+//               String jtpstaname=taName;
+//                String jtpstaemail=ta.getEmail();
+                CSGData data = (CSGData)app.getDataComponent();
+                data.removeRecitation(section);
+                
+                // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
+           
+                // WE'VE CHANGED STUFF
+                //jTPS_Transaction transaction=new RemovingTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                //this.getJTPS().addTransaction(transaction);
+                markWorkAsEdited();
+            }
+        }
+     }
+     
+     
+     public void handleRecitationRemove(){
+         
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGRecitationWorkspace workspace=temp.getRecitationWorkspace();
+            TableView reciTable = workspace.getRecitationTable();
+            
+            // IS A TA SELECTED IN THE TABLE?
+            Object selectedItem = reciTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                Recitation reci = (Recitation)selectedItem;
+               
+                String section = reci.getSection();
+//               String jtpstaname=taName;
+//                String jtpstaemail=ta.getEmail();
+                CSGData data = (CSGData)app.getDataComponent();
+                data.removeRecitation(section);
+                
+                
+                    workspace.getSectionTextField().setText("");
+                 workspace.getInstructorTextField().setText("");
+             //    workspace.getSectionTextField().requestFocus();
+                 workspace.getDaytimeTextField().setText("");
+                 workspace.getLocationTextField().setText("");
+                 workspace.getFirstTAComboBox().setValue("");
+                 workspace.getSecondTAComboBox().setValue("");
+            
+                
+                // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
+           
+                // WE'VE CHANGED STUFF
+                //jTPS_Transaction transaction=new RemovingTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                //this.getJTPS().addTransaction(transaction);
+                markWorkAsEdited();
+            }
+         
+         
+         
+         
+         
+     }
+     
+     
+     
+    //schedule part///////////////////////////////////////////////////////////////
+     
+     //project part////////////////////////////////
       
   
 }

@@ -63,8 +63,8 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     TextField locationTextField;
     Label firstTALabel;
     Label secondTALabel;
-    ComboBox<TeachingAssistant> firstTAComboBox;
-    ComboBox<TeachingAssistant> secondTAComboBox;
+    ComboBox<String> firstTAComboBox;
+    ComboBox<String> secondTAComboBox;
     
     HBox addRecitationBox;
     Button RecitationPartAddUpdateButton;
@@ -152,8 +152,8 @@ public class CSGRecitationWorkspace implements WorkspacePart{
          
          firstTALabel=new Label(supervisingTAText+":");
          secondTALabel=new Label(supervisingTAText+":");
-         firstTAComboBox=new ComboBox<TeachingAssistant>();
-         secondTAComboBox=new ComboBox<TeachingAssistant>();
+         firstTAComboBox=new ComboBox<>();
+         secondTAComboBox=new ComboBox<>();
          
          HBox fifthHBox=new HBox(firstTALabel,firstTAComboBox);
          HBox sixthHBox=new HBox(secondTALabel,secondTAComboBox);
@@ -214,6 +214,46 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           instructorTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
           daytimeTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
           locationTextField.prefWidthProperty().bind(app.getGUI().getWindow().widthProperty().multiply(.3));
+  
+           
+          
+          
+          controller=new CSGController(app);
+          
+          
+          
+          
+          
+          
+          
+           RecitationPartAddUpdateButton.setOnAction(e->{
+              controller.handleRecitationUpdate();
+           
+           });
+           
+           RecitationPartClearrButton.setOnAction(e->{
+               controller.handleRecitationClear();
+           });
+             recitationTable.setEditable(true);
+          
+          recitationTable.setFocusTraversable(true);
+          recitationTable.setOnMouseClicked(e ->{
+              controller.handleEditRecitation();
+          });
+          
+       
+          recitationTable.setOnKeyPressed(e ->{
+              controller.handleRecitationKeyPress(e.getCode());
+          });
+           
+          subButton.setOnAction(e->{
+                controller.handleRecitationRemove();
+          
+          
+          
+          });
+    
+    
     }
 
     @Override
@@ -405,19 +445,19 @@ public class CSGRecitationWorkspace implements WorkspacePart{
         this.secondTALabel = secondTALabel;
     }
 
-    public ComboBox<TeachingAssistant> getFirstTAComboBox() {
+    public ComboBox<String> getFirstTAComboBox() {
         return firstTAComboBox;
     }
 
-    public void setFirstTAComboBox(ComboBox<TeachingAssistant> firstTAComboBox) {
+    public void setFirstTAComboBox(ComboBox<String> firstTAComboBox) {
         this.firstTAComboBox = firstTAComboBox;
     }
 
-    public ComboBox<TeachingAssistant> getSecondTAComboBox() {
+    public ComboBox<String> getSecondTAComboBox() {
         return secondTAComboBox;
     }
 
-    public void setSecondTAComboBox(ComboBox<TeachingAssistant> secondTAComboBox) {
+    public void setSecondTAComboBox(ComboBox<String> secondTAComboBox) {
         this.secondTAComboBox = secondTAComboBox;
     }
 
