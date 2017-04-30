@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import properties_manager.PropertiesManager;
 import static djf.settings.AppPropertyType.*;
 import static djf.settings.AppStartupConstants.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +53,7 @@ public abstract class AppTemplate extends Application {
      * of the components used by the app in the proper order according
      * to the particular app's dependencies.
      */
-    public abstract void buildAppComponentsHook();
+    public abstract void buildAppComponentsHook() throws ParseException;
     
     // COMPONENT ACCESSOR METHODS
 

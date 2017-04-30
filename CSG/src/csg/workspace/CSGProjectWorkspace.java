@@ -94,7 +94,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
     Label lastNameLabel;
     TextField lastNameTextField;
     Label teamsLabel;
-    ComboBox<Team> teamsComboBox;
+    ComboBox<String> teamsComboBox;
     Label roleLabel;
     TextField roleTextField;
     HBox studentsAddBox;
@@ -353,11 +353,67 @@ public class CSGProjectWorkspace implements WorkspacePart{
               System.out.println(red+" "+r);
              System.out.println(green+" "+g);
              System.out.println(blue+" "+b);
-        
-        
-        
+       
+          });
+          
+          
+          
+          controller=new CSGController(app);
+          
+          //team part
+          teamsAddUpdateButton.setOnAction(e->{
+          
+               controller.handleTeamUpdate();
           
           });
+          
+          teamsClearButton.setOnAction(e ->{
+              controller.handleTeamClear();
+          });
+          
+        subButtonTeams.setOnAction(e->{
+              controller.handleTeamRemove();
+        
+        });
+        
+        teamsTable.setEditable(true);
+        teamsTable.setFocusTraversable(true);
+        teamsTable.setOnMouseClicked(e->{
+             controller.handleEditTeam();
+        });
+        
+        teamsTable.setOnKeyPressed(e->{
+               controller.handleTeamKeyPress(e.getCode());
+        });
+        
+                  
+                  
+           //student part
+             studentAddUpdateButton.setOnAction(e->{
+          
+               controller.handleStudentUpdate();
+          
+          });
+          
+          studentClearButton.setOnAction(e ->{
+              controller.handleStudentClear();
+          });
+          
+        subButtonStudent.setOnAction(e->{
+              controller.handleStudentRemove();
+        
+        });
+        
+       studentsTable.setEditable(true);
+        studentsTable.setFocusTraversable(true);
+        studentsTable.setOnMouseClicked(e->{
+             controller.handleEditStudent();
+        });
+        
+        studentsTable.setOnKeyPressed(e->{
+               controller.handleStudentKeyPress(e.getCode());
+        });
+                  
     }
 
    @Override
@@ -725,11 +781,11 @@ public class CSGProjectWorkspace implements WorkspacePart{
         this.teamsLabel = teamsLabel;
     }
 
-    public ComboBox<Team> getTeamsComboBox() {
+    public ComboBox<String> getTeamsComboBox() {
         return teamsComboBox;
     }
 
-    public void setTeamsComboBox(ComboBox<Team> teamsComboBox) {
+    public void setTeamsComboBox(ComboBox<String> teamsComboBox) {
         this.teamsComboBox = teamsComboBox;
     }
 
@@ -780,5 +836,38 @@ public class CSGProjectWorkspace implements WorkspacePart{
     public void setProjectHeaderBox(HBox projectHeaderBox) {
         this.projectHeaderBox = projectHeaderBox;
     }
+
+    public ColorPicker getColorColorPicker() {
+        return colorColorPicker;
+    }
+
+    public void setColorColorPicker(ColorPicker colorColorPicker) {
+        this.colorColorPicker = colorColorPicker;
+    }
+
+    public Button getSubButtonTeams() {
+        return subButtonTeams;
+    }
+
+    public void setSubButtonTeams(Button subButtonTeams) {
+        this.subButtonTeams = subButtonTeams;
+    }
+
+    public Button getSubButtonStudent() {
+        return subButtonStudent;
+    }
+
+    public void setSubButtonStudent(Button subButtonStudent) {
+        this.subButtonStudent = subButtonStudent;
+    }
+
+    public ColorPicker getTextColorPicker() {
+        return textColorPicker;
+    }
+
+    public void setTextColorPicker(ColorPicker textColorPicker) {
+        this.textColorPicker = textColorPicker;
+    }
+    
     
 }

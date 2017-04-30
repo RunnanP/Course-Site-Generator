@@ -11,7 +11,9 @@ import static csg.CSGAppProp.*;
 import csg.data.CSGData;
 import csg.data.Recitation;
 import csg.data.ScheduleItem;
+import csg.data.Student;
 import csg.data.TeachingAssistant;
+import csg.data.Team;
 import csg.file.CSGFiles;
 import csg.file.CSGTimeSlot;
 import static csg.style.CSGStyle.*;
@@ -34,6 +36,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import properties_manager.PropertiesManager;
 
 /**
@@ -184,7 +187,8 @@ public class CSGController {
         workspace.getAddBox().getChildren().remove(workspace.getUpdateButton());
         workspace.getAddBox().getChildren().remove(workspace.getClearButton());
         workspace.getAddBox().getChildren().add(workspace.getAddButton());
-        
+                      TableView taTable = workspace.getTaTable();
+             taTable.getSelectionModel().clearSelection();
         
     
     }
@@ -520,6 +524,8 @@ public class CSGController {
        workspace.getLocationTextField().setText("");
         workspace.getFirstTAComboBox().setValue("");
         workspace.getSecondTAComboBox().setValue("");
+                      TableView reTable = workspace.getRecitationTable();
+             reTable.getSelectionModel().clearSelection();
       
         
      }
@@ -822,17 +828,344 @@ public class CSGController {
         workspace.getTopicTextField().setText("");
         workspace.getLinkTextField().setText("");
         workspace.getCriteriaTextField().setText("");
+                      TableView scheTable = workspace.getScheduleItemsTable();
+             scheTable.getSelectionModel().clearSelection();
      }
      
      
      
      
      //project part////////////////////////////////
+            //teams 
+             public void handleTeamUpdate(){
+                 
+                 
+                  CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView teamTable = workspace.getTeamsTable();
+            Object selectedItem = teamTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+       
+        
+         String name=workspace.getNameTextField().getText()+"";
+         String color=workspace.getColorColorPicker().getValue().toString().substring(4)+"";
+         String textcolor=workspace.getTextColorPicker().getValue().toString().substring(4)+"";
+         String link=workspace.getLinkTextField().getText()+"";
+       
+         Team newteam=new Team(name,color,textcolor,link);
+          if (selectedItem == null) {
+         data.addTeam(name,color,textcolor,link);
+         
+          workspace.getNameTextField().setText("");
+                            workspace.getColorColorPicker().setValue(null);
+                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getLinkTextField().setText("");
+        }else{
+         Team oldteam=(Team)selectedItem;
+         data.removeTeam(oldteam);
+         data.addTeam(name,color,textcolor,link);
+         
+         
+          workspace.getNameTextField().setText("");
+                            workspace.getColorColorPicker().setValue(null);
+                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getLinkTextField().setText("");
+            
+        }
+       markWorkAsEdited();
+                 
+                 
+                 
+             }
+             
+             
+             
+             
+             
+             
+             
+             public void handleTeamClear(){
+                           PropertiesManager props = PropertiesManager.getPropertiesManager();
+                     CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                    CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+                    
+                         workspace.getNameTextField().setText("");
+                            workspace.getColorColorPicker().setValue(null);
+                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getLinkTextField().setText("");
+             
+      TableView teamTable = workspace.getTeamsTable();
+             teamTable.getSelectionModel().clearSelection();
+                 
+             }
+             public void handleTeamRemove(){
+                              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGProjectWorkspace workspace=temp.getProjectWorkspace();
+            TableView teamsTable = workspace.getTeamsTable();
+        
+            Object selectedItem = teamsTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                Team te = (Team)selectedItem;
+                 CSGData data = (CSGData)app.getDataComponent();
+              //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
+                data.removeTeam(te);       
+        
+       
+            workspace.getNameTextField().setText("");
+                            workspace.getColorColorPicker().setValue(null);
+                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getLinkTextField().setText("");
+             
+                markWorkAsEdited();
+                 
+             }
+             }
+             
+             
+             
+             
+             
+             
+             public void handleEditTeam(){
+                 
+                   CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView teamsTable = workspace.getTeamsTable();
+            Object selectedItem = teamsTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+        if (selectedItem != null) {
+               Team te = (Team)selectedItem;
+               
+                String name=te.getTeamname();
+                String color=te.getColor();
+               int colorRed=te.getRed();
+                int colorBlue=te.getBlue();
+                int colorGreen=te.getGreen();
+                String textcolor=te.getTextcolor();
+                int textColorRed=te.getTextRed();
+                int textColorBlue=te.getTextBlue();
+                int textColorGreen=te.getTextGreen();
+                String link=te.getLink();
+                
+        
+        
+          
       
-  
+                // workspace.getDatePicker().setValue(null);
+        workspace.getNameTextField().setText(name);
+       workspace.getColorColorPicker().setValue(Color.rgb(colorRed, colorGreen, colorBlue));
+       workspace.getTextColorPicker().setValue(Color.rgb(textColorRed, textColorGreen, textColorBlue));
+        workspace.getLinkTextField().setText(link);
+             
+                markWorkAsEdited();
+            
+              // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
+              
+               
+//                 if(!((taName.equals(newName))&&(taEmail.equals(newEmail)))){
+//                 markWorkAsEdited();
+//                 }
+          }else {
+              AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	 //   dialog.show(props.getProperty(WRONG_TA_EMAIL_TITLE), props.getProperty(WRONG_TA_EMAIL_MESSAGE)); 
+          }
+                 
+             } 
+             
+             
+             
+             
+             
+             
+             
+             public void handleTeamKeyPress(KeyCode code){
+                 
+                  if (code == KeyCode.DELETE ) {
+                CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGProjectWorkspace workspace=temp.getProjectWorkspace();
+            TableView teamsTable = workspace.getTeamsTable();
+        
+            Object selectedItem = teamsTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                Team te = (Team)selectedItem;
+                 CSGData data = (CSGData)app.getDataComponent();
+              //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
+                data.removeTeam(te);       
+        
+       
+            workspace.getNameTextField().setText("");
+                            workspace.getColorColorPicker().setValue(null);
+                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getLinkTextField().setText("");
+             
+                markWorkAsEdited();
+            }
+        }
+                 
+             }
+           //student
+              public void handleStudentUpdate(){
+                  
+                  
+                          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView studentTable = workspace.getStudentsTable();
+            Object selectedItem = studentTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+       
+        
+         String firstname=workspace.getFirstNameTextField().getText()+"";
+         String lastname=workspace.getLastNameTextField().getText()+"";
+         String team=workspace.getTeamsComboBox().getValue()+"";
+         String role=workspace.getRoleTextField().getText()+"";
+       
+         Student newstu=new Student(firstname,lastname,team,role);
+          if (selectedItem == null) {
+         data.getStudents().add(newstu);
+         
+               workspace.getFirstNameTextField().setText("");
+                            workspace.getLastNameTextField().setText("");
+                            workspace.getTeamsComboBox().setValue("");
+                            workspace.getRoleTextField().setText("");
+        }else{
+         Student oldstu=(Student)selectedItem;
+         data.getStudents().remove(oldstu);
+         data.getStudents().add(newstu);
+         
+         
+             workspace.getFirstNameTextField().setText("");
+                            workspace.getLastNameTextField().setText("");
+                            workspace.getTeamsComboBox().setValue("");
+                            workspace.getRoleTextField().setText("");
+            
+        }
+       markWorkAsEdited();
+                 
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                 
+             }
+             public void handleStudentClear(){
+                        PropertiesManager props = PropertiesManager.getPropertiesManager();
+                     CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+                    CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+                    
+                         workspace.getFirstNameTextField().setText("");
+                            workspace.getLastNameTextField().setText("");
+                            workspace.getTeamsComboBox().setValue("");
+                            workspace.getRoleTextField().setText("");
+                            
+                            TableView stTable = workspace.getStudentsTable();
+             stTable.getSelectionModel().clearSelection();
+                            
+                 
+             }
+             public void handleStudentRemove(){
+                       CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGProjectWorkspace workspace=temp.getProjectWorkspace();
+            TableView studentsTable = workspace.getStudentsTable();
+        
+            Object selectedItem = studentsTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                Student st = (Student)selectedItem;
+                 CSGData data = (CSGData)app.getDataComponent();
+              //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
+                data.removeStudent(st);       
+        
+       
+              workspace.getFirstNameTextField().setText("");
+                            workspace.getLastNameTextField().setText("");
+                            workspace.getTeamsComboBox().setValue("");
+                            workspace.getRoleTextField().setText("");
+                markWorkAsEdited();
+             }
+                 
+             }
+             public void handleEditStudent(){
+                 
+                 
+                 
+                      CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+         CSGData data = (CSGData)app.getDataComponent();
+            TableView stuTable = workspace.getStudentsTable();
+            Object selectedItem = stuTable.getSelectionModel().getSelectedItem();
+             PropertiesManager props = PropertiesManager.getPropertiesManager();
+        if (selectedItem != null) {
+                Student st = (Student)selectedItem;
+               
+                String firstName=st.getFirstName()+"";
+                String lastName=st.getLastName()+"";
+                String team=st.getTeamString()+"";
+                String role=st.getRole()+"";
+                
+        
+        
+        
+      
+                // workspace.getDatePicker().setValue(null);
+        workspace.getFirstNameTextField().setText(firstName);
+       workspace.getLastNameTextField().setText(lastName);
+       workspace.getTeamsComboBox().setValue(team);
+       workspace.getRoleTextField().setText(role);
+             
+                markWorkAsEdited();
+            
+              // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
+              
+               
+//                 if(!((taName.equals(newName))&&(taEmail.equals(newEmail)))){
+//                 markWorkAsEdited();
+//                 }
+          }else {
+              AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	 //   dialog.show(props.getProperty(WRONG_TA_EMAIL_TITLE), props.getProperty(WRONG_TA_EMAIL_MESSAGE)); 
+          }
+                 
+                 
+                 
+                 
+                 
+                 
+             } 
+             public void handleStudentKeyPress(KeyCode code){
+                        
+                  if (code == KeyCode.DELETE ) {
+                CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+            CSGProjectWorkspace workspace=temp.getProjectWorkspace();
+            TableView studentsTable = workspace.getStudentsTable();
+        
+            Object selectedItem = studentsTable.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                // GET THE TA AND REMOVE IT
+                Student st = (Student)selectedItem;
+                 CSGData data = (CSGData)app.getDataComponent();
+              //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
+                data.removeStudent(st);       
+        
+       
+              workspace.getFirstNameTextField().setText("");
+                            workspace.getLastNameTextField().setText("");
+                            workspace.getTeamsComboBox().setValue("");
+                            workspace.getRoleTextField().setText("");
+                markWorkAsEdited();
+            }
+                 
+             }
      
-     
-     
+             }
      
      
      

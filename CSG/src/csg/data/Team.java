@@ -41,7 +41,7 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
     public int getRed(){
         try{
          String temp=getColor();
-        temp=temp.substring(4);
+        //temp=temp.substring(4);
         temp=temp.substring(0, 2);
         int r=Integer.parseInt(temp, 16);
         
@@ -54,7 +54,7 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
     public int getGreen(){
         try{
         String temp=getColor();
-        temp=temp.substring(4);
+       // temp=temp.substring(4);
         temp=temp.substring(2,4);
         int r=Integer.parseInt(temp, 16);
         
@@ -67,7 +67,7 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
     public int getBlue(){
         try{
          String temp=getColor();
-        temp=temp.substring(4);
+        //temp=temp.substring(4);
         temp=temp.substring(4);
         int r=Integer.parseInt(temp, 16);
         
@@ -76,6 +76,56 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
             return 0;
         }
     }
+    
+    
+    
+    
+    
+    
+    public int getTextRed(){
+               try{
+         String temp=getTextcolor();
+        //temp=temp.substring(4);
+        temp=temp.substring(0, 2);
+        int r=Integer.parseInt(temp, 16);
+        
+        return r;
+        }catch(Exception a){
+            return 0;
+        }
+        
+    }
+    
+    public int getTextGreen(){
+                try{
+        String temp=getTextcolor();
+     //   temp=temp.substring(4);
+        temp=temp.substring(2,4);
+        int r=Integer.parseInt(temp, 16);
+        
+        return r;
+        }catch(Exception a){
+            return 0;
+        }
+        
+    }
+    
+    public int getTextBlue(){
+        
+              try{
+        String temp=getTextcolor();
+      //  temp=temp.substring(4);
+        temp=temp.substring(4);
+        int r=Integer.parseInt(temp, 16);
+        
+        return r;
+        }catch(Exception a){
+            return 0;
+        }
+        
+    }
+    
+    
     
     
     public ArrayList<String> getStudentList() {

@@ -10,6 +10,7 @@ import csg.CSGAppProp;
 import csg.data.CSGData;
 import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
+import java.text.ParseException;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -44,13 +45,13 @@ public class CSGWorkspace extends AppWorkspaceComponent{
    Pane currentWorkspace;
    
    
-   public CSGWorkspace(CSGApp initApp,String k){
+   public CSGWorkspace(CSGApp initApp,String k) throws ParseException{
        app=initApp;
         PropertiesManager props=PropertiesManager.getPropertiesManager();
         controller=new CSGController(app);
        initAllWorkspaceParts();
    }
-    public CSGWorkspace(CSGApp initApp) {
+    public CSGWorkspace(CSGApp initApp) throws ParseException {
         app=initApp;
         PropertiesManager props=PropertiesManager.getPropertiesManager();
         controller=new CSGController(app);
@@ -149,7 +150,7 @@ public class CSGWorkspace extends AppWorkspaceComponent{
         
     }
     
-    public void initAllWorkspaceParts(){
+    public void initAllWorkspaceParts() throws ParseException{
           csgCourseWorkspace=new CSGCourseWorkspace(app);
           csgTAWorkspace=new CSGTAWorkspace(app);
           csgRecitationWorkspace=new CSGRecitationWorkspace(app);

@@ -10,6 +10,7 @@ import csg.file.CSGFiles;
 import csg.style.CSGStyle;
 import csg.workspace.CSGWorkspace;
 import djf.AppTemplate;
+import java.text.ParseException;
 import java.util.Locale;
 import static javafx.application.Application.launch;
 
@@ -27,7 +28,7 @@ public class CSGApp extends AppTemplate {
      * for use, since some may need others for initialization.
      */
     @Override
-    public void buildAppComponentsHook() {
+    public void buildAppComponentsHook() throws ParseException{
         // CONSTRUCT ALL FOUR COMPONENTS. NOTE THAT FOR THIS APP
         // THE WORKSPACE NEEDS THE DATA COMPONENT TO EXIST ALREADY
         // WHEN IT IS CONSTRUCTED, SO BE CAREFUL OF THE ORDER
@@ -43,7 +44,7 @@ public class CSGApp extends AppTemplate {
         dataComponent = new CSGData(app);
     }
     
-      public void setWorkspaceComponent(CSGApp app){
+      public void setWorkspaceComponent(CSGApp app) throws ParseException{
            workspaceComponent = new CSGWorkspace(app,"");
     }
         public void setFileComponent(CSGApp app){

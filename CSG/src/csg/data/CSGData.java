@@ -9,6 +9,7 @@ import csg.CSGApp;
 import csg.CSGAppProp;
 import csg.file.CSGTimeSlot;
 import csg.workspace.CSGCourseWorkspace;
+import csg.workspace.CSGProjectWorkspace;
 import csg.workspace.CSGRecitationWorkspace;
 import csg.workspace.CSGScheduleWorkspace;
 import csg.workspace.CSGTAWorkspace;
@@ -150,6 +151,19 @@ public class CSGData implements AppDataComponent{
     public void resetData() {
           startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
+        
+        setSubject("");
+        setNumber(0);
+        setSemester("");
+        setYear(0);
+        setTitle("");
+        setInstructorName("");
+        setInstructorHome("");
+        
+               
+        
+        
+        
         sitePages.clear();
         initSitePage();
         teachingAssistants.clear();
@@ -335,59 +349,134 @@ public class CSGData implements AppDataComponent{
     }
 
     public String getSubject() {
+               CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        subject=workspace.getSubjectComboBox().getValue()+"";
         return subject;
+        
+
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setSubject(String initsubject) {
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+       subject = initsubject;
+        workspace.getSubjectComboBox().setValue(subject);
+        
     }
 
     public int getNumber() {
-        return number;
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        if(workspace.getNumberComboBox().getValue()!=null){
+        number=workspace.getNumberComboBox().getValue();
+       return number;
+        }else{
+        return 0;
+        }
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setNumber(int initnumber) {
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        number=initnumber;
+        workspace.getNumberComboBox().setValue(number);
+        
     }
 
     public String getSemester() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        semester=workspace.getSemesterComboBox().getValue()+"";
+        
         return semester;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester;
+    public void setSemester(String initsemester) {
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        semester = initsemester;
+        workspace.getSemesterComboBox().setValue(semester);
+        
     }
 
     public int getYear() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        if(workspace.getYearComboBox().getValue()!=null){
+        year=workspace.getYearComboBox().getValue();
         return year;
+        }else{
+            return 0;
+        }
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYear(int inityear) {
+         
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        year = inityear;
+        workspace.getYearComboBox().setValue(year);
+        
     }
 
     public String getTitle() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+       title=workspace.getTitleTextField().getText()+"";
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String inittitle) {
+         
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        title=inittitle;
+        workspace.getTitleTextField().setText(title);
+        
     }
 
     public String getInstructorName() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        instructorName=workspace.getInstructorNameTextField().getText()+"";
         return instructorName;
     }
 
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
+    public void setInstructorName(String initinstructorName) {
+         
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        instructorName = initinstructorName;
+        workspace.getInstructorNameTextField().setText(instructorName);
+        
     }
 
     public String getInstructorHome() {
+         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        instructorHome=workspace.getInstructorHomeTextField().getText()+"";
         return instructorHome;
     }
 
-    public void setInstructorHome(String instructorHome) {
-        this.instructorHome = instructorHome;
+    public void setInstructorHome(String initinstructorHome) {
+        
+             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCsgCourseWorkspace();
+        
+        instructorHome = initinstructorHome;
+        workspace.getInstructorHomeTextField().setText(instructorHome);
+        
+        
+        
+        
+    
     }
 
     
@@ -1361,6 +1450,7 @@ public class CSGData implements AppDataComponent{
             Team team=new Team(initName,initColor,initTextColor,initLink);
             if (!containsTeam(initName)){
                 teams.add(team);
+                addTeamtoProjectCombobox(initName);
             }
         //    Collections.sort(teams);
         }
@@ -1392,6 +1482,17 @@ public class CSGData implements AppDataComponent{
             return false;
         }
         
+        public void removeTeam(Team team){
+             removeTeamfromProjectCombobox(team.getTeamname());
+            teams.remove(team);
+           
+        }
+        
+        
+        public void removeStudent(Student stu){
+            students.remove(stu);
+        }
+        
         
         //connect to workspace
         //connect to recitation part
@@ -1415,5 +1516,22 @@ public class CSGData implements AppDataComponent{
             workspace.getSecondTAComboBox().getItems().remove(inittaname);
                  
              }
+           
+           
+           
+           
+        public void addTeamtoProjectCombobox(String initteamname){
+            CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+            CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+            workspace.getTeamsComboBox().getItems().add(initteamname);
+          
+            
+        }   
+        public void removeTeamfromProjectCombobox(String initteamname){
+                 CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+              CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+            workspace.getTeamsComboBox().getItems().remove(initteamname);
+            
+        }
 
 }

@@ -150,6 +150,33 @@ public class CSGCourseWorkspace implements WorkspacePart{
          basePane=new ScrollPane(secondBasePane);
          //basePane.getChildren().add(secondBasePane);
          
+         
+         controller=new CSGController(app);
+         exportDirChangeButton.setOnAction(e->{
+               controller.handleChangeExportDir();
+         });
+         
+         selectTemplateDirButton.setOnAction(e->{
+               controller.handleSelectTempleDir();
+         
+         });
+         
+         firstChangeButton.setOnAction(e->{
+              controller.handleChangeFirstImage();
+         });
+         
+         secondChangeButton.setOnAction(e->{
+              controller.handleChangeSecondImage();
+         });
+         
+         thirdChangeButton.setOnAction(e->{
+               controller.handleChangeThirdImage();
+         
+         
+         });
+         
+         
+         
      }
 
    private void initTopPane(){
@@ -164,10 +191,16 @@ public class CSGCourseWorkspace implements WorkspacePart{
          subjectLabel=new Label(subjectLabelText);
          subjectComboBox=new ComboBox<String>();
          subjectComboBox.setPrefWidth(250);
+         
+         
+              
+               
          numberLabel=new Label(numberLabelText);
          numberComboBox=new ComboBox<Integer>();
          numberComboBox.setPrefWidth(250);
-         
+                 for (int i=100;i<=500;i++){
+                     numberComboBox.getItems().add(i);
+                 }
          firstHBox=new HBox();
          HBox aspace=new HBox();
          aspace.setMinWidth(50);
@@ -186,9 +219,16 @@ public class CSGCourseWorkspace implements WorkspacePart{
          semesterLabel=new Label(semesterLabelText);
          semesterComboBox=new ComboBox<String>();
          semesterComboBox.setPrefWidth(250);
+               semesterComboBox.getItems().add("Spring");
+               semesterComboBox.getItems().add("Summer");
+               semesterComboBox.getItems().add("Fall");
+               semesterComboBox.getItems().add("Winter");
          yearLabel=new Label(yearLabelText);
          yearComboBox=new ComboBox<Integer>();
          yearComboBox.setPrefWidth(250);
+                for (int i=2000;i<=2030;i++){
+                     yearComboBox.getItems().add(i);
+                 }
          
          secondHBox=new HBox();
             aspace=new HBox();

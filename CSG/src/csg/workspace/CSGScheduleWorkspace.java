@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -91,7 +93,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
    
    
    
-   public CSGScheduleWorkspace(CSGApp initapp) {
+   public CSGScheduleWorkspace(CSGApp initapp) throws ParseException {
         app=initapp;
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         
@@ -261,7 +263,11 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           scheduleItemsTable.setEditable(true);
           scheduleItemsTable.setOnMouseClicked(e->{
           
-              controller.handleEditScheduleItem();
+            try {
+                controller.handleEditScheduleItem();
+            } catch (ParseException ex) {
+                Logger.getLogger(CSGScheduleWorkspace.class.getName()).log(Level.SEVERE, null, ex);
+            }
           
           });
           
