@@ -1060,17 +1060,21 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 	JsonWriter jsonWriter = writerFactory.createWriter(sw);
 	jsonWriter.writeObject(dataManagerJSO);
 	jsonWriter.close();
- 
-	
-	OutputStream os = new FileOutputStream(filePath);
+      
+        
+        String k=dataManager.getExportDir();
+	OutputStream os = new FileOutputStream(k);
+	//OutputStream os = new FileOutputStream(filePath);
         //OutputStream os = new FileOutputStream(TEST_EXPORT_PATH);//////////////////////////////////////////
 	JsonWriter jsonFileWriter = Json.createWriter(os);
         
 	jsonFileWriter.writeObject(dataManagerJSO);
        
 	String prettyPrinted = sw.toString();
-    
-	PrintWriter pw = new PrintWriter(filePath);
+        
+        
+        PrintWriter pw = new PrintWriter(k);
+	//PrintWriter pw = new PrintWriter(filePath);
         //PrintWriter pw = new PrintWriter(TEST_EXPORT_PATH);/////////////////////////////////////////////
 	pw.write(prettyPrinted);
 	pw.close();

@@ -153,6 +153,23 @@ public enum CSGAppProp {
         START_OVER_END_TITLE,
         START_OVER_END_MESSAGE,
         OFFICE_HOURS_REMOVED_TITLE,
-        OFFICE_HOURS_REMOVED_MESSAGE
+        OFFICE_HOURS_REMOVED_MESSAGE,
+        
+        
+        
+        
+        //diago
+        CHOOSE_EXPORT_DIR,
+        CHOOSE_TEMPLE_DIR,
+        WRONG_RECITATION_TITLE,
+        WRONG_RECITATION_MESSAGE,
+        WRONG_SCHEDULEITEM_TITLE,
+        WRONG_SCHEDULEITEM_MESSAGE,
+        WRONG_TEAM_TITLE,
+        WRONG_TEAM_MESSAGE,
+        WRONG_STUDENT_TITLE,
+        WRONG_STUDENT_MESSAGE
+        
+        
   
 }

@@ -199,6 +199,22 @@
             <property name="WORKSPACE_STATE_BUTTON_RECITATION_PART_TEXT"   value="辅导课信息"></property>
             <property name="WORKSPACE_STATE_BUTTON_SCHEDULE_PART_TEXT"   value="时间表信息"></property>
             <property name="WORKSPACE_STATE_BUTTON_PROJECT_PART_TEXT"   value="项目信息"></property>
+
+
+
+
+
+
+             <property name="CHOOSE_EXPORT_DIR"   value="选择输出地址"></property>
+            <property name="CHOOSE_TEMPLE_DIR"   value="选择例子地址"></property>
+            <property name="WRONG_RECITATION_TITLE"   value="错误的辅导课"></property>
+            <property name="WRONG_RECITATION_MESSAGE"   value="已经有相同的辅导课了"></property>
+            <property name="WRONG_SCHEDULEITEM_TITLE"   value="错误的课程表项目"></property>
+            <property name="WRONG_SCHEDULEITEM_MESSAGE"   value="已经有相同的课程项目了"></property>
+            <property name="WRONG_TEAM_TITLE"   value="错误的团队"></property>
+            <property name="WRONG_TEAM_MESSAGE"   value="已经有相同的团队"></property>
+            <property name="WRONG_STUDENT_TITLE"   value="错误的学生"></property>
+            <property name="WRONG_STUDENT_MESSAGE"   value="已经有相同的学生"></property>
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

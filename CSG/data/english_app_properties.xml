@@ -200,6 +200,24 @@
             <property name="WORKSPACE_STATE_BUTTON_SCHEDULE_PART_TEXT"   value="Schedule Data"></property>
             <property name="WORKSPACE_STATE_BUTTON_PROJECT_PART_TEXT"   value="Project Data"></property>
        
+
+
+
+
+         <property name="CHOOSE_EXPORT_DIR"   value="Choose export dir"></property>
+            <property name="CHOOSE_TEMPLE_DIR"   value="Choose temple dir"></property>
+            <property name="WRONG_RECITATION_TITLE"   value="wrong recitation"></property>
+            <property name="WRONG_RECITATION_MESSAGE"   value="Already have the same section"></property>
+            <property name="WRONG_SCHEDULEITEM_TITLE"   value="wrong schedule item"></property>
+            <property name="WRONG_SCHEDULEITEM_MESSAGE"   value="Already have the same schedule item in the same day"></property>
+            <property name="WRONG_TEAM_TITLE"   value="wrong team"></property>
+            <property name="WRONG_TEAM_MESSAGE"   value="Already have the same team"></property>
+            <property name="WRONG_STUDENT_TITLE"   value="wrong student"></property>
+            <property name="WRONG_STUDENT_MESSAGE"   value="Already have the same student"></property>
+
+
+       
+        
           
            
     </property_list>

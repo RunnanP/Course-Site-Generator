@@ -17,15 +17,22 @@ import csg.data.Team;
 import csg.file.CSGFiles;
 import csg.file.CSGTimeSlot;
 import static csg.style.CSGStyle.*;
+import static djf.settings.AppPropertyType.LOAD_WORK_TITLE;
+import static djf.settings.AppStartupConstants.PATH_WORK;
+import static djf.settings.AppStartupConstants.*;
+import static djf.settings.AppPropertyType.*;
 import djf.ui.AppGUI;
 import djf.ui.AppMessageDialogSingleton;
 import djf.ui.AppYesNoCancelDialogSingleton;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -37,6 +44,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import properties_manager.PropertiesManager;
 
 /**
@@ -58,8 +67,199 @@ public class CSGController {
     }
 
     //course part//////////////////////////////////////////////////////////////////////////////////////
+    public void handleChangeExportDir() throws IOException{
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        DirectoryChooser fc = new DirectoryChooser();
+        fc.setInitialDirectory(new File(PATH_WORK));
+	fc.setTitle(props.getProperty(CHOOSE_EXPORT_DIR));
+        File selectedFile = fc.showDialog(app.getGUI().getWindow());
+        
+        if(selectedFile!=null){
+            
+            
+            
+            try{
+            String path=selectedFile.getAbsolutePath();
+            CSGData data = (CSGData)app.getDataComponent();
+            data.setExportDir(path);
+              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCourseWorkspace();
+        workspace.setExporDirDisplayAddressString(path);
+            }catch(Exception e) {
+                
+              
+                
+            }   
+        
+        
+        
+        }
+        
+     
+        
+    }
+    
+    public void handleSelectTempleDir(){
+        
+        
+        
+               PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        DirectoryChooser fc = new DirectoryChooser();
+        fc.setInitialDirectory(new File(PATH_WORK));
+	fc.setTitle(props.getProperty(CHOOSE_TEMPLE_DIR));
+        File selectedFile = fc.showDialog(app.getGUI().getWindow());
+        
+        if(selectedFile!=null){
+            
+            
+            
+            try{
+            String path=selectedFile.getPath();
+            CSGData data = (CSGData)app.getDataComponent();
+            data.setSiteTempleDir(path);
+              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        CSGCourseWorkspace workspace=temp.getCourseWorkspace();
+        workspace.setTemplatesDirLabel(path);
+         System.out.println(path);
+        
+                 File f1=new File(path+"\\\\index.html");
+                if(f1.exists()){
+                    data.setJhome(true);
+                }else {
+                   data.setJhome(false);
+               }
+                
+                
+                File f2=new File(path+"\\\\syllabus.html");
+               if(f2.exists()){
+                   data.setJsyllabus(true);
+               }else {
+                   data.setJsyllabus(false);
+               }
+                
+                File f3=new File(path+"\\\\schedule.html");
+                if(f3.exists()){
+                   data.setJschedule(true);
+               }else {
+                   data.setJschedule(false);
+               }
+                
+                
+                
+                
+                
+                File f4=new File(path+"\\\\hws.html");
+                if(f4.exists()){
+                   data.setJhws(true);
+               }else {
+                   data.setJhws(false);
+               }
+                
+                File f5=new File(path+"\\\\projects.html");
+                if(f5.exists()){
+                   data.setJproject(true);
+               }else {
+                   data.setJproject(false);
+               }
+                
+                
+                
+                File f6=new File(path+"\\\\css\\\\");
+                File flist[]=f6.listFiles();
+                for (File f:flist){
+                    if (!f.isDirectory()){
+                        if(f.getName().endsWith(".css")){
+                            workspace.getStyleSheetComboBox().getItems().add(f.getName());
+                        }
+                    }
+                    
+                }
+                
+               // System.out.println(f6.getName().endsWith(".html"));
+            }catch(Exception e) {
+                
+              
+                
+            }   
+        
+        markWorkAsEdited();
+        
+        }
+        
+    }
     
     
+    public void handleChangeFirstImage(){
+           PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        FileChooser fc = new FileChooser();
+        fc.setInitialDirectory(new File(PATH_WORK));
+	//fc.setTitle(props.getProperty(CHOOSE_EXPORT_DIR));
+        File selectedFile = fc.showOpenDialog(app.getGUI().getWindow());
+      
+        if(selectedFile!=null){
+              
+            String path=selectedFile.getAbsolutePath();
+            CSGData data = (CSGData)app.getDataComponent();
+            System.out.println(path);
+            //data.setFirstImageAdd("file:./images/2.png");
+            data.setFirstImageAdd("file:"+path);
+      
+        markWorkAsEdited();
+        
+        
+        }
+        
+    }
+    
+    public void handleChangeSecondImage(){
+        
+            PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        FileChooser fc = new FileChooser();
+        fc.setInitialDirectory(new File(PATH_WORK));
+	//fc.setTitle(props.getProperty(CHOOSE_EXPORT_DIR));
+        File selectedFile = fc.showOpenDialog(app.getGUI().getWindow());
+      
+        if(selectedFile!=null){
+              
+            String path=selectedFile.getAbsolutePath();
+            CSGData data = (CSGData)app.getDataComponent();
+            System.out.println(path);
+            //data.setFirstImageAdd("file:./images/2.png");
+            data.setSecondImageAdd("file:"+path);
+      
+        markWorkAsEdited();
+        
+        
+        }
+        
+    }
+    
+    public void handleChangeThirdImage(){
+                PropertiesManager props = PropertiesManager.getPropertiesManager();
+
+        FileChooser fc = new FileChooser();
+        fc.setInitialDirectory(new File(PATH_WORK));
+	//fc.setTitle(props.getProperty(CHOOSE_EXPORT_DIR));
+        File selectedFile = fc.showOpenDialog(app.getGUI().getWindow());
+      
+        if(selectedFile!=null){
+              
+            String path=selectedFile.getAbsolutePath();
+            CSGData data = (CSGData)app.getDataComponent();
+            System.out.println(path);
+            //data.setFirstImageAdd("file:./images/2.png");
+            data.setThirdImageAdd("file:"+path);
+      
+        
+        
+        markWorkAsEdited();
+        }
+        
+    }
     
     
     //TA part///////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,6 +320,10 @@ public class CSGController {
         }
     }
 
+    
+    
+    
+    
     public void handleUpdateTA() {
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGTAWorkspace workspace=temp.getCsgTAWorkspace();
@@ -487,14 +691,34 @@ public class CSGController {
          String initSecondta=workspace.getSecondTAComboBox().getValue()+"";
          Recitation newreci=new Recitation(initsection, initinstructor,initdaytime,initlocation,initFirstta,initSecondta);
           if (selectedItem == null) {
-         data.getRecitations().add(newreci);
+             ObservableList<Recitation> old=data.getRecitations();
+              
+              for(Recitation k:old){
+              
+              
+              if(k.getSection().equals(initsection)){
+                            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(WRONG_RECITATION_MESSAGE));  
+                  return;
+              }    
+             }
+                  
+                  data.getRecitations().add(newreci);
          
-         workspace.getSectionTextField().setText("");
-       workspace.getInstructorTextField().setText("");
-        workspace.getDaytimeTextField().setText("");
-       workspace.getLocationTextField().setText("");
-        workspace.getFirstTAComboBox().setValue("");
-        workspace.getSecondTAComboBox().setValue("");
+                            workspace.getSectionTextField().setText("");
+                                            workspace.getInstructorTextField().setText("");
+                                                 workspace.getDaytimeTextField().setText("");
+                                                workspace.getLocationTextField().setText("");
+                                    workspace.getFirstTAComboBox().setValue("");
+                                        workspace.getSecondTAComboBox().setValue("");
+                                        
+                            markWorkAsEdited();             
+            
+              
+              
+              
+              
+               
         }else{
          Recitation oldreci=(Recitation)selectedItem;
          data.getRecitations().remove(oldreci);
@@ -507,10 +731,10 @@ public class CSGController {
        workspace.getLocationTextField().setText("");
         workspace.getFirstTAComboBox().setValue("");
         workspace.getSecondTAComboBox().setValue("");
-            
+             markWorkAsEdited();
             
         }
-       markWorkAsEdited();
+      
         }
      
      
@@ -571,6 +795,8 @@ public class CSGController {
          
      }
      
+     
+  
      
      public void handleRecitationKeyPress(KeyCode code){
              if (code == KeyCode.DELETE ) {
@@ -785,7 +1011,20 @@ public class CSGController {
          String criteria=workspace.getCriteriaTextField().getText()+"";
          ScheduleItem newschedule=new ScheduleItem(type, date, time, title,topic,link,criteria);
           if (selectedItem == null) {
-         data.getScheduleItems().add(newschedule);
+                  
+              ObservableList<ScheduleItem> old=data.getScheduleItems();
+              for(ScheduleItem k:old){
+                  
+                  if(k.getType().equals(type)&&k.getDate().equals(date)){
+                       AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_SCHEDULEITEM_TITLE), props.getProperty(WRONG_SCHEDULEITEM_MESSAGE));  
+                  return;
+              }
+              }
+              
+              
+              
+                      data.getScheduleItems().add(newschedule);
          
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(null);
@@ -794,6 +1033,7 @@ public class CSGController {
         workspace.getTopicTextField().setText("");
         workspace.getLinkTextField().setText("");
         workspace.getCriteriaTextField().setText("");
+                  
         }else{
          ScheduleItem oldsche=(ScheduleItem)selectedItem;
           data.getScheduleItems().remove(oldsche);
@@ -855,12 +1095,24 @@ public class CSGController {
        
          Team newteam=new Team(name,color,textcolor,link);
           if (selectedItem == null) {
+              
+              ObservableList<Team> old=data.getTeams();
+              for(Team k:old){
+                if(k.getTeamname().equals(name)){
+                    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_TEAM_TITLE), props.getProperty(WRONG_TEAM_MESSAGE));  
+                  return;
+                }
+          }
+              
+              
          data.addTeam(name,color,textcolor,link);
          
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(null);
                          workspace.getTextColorPicker().setValue(null);
                             workspace.getLinkTextField().setText("");
+                            
         }else{
          Team oldteam=(Team)selectedItem;
          data.removeTeam(oldteam);
@@ -1026,7 +1278,15 @@ public class CSGController {
        
          Student newstu=new Student(firstname,lastname,team,role);
           if (selectedItem == null) {
-         data.getStudents().add(newstu);
+                ObservableList<Student> old=data.getStudents();
+              for (Student k:old){
+                  if(k.getFirstName().equals(firstname)&&k.getLastName().equals(lastname)){
+                         AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_STUDENT_TITLE), props.getProperty(WRONG_STUDENT_MESSAGE));  
+                  return;
+                  }
+              }
+              data.getStudents().add(newstu);
          
                workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");
@@ -1046,16 +1306,13 @@ public class CSGController {
         }
        markWorkAsEdited();
                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                 
+          
              }
+              
+              
+              
+              
+              
              public void handleStudentClear(){
                         PropertiesManager props = PropertiesManager.getPropertiesManager();
                      CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();

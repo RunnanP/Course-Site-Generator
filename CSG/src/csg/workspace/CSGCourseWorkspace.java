@@ -10,6 +10,9 @@ import csg.CSGAppProp;
 import csg.data.CSGData;
 import csg.data.SitePage;
 import csg.data.TeachingAssistant;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -153,7 +156,11 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          controller=new CSGController(app);
          exportDirChangeButton.setOnAction(e->{
-               controller.handleChangeExportDir();
+             try {
+                 controller.handleChangeExportDir();
+             } catch (IOException ex) {
+                 Logger.getLogger(CSGCourseWorkspace.class.getName()).log(Level.SEVERE, null, ex);
+             }
          });
          
          selectTemplateDirButton.setOnAction(e->{
@@ -373,7 +380,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
          //exporDirDisplayAddressLabel.setPrefWidth(200);
          HBox Q1=new HBox(exporDirDisplayAddressLabel);
       
-         Q1.setPrefWidth(500);
+         Q1.setPrefWidth(600);
          HBox Q0=new HBox();
          Q0.setPrefWidth(60);
          HBox spaceTest=new HBox();
@@ -518,7 +525,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
         t1=new HBox();
         fourthHBox=new HBox(styleSheetLabel,t1,styleSheetComboBox);
         t1.setPrefWidth(120);
-        styleSheetComboBox.setPrefWidth(150);
+        styleSheetComboBox.setPrefWidth(400);
         String noteDescriptionText=props.getProperty(CSGAppProp.NOTE_DESCRIPTION_TEXT.toString());
         noteDescription=new Text(noteDescriptionText);
         
@@ -1062,24 +1069,31 @@ public class CSGCourseWorkspace implements WorkspacePart{
         return firstImageLocation;
     }
 
-    public void setFirstImageLocation(String firstImageLocation) {
-        this.firstImageLocation = firstImageLocation;
+    public void setFirstImageLocation(String initfirstImageLocation) {
+        firstImageLocation = initfirstImageLocation;
+        Image temp=new Image(firstImageLocation);
+        setFirstImageView(temp);   
+      //  firstImageView.setImage(new Image(initfirstImageLocation));
     }
 
     public String getSecondImageLocation() {
         return secondImageLocation;
     }
 
-    public void setSecondImageLocation(String secondImageLocation) {
-        this.secondImageLocation = secondImageLocation;
+    public void setSecondImageLocation(String initsecondImageLocation) {
+        secondImageLocation = initsecondImageLocation;
+           Image temp=new Image(secondImageLocation);
+        setSecondImageView(temp);  
     }
 
     public String getThirdImageLocation() {
         return thirdImageLocation;
     }
 
-    public void setThirdImageLocation(String thirdImageLocation) {
-        this.thirdImageLocation = thirdImageLocation;
+    public void setThirdImageLocation(String initthirdImageLocation) {
+        thirdImageLocation = initthirdImageLocation;
+           Image temp=new Image(thirdImageLocation);
+        setThirdImageView(temp);  
     }
 
    
