@@ -711,17 +711,18 @@ public class CSGController {
              ObservableList<Recitation> old=data.getRecitations();
               
               for(Recitation k:old){
-              
-              
-              if(k.getSection().equals(initsection)){
+                    if(k.getSection().equals(initsection)){
                             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
-	           dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(WRONG_RECITATION_MESSAGE));  
-                  return;
-              }    
+                            dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(WRONG_RECITATION_MESSAGE));  
+                            return;
+                     }    
              }
                   
-                  data.getRecitations().add(newreci);
-         
+                  //data.getRecitations().add(newreci);
+                  jTPS_Transaction transaction=new Recitation_AddRecutation_Transaction(data, newreci,initsection);
+                  app.getJTPS().addTransaction(transaction);
+                  
+                  
                             workspace.getSectionTextField().setText("");
                                             workspace.getInstructorTextField().setText("");
                                                  workspace.getDaytimeTextField().setText("");
@@ -729,18 +730,20 @@ public class CSGController {
                                     workspace.getFirstTAComboBox().setValue("");
                                         workspace.getSecondTAComboBox().setValue("");
                                         
-                            markWorkAsEdited();             
+                            
+                                        
+                                        
+                                        markWorkAsEdited();             
             
-              
-              
-              
               
                
         }else{
          Recitation oldreci=(Recitation)selectedItem;
-         data.getRecitations().remove(oldreci);
-         data.getRecitations().add(newreci);
+//         data.getRecitations().remove(oldreci);
+//         data.getRecitations().add(newreci);
          
+         jTPS_Transaction transaction=new Recitation_ChangeRecitationInfo_Transaction(data, newreci,oldreci);
+                  app.getJTPS().addTransaction(transaction);
          
             workspace.getSectionTextField().setText("");
        workspace.getInstructorTextField().setText("");
@@ -832,8 +835,13 @@ public class CSGController {
 //               String jtpstaname=taName;
 //                String jtpstaemail=ta.getEmail();
                 CSGData data = (CSGData)app.getDataComponent();
-                data.removeRecitation(section);
+             //   data.removeRecitation(section);
+            // data.getRecitations().remove(reci);
                 
+              jTPS_Transaction transaction=new Recitation_RemoveRecitation_Transaction(data, reci);
+                  app.getJTPS().addTransaction(transaction);
+            
+            
                 // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
            
                 // WE'VE CHANGED STUFF
@@ -861,9 +869,14 @@ public class CSGController {
 //               String jtpstaname=taName;
 //                String jtpstaemail=ta.getEmail();
                 CSGData data = (CSGData)app.getDataComponent();
-                data.removeRecitation(section);
+               // data.removeRecitation(section);
                 
-                
+               data.getRecitations().remove(reci);
+               
+                 jTPS_Transaction transaction=new Recitation_RemoveRecitation_Transaction(data, reci);
+                  app.getJTPS().addTransaction(transaction);
+                  
+                  
                     workspace.getSectionTextField().setText("");
                  workspace.getInstructorTextField().setText("");
              //    workspace.getSectionTextField().requestFocus();
@@ -956,6 +969,9 @@ public class CSGController {
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
                 data.removeScheduleItem(sche);
                 
+                 jTPS_Transaction transaction=new Schedule_RemoveScheduleItem_Transaction(data, sche);
+                  app.getJTPS().addTransaction(transaction);
+                  
            workspace.getTypeComboBox().setValue("");
        
        workspace.getDatePicker().setValue(null);
@@ -991,7 +1007,10 @@ public class CSGController {
 //                String jtpstaemail=ta.getEmail();
                 CSGData data = (CSGData)app.getDataComponent();
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
-                data.removeScheduleItem(sche);
+              //  data.removeScheduleItem(sche);
+              
+               jTPS_Transaction transaction=new Schedule_RemoveScheduleItem_Transaction(data, sche);
+                  app.getJTPS().addTransaction(transaction);
                 
            workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(null);
@@ -1045,7 +1064,9 @@ public class CSGController {
               
               
               
-                      data.getScheduleItems().add(newschedule);
+                     // data.getScheduleItems().add(newschedule);
+                      jTPS_Transaction transaction=new Schedule_AddScheduleItem_Transaction(data, newschedule);
+                  app.getJTPS().addTransaction(transaction);
          
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(null);
@@ -1057,8 +1078,11 @@ public class CSGController {
                   
         }else{
          ScheduleItem oldsche=(ScheduleItem)selectedItem;
-          data.getScheduleItems().remove(oldsche);
-         data.getScheduleItems().add(newschedule);
+        //  data.getScheduleItems().remove(oldsche);
+        // data.getScheduleItems().add(newschedule);
+         
+          jTPS_Transaction transaction=new Schedule_ChangeScheduleItemInfo_Transaction(data, newschedule,oldsche);
+                  app.getJTPS().addTransaction(transaction);
          
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(null);
@@ -1137,9 +1161,11 @@ public class CSGController {
                   return;
                 }
           }
+              Team newte=new Team(name,color,textcolor,link);
               
-              
-         data.addTeam(name,color,textcolor,link);
+      //   data.addTeam(name,color,textcolor,link);
+         jTPS_Transaction transaction=new Project_AddTeam_Transaction(data, newte);
+            app.getJTPS().addTransaction(transaction);
          
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(Color.WHITE);
@@ -1148,9 +1174,12 @@ public class CSGController {
                             
         }else{
          Team oldteam=(Team)selectedItem;
-         data.removeTeam(oldteam);
-         data.addTeam(name,color,textcolor,link);
-         
+          Team newte=new Team(name,color,textcolor,link);
+      //   data.removeTeam(oldteam);
+      //   data.addTeam(name,color,textcolor,link);
+      
+           jTPS_Transaction transaction=new Project_ChangeTeamInfo_Transaction(data, newte,oldteam);
+            app.getJTPS().addTransaction(transaction);
          
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(Color.WHITE);
@@ -1184,6 +1213,9 @@ public class CSGController {
              teamTable.getSelectionModel().clearSelection();
                  
              }
+             
+             
+             
              public void handleTeamRemove(){
                               CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
             CSGProjectWorkspace workspace=temp.getProjectWorkspace();
@@ -1195,12 +1227,15 @@ public class CSGController {
                 Team te = (Team)selectedItem;
                  CSGData data = (CSGData)app.getDataComponent();
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
-                data.removeTeam(te);       
-        
+             //   data.removeTeam(te);       
+              
+                 jTPS_Transaction transaction=new Project_RemoveTeam_Transaction(data, te);
+            app.getJTPS().addTransaction(transaction);
+            
        
             workspace.getNameTextField().setText("");
-                            workspace.getColorColorPicker().setValue(null);
-                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getColorColorPicker().setValue(Color.WHITE);
+                         workspace.getTextColorPicker().setValue(Color.WHITE);
                             workspace.getLinkTextField().setText("");
              
                 markWorkAsEdited();
@@ -1279,12 +1314,15 @@ public class CSGController {
                 Team te = (Team)selectedItem;
                  CSGData data = (CSGData)app.getDataComponent();
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
-                data.removeTeam(te);       
+            //    data.removeTeam(te);    
+            
+            jTPS_Transaction transaction=new Project_RemoveTeam_Transaction(data, te);
+            app.getJTPS().addTransaction(transaction);
         
        
             workspace.getNameTextField().setText("");
-                            workspace.getColorColorPicker().setValue(null);
-                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getColorColorPicker().setValue(Color.WHITE);
+                         workspace.getTextColorPicker().setValue(Color.WHITE);
                             workspace.getLinkTextField().setText("");
              
                 markWorkAsEdited();
@@ -1319,17 +1357,25 @@ public class CSGController {
                   return;
                   }
               }
-              data.getStudents().add(newstu);
-         
+            //  data.getStudents().add(newstu);
+              
+              
+         jTPS_Transaction transaction=new Project_AddStudent_Transaction(data, newstu);
+            app.getJTPS().addTransaction(transaction);
+            
+            
                workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");
                             workspace.getTeamsComboBox().setValue("");
                             workspace.getRoleTextField().setText("");
         }else{
          Student oldstu=(Student)selectedItem;
-         data.getStudents().remove(oldstu);
-         data.getStudents().add(newstu);
+     //    data.getStudents().remove(oldstu);
+       //  data.getStudents().add(newstu);
          
+         
+         jTPS_Transaction transaction=new Project_ChangeStudentInfo_Transaction(data, newstu,oldstu);
+            app.getJTPS().addTransaction(transaction);
          
              workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");
@@ -1372,7 +1418,9 @@ public class CSGController {
                 Student st = (Student)selectedItem;
                  CSGData data = (CSGData)app.getDataComponent();
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
-                data.removeStudent(st);       
+           //     data.removeStudent(st);     
+              jTPS_Transaction transaction=new Project_RemoveStudent_Transaction(data, st);
+            app.getJTPS().addTransaction(transaction);
         
        
               workspace.getFirstNameTextField().setText("");
@@ -1443,8 +1491,9 @@ public class CSGController {
                 Student st = (Student)selectedItem;
                  CSGData data = (CSGData)app.getDataComponent();
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
-                data.removeStudent(st);       
-        
+               // data.removeStudent(st);       
+           jTPS_Transaction transaction=new Project_RemoveStudent_Transaction(data, st);
+            app.getJTPS().addTransaction(transaction);
        
               workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");

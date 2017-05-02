@@ -5,10 +5,30 @@
  */
 package csg.transaction;
 
+import csg.data.CSGData;
+import csg.data.ScheduleItem;
+import jtps.jTPS_Transaction;
+
 /**
  *
  * @author runnan
  */
-public class Schedule_AddScheduleItem_Transaction {
+public class Schedule_AddScheduleItem_Transaction implements jTPS_Transaction{
+  CSGData data;
+  ScheduleItem newschedule;
+  
+  public Schedule_AddScheduleItem_Transaction(CSGData initdata,ScheduleItem initnew){
+      data=initdata;
+      newschedule=initnew;
+  }
+    @Override
+    public void doTransaction() {
+       data.getScheduleItems().add(newschedule);
+    }
+
+    @Override
+    public void undoTransaction() {
+       data.getScheduleItems().remove(newschedule);
+    }
     
 }

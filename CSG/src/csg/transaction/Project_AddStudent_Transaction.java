@@ -5,10 +5,31 @@
  */
 package csg.transaction;
 
+import csg.data.CSGData;
+import csg.data.Student;
+import csg.data.Team;
+import jtps.jTPS_Transaction;
+
 /**
  *
  * @author runnan
  */
-public class Project_AddStudent_Transaction {
+public class Project_AddStudent_Transaction implements jTPS_Transaction{
+    CSGData data;
+    Student newstu;
+    
+    public Project_AddStudent_Transaction(CSGData initdata,Student initnew){
+        data=initdata;
+        newstu=initnew;
+    }
+    @Override
+    public void doTransaction() {
+        data.getStudents().add(newstu);
+    }
+
+    @Override
+    public void undoTransaction() {
+        data.getStudents().remove(newstu);
+    }
     
 }

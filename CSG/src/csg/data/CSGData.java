@@ -1457,6 +1457,14 @@ public class CSGData implements AppDataComponent{
             }
            Collections.sort(teams);
         }
+        
+        
+        public void addTeam(Team initTeam){
+            
+            teams.add(initTeam);
+                addTeamtoProjectCombobox(initTeam.getTeamname());
+                Collections.sort(teams);
+        }
         public boolean containsTeam(String initName){
             
             for (Team team:teams){
@@ -1476,6 +1484,10 @@ public class CSGData implements AppDataComponent{
             }
             Collections.sort(students);
         }
+        
+        
+     
+        
         public boolean containsStudent(String initFirstName,String initLastName){
             for(Student student:students){
                 if(student.getFirstName().equals(initFirstName)&& student.getLastName().equals(initLastName)){
