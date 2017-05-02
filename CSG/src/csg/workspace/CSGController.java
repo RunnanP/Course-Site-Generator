@@ -124,6 +124,10 @@ public class CSGController {
         workspace.setTemplatesDirLabel(path);
          System.out.println(path);
         
+         
+          CSGFiles file=(CSGFiles)app.getFileComponent();
+                file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
+         
                  File f1=new File(path+"\\\\index.html");
                 if(f1.exists()){
                     data.setJhome(true);
@@ -165,6 +169,9 @@ public class CSGController {
                }
                 
                 
+               
+                
+                
                 
                 File f6=new File(path+"\\\\css\\\\");
                 File flist[]=f6.listFiles();
@@ -176,14 +183,14 @@ public class CSGController {
                     }
                     
                 }
-                
+                  workspace.setTemplatesDirLabel(path);
                // System.out.println(f6.getName().endsWith(".html"));
             }catch(Exception e) {
                 
               
                 
             }   
-        
+   
         markWorkAsEdited();
         
         }
@@ -682,7 +689,11 @@ public class CSGController {
             Object selectedItem = recitationTable.getSelectionModel().getSelectedItem();
              PropertiesManager props = PropertiesManager.getPropertiesManager();
        
-        
+        if(workspace.getSectionTextField().getText()+""==""){
+             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(PROVE_RECITATION_SECTION));  
+                  return;
+        }
          String initsection=workspace.getSectionTextField().getText()+"";
          String initinstructor=workspace.getInstructorTextField().getText()+"";
          String initdaytime=workspace.getDaytimeTextField().getText()+"";
@@ -1003,7 +1014,11 @@ public class CSGController {
        
         
          String type=workspace.getTypeComboBox().getValue()+"";
-         String date=workspace.getDatePicker().getValue().toString()+"";
+         String date="0-0-0";
+         if(workspace.getDatePicker().getValue()!=null){
+             System.out.println(workspace.getDatePicker().getValue().toString()+"");
+          date=workspace.getDatePicker().getValue().toString()+"";
+         }
          String time=workspace.getTimeTextField().getText()+"";
          String title=workspace.getTitleTextField().getText()+"";
          String topic=workspace.getTopicTextField().getText()+"";
@@ -1086,11 +1101,23 @@ public class CSGController {
             TableView teamTable = workspace.getTeamsTable();
             Object selectedItem = teamTable.getSelectionModel().getSelectedItem();
              PropertiesManager props = PropertiesManager.getPropertiesManager();
-       
-        
-         String name=workspace.getNameTextField().getText()+"";
-         String color=workspace.getColorColorPicker().getValue().toString().substring(4)+"";
-         String textcolor=workspace.getTextColorPicker().getValue().toString().substring(4)+"";
+       String color="ffffff";
+       String textcolor="ffffff";
+       String name;
+        if(workspace.getNameTextField().getText()+""!=""){
+          name=workspace.getNameTextField().getText()+"";
+        }else{
+             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_TEAM_TITLE), props.getProperty(PROVE_TEAM_NAME));  
+                  return;
+        }
+         if(workspace.getColorColorPicker().getValue()!=null){
+          color=workspace.getColorColorPicker().getValue().toString().substring(2)+"";
+         
+         }
+          if(workspace.getTextColorPicker().getValue()!=null){
+         textcolor=workspace.getTextColorPicker().getValue().toString().substring(2)+"";
+          }
          String link=workspace.getLinkTextField().getText()+"";
        
          Team newteam=new Team(name,color,textcolor,link);
@@ -1109,8 +1136,8 @@ public class CSGController {
          data.addTeam(name,color,textcolor,link);
          
           workspace.getNameTextField().setText("");
-                            workspace.getColorColorPicker().setValue(null);
-                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getColorColorPicker().setValue(Color.WHITE);
+                         workspace.getTextColorPicker().setValue(Color.WHITE);
                             workspace.getLinkTextField().setText("");
                             
         }else{
@@ -1120,8 +1147,8 @@ public class CSGController {
          
          
           workspace.getNameTextField().setText("");
-                            workspace.getColorColorPicker().setValue(null);
-                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getColorColorPicker().setValue(Color.WHITE);
+                         workspace.getTextColorPicker().setValue(Color.WHITE);
                             workspace.getLinkTextField().setText("");
             
         }
@@ -1143,8 +1170,8 @@ public class CSGController {
                     CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
                     
                          workspace.getNameTextField().setText("");
-                            workspace.getColorColorPicker().setValue(null);
-                         workspace.getTextColorPicker().setValue(null);
+                            workspace.getColorColorPicker().setValue(Color.WHITE);
+                         workspace.getTextColorPicker().setValue(Color.WHITE);
                             workspace.getLinkTextField().setText("");
              
       TableView teamTable = workspace.getTeamsTable();

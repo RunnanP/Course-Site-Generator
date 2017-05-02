@@ -168,7 +168,14 @@ public enum CSGAppProp {
         WRONG_TEAM_TITLE,
         WRONG_TEAM_MESSAGE,
         WRONG_STUDENT_TITLE,
-        WRONG_STUDENT_MESSAGE
+        WRONG_STUDENT_MESSAGE,
+        
+        PROVE_TEAM_NAME,
+        PROVE_RECITATION_SECTION
+        
+        
+        
+      
         
         
   

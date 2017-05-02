@@ -25,8 +25,8 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
 
     public Team(String initname, String initcolor, String inittextcolor, String initlink) {
         teamname = new SimpleStringProperty(initname);
-        color=new SimpleStringProperty(initcolor);
-        textcolor = new SimpleStringProperty(inittextcolor);
+        color=new SimpleStringProperty(initcolor.substring(0,6));
+        textcolor = new SimpleStringProperty(inittextcolor.substring(0, 6));
         link = new SimpleStringProperty(initlink);
         studentList=new ArrayList<>();
        // initColor();
@@ -171,7 +171,7 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
     
     @Override
     public int compareTo(E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return getTeamname().compareTo(((Team)o).getTeamname());
     }
     
 }

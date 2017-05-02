@@ -214,8 +214,18 @@
             <property name="WRONG_TEAM_MESSAGE"   value="Already have the same team"></property>
             <property name="WRONG_STUDENT_TITLE"   value="wrong student"></property>
             <property name="WRONG_STUDENT_MESSAGE"   value="Already have the same student"></property>
+            
+
+     <property name="PROVE_TEAM_NAME"   value="You have to prove team name"></property>
+            <property name="PROVE_RECITATION_SECTION"   value="You have to prove recitation section"></property>
 
 
+
+
+            <property name="ABOUT_TITLE"   value="Software info"></property>
+            <property name="ABOUT_MESSAGE"   value="Course Site Generator, created by Runnan Pan"></property>
+
+         
        
         
           

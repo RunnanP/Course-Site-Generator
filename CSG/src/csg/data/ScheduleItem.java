@@ -9,6 +9,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -121,7 +123,26 @@ public class ScheduleItem <E extends Comparable<E>> implements Comparable<E>{
     
     @Override
     public int compareTo(E o) {
-       return 0;
+         try {
+             if(getMonth()>((ScheduleItem)o).getMonth()){
+                 return 1;
+             }else if(getMonth()<((ScheduleItem)o).getMonth()){
+                 return -1;
+             }else if(getDay()>((ScheduleItem)o).getDay()){
+                 return 1;
+             }else if(getDay()<((ScheduleItem)o).getDay()){
+                 return -1;
+             }else{
+                 return 0;
+             }
+         
+         
+         
+         
+         } catch (ParseException ex) {
+             Logger.getLogger(ScheduleItem.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return 0;
     }
     
 }

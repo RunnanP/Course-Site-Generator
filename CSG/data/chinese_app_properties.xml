@@ -215,6 +215,17 @@
             <property name="WRONG_TEAM_MESSAGE"   value="已经有相同的团队"></property>
             <property name="WRONG_STUDENT_TITLE"   value="错误的学生"></property>
             <property name="WRONG_STUDENT_MESSAGE"   value="已经有相同的学生"></property>
+
+
+<property name="PROVE_TEAM_NAME"   value="需要队伍名字"></property>
+            <property name="PROVE_RECITATION_SECTION"   value="需要编号"></property>
+
+             <property name="ABOUT_TITLE"   value="软件信息"></property>
+            <property name="ABOUT_MESSAGE"   value="潘润楠持有版权"></property>
+
+
+
+
     </property_list>
     <property_options_list>
         <property_options name="OFFICE_HOURS_TABLE_HEADERS">

@@ -10,6 +10,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import properties_manager.PropertiesManager;
 import djf.AppTemplate;
+import static djf.settings.AppPropertyType.ABOUT_MESSAGE;
+import static djf.settings.AppPropertyType.ABOUT_TITLE;
 import static djf.settings.AppPropertyType.LOAD_ERROR_MESSAGE;
 import static djf.settings.AppPropertyType.LOAD_ERROR_TITLE;
 import static djf.settings.AppPropertyType.LOAD_WORK_TITLE;
@@ -228,7 +230,7 @@ public class AppFileController {
         try {
             boolean continueToExport = true;
          
-                promptToExport();
+               promptToExport();
              // app.getFileComponent().exportData(app.getDataComponent(), "");
             
         } catch (IOException ioe) {
@@ -276,7 +278,9 @@ public class AppFileController {
     }
     
     public void handleAboutRequest(){
-        
+          PropertiesManager props = PropertiesManager.getPropertiesManager();
+          AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(ABOUT_TITLE), props.getProperty(ABOUT_MESSAGE));    
     }
  
     
@@ -290,7 +294,8 @@ public class AppFileController {
       
         String sourceFile="..\\\\exportExample\\\\public_html";
      //   String targetFile=selectedFile.getPath().replaceAll("\\\\"+selectedFile.getName(),"\\\\public_html\\\\");
-       String targetFile=selectedFile.getPath().substring(0,selectedFile.getPath().length()-selectedFile.getName().length())+"public_html\\";
+      // String targetFile=selectedFile.getPath().substring(0,selectedFile.getPath().length()-selectedFile.getName().length())+"public_html\\";
+       String targetFile=selectedFile.getPath()+"\\\\public_html\\";
         boolean temp=(new File(targetFile)).mkdirs();
         
         File[] sonfile=(new File(sourceFile)).listFiles();
@@ -403,14 +408,16 @@ public class AppFileController {
             AppDataComponent dataManager = app.getDataComponent();
 	    
            
-           FileChooser fc = new FileChooser();
-		fc.setInitialDirectory(new File(PATH_WORK));
-		fc.setTitle(props.getProperty(EXPORT_WORK_TITLE));
-                
-                fc.setInitialFileName("SiteSaveTestExport.json");
-
-		File selectedFile = fc.showSaveDialog(app.getGUI().getWindow());
+//           FileChooser fc = new FileChooser();
+//		fc.setInitialDirectory(new File(PATH_WORK));
+//		fc.setTitle(props.getProperty(EXPORT_WORK_TITLE));
+//                
+//                fc.setInitialFileName("SiteSaveTestExport.json");
+//
+//		File selectedFile = fc.showSaveDialog(app.getGUI().getWindow());
                  
+             File selectedFile=new File(app.getDataComponent().getExportDir());
+                
                 if (selectedFile != null) {
 		    exportWork(selectedFile);		
 		}

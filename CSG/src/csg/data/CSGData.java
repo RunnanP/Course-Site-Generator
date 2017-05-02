@@ -63,6 +63,9 @@ public class CSGData implements AppDataComponent{
        String firstImageAdd;
        String secondImageAdd;
        String thirdImageAdd;
+//       ImageView firstImageView;
+//       ImageView secondImageView;
+//       ImageView thirdImageView;
        
        
        boolean jhome;
@@ -1415,7 +1418,7 @@ public class CSGData implements AppDataComponent{
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
             scheduleItems.add(scheduleItem);
             System.out.println(scheduleItem.getTitle());
-          //  Collections.sort(scheduleItems);
+           Collections.sort(scheduleItems);
             }
         
         
@@ -1423,7 +1426,7 @@ public class CSGData implements AppDataComponent{
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTime,initTitle, initTopic,initLink,initCriteria);
             scheduleItems.add(scheduleItem);
             System.out.println(scheduleItem.getTitle());
-          //  Collections.sort(scheduleItems);
+          Collections.sort(scheduleItems);
             }
               
               
@@ -1452,7 +1455,7 @@ public class CSGData implements AppDataComponent{
                 teams.add(team);
                 addTeamtoProjectCombobox(initName);
             }
-        //    Collections.sort(teams);
+           Collections.sort(teams);
         }
         public boolean containsTeam(String initName){
             
@@ -1471,7 +1474,7 @@ public class CSGData implements AppDataComponent{
             if(!containsStudent(initFirstName,initLastName)){
                 students.add(student);
             }
-          //  Collections.sort(students);
+            Collections.sort(students);
         }
         public boolean containsStudent(String initFirstName,String initLastName){
             for(Student student:students){

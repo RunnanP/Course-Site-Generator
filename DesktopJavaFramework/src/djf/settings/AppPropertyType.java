@@ -81,5 +81,11 @@ public enum AppPropertyType {
     
     //
     CHANGETIME_WORK_TITLE,
-    CHANGETIME_WORK_MESSAGE
+    CHANGETIME_WORK_MESSAGE,
+    
+    
+    
+    //
+      ABOUT_TITLE,
+        ABOUT_MESSAGE
 }

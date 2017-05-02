@@ -76,7 +76,7 @@ public class Student <E extends Comparable<E>> implements Comparable<E>{
     
     @Override
     public int compareTo(E o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getFirstName().compareTo(((Student)o).getFirstName());
     }
     
 }

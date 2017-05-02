@@ -1,0 +1,41 @@
+
+{
+    "course_home":false,
+    "course_syllabus":false,
+    "course_schedule":false,
+    "course_hws":false,
+    "course_project":false,
+    "course_subject":"",
+    "course_number":"0",
+    "course_semester":"",
+    "course_year":"0",
+    "course_title":"",
+    "course_instructor_name":"",
+    "course_instructor_home":"",
+    "course_export_dir":"C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\New folder (7)",
+    "course_template_dir":"",
+    "course_first_image_address":"file:./images/1.jpg",
+    "course_second_image_address":"file:./images/2.png",
+    "course_third_image_address":"file:./images/3.png",
+    "course_stytle_sheet":"null",
+    "startHour":"9",
+    "endHour":"20",
+    "tas":[
+    ],
+    "officeHours":[
+    ],
+    "schedule_calendar_starting":"null",
+    "schedule_calendar_ending":"null",
+    "startingMondayMonth":"0",
+    "startingMondayDay":"0",
+    "endingFridayMonth":"0",
+    "endingFridayDay":"0",
+    "recitations":[
+    ],
+    "schedules":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

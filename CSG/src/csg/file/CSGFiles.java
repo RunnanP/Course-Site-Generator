@@ -5,6 +5,7 @@
  */
 package csg.file;
 
+import static com.sun.javafx.fxml.expression.Expression.add;
 import csg.CSGApp;
 import csg.data.CSGData;
 import csg.data.Recitation;
@@ -18,6 +19,7 @@ import djf.components.AppDataComponent;
 import djf.components.AppFileComponent;
 import djf.ui.AppYesNoCancelDialogSingleton;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -192,8 +194,17 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
            static final String ADD_JSON_TS_FIRSTNAME="firstName";
            static final String ADD_JSON_TS_TEAM="team";
            static final String ADD_JSON_TS_ROLE="role";
+           
+           
+     static final String ADD_JSON_COURSE_BANNER_IMAGE="banner_image";
+     static final String ADD_JSON_COURSE_LEFT_IMAGE="left_image";
+     static final String ADD_JSON_COURSE_RIGHT_IMAGE="right_image";
+     static final String ADD_JSON_COURSE_STYLE_SHEET="web_style_sheet";
+           
     //common 
     static final String TEST_EXPORT_PATH="..\\\\CSG\\\\work\\\\SiteSaveTestExport.json";
+   
+    
     public CSGFiles(CSGApp initApp) {
      app=initApp;
     }
@@ -1047,6 +1058,10 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
                .add(ADD_JSON_TS_TEAMS, teamsArray)
                .add(ADD_JSON_TS_STUDENTS,teamStudentsArray)
                
+               .add(ADD_JSON_COURSE_BANNER_IMAGE,""+dataManager.getFirstImageAdd())
+               .add(ADD_JSON_COURSE_LEFT_IMAGE,""+dataManager.getSecondImageAdd())
+               .add(ADD_JSON_COURSE_RIGHT_IMAGE,""+dataManager.getThirdImageAdd())
+               .add(ADD_JSON_COURSE_STYLE_SHEET,""+dataManager.getStyleSheet())
                
                .build();
        
@@ -1062,9 +1077,9 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 	jsonWriter.close();
       
         
-        String k=dataManager.getExportDir();
-	OutputStream os = new FileOutputStream(k);
-	//OutputStream os = new FileOutputStream(filePath);
+//        String k=dataManager.getExportDir();
+//	OutputStream os = new FileOutputStream(k);
+	OutputStream os = new FileOutputStream(filePath);
         //OutputStream os = new FileOutputStream(TEST_EXPORT_PATH);//////////////////////////////////////////
 	JsonWriter jsonFileWriter = Json.createWriter(os);
         
@@ -1073,12 +1088,14 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 	String prettyPrinted = sw.toString();
         
         
-        PrintWriter pw = new PrintWriter(k);
-	//PrintWriter pw = new PrintWriter(filePath);
+        //PrintWriter pw = new PrintWriter(k);
+	PrintWriter pw = new PrintWriter(filePath);
         //PrintWriter pw = new PrintWriter(TEST_EXPORT_PATH);/////////////////////////////////////////////
 	pw.write(prettyPrinted);
 	pw.close();
        
+        
+        savewhenexport(data,filePath.replace("SiteSaveTestExport.json", "savefordeter.json"));
        }
        
        public JsonArray makeStudentArray(CSGData dataManager,Team temp){
@@ -1099,6 +1116,206 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
        }
       
 
+       
+       public void savewhenexport(AppDataComponent data, String filePath) throws FileNotFoundException{
+            CSGData dataManager = (CSGData)data;
+            JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
+	ObservableList<TeachingAssistant> tas = dataManager.getTeachingAssistants();
+	for (TeachingAssistant ta : tas) {	
+            
+            
+	    JsonObject taJson = Json.createObjectBuilder()
+		    .add(JSON_NAME, ""+ta.getName())
+		    .add(JSON_EMAIL, ""+ta.getEmail())
+                    .add(JSON_UNDERGRAD_TAS,""+ta.getUnder()).build();
+	    taArrayBuilder.add(taJson);
+	}
+	JsonArray undergradTAsArray = taArrayBuilder.build();
+  
+	// NOW BUILD THE TIME SLOT JSON OBJCTS TO SAVE
+	JsonArrayBuilder timeSlotArrayBuilder = Json.createArrayBuilder();
+	ArrayList<CSGTimeSlot> officeHours = CSGTimeSlot.buildOfficeHoursList(dataManager);
+	for (CSGTimeSlot ts : officeHours) {	    
+	    JsonObject tsJson = Json.createObjectBuilder()
+		    .add(JSON_DAY, ""+ts.getDay())
+		    .add(JSON_TIME, ""+ts.getTime())
+		    .add(JSON_NAME, ""+ts.getName()).build();
+	    timeSlotArrayBuilder.add(tsJson);
+	}
+	JsonArray timeSlotsArray = timeSlotArrayBuilder.build();
+         
+        //Recitation part
+        
+        
+        JsonArrayBuilder recitationArrayBuilder=Json.createArrayBuilder();
+        ObservableList<Recitation> recitations=dataManager.getRecitations();
+        for(Recitation recitation:recitations){
+            
+            JsonObject recitationJson=Json.createObjectBuilder()
+                    .add(JSON_RECITATION_SECTION,""+recitation.getSection())
+                    .add(JSON_RECITATION_INSTRUCTOR,""+recitation.getInstructor())
+                    .add(JSON_RECITATION_DAYTIME,""+recitation.getDaytime())
+                    .add(JSON_RECITATION_LOCATION,""+recitation.getLocation())
+                    .add(JSON_RECITATION_FIRST_TA,""+recitation.getFirstTa())
+                    .add(JSON_RECITATION_SECOND_TA,""+recitation.getSecondTa()).build();
+            recitationArrayBuilder.add(recitationJson);
+        }
+        JsonArray recitationArray=recitationArrayBuilder.build();
+        
+        
+        //schedule part
+        
+         JsonArrayBuilder scheduleArrayBuilder=Json.createArrayBuilder();
+        ObservableList<ScheduleItem> schedules=dataManager.getScheduleItems();
+        for(ScheduleItem scheduleItem:schedules){
+            
+            JsonObject scheduleJson=Json.createObjectBuilder()
+                    .add(JSON_SCHEDULE_TYPE,""+scheduleItem.getType())
+                    .add(JSON_SCHEDULE_DATE,""+scheduleItem.getDate())
+                    .add(JSON_SCHEDULE_TIME, ""+scheduleItem.getTime())
+                    .add(JSON_SCHEDULE_TITLE,""+scheduleItem.getTitle())
+                    .add(JSON_SCHEDULE_TOPIC,""+scheduleItem.getTopic())
+                    .add(JSON_SCHEDULE_LINK, ""+scheduleItem.getLink())
+                    .add(JSON_SCHEDULE_CRITERIA, ""+scheduleItem.getCriteria())
+                    .build();
+            scheduleArrayBuilder.add(scheduleJson);
+        }
+        JsonArray scheduleArray=scheduleArrayBuilder.build();
+        
+        
+        
+        //project part
+        
+           JsonArrayBuilder teamArrayBuilder=Json.createArrayBuilder();
+        ObservableList<Team> teams=dataManager.getTeams();
+        for(Team team:teams){
+            
+            JsonObject teamJson=Json.createObjectBuilder()
+                    .add(JSON_PROJECT_TEAM_NAME,""+team.getTeamname())
+                    .add(JSON_PROJECT_TEAM_COLOR,""+team.getColor())
+                    .add(JSON_PROJECT_TEAM_TEXTCOLOR,""+team.getTextcolor())
+                    .add(JSON_PROJECT_TEAM_LINK,""+team.getLink()).build();
+            teamArrayBuilder.add(teamJson);
+        }
+        JsonArray teamArray=teamArrayBuilder.build();
+        
+        
+         JsonArrayBuilder studentArrayBuilder=Json.createArrayBuilder();
+        ObservableList<Student> students=dataManager.getStudents();
+        for(Student student:students){
+            
+            JsonObject studentJson=Json.createObjectBuilder()
+                    .add(JSON_PROJECT_STUDENT_FIRSTNAME,""+student.getFirstName())
+                    .add(JSON_PROJECT_STUDENT_LASTNAME,""+student.getLastName())
+                    .add(JSON_PROJECT_STUDENT_TEAM,""+student.getTeamString())
+                    .add(JSON_PROJECT_STUDENT_ROLE,""+student.getRole()).build();
+            studentArrayBuilder.add(studentJson);
+        }
+        JsonArray studentArray=studentArrayBuilder.build();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+	// THEN PUT IT ALL TOGETHER IN A JsonObject
+	JsonObject dataManagerJSO = Json.createObjectBuilder()
+                .add(JSON_COURSE_JSHOME, dataManager.isJhome())
+                .add(JSON_COURSE_JSSYLLABUS, dataManager.isJsyllabus())
+                .add(JSON_COURSE_JSSCHEDULE, dataManager.isJschedule())
+                .add(JSON_COURSE_JSHWS, dataManager.isJhws())
+                .add(JSON_COURSE_JSPROJECTS, dataManager.isJproject())
+                
+                .add(JSON_COURSE_SUBJECT, ""+dataManager.getSubject())
+                .add(JSON_COURSE_NUMBER, ""+dataManager.getNumber())
+                .add(JSON_COURSE_SEMESTER, ""+dataManager.getSemester())
+                .add(JSON_COURSE_YEAR, ""+dataManager.getYear())
+                .add(JSON_COURSE_TITLE, ""+dataManager.getTitle())
+                .add(JSON_COURSE_INSTRUCTOR_NAME, ""+dataManager.getInstructorName())
+                .add(JSON_COURSE_INSTRUCTOR_HOME, ""+dataManager.getInstructorHome())
+                
+                 .add(JSON_COURSE_EXPORT_DIR, ""+dataManager.getExportDir())
+                .add(JSON_COURSE_TEMPLATE_DIR, ""+dataManager.getSiteTempleDir())
+//                
+                .add(JSON_COURSE_FIRST_IMAGE_ADDRESS,""+dataManager.getFirstImageAdd())
+                .add(JSON_COURSE_SECOND_IMAGE_ADDRESS,""+dataManager.getSecondImageAdd())
+                .add(JSON_COURSE_THIRD_IMAGE_ADDRESS,""+dataManager.getThirdImageAdd())
+                  .add(JSON_COURSE_STYTLE_SHEET,""+dataManager.getStyleSheet())
+                
+                //
+		.add(JSON_START_HOUR, "" + dataManager.getStartHour())
+		.add(JSON_END_HOUR, "" + dataManager.getEndHour())
+                .add(JSON_TAS, undergradTAsArray)
+                .add(JSON_OFFICE_HOURS, timeSlotsArray)
+                //
+                .add(JSON_SCHEDULE_CALENDAR_STARTING, ""+dataManager.getStartingDate())
+                .add(JSON_SCHEDULE_CALENDAR_ENDING, ""+dataManager.getEndingDate())
+                .add(JSON_SCHEDULE_STARTING_MONDAYMONTH, ""+dataManager.getStartMonth())
+                .add(JSON_SCHEDULE_STARTING_MONDAYDAY,""+dataManager.getStartDate())
+                .add(JSON_SCHEDULE_ENDING_FRIDAYMONTH,""+dataManager.getEndMonth())
+                .add(JSON_SCHEDULE_ENDING_FRIDAYDAY,""+dataManager.getEndDate())
+                .add(JSON_RECITATION,recitationArray)
+                //
+                .add(JSON_SCHEDULE, scheduleArray)
+                //
+                .add(JSON_TEAM, teamArray)
+                .add(JSON_STUDENT, studentArray)
+		.build();
+	
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+	// AND NOW OUTPUT IT TO A JSON FILE WITH PRETTY PRINTING
+	Map<String, Object> properties = new HashMap<>(1);
+	properties.put(JsonGenerator.PRETTY_PRINTING, true);
+	JsonWriterFactory writerFactory = Json.createWriterFactory(properties);
+	StringWriter sw = new StringWriter();
+	JsonWriter jsonWriter = writerFactory.createWriter(sw);
+	jsonWriter.writeObject(dataManagerJSO);
+	jsonWriter.close();
+ 
+	// INIT THE WRITER
+	OutputStream os = new FileOutputStream(filePath);
+       // OutputStream os = new FileOutputStream(TEST_PATH);//////////////////////////////////////////
+	JsonWriter jsonFileWriter = Json.createWriter(os);
+        
+	jsonFileWriter.writeObject(dataManagerJSO);
+       
+	String prettyPrinted = sw.toString();
+    
+	PrintWriter pw = new PrintWriter(filePath);
+        //PrintWriter pw = new PrintWriter(TEST_PATH);/////////////////////////////////////////////
+	pw.write(prettyPrinted);
+	pw.close();
+       }
+       
     @Override
     public void importData(AppDataComponent data, String filePath) throws IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

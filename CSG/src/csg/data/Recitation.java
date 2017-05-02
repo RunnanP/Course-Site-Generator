@@ -118,10 +118,22 @@ public class Recitation <E extends Comparable<E>> implements Comparable<E>{
     
     @Override
     public int compareTo(E o) {
-        return 0;
+          int oldre=Integer.parseInt(this.section.get().substring(1));
+          int newre=Integer.parseInt(((Recitation)o).getSection().substring(1));
+          
+          if(oldre>newre){
+              return 1;
+          }else if(oldre<newre){
+              return -1;
+          }else{
+              return 0;
+          }
+     
+        
+        
     }
     public String toString(){
-        return "";
+        return section.get();
     }
     
 }
