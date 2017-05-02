@@ -15,6 +15,8 @@ import javafx.scene.control.ChoiceDialog;
 import javax.naming.spi.DirStateFactory;
 import properties_manager.InvalidXMLFileFormatException;
 
+import jtps.jTPS;
+
 /**
  * This is the framework's JavaFX application. It provides the start method
  * that begins the program initialization, which delegates component
@@ -48,6 +50,8 @@ public abstract class AppTemplate extends Application {
     // THIS METHOD MUST BE OVERRIDDEN WHERE THE CUSTOM BUILDER OBJECT
     // WILL PROVIDE THE CUSTOM APP COMPONENTS
 
+    protected static jTPS jtpsComponent;
+    
     /**
      * This function must be overridden, it should initialize all
      * of the components used by the app in the proper order according
@@ -81,6 +85,8 @@ public abstract class AppTemplate extends Application {
      *  Accessor for the gui. Note that the GUI would contain the workspace.
      */
     public AppGUI getGUI() { return gui; }
+    
+    public jTPS getJTPS()  {return jtpsComponent;}
 
     /**
      * This is where our Application begins its initialization, it will load
@@ -92,6 +98,7 @@ public abstract class AppTemplate extends Application {
     @Override
     public void start(Stage primaryStage) {
 	// LET'S START BY INITIALIZING OUR DIALOGS
+        jtpsComponent=new jTPS();
 	AppMessageDialogSingleton messageDialog = AppMessageDialogSingleton.getSingleton();
 	messageDialog.init(primaryStage);
 	AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();

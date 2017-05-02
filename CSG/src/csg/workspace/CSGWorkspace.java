@@ -13,6 +13,7 @@ import djf.components.AppWorkspaceComponent;
 import java.text.ParseException;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 
 import javafx.scene.layout.HBox;
@@ -126,7 +127,18 @@ public class CSGWorkspace extends AppWorkspaceComponent{
          });
          
          
-         
+         workspace.setOnKeyPressed(e->{
+           if(e.isControlDown() && e.getCode()==KeyCode.Z){
+  
+        controller.handleUndoTransaction();
+        //jTPS.undoTransaction();
+    }else if(e.isControlDown() && e.getCode()==KeyCode.Y){
+
+        controller.handleDoTransaction();
+       // jTPS.doTransaction();
+    }
+
+});
     }
   
   
@@ -302,6 +314,6 @@ public class CSGWorkspace extends AppWorkspaceComponent{
         this.workspace = workspace;
     }
 
-  
+     
     
 }

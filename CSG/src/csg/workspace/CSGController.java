@@ -17,6 +17,12 @@ import csg.data.Team;
 import csg.file.CSGFiles;
 import csg.file.CSGTimeSlot;
 import static csg.style.CSGStyle.*;
+import csg.transaction.*;
+import csg.transaction.TA_AddTA_Transaction;
+import csg.transaction.TA_ChangeTAInfo_Transaction;
+import csg.transaction.TA_ChangeTime_Transaction;
+import csg.transaction.TA_RemoveTA_Transaction;
+import csg.transaction.TA_ToggleOfficeHour_Transaction;
 import static djf.settings.AppPropertyType.LOAD_WORK_TITLE;
 import static djf.settings.AppStartupConstants.PATH_WORK;
 import static djf.settings.AppStartupConstants.*;
@@ -46,6 +52,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import jtps.jTPS_Transaction;
 import properties_manager.PropertiesManager;
 
 /**
@@ -277,14 +284,11 @@ public class CSGController {
         TextField emailTextField = workspace.getEmailTextField();
         String name = nameTextField.getText();
         String email = emailTextField.getText();
-        
-        // WE'LL NEED TO ASK THE DATA SOME QUESTIONS TOO
+     
         CSGData data = (CSGData)app.getDataComponent();
-        
-        // WE'LL NEED THIS IN CASE WE NEED TO DISPLAY ANY ERROR MESSAGES
+       
         PropertiesManager props = PropertiesManager.getPropertiesManager();
-        
-        // DID THE USER NEGLECT TO PROVIDE A TA NAME?
+    
         if (name.isEmpty()) {
 	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(MISSING_TA_NAME_TITLE), props.getProperty(MISSING_TA_NAME_MESSAGE));            
@@ -294,31 +298,32 @@ public class CSGController {
 	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(MISSING_TA_EMAIL_TITLE), props.getProperty(MISSING_TA_EMAIL_MESSAGE));                        
         }
-        // DOES A TA ALREADY HAVE THE SAME NAME OR EMAIL?
         else if (data.containsTA(name, email)) {
 	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	    dialog.show(props.getProperty(TA_NAME_AND_EMAIL_NOT_UNIQUE_TITLE), props.getProperty(TA_NAME_AND_EMAIL_NOT_UNIQUE_MESSAGE));                                    
         }
-        // EVERYTHING IS FINE, ADD A NEW TA
+     
         else {
             
             EmailValidator emailValidator=new EmailValidator();
           if(  emailValidator.validate(email)){
             
-            // ADD THE NEW TA TO THE DATA
-              data.addTA(name, email);
+           
+            //  data.addTA(name, email);
+              
+              
               //addTAtoReciCombobox(name);
-           // jTPS_Transaction transaction=new AddingTA_Transaction(data, name, email);
-            //this.getJTPS().addTransaction(transaction);
+            jTPS_Transaction transaction=new TA_AddTA_Transaction(data, name, email);
+            app.getJTPS().addTransaction(transaction);
             
-            // CLEAR THE TEXT FIELDS
+          
             nameTextField.setText("");
             emailTextField.setText("");
             
-            // AND SEND THE CARET BACK TO THE NAME TEXT FIELD FOR EASY DATA ENTRY
+           
             nameTextField.requestFocus();
             
-            // WE'VE CHANGED STUFF
+          
             markWorkAsEdited();
           }else {
               AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
@@ -360,8 +365,8 @@ public class CSGController {
                     if (label.getText().equals(taName)
                     || (label.getText().contains(taName + "\n"))
                     || (label.getText().contains("\n" + taName))) {
-                       data.removeTAFromCell(label.textProperty(), taName);
-                        data.addTAToCell(label.textProperty(),newName);
+                  //     data.removeTAFromCell(label.textProperty(), taName);
+                    //    data.addTAToCell(label.textProperty(),newName);
                         jtpsarray.add(label);
                     }
                 }
@@ -373,8 +378,8 @@ public class CSGController {
                  workspace.getAddBox().getChildren().remove(workspace.getClearButton());
                  workspace.getAddBox().getChildren().add(workspace.getAddButton());
             
-              // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
-              // this.getJTPS().addTransaction(transaction);
+               jTPS_Transaction transaction=new TA_ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
+               app.getJTPS().addTransaction(transaction);
                
                
                  if(!((taName.equals(newName))&&(taEmail.equals(newEmail)))){
@@ -406,22 +411,20 @@ public class CSGController {
 
     public void handleKeyPress(KeyCode code) {
          if (code == KeyCode.DELETE ) {
-            // GET THE TABLE
+       
             CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
             CSGTAWorkspace workspace=temp.getTAWorkspace();
             TableView taTable = workspace.getTaTable();
-            
-            // IS A TA SELECTED IN THE TABLE?
+         
             Object selectedItem = taTable.getSelectionModel().getSelectedItem();
             if (selectedItem != null) {
-                // GET THE TA AND REMOVE IT
                 TeachingAssistant ta = (TeachingAssistant)selectedItem;
                
                 String taName = ta.getName();
                String jtpstaname=taName;
                 String jtpstaemail=ta.getEmail();
                 CSGData data = (CSGData)app.getDataComponent();
-                data.removeTA(taName);
+               // data.removeTA(taName);
                 
                 // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
                 HashMap<String, Label> labels = workspace.getOfficeHoursGridTACellLabels();
@@ -430,13 +433,13 @@ public class CSGController {
                     if (label.getText().equals(taName)
                     || (label.getText().contains(taName + "\n"))
                     || (label.getText().contains("\n" + taName))) {
-                      data.removeTAFromCell(label.textProperty(), taName);
+                   //   data.removeTAFromCell(label.textProperty(), taName);
                         jtpsarray.add(label);
                     }
                 }
                 // WE'VE CHANGED STUFF
-                //jTPS_Transaction transaction=new RemovingTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
-                //this.getJTPS().addTransaction(transaction);
+                jTPS_Transaction transaction=new TA_RemoveTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                app.getJTPS().addTransaction(transaction);
                 markWorkAsEdited();
             }
         }
@@ -459,7 +462,7 @@ public class CSGController {
                String jtpstaname=taName;
                 String jtpstaemail=ta.getEmail();
                 CSGData data = (CSGData)app.getDataComponent();
-                data.removeTA(taName);
+            //    data.removeTA(taName);
                 
                 // AND BE SURE TO REMOVE ALL THE TA'S OFFICE HOURS
                 HashMap<String, Label> labels = workspace.getOfficeHoursGridTACellLabels();
@@ -468,13 +471,13 @@ public class CSGController {
                     if (label.getText().equals(taName)
                     || (label.getText().contains(taName + "\n"))
                     || (label.getText().contains("\n" + taName))) {
-                      data.removeTAFromCell(label.textProperty(), taName);
+                 //     data.removeTAFromCell(label.textProperty(), taName);
                         jtpsarray.add(label);
                     }
                 }
                 // WE'VE CHANGED STUFF
-                //jTPS_Transaction transaction=new RemovingTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
-                //this.getJTPS().addTransaction(transaction);
+              jTPS_Transaction transaction=new TA_RemoveTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                app.getJTPS().addTransaction(transaction);
                 markWorkAsEdited();
             }
         
@@ -528,9 +531,9 @@ public class CSGController {
             
             // AND TOGGLE THE OFFICE HOURS IN THE CLICKED CELL
          
-               data.toggleTAOfficeHours(cellKey, taName);
-            //jTPS_Transaction transaction=new ToggleOfficeHour_Transaction(data,cellKey,taName,selectedItem);
-             //this.getJTPS().addTransaction(transaction);
+             //  data.toggleTAOfficeHours(cellKey, taName);
+            jTPS_Transaction transaction=new TA_ToggleOfficeHour_Transaction(data,cellKey,taName,selectedItem);
+             app.getJTPS().addTransaction(transaction);
             
             
             // WE'VE CHANGED STUFF
@@ -597,10 +600,13 @@ public class CSGController {
             }
         }
         
-        workspace.getOfficeHoursGridPane().getChildren().clear();
-        data.changeTime(newStartTime, newEndTime, officeHours);
+    //    workspace.getOfficeHoursGridPane().getChildren().clear();
+     //   data.changeTime(newStartTime, newEndTime, officeHours);
         
-       // markWorkAsEdited();
+
+        jTPS_Transaction transaction=new TA_ChangeTime_Transaction(app,newStartTime,newEndTime,startTime,endTime);
+             app.getJTPS().addTransaction(transaction);
+        markWorkAsEdited();
     }
 
    public void handleGridCellMouseExited(Pane pane) {
@@ -1477,4 +1483,19 @@ public class CSGController {
 //            workspace.getSecondTAComboBox().getItems().remove(inittaname);
 //                 
 //             }
+             
+             
+             
+             
+         public void handleUndoTransaction(){
+       app.getJTPS().undoTransaction();
+        markWorkAsEdited();
+    }
+    
+     public void handleDoTransaction(){
+       app.getJTPS().doTransaction();
+        markWorkAsEdited();
+    }
+             
+             
 }

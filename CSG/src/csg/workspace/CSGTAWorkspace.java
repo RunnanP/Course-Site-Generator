@@ -38,6 +38,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -380,6 +381,21 @@ controller = new CSGController(app);
         });
 
     
+           
+           
+           
+               this.basePane.setOnKeyPressed(e->{
+           if(e.isControlDown() && e.getCode()==KeyCode.Z){
+  
+        controller.handleUndoTransaction();
+        //jTPS.undoTransaction();
+    }else if(e.isControlDown() && e.getCode()==KeyCode.Y){
+
+        controller.handleDoTransaction();
+       // jTPS.doTransaction();
+    }
+
+});
     
    /* startTimeComboBox.setOnAction(e->{
         if (startTimeComboBox.getSelectionModel().getSelectedIndex()!=-1){

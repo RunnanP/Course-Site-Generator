@@ -5,10 +5,64 @@
  */
 package csg.transaction;
 
+import csg.data.CSGData;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javafx.scene.control.Label;
+import jtps.jTPS_Transaction;
+
 /**
  *
  * @author runnan
  */
-public class TA_RemoveTA_Transaction {
+public class TA_RemoveTA_Transaction implements jTPS_Transaction{
+    
+      CSGData olddata;
+   String oldname;
+   String oldemail;
+   HashMap<String, Label> oldlabels;
+    ArrayList<Label> oldarray;
+    
+    public TA_RemoveTA_Transaction(CSGData data,String initName,String initEmail,HashMap<String, Label> labels,ArrayList<Label> initarray){
+        olddata=data;
+       oldname=initName;
+      oldemail=initEmail;
+      oldlabels=labels;
+     oldarray=initarray;
+    }
+
+    @Override
+    public void doTransaction() {
+        //remove again
+           olddata.removeTA(oldname);
+     
+                for (Label label : oldlabels.values()) {
+                    if (label.getText().equals(oldname)
+                    || (label.getText().contains(oldname + "\n"))
+                    || (label.getText().contains("\n" + oldname))) {
+                        olddata.removeTAFromCell(label.textProperty(), oldname);
+                    }
+                }
+        
+        
+       
+    }
+
+    @Override
+    public void undoTransaction() {
+        
+               //add back
+        olddata.addTA(oldname, oldemail);
+        
+        for(Label label:oldarray){
+        olddata.addTAToCell(label.textProperty(), oldname);
+        
+        
+        }
+        
+        
+    }
+    
+    
     
 }

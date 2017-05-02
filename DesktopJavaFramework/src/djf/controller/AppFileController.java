@@ -270,10 +270,14 @@ public class AppFileController {
     
     
     public void handleUndoRequest(){
+        app.getJTPS().undoTransaction();
         
     }
     
     public void handleRedoRequest(){
+        
+        app.getJTPS().doTransaction();
+        
         
     }
     

@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -252,6 +253,19 @@ public class CSGRecitationWorkspace implements WorkspacePart{
           
           
           });
+          
+                         this.basePane.setOnKeyPressed(e->{
+           if(e.isControlDown() && e.getCode()==KeyCode.Z){
+  
+        controller.handleUndoTransaction();
+        //jTPS.undoTransaction();
+    }else if(e.isControlDown() && e.getCode()==KeyCode.Y){
+
+        controller.handleDoTransaction();
+       // jTPS.doTransaction();
+    }
+
+});
     
     
     }

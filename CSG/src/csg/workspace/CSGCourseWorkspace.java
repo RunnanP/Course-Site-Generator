@@ -29,6 +29,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -182,7 +183,18 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          });
          
-         
+                 this.basePane.setOnKeyPressed(e->{
+           if(e.isControlDown() && e.getCode()==KeyCode.Z){
+  
+        controller.handleUndoTransaction();
+        //jTPS.undoTransaction();
+    }else if(e.isControlDown() && e.getCode()==KeyCode.Y){
+
+        controller.handleDoTransaction();
+       // jTPS.doTransaction();
+    }
+
+});
          
      }
 
