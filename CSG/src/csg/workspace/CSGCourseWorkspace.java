@@ -546,7 +546,15 @@ public class CSGCourseWorkspace implements WorkspacePart{
         
    }
    
-   
+   public void reset(){
+       setExporDirDisplayAddressLabel("");
+       setTemplatesDirLabel("");
+       getStyleSheetComboBox().setValue("");
+       setFirstImageView(new Image("file:./images/1.jpg"));
+       setSecondImageView(new Image("file:./images/2.png"));
+       setThirdImageView(new Image("file:./images/3.png"));
+       
+   }
    
    public void loadCourseInfo(String initsubject,int initnumber,String initsemester,int inityear,String inittitle,String initinstructorName,String initinstructorHome){
        

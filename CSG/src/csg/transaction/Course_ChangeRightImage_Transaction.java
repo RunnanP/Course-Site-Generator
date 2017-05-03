@@ -5,10 +5,31 @@
  */
 package csg.transaction;
 
+import csg.data.CSGData;
+import jtps.jTPS_Transaction;
+
 /**
  *
  * @author runnan
  */
-public class Course_ChangeRightImage_Transaction {
+public class Course_ChangeRightImage_Transaction implements  jTPS_Transaction{
+    CSGData data;
+    String newpath;
+    String oldpath;
     
+    public Course_ChangeRightImage_Transaction(CSGData initdata,String initnewpath,String initoldpath){
+        data=initdata;
+        newpath=initnewpath;
+        oldpath=initoldpath;
+    }
+    @Override
+    public void doTransaction() {
+       data.setThirdImageAdd(newpath);
+    }
+
+    @Override
+    public void undoTransaction() {
+        data.setThirdImageAdd(oldpath);
+        System.out.println(oldpath);
+    }
 }

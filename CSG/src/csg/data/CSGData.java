@@ -1363,7 +1363,7 @@ public class CSGData implements AppDataComponent{
         }
 
         
-        Collections.sort(recitations);
+//        Collections.sort(recitations);
             
             
         }

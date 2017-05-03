@@ -89,10 +89,17 @@ public class CSGController {
             try{
             String path=selectedFile.getAbsolutePath();
             CSGData data = (CSGData)app.getDataComponent();
-            data.setExportDir(path);
-              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+          //  data.setExportDir(path);
+          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCourseWorkspace();
-        workspace.setExporDirDisplayAddressString(path);
+        
+        String oldpath=data.getExportDir();
+      //  data.setExportDir(path);
+       // workspace.setExporDirDisplayAddressString(path);
+       
+        jTPS_Transaction transaction=new Course_ChangeExportDir_Transaction(data, workspace,path,oldpath);
+            app.getJTPS().addTransaction(transaction);
+        
             }catch(Exception e) {
                 
               
@@ -122,90 +129,104 @@ public class CSGController {
             
             
             
-            try{
+       //     try{
             String path=selectedFile.getPath();
             CSGData data = (CSGData)app.getDataComponent();
-            data.setSiteTempleDir(path);
+         //   data.setSiteTempleDir(path);
               CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGCourseWorkspace workspace=temp.getCourseWorkspace();
-        workspace.setTemplatesDirLabel(path);
-         System.out.println(path);
+        CSGFiles file=(CSGFiles)app.getFileComponent();
+        
+        
+        String oldpath=data.getSiteTempleDir();
+        
+     
+       //  data.setSiteTempleDir(path);
+      //  workspace.setTemplatesDirLabel(path);
+        
         
          
-          CSGFiles file=(CSGFiles)app.getFileComponent();
-                file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
+       
+           //     file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
          
-                 File f1=new File(path+"\\\\index.html");
-                if(f1.exists()){
-                    data.setJhome(true);
-                }else {
-                   data.setJhome(false);
-               }
-                
-                
-                File f2=new File(path+"\\\\syllabus.html");
-               if(f2.exists()){
-                   data.setJsyllabus(true);
-               }else {
-                   data.setJsyllabus(false);
-               }
-                
-                File f3=new File(path+"\\\\schedule.html");
-                if(f3.exists()){
-                   data.setJschedule(true);
-               }else {
-                   data.setJschedule(false);
-               }
-                
-                
-                
-                
-                
-                File f4=new File(path+"\\\\hws.html");
-                if(f4.exists()){
-                   data.setJhws(true);
-               }else {
-                   data.setJhws(false);
-               }
-                
-                File f5=new File(path+"\\\\projects.html");
-                if(f5.exists()){
-                   data.setJproject(true);
-               }else {
-                   data.setJproject(false);
-               }
+//                 File f1=new File(path+"\\\\index.html");
+//                if(f1.exists()){
+//                    data.setJhome(true);
+//                }else {
+//                   data.setJhome(false);
+//               }
+//                
+//                
+//                File f2=new File(path+"\\\\syllabus.html");
+//               if(f2.exists()){
+//                   data.setJsyllabus(true);
+//               }else {
+//                   data.setJsyllabus(false);
+//               }
+//                
+//                File f3=new File(path+"\\\\schedule.html");
+//                if(f3.exists()){
+//                   data.setJschedule(true);
+//               }else {
+//                   data.setJschedule(false);
+//               }
+//                
+//                
+//                
+//                
+//                
+//                File f4=new File(path+"\\\\hws.html");
+//                if(f4.exists()){
+//                   data.setJhws(true);
+//               }else {
+//                   data.setJhws(false);
+//               }
+//                
+//                File f5=new File(path+"\\\\projects.html");
+//                if(f5.exists()){
+//                   data.setJproject(true);
+//               }else {
+//                   data.setJproject(false);
+//               }
                 
                 
                
                 
-                
-                
-                File f6=new File(path+"\\\\css\\\\");
-                File flist[]=f6.listFiles();
-                for (File f:flist){
-                    if (!f.isDirectory()){
-                        if(f.getName().endsWith(".css")){
-                            workspace.getStyleSheetComboBox().getItems().add(f.getName());
-                        }
-                    }
-                    
-                }
-                  workspace.setTemplatesDirLabel(path);
-               // System.out.println(f6.getName().endsWith(".html"));
-            }catch(Exception e) {
-                
-              
-                
-            }   
+//               ArrayList<String> csslist=new ArrayList<>(); 
+//                
+//                File f6=new File(path+"\\\\css\\\\");
+//                File flist[]=f6.listFiles();
+//                for (File f:flist){
+//                    if (!f.isDirectory()){
+//                        if(f.getName().endsWith(".css")){
+//                           // workspace.getStyleSheetComboBox().getItems().add(f.getName());
+//                           csslist.add(f.getName());
+//                        }
+//                    }
+//                    
+//                }
+             //     workspace.setTemplatesDirLabel(path);
+               
+                  
+              jTPS_Transaction transaction=new Course_ChangeTemplateDir_Transaction(app,data, workspace,file,path,oldpath);
+            app.getJTPS().addTransaction(transaction);
+                  
+                  
+//            }catch(Exception e) {
+//                
+//              
+//              
+//            }   
    
         markWorkAsEdited();
-        
+         
         }
         
     }
     
     
     public void handleChangeFirstImage(){
+        
            PropertiesManager props = PropertiesManager.getPropertiesManager();
 
         FileChooser fc = new FileChooser();
@@ -219,8 +240,11 @@ public class CSGController {
             CSGData data = (CSGData)app.getDataComponent();
             System.out.println(path);
             //data.setFirstImageAdd("file:./images/2.png");
-            data.setFirstImageAdd("file:"+path);
-      
+            
+            String oldpath=data.getFirstImageAdd();
+          //  data.setFirstImageAdd("file:"+path);
+              jTPS_Transaction transaction=new Course_ChangeBannerImage_Transaction(data,"file:"+path,oldpath);
+            app.getJTPS().addTransaction(transaction);
         markWorkAsEdited();
         
         
@@ -243,8 +267,11 @@ public class CSGController {
             CSGData data = (CSGData)app.getDataComponent();
             System.out.println(path);
             //data.setFirstImageAdd("file:./images/2.png");
-            data.setSecondImageAdd("file:"+path);
-      
+          //  data.setSecondImageAdd("file:"+path);
+           String oldpath=data.getSecondImageAdd();
+          //  data.setFirstImageAdd("file:"+path);
+              jTPS_Transaction transaction=new Course_ChangeLeftImage_Transaction(data,"file:"+path,oldpath);
+            app.getJTPS().addTransaction(transaction);
         markWorkAsEdited();
         
         
@@ -266,8 +293,11 @@ public class CSGController {
             CSGData data = (CSGData)app.getDataComponent();
             System.out.println(path);
             //data.setFirstImageAdd("file:./images/2.png");
-            data.setThirdImageAdd("file:"+path);
-      
+          //  data.setThirdImageAdd("file:"+path);
+           String oldpath=data.getThirdImageAdd();
+          //  data.setFirstImageAdd("file:"+path);
+              jTPS_Transaction transaction=new Course_ChangeRightImage_Transaction(data,"file:"+path,oldpath);
+            app.getJTPS().addTransaction(transaction);
         
         
         markWorkAsEdited();
