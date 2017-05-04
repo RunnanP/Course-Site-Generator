@@ -94,7 +94,7 @@ public class CSGController {
         CSGCourseWorkspace workspace=temp.getCourseWorkspace();
         
         String oldpath=data.getExportDir();
-      //  data.setExportDir(path);
+     //  data.setExportDir(path);
        // workspace.setExporDirDisplayAddressString(path);
        
         jTPS_Transaction transaction=new Course_ChangeExportDir_Transaction(data, workspace,path,oldpath);
@@ -129,7 +129,7 @@ public class CSGController {
             
             
             
-       //     try{
+          try{
             String path=selectedFile.getPath();
             CSGData data = (CSGData)app.getDataComponent();
          //   data.setSiteTempleDir(path);
@@ -141,82 +141,82 @@ public class CSGController {
         String oldpath=data.getSiteTempleDir();
         
      
-       //  data.setSiteTempleDir(path);
-      //  workspace.setTemplatesDirLabel(path);
+         data.setSiteTempleDir(path);
+        workspace.setTemplatesDirLabel(path);
         
         
          
        
-           //     file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
+               file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
          
-//                 File f1=new File(path+"\\\\index.html");
-//                if(f1.exists()){
-//                    data.setJhome(true);
-//                }else {
-//                   data.setJhome(false);
-//               }
-//                
-//                
-//                File f2=new File(path+"\\\\syllabus.html");
-//               if(f2.exists()){
-//                   data.setJsyllabus(true);
-//               }else {
-//                   data.setJsyllabus(false);
-//               }
-//                
-//                File f3=new File(path+"\\\\schedule.html");
-//                if(f3.exists()){
-//                   data.setJschedule(true);
-//               }else {
-//                   data.setJschedule(false);
-//               }
-//                
-//                
-//                
-//                
-//                
-//                File f4=new File(path+"\\\\hws.html");
-//                if(f4.exists()){
-//                   data.setJhws(true);
-//               }else {
-//                   data.setJhws(false);
-//               }
-//                
-//                File f5=new File(path+"\\\\projects.html");
-//                if(f5.exists()){
-//                   data.setJproject(true);
-//               }else {
-//                   data.setJproject(false);
-//               }
+                 File f1=new File(path+"\\\\index.html");
+                if(f1.exists()){
+                    data.setJhome(true);
+                }else {
+                   data.setJhome(false);
+               }
+                
+                
+                File f2=new File(path+"\\\\syllabus.html");
+               if(f2.exists()){
+                   data.setJsyllabus(true);
+               }else {
+                   data.setJsyllabus(false);
+               }
+                
+                File f3=new File(path+"\\\\schedule.html");
+                if(f3.exists()){
+                   data.setJschedule(true);
+               }else {
+                   data.setJschedule(false);
+               }
+                
+                
+                
+                
+                
+                File f4=new File(path+"\\\\hws.html");
+                if(f4.exists()){
+                   data.setJhws(true);
+               }else {
+                   data.setJhws(false);
+               }
+                
+                File f5=new File(path+"\\\\projects.html");
+                if(f5.exists()){
+                   data.setJproject(true);
+               }else {
+                   data.setJproject(false);
+               }
                 
                 
                
                 
-//               ArrayList<String> csslist=new ArrayList<>(); 
-//                
-//                File f6=new File(path+"\\\\css\\\\");
-//                File flist[]=f6.listFiles();
-//                for (File f:flist){
-//                    if (!f.isDirectory()){
-//                        if(f.getName().endsWith(".css")){
-//                           // workspace.getStyleSheetComboBox().getItems().add(f.getName());
-//                           csslist.add(f.getName());
-//                        }
-//                    }
-//                    
-//                }
-             //     workspace.setTemplatesDirLabel(path);
+               ArrayList<String> csslist=new ArrayList<>(); 
+                
+                File f6=new File(path+"\\\\css\\\\");
+                File flist[]=f6.listFiles();
+                for (File f:flist){
+                    if (!f.isDirectory()){
+                        if(f.getName().endsWith(".css")){
+                           // workspace.getStyleSheetComboBox().getItems().add(f.getName());
+                           csslist.add(f.getName());
+                        }
+                    }
+                    
+                }
+                  workspace.setTemplatesDirLabel(path);
                
                   
-              jTPS_Transaction transaction=new Course_ChangeTemplateDir_Transaction(app,data, workspace,file,path,oldpath);
-            app.getJTPS().addTransaction(transaction);
+         //     jTPS_Transaction transaction=new Course_ChangeTemplateDir_Transaction(app,data, workspace,file,path,oldpath);
+           // app.getJTPS().addTransaction(transaction);
                   
                   
-//            }catch(Exception e) {
+          }catch(Exception e) {
 //                
 //              
 //              
-//            }   
+            }   
    
         markWorkAsEdited();
          
@@ -725,17 +725,25 @@ public class CSGController {
             Object selectedItem = recitationTable.getSelectionModel().getSelectedItem();
              PropertiesManager props = PropertiesManager.getPropertiesManager();
        
-        if(workspace.getSectionTextField().getText()+""==""){
+        if(workspace.getSectionTextField().getText().equals("")){
              AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	           dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(PROVE_RECITATION_SECTION));  
                   return;
         }
          String initsection=workspace.getSectionTextField().getText()+"";
+         
          String initinstructor=workspace.getInstructorTextField().getText()+"";
          String initdaytime=workspace.getDaytimeTextField().getText()+"";
          String initlocation=workspace.getLocationTextField().getText()+"";
          String initFirstta=workspace.getFirstTAComboBox().getValue()+"";
+         if(workspace.getFirstTAComboBox().getValue()==null){
+           initFirstta="";
+         }
+         
          String initSecondta=workspace.getSecondTAComboBox().getValue()+"";
+          if(workspace.getSecondTAComboBox().getValue()==null){
+           initSecondta="";
+         }
          Recitation newreci=new Recitation(initsection, initinstructor,initdaytime,initlocation,initFirstta,initSecondta);
           if (selectedItem == null) {
              ObservableList<Recitation> old=data.getRecitations();
@@ -1069,7 +1077,12 @@ public class CSGController {
        
         
          String type=workspace.getTypeComboBox().getValue()+"";
-         String date="0-0-0";
+         if(type.equals("null")){
+                  AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(PROVE_TYPE_MESSAGE));  
+                  return;
+         }
+         String date="2000-1-1";
          if(workspace.getDatePicker().getValue()!=null){
              System.out.println(workspace.getDatePicker().getValue().toString()+"");
           date=workspace.getDatePicker().getValue().toString()+"";
@@ -1164,7 +1177,7 @@ public class CSGController {
        String color="ffffff";
        String textcolor="ffffff";
        String name;
-        if(workspace.getNameTextField().getText()+""!=""){
+        if(!workspace.getNameTextField().getText().equals("")){
           name=workspace.getNameTextField().getText()+"";
         }else{
              AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
@@ -1370,11 +1383,18 @@ public class CSGController {
             TableView studentTable = workspace.getStudentsTable();
             Object selectedItem = studentTable.getSelectionModel().getSelectedItem();
              PropertiesManager props = PropertiesManager.getPropertiesManager();
-       
+       if(workspace.getFirstNameTextField().getText().equals("")&&workspace.getLastNameTextField().getText().equals("")){
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_STUDENT_TITLE), props.getProperty(PROVE_STUDENT_NAME));  
+                  return;
+       }
         
          String firstname=workspace.getFirstNameTextField().getText()+"";
          String lastname=workspace.getLastNameTextField().getText()+"";
          String team=workspace.getTeamsComboBox().getValue()+"";
+         if(team.equals("null")){
+             team="";
+         }
          String role=workspace.getRoleTextField().getText()+"";
        
          Student newstu=new Student(firstname,lastname,team,role);

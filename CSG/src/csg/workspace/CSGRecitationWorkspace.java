@@ -99,11 +99,17 @@ public class CSGRecitationWorkspace implements WorkspacePart{
         String locationColumnText=props.getProperty(CSGAppProp.LOCATION_COLUMN_TEXT.toString());
         String taColumnText=props.getProperty(CSGAppProp.TA_COLUMN_TEXT.toString());
          sectionColumn=new TableColumn(sectionColumnText);
+         sectionColumn.setPrefWidth(100);
          instructorColumn=new TableColumn(instructorColumnText);
+         instructorColumn.setPrefWidth(300);
         daytimeColumn=new TableColumn(daytimeColumnText);
+        daytimeColumn.setPrefWidth(300);
          locationColumn=new TableColumn(locationColumnText);
+         locationColumn.setPrefWidth(300);
           firstTAColumn=new TableColumn(taColumnText);
+          firstTAColumn.setPrefWidth(200);
           secondTAColumn=new TableColumn(taColumnText);
+          secondTAColumn.setPrefWidth(200);
           
            sectionColumn.setCellValueFactory(
                 new PropertyValueFactory<Recitation, String>("section")
@@ -235,7 +241,9 @@ public class CSGRecitationWorkspace implements WorkspacePart{
            RecitationPartClearrButton.setOnAction(e->{
                controller.handleRecitationClear();
            });
-             recitationTable.setEditable(true);
+           
+           
+            recitationTable.setEditable(true);
           
           recitationTable.setFocusTraversable(true);
           recitationTable.setOnMouseClicked(e ->{
@@ -269,7 +277,14 @@ public class CSGRecitationWorkspace implements WorkspacePart{
     
     
     }
-
+  public void reset(){
+      getSectionTextField().clear();
+      getInstructorTextField().clear();
+      getDaytimeTextField().clear();
+      getLocationTextField().clear();
+      getFirstTAComboBox().getItems().clear();
+      getSecondTAComboBox().getItems().clear();
+  }
     @Override
     public ScrollPane getBasePane() {
         return basePane;

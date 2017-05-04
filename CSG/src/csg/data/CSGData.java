@@ -1530,6 +1530,18 @@ public class CSGData implements AppDataComponent{
          //   }
             workspace.getSecondTAComboBox().getItems().remove(inittaname);
                  
+            for (Recitation re:recitations){
+                if (re.getFirstTa().equals(inittaname)){
+                    re.setFirstTa("");
+                }
+                
+                 if (re.getSecondTa().equals(inittaname)){
+                    re.setSecondTa("");
+                }
+                
+            }
+             workspace.getRecitationTable().refresh();
+            
              }
            
            
@@ -1546,6 +1558,13 @@ public class CSGData implements AppDataComponent{
                  CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
               CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
             workspace.getTeamsComboBox().getItems().remove(initteamname);
+            
+            for(Student st:students){
+                if(st.getTeamString().equals(initteamname)){
+                    st.setTeam("");
+                }
+            }
+            workspace.getStudentsTable().refresh();
             
         }
 

@@ -177,9 +177,13 @@ public class CSGProjectWorkspace implements WorkspacePart{
         teamsTable.setItems(teamData);
          
          nameColumn=new TableColumn(nameColumnText);
+         nameColumn.setPrefWidth(300);
          colorColumn=new TableColumn(colorColumnText);
+          colorColumn.setPrefWidth(300);
          textColorColumn=new TableColumn(textColorColumnText);
+          textColorColumn.setPrefWidth(300);
          linkColumn=new TableColumn(linkColumnText);
+          linkColumn.setPrefWidth(300);
          
          
              nameColumn.setCellValueFactory(
@@ -272,9 +276,13 @@ public class CSGProjectWorkspace implements WorkspacePart{
          studentsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
          
          firstNameColumn=new TableColumn(firstNameColumnText);
+         firstNameColumn.setPrefWidth(300);
          lastNameColumn=new TableColumn(lastNameColumnText);
+         lastNameColumn.setPrefWidth(300);
          teamColumn=new TableColumn(teamColumnText);
+         teamColumn.setPrefWidth(300);
          roleColumn=new TableColumn(roleColumnText);
+         roleColumn.setPrefWidth(300);
          
          firstNameColumn.setCellValueFactory(
              new PropertyValueFactory<Student,String>("firstName")
@@ -430,7 +438,16 @@ public class CSGProjectWorkspace implements WorkspacePart{
 });
                   
     }
-
+public void reset(){
+    getNameTextField().clear();
+    getColorColorPicker().setValue(Color.WHITE);
+    getTextColorPicker().setValue(Color.WHITE);
+    getLinkTextField().clear();
+    getFirstNameTextField().clear();
+    getLastNameTextField().clear();
+    getTeamsComboBox().getItems().clear();
+    getRoleTextField().clear();
+}
    @Override
     public ScrollPane getBasePane() {
         return basePane;

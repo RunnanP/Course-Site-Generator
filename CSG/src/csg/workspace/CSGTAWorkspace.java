@@ -118,8 +118,11 @@ public class CSGTAWorkspace implements WorkspacePart{
         String nameColumnText = props.getProperty(CSGAppProp.NAME_COLUMN_TEXT.toString());
         String emailColumnText = props.getProperty(CSGAppProp.EMAIL_COLUMN_TEXT.toString());
         underGradeColumn=new TableColumn(undergradeColumnText);
+        underGradeColumn.setPrefWidth(200);
         nameColumn = new TableColumn(nameColumnText);
+         nameColumn.setPrefWidth(200);
         emailColumn=new TableColumn(emailColumnText);
+        emailColumn.setPrefWidth(300);
         
        /* underGradeColumn.setCellValueFactory(
               //  new PropertyValueFactory<TeachingAssistant, Boolean>("underGrad")
@@ -444,7 +447,10 @@ controller = new CSGController(app);
         
     }
     
-    
+    public void reset(){
+        getNameTextField().clear();
+        getEmailTextField().clear();
+    }
     
     public ComboBox getOfficeHour(boolean start){
         if(start){

@@ -143,9 +143,13 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         String topicColumnText=props.getProperty(CSGAppProp.TOPIC_COLUMN_TEXT.toString());
         
         typeColumn=new TableColumn(typeColumnText);
+        typeColumn.setPrefWidth(300);
         dateColumn=new TableColumn(dateColumnText);
+         dateColumn.setPrefWidth(300);
         titleColumn=new TableColumn(titleColumnText);
+       titleColumn.setPrefWidth(300);
         topicColumn=new TableColumn(topicColumnText);
+        topicColumn.setPrefWidth(300);
         
         typeColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String>("type"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<ScheduleItem, String>("date"));
@@ -308,7 +312,17 @@ public class CSGScheduleWorkspace implements WorkspacePart{
 
    
    
-   
+   public void reset(){
+       getStartDatePicker().setValue(LocalDate.now());
+       getEndDatePicker().setValue(LocalDate.now());
+       getDatePicker().setValue(LocalDate.now());
+       getTimeTextField().clear();
+       getTitleTextField().clear();
+       getTopicTextField().clear();
+       getLinkTextField().clear();
+       getCriteriaTextField().clear();
+       
+   }
    public void loadCalendar(String initStart,String initEnd) throws ParseException{
        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
        if(!initStart.equals("null")){

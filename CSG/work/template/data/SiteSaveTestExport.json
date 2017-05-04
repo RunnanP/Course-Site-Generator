@@ -1,0 +1,184 @@
+
+{
+    "course_home":true,
+    "course_syllabus":true,
+    "course_schedule":true,
+    "course_hws":true,
+    "course_project":true,
+    "course_subject":"AMS",
+    "course_number":"219",
+    "course_semester":"Spring",
+    "course_year":"2017",
+    "course_title":"Computer Science III",
+    "course_instructor_name":"Ritwik Banerjee",
+    "course_instructor_home":"http://www3.cs.stonybrook.edu/",
+    "work":[
+        {
+            "semester":"Spring 2017",
+            "projects":[
+                {
+                    "name":"Atomic Comics",
+                    "students":[
+                    ],
+                    "link":"http://atomiccomic.com"
+                },
+                {
+                    "name":"C4 Comics",
+                    "students":[
+                    ],
+                    "link":"http://c4-comics.com"
+                }
+            ]
+        }
+    ],
+     "startingMondayMonth":  "1",
+    "startingMondayDay":    "23",
+    "endingFridayMonth":    "5",
+    "endingFridayDay":      "19",
+    "holidays": [
+        { "month": "2",     "day": "9",     "title": "SNOW DAY<br /><img src='./images/SnowDay.gif' />", "link": "http://funnybizblog.com/funny-stuff/calvin-hobbes-snowman-cartoons" },
+        { "month": "3",     "day": "13",     "title": "SPRING BREAK<br /><br /><br />",                 "link": "http://www.dol.gov/laborday/history.htm" }, 
+        { "month": "3",     "day": "14",     "title": "SPRING BREAK<br /><br /><br />",               "link": "http://www.stonybrook.edu/registrar/calendar-academic.shtml" }, 
+        { "month": "3",     "day": "15",    "title": "SPRING BREAK<br /><br /><br />",                "link": "http://www.travelchannel.com/interests/holidays/articles/thanksgiving-travel-tips" }, 
+        { "month": "3",     "day": "16",    "title": "SPRING BREAK<br /><br /><br />",              "link": "https://www.youtube.com/watch?v=wKGX8EbYarU" },
+        { "month": "3",     "day": "17",    "title": "SPRING BREAK<br /><br /><br />",              "link": "http://blackfridaydeathcount.com" },
+        { "month": "5",     "day": "8",    "title": "READING DAY<br /><br /><br />",               "link": "http://www.stonybrook.edu/commcms/registrar/calendars/academic_calendars.html" },
+        { "month": "5",     "day": "9",    "title": "",                          "link": "" },
+        { "month": "5",     "day": "10",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "11",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "12",    "title": "<a href='http://www.cs.stonybrook.edu/~games'>Game Programming<br />Competition</a><br />(6pm SAC Auditorium)<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "15",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "16",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "17",    "title": "<br /><br /><br /><br />",                          "link": "" }
+    ],
+    "lectures":[
+        { "month": "1",     "day": "24",    "title": "Lecture 1",       "topic": "Introduction<br /><br /><br />",      "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4029676-dt-content-rid-26376785_1/xid-26376785_1"},
+        { "month": "1",     "day": "26",    "title": "Lecture 2",       "topic": "Introduction<br />(continued)<br /><br /><br />",           "link": "none" },
+        { "month": "1",     "day": "31",    "title": "Lecture 3",       "topic": "JavaScript<br /><br /><br /><br />",                        "link": "https://prezi.com/4k-6n0ekkae8/javascript/" },
+        { "month": "2",     "day": "2",     "title": "Lecture 4",       "topic": "Engine Support Systems<br /><br /><br />",       "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4020446-dt-content-rid-26265731_1/xid-26265731_1" },
+        { "month": "2",     "day": "7",     "title": "Lecture 5",       "topic": "Engine Support<br />Systems<br />(continued)<br /><br /><br /><br /><br />",                      "link": "none" },
+        { "month": "2",     "day": "14",    "title": "Lecture 7",       "topic": "Sprite<br />Animation<br /><br /><br />",   "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4029675-dt-content-rid-26376780_1/xid-26376780_1" },
+        { "month": "2",     "day": "16",    "title": "Lecture 8",       "topic": "Sprite<br />Animation<br />(continued)<br />",                    "link": "none" },
+        { "month": "2",    "day": "21",     "title": "Lecture 9",      "topic": "Pathfinding<br /><br /><br /><br />", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4034254-dt-content-rid-26450195_1/xid-26450195_1" },
+        { "month": "2",     "day": "23",    "title": "Lecture 10",       "topic": "Tile-Based<br />Graphics<br />&amp; Scrolling<br /><br /><br />", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4032853-dt-content-rid-26425427_1/xid-26425427_1" },
+        { "month": "2",     "day": "28",    "title": "Lecture 11",      "topic": "Tile-Based<br />Graphics<br />&amp; Scrolling<br />(continued)<br /><br /><br /><br /><br />",                        "link": "none" },
+        { "month": "3",     "day": "2",    "title": "Lecture 12",      "topic": "Physics<br />Primer<br /><br /><br /><br /><br />",                        "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4038018-dt-content-rid-26526602_1/xid-26526602_1" },
+        { "month": "3",    "day": "7",      "title": "Lecture 13",      "topic": "Physics<br />Primer<br />(continued)<br /><br />",           "link": "none" },
+        { "month": "3",    "day": "9",      "title": "Lecture 14",      "topic": "Collision<br />Detection &amp; Response<br /><br /><br /><br />",                      "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4043643-dt-content-rid-26654263_1/xid-26654263_1" },
+        { "month": "3",    "day": "21",     "title": "Lecture 15",      "topic": "Game<br />Design<br /><br /><br /><br /><br />",                               "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4047978-dt-content-rid-26745156_1/xid-26745156_1" },
+        { "month": "3",    "day": "23",     "title": "Lecture 16",    "topic": "Sweep &amp; Prune<br />",                            "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4051796-dt-content-rid-26806320_1/xid-26806320_1" },
+        { "month": "3",    "day": "28",     "title": "Lecture 17",      "topic": "AI Systems<br /><br /><br /><br /><br /><br />",                  "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4054384-dt-content-rid-26858637_1/xid-26858637_1" },
+        { "month": "3",    "day": "30",     "title": "Lecture 18",      "topic": "Real-Time Game<br />Architecture<br /><br /><br /><br />",                "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4054680-dt-content-rid-26860603_1/xid-26860603_1" },
+        { "month": "4",    "day": "4",      "title": "Lecture 19",      "topic": "Real-Time Game<br />Architecture<br />(continued)<br /><br />",                                             "link": "none" },
+        { "month": "4",    "day": "6",      "title": "Lecture 20",      "topic": "Graphics<br />Devices<br /><br /><br /><br />",                                             "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4058946-dt-content-rid-26947069_1/xid-26947069_1" },
+        { "month": "4",    "day": "11",     "title": "Lecture 21",      "topic": "Graphics<br />Devices<br />(continued)<br /><br /><br /><br />",                                             "link": "none" },
+        { "month": "4",    "day": "13",     "title": "Lecture 22",      "topic": "Render<br />Threading<br /><br /><br /><br />",                           "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4070590-dt-content-rid-27048695_1/xid-27048695_1" },
+        { "month": "4",    "day": "18",     "title": "Lecture 23",      "topic": "Game<br />Design<br />Exercise<br /><br /><br /><br />",          "link": "none" },
+        { "month": "4",    "day": "20",     "title": "MIDTERM EXAM",   "topic": "(Lectures 1-22)<br /><br /><br /><br /><br />",                                           "link": "none" },
+        { "month": "4",    "day": "25",     "title": "Lecture 25",  "topic": "Game<br />Design<br />Exercise<br /><br /><br /><br />",             "link": "none" },
+        { "month": "4",    "day": "27",     "title": "NO LECTURE",      "topic": "Playtest Night<br />7pm, NCS 120<br /><br /><br /><br /><br />",               "link": "none" },
+        { "month": "5",    "day": "2",      "title": "Lecture 27",      "topic": "Games History<br /><br /><br /><br />",               "link": "none" },
+        { "month": "5",    "day": "4",      "title": "Lecture 28",      "topic": "Guest Lecture<br /><br /><br />",                     "link": "none" }
+    ],
+    "references": [
+        { "month": "4",     "day": "18",    "title": "Reference",   "topic": "Midterm Review",      "link": "./exams/CSE 380 Exam Topics.html" },
+        { "month": "9",     "day": "16",    "title": "Reference",   "topic": "JavaFX Examples", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3870769-dt-content-rid-24893045_1/xid-24893045_1" },
+        { "month": "9",     "day": "19",    "title": "Reference",   "topic": "Web Page Maker", "link": "./lectures/WebPageMaker.zip" },
+        { "month": "9",     "day": "19",    "title": "Reference",   "topic": "Pose Maker", "link": "./lectures/PoseMaker.zip" },
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Factory", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910788-dt-content-rid-25675399_1/xid-25675399_1"},
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Singleton", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910789-dt-content-rid-25675702_1/xid-25675702_1" },
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Builder", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910790-dt-content-rid-25675703_1/xid-25675703_1" },
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Prototype", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910791-dt-content-rid-25675704_1/xid-25675704_1" }
+    ],
+    "hws": [
+        { "month": "2",     "day": "8",    "title": "Individual HW 1",    "topic": "due @ 11:59pm",               "link": "./hw/IndividualHW1.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1e7QouuX4CWvF_CYrmVQJQALUm4-pqIL2egya42hlfTo"  },
+        { "month": "2",    "day": "20",    "title": "Individual HW 2",   "topic": "due @ 11:59pm<br />",            "link": "./hw/IndividualHW2.html",  "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1g_JR1mF5sj97FKC6hK2TrGGjA3_VE8pItZG2eqRd6RY"  },
+        { "month": "3",    "day": "14",    "title": "Individual HW 3",    "topic": "due @ 11:59pm<br />",                "link": "./hw/IndividualHW3.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1nq-hRVe9t5AGsRJKaizVJaXbfeSYvzZka0HS5UDyU_0"  },
+        { "month": "3",     "day": "27",    "title": "Group Project<br />(Benchmark 1)",    "topic": "due @ 11:59pm<br />",             "link": "./hw/GroupProjectBenchmark1.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1hzFVch5saCpdMH8BesfXP0EVy2wW40qh8ElijkSZaGs"  },
+        { "month": "4",    "day": "10",    "title": "Group Project<br />(Benchmark 2)",    "topic": "due @ 11:59pm<br />",           "link": "./hw/GroupProjectBenchmark2.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1HpCh8jHkcc06f865DzmocOgQFa45g1tLDVrBrHpgyvo" },
+        { "month": "4",     "day": "24",    "title": "Group Project<br />(Benchmark 3)",    "topic": "due @ 11:59pm<br />",             "link": "./hw/GroupProjectBenchmark3.html",     "time": "11:59pm",  "criteria": "none"  },
+        { "month": "5",    "day": "9",    "title": "Group Project",    "topic": "(Presentations)",           "link": "./hw/GroupProjectFinalDemo.html",     "time": "./hw/GroupProjectFinalDemo.html",  "criteria": "none" }
+    ],
+    "startHour":"9",
+    "endHour":"20",
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"11_00am",
+            "name":"Jane Dow"
+        },
+        {
+            "day":"TUESDAY",
+            "time":"12_00pm",
+            "name":"Joe Shmo"
+        },
+        {
+            "day":"MONDAY",
+            "time":"5_00pm",
+            "name":"Joe Shmo"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"7_00pm",
+            "name":"Jane Dow"
+        }
+    ],
+    "undergrad_tas":[
+        {
+            "name":"Jane Doe",
+            "email":"jane.doe@yahoo.com",
+            "under_tas":"true"
+        },
+        {
+            "name":"Joe Shmo",
+            "email":"joe.shmo@yale.edu",
+            "under_tas":"false"
+        }
+    ],
+    "recitations":[
+        {
+            "section":"R02",
+            "day_time":"Wed 3:30pm-4:23pm",
+            "location":"Old CS 2114",
+            "ta_1":"bill",
+            "ta_2":"mike"
+        },
+        {
+            "section":"R05",
+            "day_time":"Tues 5:30pm-6:23pm",
+            "location":"Old CS 2114",
+            "ta_1":"pol",
+            "ta_2":"amy"
+        }
+    ],
+    "teams":[
+        {
+            "name":"Atomic Comics",
+            "red":"17",
+            "green":"0",
+            "blue":"0",
+            "text_color":"ffffff"
+        },
+        {
+            "name":"C4 Comics",
+            "red":"153",
+            "green":"0",
+            "blue":"0",
+            "text_color":"ffffff"
+        }
+    ],
+    "students":[
+        {
+            "lastName":"Brummell",
+            "firstName":"Beau",
+            "team":"Atomic Comics",
+            "role":"Lead Designer"
+        },
+        {
+            "lastName":"Doe",
+            "firstName":"Jane",
+            "team":"C4 Comics",
+            "role":"Lead Programmer"
+        }
+    ]
+}

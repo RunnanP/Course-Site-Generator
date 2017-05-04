@@ -214,20 +214,20 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         CSGData dataManager = (CSGData)data;
         
        
-   AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
-            yesNoDialog.show("test save","test save? yes for test hard code, other for regular save");
-            String selection = yesNoDialog.getSelection();
-      
-            if (selection.equals(AppYesNoCancelDialogSingleton.YES)){
-
-    TestSave test =new TestSave(app);
-            try {
-                test.saveDataWithHardCode(dataManager);
-            } catch (ParseException ex) {
-                Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    filePath=TEST_PATH;
-            }  
+//   AppYesNoCancelDialogSingleton yesNoDialog = AppYesNoCancelDialogSingleton.getSingleton();
+//            yesNoDialog.show("test save","test save? yes for test hard code, other for regular save");
+//            String selection = yesNoDialog.getSelection();
+//      
+//            if (selection.equals(AppYesNoCancelDialogSingleton.YES)){
+//
+//    TestSave test =new TestSave(app);
+//            try {
+//                test.saveDataWithHardCode(dataManager);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(CSGFiles.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    filePath=TEST_PATH;
+//            }  
 	// NOW BUILD THE TA JSON OBJCTS TO SAVE
 	JsonArrayBuilder taArrayBuilder = Json.createArrayBuilder();
 	ObservableList<TeachingAssistant> tas = dataManager.getTeachingAssistants();

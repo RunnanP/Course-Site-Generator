@@ -146,11 +146,11 @@ public class CSGWorkspace extends AppWorkspaceComponent{
     @Override
     public void resetWorkspace() {
         csgCourseWorkspace.reset();
-      //  csgTAWorkspace.reset();
-       // csgRecitationWorkspace.reset();
-      //  csgScheduleWorkspace.reset();
-      //  csgProjectWorkspace.reset();
-       // currentWorkspace.getChildren().clear();
+       csgTAWorkspace.reset();
+        csgRecitationWorkspace.reset();
+        csgScheduleWorkspace.reset();
+        csgProjectWorkspace.reset();
+        currentWorkspace.getChildren().clear();
     }
 
     @Override

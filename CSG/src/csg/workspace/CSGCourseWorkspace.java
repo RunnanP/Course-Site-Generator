@@ -183,7 +183,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          });
          
-                 this.basePane.setOnKeyPressed(e->{
+         this.basePane.setOnKeyPressed(e->{
            if(e.isControlDown() && e.getCode()==KeyCode.Z){
   
         controller.handleUndoTransaction();
@@ -210,7 +210,13 @@ public class CSGCourseWorkspace implements WorkspacePart{
          subjectLabel=new Label(subjectLabelText);
          subjectComboBox=new ComboBox<String>();
          subjectComboBox.setPrefWidth(250);
-         
+                     for(int i=(int)'A';i<'A'+26;i++){
+                          for(int j=(int)'A';j<'A'+26;j++){
+                               for(int k=(int)'A';k<'A'+26;k++){
+                                   subjectComboBox.getItems().add(""+(char)i+(char)j+(char)k);
+                               }
+                          }
+                     }   
          
               
                
@@ -484,7 +490,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
           
          bannerSchoolImageLabel=new Label(bannerSchoolImageLabelText);
          
-         firstImageLocation=new String("file:./images/1.jpg");
+         firstImageLocation=new String("file:.\\images\\1.jpg");
          firstImageView=new ImageView(firstImageLocation);
          
          firstText=new Text("YALE UNIVERSITY");
@@ -500,7 +506,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          leftFooterImageLabel=new Label(leftFooterImageLabelText);
          
-         secondImageLocation=new String("file:./images/2.png");
+         secondImageLocation=new String("file:.\\images\\2.png");
          secondImageView=new ImageView(secondImageLocation);
          
          secondText=new Text("YALE UNIVERSITY");
@@ -516,7 +522,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          rightFooterImageLabel=new Label(rightFooterImageLabelText);
          
-          thirdImageLocation=new String("file:./images/3.png");
+          thirdImageLocation=new String("file:.\\images\\3.png");
          thirdImageView=new ImageView(thirdImageLocation);
          thirdText=new Text("YALE CS");
          thirdChangeButton=new Button(changeText);
@@ -547,12 +553,25 @@ public class CSGCourseWorkspace implements WorkspacePart{
    }
    
    public void reset(){
+       getSubjectComboBox().setValue("");
+       getNumberComboBox().setValue(null);
+       getSemesterComboBox().setValue("");
+       getYearComboBox().setValue(null);
+       getTitleTextField().setText("");
+       getInstructorNameTextField().setText("");
+       getInstructorHomeTextField().setText("");
+       
+       
        setExporDirDisplayAddressLabel("");
        setTemplatesDirLabel("");
        getStyleSheetComboBox().setValue("");
-       setFirstImageView(new Image("file:./images/1.jpg"));
-       setSecondImageView(new Image("file:./images/2.png"));
-       setThirdImageView(new Image("file:./images/3.png"));
+       
+       setFirstImageView(new Image("file:.\\images\\1.jpg"));
+       setFirstImageLocation("file:.\\images\\1.jpg");
+       setSecondImageView(new Image("file:.\\images\\2.png"));
+       setSecondImageLocation("file:.\\images\\2.png");
+       setThirdImageView(new Image("file:.\\images\\3.png"));
+       setThirdImageLocation("file:.\\images\\3.png");
        
    }
    
