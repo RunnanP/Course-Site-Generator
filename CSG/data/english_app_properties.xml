@@ -217,7 +217,18 @@
             <property name="WRONG_TITLE"   value="WRONG"></property>
             
 
+
+
+
+ <property name="TEMPLE_HAVE_HTML"   value="The temple should have html file"></property>
      <property name="PROVE_TEAM_NAME"   value="You have to prove team name"></property>
+<property name="PROVE_TEAM_LINK"   value="You have to prove team link"></property>
+
+   <property name="PROVE_RECITATION_DAYTIME"   value="You have to prove recitation day and time"></property>
+<property name="PROVE_RECITATION_LOCATION"   value="You have to prove recitation location"></property>
+
+       
+     
             <property name="PROVE_RECITATION_SECTION"   value="You have to prove recitation section"></property>
 <property name="PROVE_STUDENT_NAME"   value="You have to prove student name"></property>
 <property name="PROVE_TYPE_MESSAGE"   value="You have to prove schedule item type"></property>

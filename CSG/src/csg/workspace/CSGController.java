@@ -99,7 +99,7 @@ public class CSGController {
        
         jTPS_Transaction transaction=new Course_ChangeExportDir_Transaction(data, workspace,path,oldpath);
             app.getJTPS().addTransaction(transaction);
-        
+         markWorkAsEdited();
             }catch(Exception e) {
                 
               
@@ -141,13 +141,13 @@ public class CSGController {
         String oldpath=data.getSiteTempleDir();
         
      
-         data.setSiteTempleDir(path);
-        workspace.setTemplatesDirLabel(path);
-        
-        
-         
-       
-               file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
+//         data.setSiteTempleDir(path);
+//        workspace.setTemplatesDirLabel(path);
+//        
+//        
+//         
+//       
+//               file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
          
                  File f1=new File(path+"\\\\index.html");
                 if(f1.exists()){
@@ -189,9 +189,70 @@ public class CSGController {
                    data.setJproject(false);
                }
                 
+               if(!data.isJhome() && !data.isJhws() && !data.isJproject() && !data.isJschedule() && !data.isJsyllabus()){
+                   
+                   AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(TEMPLE_HAVE_HTML));  
+                  return;
+               } else{
+                   file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
+               }
+               
+               
+               
+                   f1=new File(path+"\\\\index.html");
+                if(f1.exists()){
+                    data.setJhome(true);
+                }else {
+                   data.setJhome(false);
+               }
                 
+                
+                 f2=new File(path+"\\\\syllabus.html");
+               if(f2.exists()){
+                   data.setJsyllabus(true);
+               }else {
+                   data.setJsyllabus(false);
+               }
+                
+                 f3=new File(path+"\\\\schedule.html");
+                if(f3.exists()){
+                   data.setJschedule(true);
+               }else {
+                   data.setJschedule(false);
+               }
+                
+                
+                
+                
+                
+                 f4=new File(path+"\\\\hws.html");
+                if(f4.exists()){
+                   data.setJhws(true);
+               }else {
+                   data.setJhws(false);
+               }
+                
+                 f5=new File(path+"\\\\projects.html");
+                if(f5.exists()){
+                   data.setJproject(true);
+               }else {
+                   data.setJproject(false);
+               }
                
                 
+                
+                //workspace.getSitePagesTable().refresh();
+                   
+                   
+                     data.setSiteTempleDir(path);
+                workspace.setTemplatesDirLabel(path);
+        
+        
+       
+             
+               
+               
                ArrayList<String> csslist=new ArrayList<>(); 
                 
                 File f6=new File(path+"\\\\css\\\\");
@@ -201,13 +262,18 @@ public class CSGController {
                         if(f.getName().endsWith(".css")){
                            // workspace.getStyleSheetComboBox().getItems().add(f.getName());
                            csslist.add(f.getName());
+                            System.out.println(f.getName());
                         }
                     }
                     
                 }
+                
+                workspace.getStyleSheetComboBox().getItems().clear();
+                workspace.getStyleSheetComboBox().getItems().addAll(csslist);
                   workspace.setTemplatesDirLabel(path);
                
-                  
+                   markWorkAsEdited();
+                   app.getJTPS().clearTransaction();
          //     jTPS_Transaction transaction=new Course_ChangeTemplateDir_Transaction(app,data, workspace,file,path,oldpath);
            // app.getJTPS().addTransaction(transaction);
                   
@@ -732,8 +798,21 @@ public class CSGController {
         }
          String initsection=workspace.getSectionTextField().getText()+"";
          
+         
          String initinstructor=workspace.getInstructorTextField().getText()+"";
+         
+         if(workspace.getDaytimeTextField().getText().equals("")){
+             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(PROVE_RECITATION_DAYTIME));  
+                  return;
+        }
          String initdaytime=workspace.getDaytimeTextField().getText()+"";
+         
+         if(workspace.getLocationTextField().getText().equals("")){
+             AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_RECITATION_TITLE), props.getProperty(PROVE_RECITATION_LOCATION));  
+                  return;
+        }
          String initlocation=workspace.getLocationTextField().getText()+"";
          String initFirstta=workspace.getFirstTAComboBox().getValue()+"";
          if(workspace.getFirstTAComboBox().getValue()==null){
@@ -1012,7 +1091,7 @@ public class CSGController {
                   
            workspace.getTypeComboBox().setValue("");
        
-       workspace.getDatePicker().setValue(null);
+       workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
        workspace.getTitleTextField().setText("");
         workspace.getTopicTextField().setText("");
@@ -1051,7 +1130,7 @@ public class CSGController {
                   app.getJTPS().addTransaction(transaction);
                 
            workspace.getTypeComboBox().setValue("");
-       workspace.getDatePicker().setValue(null);
+       workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
        workspace.getTitleTextField().setText("");
         workspace.getTopicTextField().setText("");
@@ -1112,7 +1191,7 @@ public class CSGController {
                   app.getJTPS().addTransaction(transaction);
          
           workspace.getTypeComboBox().setValue("");
-       workspace.getDatePicker().setValue(null);
+       workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
        workspace.getTitleTextField().setText("");
         workspace.getTopicTextField().setText("");
@@ -1128,7 +1207,7 @@ public class CSGController {
                   app.getJTPS().addTransaction(transaction);
          
           workspace.getTypeComboBox().setValue("");
-       workspace.getDatePicker().setValue(null);
+       workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
        workspace.getTitleTextField().setText("");
         workspace.getTopicTextField().setText("");
@@ -1150,7 +1229,7 @@ public class CSGController {
         CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
        workspace.getTypeComboBox().setValue("");
        
-       workspace.getDatePicker().setValue(null);
+       workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
        workspace.getTitleTextField().setText("");
         workspace.getTopicTextField().setText("");
@@ -1191,8 +1270,15 @@ public class CSGController {
           if(workspace.getTextColorPicker().getValue()!=null){
          textcolor=workspace.getTextColorPicker().getValue().toString().substring(2)+"";
           }
+          
          String link=workspace.getLinkTextField().getText()+"";
-       
+          if(link.equals("")){
+               AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_TEAM_TITLE), props.getProperty(PROVE_TEAM_LINK));  
+                  return;
+          } 
+          
+          
          Team newteam=new Team(name,color,textcolor,link);
           if (selectedItem == null) {
               
@@ -1323,7 +1409,7 @@ public class CSGController {
        workspace.getTextColorPicker().setValue(Color.rgb(textColorRed, textColorGreen, textColorBlue));
         workspace.getLinkTextField().setText(link);
              
-                markWorkAsEdited();
+           //     markWorkAsEdited();
             
               // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
               
@@ -1412,7 +1498,7 @@ public class CSGController {
               
          jTPS_Transaction transaction=new Project_AddStudent_Transaction(data, newstu);
             app.getJTPS().addTransaction(transaction);
-            
+             markWorkAsEdited();
             
                workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");
@@ -1509,7 +1595,7 @@ public class CSGController {
        workspace.getTeamsComboBox().setValue(team);
        workspace.getRoleTextField().setText(role);
              
-                markWorkAsEdited();
+          //      markWorkAsEdited();
             
               // jTPS_Transaction transaction=new ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
               

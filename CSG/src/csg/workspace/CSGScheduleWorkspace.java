@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -34,6 +36,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import properties_manager.PropertiesManager;
 
 /**
@@ -111,15 +114,131 @@ public class CSGScheduleWorkspace implements WorkspacePart{
         startDateLabel=new Label(startDateText+":");
          startDatePicker=new DatePicker();
          startDatePicker.setShowWeekNumbers(true);
+       //  startDatePicker.setDisable(true);
+       
+       
+       
+       
+       
+       
+       
+        
           String endDateText = props.getProperty(CSGAppProp.ENDING_DATE_TEXT.toString());
     endDateLabel=new Label(endDateText+":");
        endDatePicker=new DatePicker();
        endDatePicker.setShowWeekNumbers(true);
+       
+       
+       
+         
+     //   endDatePicker.setValue(startDatePicker.getValue().plusDays(1));
+       
+       
        HBox a1=new HBox();
         dateChooseBox.getChildren().addAll(startDateLabel,startDatePicker,a1,endDateLabel,endDatePicker);
         a1.setPrefWidth(50);
         
         calendarChooseBox.getChildren().addAll(calendarHeaderLabel,dateChooseBox);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            final Callback<DatePicker, DateCell> startdayCellFactory = 
+            new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (item.isBefore(
+                                    startDatePicker.getValue().plusDays(1))
+                                ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                            long p = ChronoUnit.DAYS.between(
+                                    startDatePicker.getValue(), item
+                            );
+                         
+                    }
+                };
+            }
+        };
+       
+        
+        
+        
+        
+            
+            
+            
+            
+               final Callback<DatePicker, DateCell> enddayCellFactory = 
+            new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (item.isAfter(
+                                    endDatePicker.getValue().plusDays(-1))
+                                ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                            long p = ChronoUnit.DAYS.between(
+                                    endDatePicker.getValue(), item
+                            );
+                         
+                    }
+                };
+            }
+        };
+            
+         
+               
+        startDatePicker.setDayCellFactory(enddayCellFactory);
+        endDatePicker.setDayCellFactory(startdayCellFactory);
+        
+        
+        
+        
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+        
         
         
         scheduleItemBox=new FlowPane();

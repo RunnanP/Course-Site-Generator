@@ -217,8 +217,14 @@
             <property name="WRONG_STUDENT_MESSAGE"   value="已经有相同的学生"></property>
              <property name="WRONG_TITLE"   value="错误"></property>
 
+
+<property name="TEMPLE_HAVE_HTML"   value="例子需要有html文件"></property>
+
 <property name="PROVE_TEAM_NAME"   value="需要队伍名字"></property>
+<property name="PROVE_TEAM_LINK"   value="需要队伍超链接"></property>
             <property name="PROVE_RECITATION_SECTION"   value="需要编号"></property>
+              <property name="PROVE_RECITATION_DAYTIME"   value="需要日期时间"></property>
+<property name="PROVE_RECITATION_LOCATION"   value="需要地址"></property>
             <property name="PROVE_STUDENT_NAME"   value="需要名字"></property>
 <property name="PROVE_TYPE_MESSAGE"   value="需要类型"></property>
 

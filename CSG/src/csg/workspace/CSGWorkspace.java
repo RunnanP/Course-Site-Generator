@@ -93,7 +93,12 @@ public class CSGWorkspace extends AppWorkspaceComponent{
               workspaceBasicPane=new VBox();
             workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgCourseWorkspace.getBasePane());
             app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+            
+           
          });
+         
+         
+         
          workspaceTAPartButton.setOnAction(e->{
              //controller.handleChangeTAPart(this,workspaceStateBar,csgTAWorkspace.getBasePane());
             // workspace=new Pane(csgTAWorkspace.getBasePane());
@@ -103,27 +108,40 @@ public class CSGWorkspace extends AppWorkspaceComponent{
         // ((BorderPane)workspace).setCenter(csgCourseWorkspace.getBasePane());
              //controller.handleChangeTAPart(app,this,workspaceStateBar,csgTAWorkspace.getBasePane());
             // app.getWorkspaceComponent().activateWorkspace(app.getGUI().getAppPane());
+            
             workspaceBasicPane=new VBox();
             workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgTAWorkspace.getBasePane());
           //  CSGWorkspace oo=(CSGWorkspace)app.getWorkspaceComponent();
             workspaceBasicPane.prefWidthProperty().bind(workspaceStateBar.widthProperty().multiply(1));
             app.getGUI().getAppPane().setCenter(workspaceBasicPane);
             
+          
+            
          });
+         
+         
+         
          workspaceRecitationPartButton.setOnAction(e->{
             workspaceBasicPane=new VBox();
             workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgRecitationWorkspace.getBasePane());
             app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+         
          });
+         
+         
          workspaceSchedulePartButton.setOnAction(e->{
             workspaceBasicPane=new VBox();
             workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgScheduleWorkspace.getBasePane());
             app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+          
          });
+         
+         
          workspaceProjectPartButton.setOnAction(e->{
             workspaceBasicPane=new VBox();
             workspaceBasicPane.getChildren().addAll(workspaceStateBar,csgProjectWorkspace.getBasePane());
             app.getGUI().getAppPane().setCenter(workspaceBasicPane);
+           
          });
          
          
