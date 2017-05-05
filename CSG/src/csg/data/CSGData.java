@@ -152,7 +152,7 @@ public class CSGData implements AppDataComponent{
 
     @Override
     public void resetData() {
-          startHour = MIN_START_HOUR;
+        startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
         
         setSubject("");

@@ -237,8 +237,8 @@
             <property name="ABOUT_TITLE"   value="Software info"></property>
             <property name="ABOUT_MESSAGE"   value="Course Site Generator, created by Runnan Pan"></property>
 
-         
-       
+         <property name="CHOOSE_MONDAY"   value="You have to choose Monday"></property>
+       <property name="CHOOSE_FRIDAY"   value="You have to choose Friday"></property>
         
           
            

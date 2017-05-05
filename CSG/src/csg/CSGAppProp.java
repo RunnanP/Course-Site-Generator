@@ -178,7 +178,9 @@ public enum CSGAppProp {
         PROVE_RECITATION_LOCATION,
         PROVE_STUDENT_NAME,
         PROVE_TYPE_MESSAGE,
-        TEMPLE_HAVE_HTML
+        TEMPLE_HAVE_HTML,
+        CHOOSE_MONDAY,
+        CHOOSE_FRIDAY
         
         
         

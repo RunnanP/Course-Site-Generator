@@ -231,7 +231,8 @@
              <property name="ABOUT_TITLE"   value="软件信息"></property>
             <property name="ABOUT_MESSAGE"   value="潘润楠持有版权"></property>
 
-
+ <property name="CHOOSE_MONDAY"   value="必须选择周一"></property>
+       <property name="CHOOSE_FRIDAY"   value="必须选择周五"></property>
 
 
     </property_list>

@@ -34,11 +34,14 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -1020,6 +1023,40 @@ public class CSGController {
      
      
     //schedule part///////////////////////////////////////////////////////////////
+     
+     public void handleStartMonday(Event e,LocalDate olddate,DatePicker olddDatePicker){
+         DayOfWeek temp=((DatePicker)e.getSource()).getValue().getDayOfWeek();
+         if (!temp.equals(DayOfWeek.MONDAY)){
+              PropertiesManager props = PropertiesManager.getPropertiesManager();
+                  AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	   dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(CHOOSE_MONDAY)); 
+            
+         // olddDatePicker.setValue(LocalDate.of(2017, Month.MAY, 5));
+          
+         }
+           
+         
+     }
+     
+        public void handleEndFriday(Event e,LocalDate olddate,DatePicker olddDatePicker){
+         DayOfWeek temp=((DatePicker)e.getSource()).getValue().getDayOfWeek();
+         if (!temp.equals(DayOfWeek.FRIDAY)){
+              PropertiesManager props = PropertiesManager.getPropertiesManager();
+                  AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	   dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(CHOOSE_FRIDAY)); 
+            
+         // olddDatePicker.setValue(LocalDate.of(2017, Month.MAY, 5));
+          
+         }
+           
+         
+     }
+     
+     
+     
+     
+     
+     
      public void handleEditScheduleItem() throws ParseException{
          
                 CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();

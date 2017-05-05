@@ -16,6 +16,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -382,6 +384,23 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           
           
           
+          startDatePicker.setOnAction(e->{
+              
+              System.out.println( startDatePicker.getValue());
+              controller.handleStartMonday(e,startDatePicker.getValue(),startDatePicker);
+              
+          });
+          
+          
+           endDatePicker.setOnAction(e->{
+              
+              
+              controller.handleEndFriday(e,endDatePicker.getValue(),endDatePicker);
+              
+          });
+           
+           
+           
           
           scheduleItemsTable.setFocusTraversable(true);
           scheduleItemsTable.setEditable(true);
