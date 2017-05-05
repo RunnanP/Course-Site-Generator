@@ -986,7 +986,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
 		    .add(ADD_JSON_TS_RED, ""+te.getRed())
                     .add(ADD_JSON_TS_GREEN,""+te.getGreen())
                     .add(ADD_JSON_TS_BLUE, ""+te.getBlue())
-                    .add(ADD_JSON_TS_TEXTCOLOR, ""+te.getTextcolor())
+                    .add(ADD_JSON_TS_TEXTCOLOR, "#"+te.getTextcolor())
                     .build();
 	    teamsArrayBuilder.add(teamsJson);
 	}

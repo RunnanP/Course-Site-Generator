@@ -10,7 +10,9 @@ import csg.CSGAppProp;
 import csg.data.CSGData;
 import csg.data.SitePage;
 import csg.data.TeachingAssistant;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -490,7 +492,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
           
          bannerSchoolImageLabel=new Label(bannerSchoolImageLabelText);
          
-         firstImageLocation=new String("file:.\\images\\1.jpg");
+         firstImageLocation=new String("file:.\\work\\brands\\1.jpg");
          firstImageView=new ImageView(firstImageLocation);
          
          firstText=new Text("YALE UNIVERSITY");
@@ -506,7 +508,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          leftFooterImageLabel=new Label(leftFooterImageLabelText);
          
-         secondImageLocation=new String("file:.\\images\\2.png");
+         secondImageLocation=new String("file:.\\work\\brands\\2.png");
          secondImageView=new ImageView(secondImageLocation);
          
          secondText=new Text("YALE UNIVERSITY");
@@ -522,7 +524,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
          
          rightFooterImageLabel=new Label(rightFooterImageLabelText);
          
-          thirdImageLocation=new String("file:.\\images\\3.png");
+          thirdImageLocation=new String("file:.\\work\\brands\\3.png");
          thirdImageView=new ImageView(thirdImageLocation);
          thirdText=new Text("YALE CS");
          thirdChangeButton=new Button(changeText);
@@ -543,7 +545,33 @@ public class CSGCourseWorkspace implements WorkspacePart{
         t1=new HBox();
         fourthHBox=new HBox(styleSheetLabel,t1,styleSheetComboBox);
         t1.setPrefWidth(120);
+        
+        
+        
+        
         styleSheetComboBox.setPrefWidth(400);
+          ArrayList<String> csslist=new ArrayList<>(); 
+                
+                File f6=new File(".\\work\\css\\");
+                File flist[]=f6.listFiles();
+                for (File f:flist){
+                    if (!f.isDirectory()){
+                        if(f.getName().endsWith(".css")){
+                           // workspace.getStyleSheetComboBox().getItems().add(f.getName());
+                           csslist.add(f.getName());
+                            System.out.println(f.getName());
+                        }
+                    }
+                    
+                }
+                
+                getStyleSheetComboBox().getItems().clear();
+                getStyleSheetComboBox().getItems().addAll(csslist);
+        
+                
+                
+                
+                
         String noteDescriptionText=props.getProperty(CSGAppProp.NOTE_DESCRIPTION_TEXT.toString());
         noteDescription=new Text(noteDescriptionText);
         
@@ -566,12 +594,12 @@ public class CSGCourseWorkspace implements WorkspacePart{
        setTemplatesDirLabel("");
        getStyleSheetComboBox().setValue("");
        
-       setFirstImageView(new Image("file:.\\images\\1.jpg"));
-       setFirstImageLocation("file:.\\images\\1.jpg");
-       setSecondImageView(new Image("file:.\\images\\2.png"));
-       setSecondImageLocation("file:.\\images\\2.png");
-       setThirdImageView(new Image("file:.\\images\\3.png"));
-       setThirdImageLocation("file:.\\images\\3.png");
+       setFirstImageView(new Image("file:.\\work\\brands\\1.jpg"));
+       setFirstImageLocation("file:.\\work\\brands\\1.jpg");
+       setSecondImageView(new Image("file:.\\work\\brands\\2.png"));
+       setSecondImageLocation("file:.\\work\\brands\\2.png");
+       setThirdImageView(new Image("file:.\\work\\brands\\3.png"));
+       setThirdImageLocation("file:.\\work\\brands\\3.png");
        
    }
    

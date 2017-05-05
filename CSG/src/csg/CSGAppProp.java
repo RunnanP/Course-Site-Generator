@@ -180,7 +180,8 @@ public enum CSGAppProp {
         PROVE_TYPE_MESSAGE,
         TEMPLE_HAVE_HTML,
         CHOOSE_MONDAY,
-        CHOOSE_FRIDAY
+        CHOOSE_FRIDAY,
+        PROVE_TITLE_MESSAGE
         
         
         

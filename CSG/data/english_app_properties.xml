@@ -226,8 +226,8 @@
 
    <property name="PROVE_RECITATION_DAYTIME"   value="You have to prove recitation day and time"></property>
 <property name="PROVE_RECITATION_LOCATION"   value="You have to prove recitation location"></property>
-
-       
+<property name="PROVE_TITLE_MESSAGE"   value="You have to prove title"></property>
+      
      
             <property name="PROVE_RECITATION_SECTION"   value="You have to prove recitation section"></property>
 <property name="PROVE_STUDENT_NAME"   value="You have to prove student name"></property>

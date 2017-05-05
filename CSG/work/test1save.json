@@ -1,0 +1,41 @@
+
+{
+    "course_home":true,
+    "course_syllabus":true,
+    "course_schedule":true,
+    "course_hws":true,
+    "course_project":true,
+    "course_subject":"ABC",
+    "course_number":"100",
+    "course_semester":"Spring",
+    "course_year":"2002",
+    "course_title":"math",
+    "course_instructor_name":"bill",
+    "course_instructor_home":"www.google.com",
+    "course_export_dir":"C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\template\\temple2",
+    "course_template_dir":"",
+    "course_first_image_address":"file:C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\brands\\About.png",
+    "course_second_image_address":"file:C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\brands\\TAManagerLogo.png",
+    "course_third_image_address":"file:.\\work\\brands\\3.png",
+    "course_stytle_sheet":"sea_wolf.css",
+    "startHour":"9",
+    "endHour":"20",
+    "tas":[
+    ],
+    "officeHours":[
+    ],
+    "schedule_calendar_starting":"2017-05-01",
+    "schedule_calendar_ending":"2017-05-19",
+    "startingMondayMonth":"5",
+    "startingMondayDay":"1",
+    "endingFridayMonth":"5",
+    "endingFridayDay":"19",
+    "recitations":[
+    ],
+    "schedules":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

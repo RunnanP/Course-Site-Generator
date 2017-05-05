@@ -84,6 +84,8 @@ public class CSGData implements AppDataComponent{
         public static final int MIN_START_HOUR=9;
        public static final int MAX_END_HOUR=20;
        
+       
+       
        //recitation part
        
        //schedule part
@@ -93,7 +95,11 @@ public class CSGData implements AppDataComponent{
        int startDay;
        int endMonth;
        int endDay;
-      
+       
+       
+       public static final String INIT_START_DATE="2017-05-01";
+       public static final String INIT_END_DATE="2017-05-19";
+       
        
        //teams part
     
@@ -154,6 +160,9 @@ public class CSGData implements AppDataComponent{
     public void resetData() {
         startHour = MIN_START_HOUR;
         endHour = MAX_END_HOUR;
+        
+        startingDate=INIT_START_DATE;
+        endingDate=INIT_END_DATE;
         
         setSubject("");
         setNumber(0);
@@ -760,11 +769,11 @@ public class CSGData implements AppDataComponent{
         
        
     public String getStartingDate() {
-         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
-                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
-                if(workspace.getStartDatePicker().getValue()!=null){
-               startingDate= workspace.getStartDatePicker().getValue().toString();
-                }        
+//         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+//                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+//                if(workspace.getStartDatePicker().getValue()!=null){
+//               startingDate= workspace.getStartDatePicker().getValue().toString();
+//                }        
         return startingDate;
     }
  public String getStartingDateTest() {
@@ -799,10 +808,10 @@ public class CSGData implements AppDataComponent{
         
 
     public String getEndingDate() {
-          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
-                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
-                if(workspace.getEndDatePicker().getValue()!=null){
-               endingDate= workspace.getEndDatePicker().getValue().toString();}
+//          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+//                CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
+//                if(workspace.getEndDatePicker().getValue()!=null){
+//               endingDate= workspace.getEndDatePicker().getValue().toString();}
         return endingDate;
     }
        public String getEndingDateTest() {

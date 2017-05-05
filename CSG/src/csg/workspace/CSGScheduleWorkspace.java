@@ -387,7 +387,11 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           startDatePicker.setOnAction(e->{
               
               System.out.println( startDatePicker.getValue());
-              controller.handleStartMonday(e,startDatePicker.getValue(),startDatePicker);
+            try {
+                controller.handleStartMonday(e,startDatePicker.getValue(),startDatePicker,this,data);
+            } catch (ParseException ex) {
+                Logger.getLogger(CSGScheduleWorkspace.class.getName()).log(Level.SEVERE, null, ex);
+            }
               
           });
           
@@ -395,7 +399,11 @@ public class CSGScheduleWorkspace implements WorkspacePart{
            endDatePicker.setOnAction(e->{
               
               
-              controller.handleEndFriday(e,endDatePicker.getValue(),endDatePicker);
+            try {
+                controller.handleEndFriday(e,endDatePicker.getValue(),endDatePicker,this,data);
+            } catch (ParseException ex) {
+                Logger.getLogger(CSGScheduleWorkspace.class.getName()).log(Level.SEVERE, null, ex);
+            }
               
           });
            
@@ -450,9 +458,10 @@ public class CSGScheduleWorkspace implements WorkspacePart{
 
    
    
-   public void reset(){
-       getStartDatePicker().setValue(LocalDate.now());
-       getEndDatePicker().setValue(LocalDate.now());
+   public void reset() throws ParseException{
+     //  getStartDatePicker().setValue(LocalDate.now());
+       //getEndDatePicker().setValue(LocalDate.now());
+       loadCalendar("2017-05-01", "2017-05-19");
        getDatePicker().setValue(LocalDate.now());
        getTimeTextField().clear();
        getTitleTextField().clear();

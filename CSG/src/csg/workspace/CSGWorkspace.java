@@ -11,6 +11,8 @@ import csg.data.CSGData;
 import djf.components.AppDataComponent;
 import djf.components.AppWorkspaceComponent;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -166,7 +168,11 @@ public class CSGWorkspace extends AppWorkspaceComponent{
         csgCourseWorkspace.reset();
        csgTAWorkspace.reset();
         csgRecitationWorkspace.reset();
-        csgScheduleWorkspace.reset();
+       try {
+           csgScheduleWorkspace.reset();
+       } catch (ParseException ex) {
+           Logger.getLogger(CSGWorkspace.class.getName()).log(Level.SEVERE, null, ex);
+       }
         csgProjectWorkspace.reset();
         currentWorkspace.getChildren().clear();
     }

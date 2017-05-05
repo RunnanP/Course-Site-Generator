@@ -198,6 +198,8 @@ public class CSGController {
 	           dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(TEMPLE_HAVE_HTML));  
                   return;
                } else{
+                   app.getWorkspaceComponent().resetWorkspace();
+                   data.resetData();
                    file.loadData(app.getDataComponent(), path+"\\\\data\\\\savefordeter.json");
                }
                
@@ -256,23 +258,23 @@ public class CSGController {
              
                
                
-               ArrayList<String> csslist=new ArrayList<>(); 
+//               ArrayList<String> csslist=new ArrayList<>(); 
                 
-                File f6=new File(path+"\\\\css\\\\");
-                File flist[]=f6.listFiles();
-                for (File f:flist){
-                    if (!f.isDirectory()){
-                        if(f.getName().endsWith(".css")){
-                           // workspace.getStyleSheetComboBox().getItems().add(f.getName());
-                           csslist.add(f.getName());
-                            System.out.println(f.getName());
-                        }
-                    }
-                    
-                }
+//                File f6=new File(path+"\\\\css\\\\");
+//                File flist[]=f6.listFiles();
+//                for (File f:flist){
+//                    if (!f.isDirectory()){
+//                        if(f.getName().endsWith(".css")){
+//                           // workspace.getStyleSheetComboBox().getItems().add(f.getName());
+//                           csslist.add(f.getName());
+//                            System.out.println(f.getName());
+//                        }
+//                    }
+//                    
+//                }
                 
-                workspace.getStyleSheetComboBox().getItems().clear();
-                workspace.getStyleSheetComboBox().getItems().addAll(csslist);
+//                workspace.getStyleSheetComboBox().getItems().clear();
+//                workspace.getStyleSheetComboBox().getItems().addAll(csslist);
                   workspace.setTemplatesDirLabel(path);
                
                    markWorkAsEdited();
@@ -1024,32 +1026,45 @@ public class CSGController {
      
     //schedule part///////////////////////////////////////////////////////////////
      
-     public void handleStartMonday(Event e,LocalDate olddate,DatePicker olddDatePicker){
+     public void handleStartMonday(Event e,LocalDate newdate,DatePicker olddDatePicker,CSGScheduleWorkspace workspace,CSGData data) throws ParseException{
          DayOfWeek temp=((DatePicker)e.getSource()).getValue().getDayOfWeek();
          if (!temp.equals(DayOfWeek.MONDAY)){
               PropertiesManager props = PropertiesManager.getPropertiesManager();
-                  AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+           AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	   dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(CHOOSE_MONDAY)); 
             
          // olddDatePicker.setValue(LocalDate.of(2017, Month.MAY, 5));
+          workspace.loadCalendarStart(data.getStartingDate());
           
+          
+          
+         }else{
+             data.setStartingDate(newdate.toString());
+//             jTPS_Transaction transaction=new Schedule_StartDatePicker_Transaction(data, workspace,data.getEndingDate(),newdate.toString());
+//          app.getJTPS().addTransaction(transaction);
          }
-           
-         
+            
+          
+         markWorkAsEdited();
      }
      
-        public void handleEndFriday(Event e,LocalDate olddate,DatePicker olddDatePicker){
+        public void handleEndFriday(Event e,LocalDate newdate,DatePicker olddDatePicker,CSGScheduleWorkspace workspace,CSGData data) throws ParseException{
          DayOfWeek temp=((DatePicker)e.getSource()).getValue().getDayOfWeek();
          if (!temp.equals(DayOfWeek.FRIDAY)){
               PropertiesManager props = PropertiesManager.getPropertiesManager();
                   AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
 	   dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(CHOOSE_FRIDAY)); 
             
-         // olddDatePicker.setValue(LocalDate.of(2017, Month.MAY, 5));
-          
+      
+                  
+          workspace.loadCalendarEnd(data.getEndingDate());
+         }else{
+             data.setEndingDate(newdate.toString());
+//          jTPS_Transaction transaction=new Schedule_EndDatePicker_Transaction(data, workspace,data.getEndingDate(),newdate.toString());
+//          app.getJTPS().addTransaction(transaction);
          }
            
-         
+         markWorkAsEdited();
      }
      
      
@@ -1205,6 +1220,13 @@ public class CSGController {
          }
          String time=workspace.getTimeTextField().getText()+"";
          String title=workspace.getTitleTextField().getText()+"";
+           if(title.equals("")){
+                  AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	           dialog.show(props.getProperty(WRONG_TITLE), props.getProperty(PROVE_TITLE_MESSAGE));  
+                  return;
+         }
+         
+         
          String topic=workspace.getTopicTextField().getText()+"";
          String link=workspace.getLinkTextField().getText()+"";
          String criteria=workspace.getCriteriaTextField().getText()+"";
