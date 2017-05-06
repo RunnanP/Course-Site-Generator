@@ -28,11 +28,11 @@
         <property name="REDO_BUTTON_TEXT"          value="Redo"></property> 
         <property name="ABOUT_BUTTON_TEXT"          value="About"></property> 
         <!-- TOOLTIPS FOR BUTTONS -->
-         <property name="NEW_TOOLTIP"		value="Build a new TA Grid"></property>
-        <property name="LOAD_TOOLTIP"		value="Load an existing TA Grid"></property>
-        <property name="SAVE_TOOLTIP"		value="Save the current TA Grid"></property>
-        <property name="SAVE_AS_TOOLTIP"		value="Save the current TA Grid to New Location"></property>
-        <property name="EXPORT_TOOLTIP"		value="Export current TA Grid to syllabus.html"></property>
+         <property name="NEW_TOOLTIP"		value="Build a new Course Site"></property>
+        <property name="LOAD_TOOLTIP"		value="Load an existing Course Site data"></property>
+        <property name="SAVE_TOOLTIP"		value="Save the current Course Site data"></property>
+        <property name="SAVE_AS_TOOLTIP"		value="Save the current Data to New Location"></property>
+        <property name="EXPORT_TOOLTIP"		value="Export current Data to syllabus.html"></property>
         <property name="EXIT_TOOLTIP"		value="Exit the Application"></property>
         <property name="UNDO_TOOLTIP"		value="undo the transaction"></property>
         <property name="REDO_TOOLTIP"		value="redo the transaction"></property>
@@ -172,7 +172,7 @@
          <property name="START_OVER_END_TITLE"           value="Can not end before start!"></property>
         <property name="START_OVER_END_MESSAGE"         value="Can not end before start!"></property>
         <property name="OFFICE_HOURS_REMOVED_TITLE"         value="remove office hours"></property>
-        <property name="OFFICE_HOURS_REMOVED_MESSAGE"       value="office hours remove"></property>
+        <property name="OFFICE_HOURS_REMOVED_MESSAGE"       value="The data will lose, Are you sure?"></property>
          
 
      

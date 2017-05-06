@@ -386,7 +386,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
           
           startDatePicker.setOnAction(e->{
               
-              System.out.println( startDatePicker.getValue());
+             
             try {
                 controller.handleStartMonday(e,startDatePicker.getValue(),startDatePicker,this,data);
             } catch (ParseException ex) {
@@ -463,6 +463,7 @@ public class CSGScheduleWorkspace implements WorkspacePart{
        //getEndDatePicker().setValue(LocalDate.now());
        loadCalendar("2017-05-01", "2017-05-19");
        getDatePicker().setValue(LocalDate.now());
+       getTypeComboBox().getSelectionModel().clearSelection();
        getTimeTextField().clear();
        getTitleTextField().clear();
        getTopicTextField().clear();
@@ -500,6 +501,13 @@ public class CSGScheduleWorkspace implements WorkspacePart{
        }
    }
    
+    public void loadChooseDate(String initStart) throws ParseException{
+           SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+     //  if(!initStart.equals("null")){
+     Date startDate=sdf.parse(initStart);
+      datePicker.setValue(LocalDate.of(startDate.getYear()+1900,startDate.getMonth()+1,startDate.getDate()));
+   //    }
+   }
    
    
   // public

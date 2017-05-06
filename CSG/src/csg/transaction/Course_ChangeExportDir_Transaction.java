@@ -6,6 +6,7 @@
 package csg.transaction;
 
 import csg.data.CSGData;
+import csg.workspace.CSGController;
 import csg.workspace.CSGCourseWorkspace;
 import jtps.jTPS_Transaction;
 
@@ -18,13 +19,15 @@ public class Course_ChangeExportDir_Transaction implements  jTPS_Transaction{
     CSGCourseWorkspace workspace;
     String newpath;
     String oldpath;
+    CSGController controller;
     
-    public Course_ChangeExportDir_Transaction(CSGData initdata,CSGCourseWorkspace initworkspace,String initnewpath,String initoldpath){
+    public Course_ChangeExportDir_Transaction(CSGData initdata,CSGCourseWorkspace initworkspace,String initnewpath,String initoldpath,CSGController initcontroller){
        
     data=initdata;
     workspace=initworkspace;
     newpath=initnewpath;
     oldpath=initoldpath;
+    controller=initcontroller;
     }
             
             
@@ -33,12 +36,22 @@ public class Course_ChangeExportDir_Transaction implements  jTPS_Transaction{
     public void doTransaction() {
          data.setExportDir(newpath);
         workspace.setExporDirDisplayAddressString(newpath);
+        if(newpath.equals("")){
+            controller.markCannotExport();
+        }else{
+            controller.markCanExport();
+        }
     }
 
     @Override
     public void undoTransaction() {
         data.setExportDir(oldpath);
         workspace.setExporDirDisplayAddressString(oldpath);
+         if(oldpath.equals("")){
+            controller.markCannotExport();
+        }else{
+            controller.markCanExport();
+        }
     }
     
 }

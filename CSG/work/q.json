@@ -1,0 +1,41 @@
+
+{
+    "course_home":false,
+    "course_syllabus":false,
+    "course_schedule":false,
+    "course_hws":false,
+    "course_project":false,
+    "course_subject":"",
+    "course_number":"0",
+    "course_semester":"",
+    "course_year":"0",
+    "course_title":"",
+    "course_instructor_name":"",
+    "course_instructor_home":"",
+    "course_export_dir":"",
+    "course_template_dir":"",
+    "course_first_image_address":"file:.\\work\\brands\\1.jpg",
+    "course_second_image_address":"file:.\\work\\brands\\2.png",
+    "course_third_image_address":"file:.\\work\\brands\\3.png",
+    "course_stytle_sheet":"",
+    "startHour":"9",
+    "endHour":"20",
+    "tas":[
+    ],
+    "officeHours":[
+    ],
+    "schedule_calendar_starting":"2017-05-01",
+    "schedule_calendar_ending":"2017-05-19",
+    "startingMondayMonth":"5",
+    "startingMondayDay":"1",
+    "endingFridayMonth":"5",
+    "endingFridayDay":"19",
+    "recitations":[
+    ],
+    "schedules":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ]
+}

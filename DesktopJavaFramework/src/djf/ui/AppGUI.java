@@ -134,7 +134,7 @@ public class AppGUI {
         // HAS BEEN SAVED OR NOT
         saveButton.setDisable(saved);
         saveAsButton.setDisable(false);
-        exportButton.setDisable(false);
+       // exportButton.setDisable(false);
 
         // ALL THE OTHER BUTTONS ARE ALWAYS ENABLED
         // ONCE EDITING THAT FIRST COURSE BEGINS
@@ -149,6 +149,16 @@ public class AppGUI {
         // ARE NEVER DISABLED SO WE NEVER HAVE TO TOUCH THEM
     }
 
+       public void updateExport(boolean export) {
+       
+        exportButton.setDisable(export);
+      
+    
+       }
+    
+    
+    
+    
     /****************************************************************************/
     /* BELOW ARE ALL THE PRIVATE HELPER METHODS WE USE FOR INITIALIZING OUR AppGUI */
     /****************************************************************************/
@@ -167,7 +177,7 @@ public class AppGUI {
         loadButton = initFileToolBarChildButton(fileToolbarPane,	LOAD_ICON.toString(),	    LOAD_TOOLTIP.toString(),	false);
         saveButton = initFileToolBarChildButton(fileToolbarPane,	SAVE_ICON.toString(),	    SAVE_TOOLTIP.toString(),	true);
         saveAsButton=initFileToolBarChildButton(fileToolbarPane,   SAVE_AS_ICON.toString(),    SAVE_AS_TOOLTIP.toString(),  false);
-        exportButton=initFileToolBarChildButton(fileToolbarPane,   EXPORT_ICON.toString(),    EXPORT_TOOLTIP.toString(),  false);
+        exportButton=initFileToolBarChildButton(fileToolbarPane,   EXPORT_ICON.toString(),    EXPORT_TOOLTIP.toString(),  true);
         exitButton = initFileToolBarChildButton(fileToolbarPane,	EXIT_ICON.toString(),	    EXIT_TOOLTIP.toString(),	false);
         undoButton = initFileToolBarChildButton(infoToolbarPane,	UNDO_ICON.toString(),	    UNDO_TOOLTIP.toString(),	false);
         redoButton = initFileToolBarChildButton(infoToolbarPane,	REDO_ICON.toString(),	    REDO_TOOLTIP.toString(),	false);

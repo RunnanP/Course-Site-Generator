@@ -459,7 +459,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
         String courseTitle=json.getString(JSON_COURSE_TITLE);
         String courseInstructorName=json.getString(JSON_COURSE_INSTRUCTOR_NAME);
         String courseInstructorHome=json.getString(JSON_COURSE_INSTRUCTOR_HOME);
-        System.out.println(courseInstructorHome);
+      
       dataManager.initCourseInfo(""+courseSubject,""+courseNumber,""+courseSemster,""+courseYear,""+courseTitle,""+courseInstructorName,""+courseInstructorHome);
         
           

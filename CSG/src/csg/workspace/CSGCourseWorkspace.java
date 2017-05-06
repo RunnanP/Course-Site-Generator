@@ -559,7 +559,7 @@ public class CSGCourseWorkspace implements WorkspacePart{
                         if(f.getName().endsWith(".css")){
                            // workspace.getStyleSheetComboBox().getItems().add(f.getName());
                            csslist.add(f.getName());
-                            System.out.println(f.getName());
+                            
                         }
                     }
                     
@@ -582,9 +582,9 @@ public class CSGCourseWorkspace implements WorkspacePart{
    
    public void reset(){
        getSubjectComboBox().setValue("");
-       getNumberComboBox().setValue(null);
+       getNumberComboBox().getSelectionModel().clearSelection();
        getSemesterComboBox().setValue("");
-       getYearComboBox().setValue(null);
+       getYearComboBox().getSelectionModel().clearSelection();
        getTitleTextField().setText("");
        getInstructorNameTextField().setText("");
        getInstructorHomeTextField().setText("");

@@ -31,7 +31,7 @@ public class Course_ChangeBannerImage_Transaction implements  jTPS_Transaction{
     @Override
     public void undoTransaction() {
         data.setFirstImageAdd(oldpath);
-        System.out.println(oldpath);
+        
     }
     
 }

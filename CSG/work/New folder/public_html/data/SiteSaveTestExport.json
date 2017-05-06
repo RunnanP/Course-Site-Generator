@@ -1,0 +1,50 @@
+
+{
+    "course_home":false,
+    "course_syllabus":false,
+    "course_schedule":false,
+    "course_hws":false,
+    "course_project":false,
+    "course_subject":"",
+    "course_number":"0",
+    "course_semester":"",
+    "course_year":"0",
+    "course_title":"",
+    "course_instructor_name":"",
+    "course_instructor_home":"",
+    "work":[
+        {
+            "semester":" 0",
+            "projects":[
+            ]
+        }
+    ],
+    "startingMondayMonth":"5",
+    "startingMondayDay":"1",
+    "endingFridayMonth":"5",
+    "endingFridayDay":"19",
+    "holidays":[
+    ],
+    "lectures":[
+    ],
+    "references":[
+    ],
+    "hws":[
+    ],
+    "startHour":"9",
+    "endHour":"20",
+    "officeHours":[
+    ],
+    "undergrad_tas":[
+    ],
+    "recitations":[
+    ],
+    "teams":[
+    ],
+    "students":[
+    ],
+    "banner_image":"file:.\\work\\brands\\1.jpg",
+    "left_image":"file:.\\work\\brands\\2.png",
+    "right_image":"file:.\\work\\brands\\3.png",
+    "web_style_sheet":""
+}

@@ -35,6 +35,7 @@ public class Schedule_StartDatePicker_Transaction implements jTPS_Transaction{
     public void doTransaction() {
          try {
              data.setStartingDate(newdate);
+              workspace.loadCalendarStart(newdate);
          } catch (ParseException ex) {
              Logger.getLogger(Schedule_StartDatePicker_Transaction.class.getName()).log(Level.SEVERE, null, ex);
          }

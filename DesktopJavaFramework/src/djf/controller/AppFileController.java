@@ -57,6 +57,8 @@ public class AppFileController {
     // WE WANT TO KEEP TRACK OF WHEN SOMETHING HAS NOT BEEN SAVED
     boolean saved;
     
+    boolean exportC;
+    
     // THIS IS THE FILE FOR THE WORK CURRENTLY BEING WORKED ON
     File currentWorkFile;
 
@@ -69,6 +71,7 @@ public class AppFileController {
     public AppFileController(AppTemplate initApp) {
         // NOTHING YET
         saved = true;
+        exportC=true;
         app = initApp;
     }
     
@@ -86,6 +89,27 @@ public class AppFileController {
         // LET THE UI KNOW
         gui.updateToolbarControls(saved);
     }
+    
+    
+    
+    
+        public void markCanExport(AppGUI gui) {
+        // THE WORK IS NOW DIRTY
+        exportC = false;
+        
+        // LET THE UI KNOW
+        gui.updateExport(exportC);
+    }
+    
+        public void markCannotExport(AppGUI gui) {
+        // THE WORK IS NOW DIRTY
+        exportC = true;
+        
+        // LET THE UI KNOW
+        gui.updateExport(exportC);
+    }
+    
+    
 
     /**
      * This method starts the process of editing new Work. If work is
@@ -118,7 +142,8 @@ public class AppFileController {
 		app.getWorkspaceComponent().activateWorkspace(app.getGUI().getAppPane());
 		
 		// WORK IS NOT SAVED
-                saved = false;
+               // saved = false;
+               saved = true;
 		currentWorkFile = null;
 
                 // REFRESH THE GUI, WHICH WILL ENABLE AND DISABLE

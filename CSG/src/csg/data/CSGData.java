@@ -1089,7 +1089,7 @@ public class CSGData implements AppDataComponent{
         // IS IT THE ONLY TA IN THE CELL?
         if (cellText.equals(taName)) {
             officeHoursTest.put(cellkey, "");
-            System.out.println(officeHoursTest.get(cellkey));
+            
             
         }
         // IS IT THE FIRST TA IN A CELL WITH MULTIPLE TA'S?
@@ -1097,7 +1097,7 @@ public class CSGData implements AppDataComponent{
             int startIndex = cellText.indexOf("\n") + 1;
             cellText = cellText.substring(startIndex);
             officeHoursTest.put(cellkey, cellText);
-            System.out.println(officeHoursTest.get(cellkey));
+            
         }
         // IS IT IN THE MIDDLE OF A LIST OF TAs
         else if (cellText.indexOf(taName) < cellText.indexOf("\n", cellText.indexOf(taName))) {
@@ -1105,14 +1105,14 @@ public class CSGData implements AppDataComponent{
             int endIndex = startIndex + taName.length() + 1;
             cellText = cellText.substring(0, startIndex) + cellText.substring(endIndex);
             officeHoursTest.put(cellkey, cellText);
-            System.out.println(officeHoursTest.get(cellkey));
+            
         }
         // IT MUST BE THE LAST TA
         else {
             int startIndex = cellText.indexOf("\n" + taName);
             cellText = cellText.substring(0, startIndex);
            officeHoursTest.put(cellkey, cellText);
-           System.out.println(officeHoursTest.get(cellkey));
+           
         }
     }
         
@@ -1218,9 +1218,9 @@ public class CSGData implements AppDataComponent{
       if(officeHoursTest.get(cellKey)!=null){
               try{
         String cellProp = officeHoursTest.get(cellKey);
-          System.out.println(cellProp);
+         
         String cellText = cellProp;
-          System.out.println("2222    "+cellKey+"   "+taName  );
+          
 
         // IF IT ALREADY HAS THE TA, REMOVE IT
         if (cellText.contains(taName)) {
@@ -1228,10 +1228,10 @@ public class CSGData implements AppDataComponent{
         } // OTHERWISE ADD IT
         else if (cellText.length() == 0) {
             officeHoursTest.put(cellKey, taName);
-            System.out.println(officeHoursTest.get(cellKey));
+            
         } else {
              officeHoursTest.put(cellKey, cellText + "\n" + taName);
-              System.out.println(officeHoursTest.get(cellKey));
+             
             
         }
       }catch(Exception e){
@@ -1258,7 +1258,7 @@ public class CSGData implements AppDataComponent{
      public void setCellPropertyTest(int col,int row,String prop){
              String cellKey = getCellKeyTest(col, row);
           officeHoursTest.put(cellKey, prop);
-          System.out.println(officeHoursTest.get(cellKey));
+          
      }
      
      
@@ -1426,7 +1426,7 @@ public class CSGData implements AppDataComponent{
         public void addScheduleItem (String initType,String initDate,String initTitle,String initTopic){
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
             scheduleItems.add(scheduleItem);
-            System.out.println(scheduleItem.getTitle());
+          
            Collections.sort(scheduleItems);
             }
         
@@ -1434,7 +1434,7 @@ public class CSGData implements AppDataComponent{
               public void addScheduleItem (String initType,String initDate,String initTime,String initTitle,String initTopic,String initLink,String initCriteria){
             ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTime,initTitle, initTopic,initLink,initCriteria);
             scheduleItems.add(scheduleItem);
-            System.out.println(scheduleItem.getTitle());
+           
           Collections.sort(scheduleItems);
             }
               

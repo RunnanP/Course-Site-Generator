@@ -75,7 +75,17 @@ public class CSGController {
         
         
     }
+    
+    public void markCanExport(){
+         AppGUI gui=app.getGUI();
+        gui.getFileController().markCanExport(gui);
+    }
 
+    
+     public void markCannotExport(){
+         AppGUI gui=app.getGUI();
+        gui.getFileController().markCannotExport(gui);
+    }
     //course part//////////////////////////////////////////////////////////////////////////////////////
     public void handleChangeExportDir() throws IOException{
         PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -100,7 +110,7 @@ public class CSGController {
      //  data.setExportDir(path);
        // workspace.setExporDirDisplayAddressString(path);
        
-        jTPS_Transaction transaction=new Course_ChangeExportDir_Transaction(data, workspace,path,oldpath);
+        jTPS_Transaction transaction=new Course_ChangeExportDir_Transaction(data, workspace,path,oldpath,this);
             app.getJTPS().addTransaction(transaction);
          markWorkAsEdited();
             }catch(Exception e) {
@@ -309,7 +319,7 @@ public class CSGController {
               
             String path=selectedFile.getAbsolutePath();
             CSGData data = (CSGData)app.getDataComponent();
-            System.out.println(path);
+          
             //data.setFirstImageAdd("file:./images/2.png");
             
             String oldpath=data.getFirstImageAdd();
@@ -336,7 +346,7 @@ public class CSGController {
               
             String path=selectedFile.getAbsolutePath();
             CSGData data = (CSGData)app.getDataComponent();
-            System.out.println(path);
+           
             //data.setFirstImageAdd("file:./images/2.png");
           //  data.setSecondImageAdd("file:"+path);
            String oldpath=data.getSecondImageAdd();
@@ -362,7 +372,7 @@ public class CSGController {
               
             String path=selectedFile.getAbsolutePath();
             CSGData data = (CSGData)app.getDataComponent();
-            System.out.println(path);
+            
             //data.setFirstImageAdd("file:./images/2.png");
           //  data.setThirdImageAdd("file:"+path);
            String oldpath=data.getThirdImageAdd();
@@ -506,7 +516,7 @@ public class CSGController {
         workspace.getAddBox().getChildren().add(workspace.getAddButton());
                       TableView taTable = workspace.getTaTable();
              taTable.getSelectionModel().clearSelection();
-        
+         markWorkAsEdited();
     
     }
 
@@ -670,8 +680,14 @@ public class CSGController {
             workspace.getOfficeHoursGridPane().getChildren().clear();
             data.initHours("" + newStartTime, "" + newEndTime);
         }
+        
+        
+        
+         System.out.println(officeHours.size());
         String firsttime = officeHours.get(0).getTime();
-        // System.out.println(firsttime);
+      //  System.out.println(firsttime);
+        //String firsttime=new String();
+         System.out.println(firsttime);
         int firsthour = Integer.parseInt(firsttime.substring(0, firsttime.indexOf('_')));
         if(firsttime.contains("pm")){
             firsthour += 12;
@@ -706,7 +722,7 @@ public class CSGController {
         
 
         jTPS_Transaction transaction=new TA_ChangeTime_Transaction(app,newStartTime,newEndTime,startTime,endTime);
-             app.getJTPS().addTransaction(transaction);
+         app.getJTPS().addTransaction(transaction);
         markWorkAsEdited();
     }
 
@@ -884,16 +900,17 @@ public class CSGController {
              PropertiesManager props = PropertiesManager.getPropertiesManager();
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
-       workspace.getSectionTextField().setText("");
-       workspace.getInstructorTextField().setText("");
-        workspace.getDaytimeTextField().setText("");
-       workspace.getLocationTextField().setText("");
-        workspace.getFirstTAComboBox().setValue("");
-        workspace.getSecondTAComboBox().setValue("");
-                      TableView reTable = workspace.getRecitationTable();
-             reTable.getSelectionModel().clearSelection();
+//       workspace.getSectionTextField().setText("");
+//       workspace.getInstructorTextField().setText("");
+//        workspace.getDaytimeTextField().setText("");
+//       workspace.getLocationTextField().setText("");
+//        workspace.getFirstTAComboBox().setValue("");
+//        workspace.getSecondTAComboBox().setValue(""); 
+//        workspace.getRecitationTable().getSelectionModel().clearSelection();
       
-        
+        jTPS_Transaction transaction=new Recitation_Clear_Transaction(workspace);
+                  app.getJTPS().addTransaction(transaction);
+                   markWorkAsEdited();
      }
      
      public void handleEditRecitation(){
@@ -1040,12 +1057,13 @@ public class CSGController {
           
          }else{
              data.setStartingDate(newdate.toString());
-//             jTPS_Transaction transaction=new Schedule_StartDatePicker_Transaction(data, workspace,data.getEndingDate(),newdate.toString());
-//          app.getJTPS().addTransaction(transaction);
+            // jTPS_Transaction transaction=new Schedule_StartDatePicker_Transaction(data, workspace,data.getStartingDate(),newdate.toString());
+          //app.getJTPS().addTransaction(transaction);
+            markWorkAsEdited();
          }
             
           
-         markWorkAsEdited();
+       
      }
      
         public void handleEndFriday(Event e,LocalDate newdate,DatePicker olddDatePicker,CSGScheduleWorkspace workspace,CSGData data) throws ParseException{
@@ -1215,7 +1233,7 @@ public class CSGController {
          }
          String date="2000-1-1";
          if(workspace.getDatePicker().getValue()!=null){
-             System.out.println(workspace.getDatePicker().getValue().toString()+"");
+            
           date=workspace.getDatePicker().getValue().toString()+"";
          }
          String time=workspace.getTimeTextField().getText()+"";
@@ -1248,7 +1266,7 @@ public class CSGController {
                      // data.getScheduleItems().add(newschedule);
                       jTPS_Transaction transaction=new Schedule_AddScheduleItem_Transaction(data, newschedule);
                   app.getJTPS().addTransaction(transaction);
-         
+          markWorkAsEdited();
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
@@ -1264,7 +1282,7 @@ public class CSGController {
          
           jTPS_Transaction transaction=new Schedule_ChangeScheduleItemInfo_Transaction(data, newschedule,oldsche);
                   app.getJTPS().addTransaction(transaction);
-         
+          markWorkAsEdited();
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(LocalDate.now());
         workspace.getTimeTextField().setText("");
@@ -1275,7 +1293,7 @@ public class CSGController {
             
             
         }
-       markWorkAsEdited();
+    //   markWorkAsEdited();
          
          
          
@@ -1286,16 +1304,19 @@ public class CSGController {
           PropertiesManager props = PropertiesManager.getPropertiesManager();
         CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGScheduleWorkspace workspace=temp.getCsgScheduleWorkspace();
-       workspace.getTypeComboBox().setValue("");
-       
-       workspace.getDatePicker().setValue(LocalDate.now());
-        workspace.getTimeTextField().setText("");
-       workspace.getTitleTextField().setText("");
-        workspace.getTopicTextField().setText("");
-        workspace.getLinkTextField().setText("");
-        workspace.getCriteriaTextField().setText("");
-                      TableView scheTable = workspace.getScheduleItemsTable();
-             scheTable.getSelectionModel().clearSelection();
+        
+//       workspace.getTypeComboBox().setValue("");       
+//       workspace.getDatePicker().setValue(LocalDate.now());
+//        workspace.getTimeTextField().setText("");
+//       workspace.getTitleTextField().setText("");
+//        workspace.getTopicTextField().setText("");
+//        workspace.getLinkTextField().setText("");
+//        workspace.getCriteriaTextField().setText("");
+//              workspace.getScheduleItemsTable().getSelectionModel().clearSelection();
+
+ jTPS_Transaction transaction=new Schedule_Clear_Transaction(workspace);
+            app.getJTPS().addTransaction(transaction);
+             markWorkAsEdited();
      }
      
      
@@ -1354,7 +1375,7 @@ public class CSGController {
       //   data.addTeam(name,color,textcolor,link);
          jTPS_Transaction transaction=new Project_AddTeam_Transaction(data, newte);
             app.getJTPS().addTransaction(transaction);
-         
+          markWorkAsEdited();
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(Color.WHITE);
                          workspace.getTextColorPicker().setValue(Color.WHITE);
@@ -1368,14 +1389,14 @@ public class CSGController {
       
            jTPS_Transaction transaction=new Project_ChangeTeamInfo_Transaction(data, newte,oldteam);
             app.getJTPS().addTransaction(transaction);
-         
+          markWorkAsEdited();
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(Color.WHITE);
                          workspace.getTextColorPicker().setValue(Color.WHITE);
                             workspace.getLinkTextField().setText("");
             
         }
-       markWorkAsEdited();
+    //   markWorkAsEdited();
                  
                  
                  
@@ -1392,13 +1413,16 @@ public class CSGController {
                      CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
                     CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
                     
-                         workspace.getNameTextField().setText("");
-                            workspace.getColorColorPicker().setValue(Color.WHITE);
-                         workspace.getTextColorPicker().setValue(Color.WHITE);
-                            workspace.getLinkTextField().setText("");
-             
-      TableView teamTable = workspace.getTeamsTable();
-             teamTable.getSelectionModel().clearSelection();
+//                         workspace.getNameTextField().setText("");
+//                            workspace.getColorColorPicker().setValue(Color.WHITE);
+//                         workspace.getTextColorPicker().setValue(Color.WHITE);
+//                            workspace.getLinkTextField().setText("");
+//             
+//       workspace.getTeamsTable().getSelectionModel().clearSelection();
+
+       jTPS_Transaction transaction=new Project_ClearTeam_Transaction(workspace);
+            app.getJTPS().addTransaction(transaction);
+             markWorkAsEdited();
                  
              }
              
@@ -1571,14 +1595,14 @@ public class CSGController {
          
          jTPS_Transaction transaction=new Project_ChangeStudentInfo_Transaction(data, newstu,oldstu);
             app.getJTPS().addTransaction(transaction);
-         
+          markWorkAsEdited();
              workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");
                             workspace.getTeamsComboBox().setValue("");
                             workspace.getRoleTextField().setText("");
             
         }
-       markWorkAsEdited();
+     //  markWorkAsEdited();
                  
           
              }
@@ -1592,13 +1616,14 @@ public class CSGController {
                      CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
                     CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
                     
-                         workspace.getFirstNameTextField().setText("");
-                            workspace.getLastNameTextField().setText("");
-                            workspace.getTeamsComboBox().setValue("");
-                            workspace.getRoleTextField().setText("");
-                            
-                            TableView stTable = workspace.getStudentsTable();
-             stTable.getSelectionModel().clearSelection();
+//                         workspace.getFirstNameTextField().setText("");
+//                            workspace.getLastNameTextField().setText("");
+//                            workspace.getTeamsComboBox().setValue("");
+//                            workspace.getRoleTextField().setText("");
+//                            workspace.getStudentsTable().getSelectionModel().clearSelection();
+ jTPS_Transaction transaction=new Project_ClearStudent_Transaction(workspace);
+            app.getJTPS().addTransaction(transaction);
+             markWorkAsEdited();
                             
                  
              }

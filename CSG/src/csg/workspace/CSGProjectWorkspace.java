@@ -347,7 +347,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
           
           
           colorColorPicker.setOnAction(e->{
-              System.out.println(colorColorPicker.getValue());
+            
               String temp=colorColorPicker.getValue().toString();
              temp=temp.substring(4);
         String red=temp.substring(0, 2);
@@ -359,9 +359,7 @@ public class CSGProjectWorkspace implements WorkspacePart{
         String blue=temp.substring(4);
         int b=Integer.parseInt(blue, 16);
         
-              System.out.println(red+" "+r);
-             System.out.println(green+" "+g);
-             System.out.println(blue+" "+b);
+              
        
           });
           

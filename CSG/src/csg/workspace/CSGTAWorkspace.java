@@ -365,10 +365,13 @@ controller = new CSGController(app);
          startTimeComboBox.valueProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue ov, String t, String t1) {
                 if(t != null && t1 != null){
-                    if(startTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour()){
-                        
+                 //   if(startTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour()){
+                        try{
                         controller.changeTime();
-                    }
+                        }catch(Exception e){
+                            
+                        }
+                   // }
                 }
             }
         });
@@ -377,9 +380,12 @@ controller = new CSGController(app);
             
             public void changed(ObservableValue ov, String t, String t1) {
                 if(t != null && t1 != null)
-                    if(endTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
-                          
+                  //  if(endTimeComboBox.getSelectionModel().getSelectedIndex() != data.getStartHour())
+                         try{ 
                         controller.changeTime();
+                         }catch(Exception e){
+                             
+                         }
             }
         });
 

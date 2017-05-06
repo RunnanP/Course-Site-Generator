@@ -31,6 +31,6 @@ public class Course_ChangeLeftImage_Transaction implements  jTPS_Transaction{
     @Override
     public void undoTransaction() {
         data.setSecondImageAdd(oldpath);
-        System.out.println(oldpath);
+        
     }
 }
