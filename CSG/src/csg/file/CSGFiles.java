@@ -719,7 +719,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             
            Boolean underGrad=Boolean.parseBoolean(jsonTA.getString(JSON_UNDERGRAD_TAS));
            
-            dataManager.addTA(""+name, ""+email,underGrad);
+            dataManager.addTATest(""+name, ""+email,underGrad);
         }
 
         // AND THEN ALL THE OFFICE HOURS
@@ -747,7 +747,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String initlocation=jsonRecitation.getString(JSON_RECITATION_LOCATION);
             String initfirstTA=jsonRecitation.getString(JSON_RECITATION_FIRST_TA);
             String initsecondTA=jsonRecitation.getString(JSON_RECITATION_SECOND_TA);
-            dataManager.addRecitation(""+initsection, ""+initinstructor, ""+initdaytime, ""+initlocation, ""+initfirstTA, ""+initsecondTA);
+            dataManager.addRecitationTest(""+initsection, ""+initinstructor, ""+initdaytime, ""+initlocation, ""+initfirstTA, ""+initsecondTA);
         }
         
         
@@ -772,7 +772,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
               String initLink=jsonSchedule.getString(JSON_SCHEDULE_LINK);
             String initCriteria=jsonSchedule.getString(JSON_SCHEDULE_CRITERIA);
      
-            dataManager.addScheduleItem(""+inittype,""+initdate,""+inittime,""+inittitle,""+inittopic,""+initLink,""+initCriteria);
+            dataManager.addScheduleItemTest(""+inittype,""+initdate,""+inittime,""+inittitle,""+inittopic,""+initLink,""+initCriteria);
         }
           
           //project part////////////////////////////////////////////////////////////////////////////////////////////////
@@ -786,7 +786,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             
               
      
-            dataManager.addTeam(""+initname,""+initcolor,""+inittextcolor,""+initlink);
+            dataManager.addTeamTest(""+initname,""+initcolor,""+inittextcolor,""+initlink);
         }
         
              JsonArray jsonStudentArray=json.getJsonArray(JSON_STUDENT);
@@ -797,7 +797,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
             String initTeam=jsonStudent.getString(JSON_PROJECT_STUDENT_TEAM);
             String initRole=jsonStudent.getString(JSON_PROJECT_STUDENT_ROLE);
      
-            dataManager.addStudent(""+initFirstname,""+initLastname,""+initTeam,""+initRole);
+            dataManager.addStudentTest(""+initFirstname,""+initLastname,""+initTeam,""+initRole);
     }
           
           
@@ -1101,10 +1101,10 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
        public JsonArray makeStudentArray(CSGData dataManager,Team temp){
            
        JsonArrayBuilder studentArrayBuilder = Json.createArrayBuilder();
-	ArrayList<String> teams = temp.getStudentList();
-	for (String ts : teams) {	    
+	ArrayList<String> st = temp.getStudentList();
+	for (String ts : st) {	    
 	    JsonObject studentJson = Json.createObjectBuilder()
-		    .add("", ts)
+		    .add("stu", ts)
 		    .build();
 	    studentArrayBuilder.add(studentJson);
 	}

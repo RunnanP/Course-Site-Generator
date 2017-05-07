@@ -863,6 +863,11 @@ public class CSGCourseWorkspace implements WorkspacePart{
     }
 
     public void setExporDirDisplayAddressLabel(String init) {
+         if(init.equals("")){
+            controller.markCannotExport();
+        }else{
+            controller.markCanExport();
+        }
         exporDirDisplayAddressLabel.setText(init);
     }
 

@@ -1,0 +1,145 @@
+
+{
+    "course_home":true,
+    "course_syllabus":true,
+    "course_schedule":true,
+    "course_hws":true,
+    "course_project":true,
+    "course_subject":"aaso",
+    "course_number":"098",
+    "course_semester":"sum",
+    "course_year":"1998",
+    "course_title":"ok,man",
+    "course_intructor_name":"null",
+    "course_instructor_home":"null",
+    "work":[
+        {
+             "semester": "Spring 2017",
+            "projects": [
+                { "name": "Accelerando",      "students": ["Nick Castello", "Timothy Hart", "Charles Phillips"],        "link": "https://accelerando-12e70.firebaseapp.com"},
+                { "name": "AquaCycle",      "students": ["Freddy Estevez", "Devon Maguire", "Kwaku Owusu"],        "link": "https://aquacycle-af5df.firebaseapp.com/GameDesignDocument/GameDesignDocument.html"},
+                { "name": "Back Together",      "students": ["Ronit Roy", "Eifu Tomita", "Christopher Wong"],        "link": "https://back-together.firebaseapp.com/benchmark1.html"},
+                { "name": "Balanced",      "students": ["Francois Adam", "Emerson Biro", "Anthony Roy"],        "link": "https://thebalancedgame.firebaseapp.com/"},
+                { "name": "Base Runner",      "students": ["Mark Ebert", "Ivan Hernandez", "Maksym Trojanowski"],        "link": "https://base-runner-7c2bf.firebaseapp.com/benchmark1/"},
+                { "name": "Beyond You",      "students": ["Karl Dill", "Reese Rosenweig", "Raymond Yu"],        "link": "https://we-have-feelings-too-a0c0f.firebaseapp.com/"},
+                { "name": "Cap'n Morgan's Revenge",      "students": ["Jacob Evans", "Edward Jiang", "Nathan Wood"],        "link": "https://capnmorgansrevenge.firebaseapp.com/benchmark1.html"},
+                { "name": "Get Off My Lawn",      "students": ["Edward Fan", "Mark Koshkin", "Joseph Levesque"],        "link": "https://get-off-my-lawn.firebaseapp.com/benchmark1.html"},
+                { "name": "Id",      "students": ["Yixiu Liu", "Nicholas Lombardi", "Hyun Ouk Nam"],        "link": "?"},
+                { "name": "Labyrinth",      "students": ["James Hoffman", "Eunho Kim", "Cheng Pan"],        "link": "https://labyrinth-1d4d2.firebaseapp.com/benchmark1/GDD.html"},
+                { "name": "Misuse of Magic",      "students": ["Victoria Baeza", "Anika Martin", "Maedeh Safari"],        "link": "https://misuse-of-magic.firebaseapp.com/benchmark1.html"},
+                { "name": "Mo",      "students": ["Jia Kong He", "Haorui Huang", "Shuojohn Li"],        "link": "https://mo-and-the-five-elements.firebaseapp.com"},
+                { "name": "NSFF",      "students": ["Jacky Lo", "Christopher Wennedy", "Feng Yuan"],        "link": "https://nsff-9496e.firebaseapp.com/benchmark1.html"},
+                { "name": "Parry Pop",      "students": ["Jazzy Guo", "Steven Li", "Jackie Wang"],        "link": "https://parry-pop.firebaseapp.com/benchmark1.html"},
+                { "name": "Pentagramum",      "students": ["Masaya Mizuno", "Anatoly Stankyavichyus", "Jacky Yue"],        "link": "https://pentagramum-e9860.firebaseapp.com/benchmark1/"},
+                { "name": "Phase Shifter",      "students": ["Johnson Lu", "John Benedict Vera", "Jonathan Yin"],        "link": "https://phaseshifter-e07d4.firebaseapp.com/"},
+                { "name": "Pongala",      "students": ["Peter Ly", "Minh Nguyen", "Runnan Pan"],        "link": "https://pongala-rpm.firebaseapp.com/benchmark1"},
+                { "name": "Protector",      "students": ["Noam Dorogoyer", "Daniel Gomm", "Tristen Terracciano"],        "link": "https://protector-a3c88.firebaseapp.com/"},
+                { "name": "Ribbit",      "students": ["Kevin Kuan", "Steven Marturano", "Steven Simione"],        "link": "https://ribbit-game.firebaseapp.com/benchmark1"},
+                { "name": "Richard's Great Adventure",      "students": ["Mohammad Khan", "Calvin Li", "Bryan Liao"],        "link": "https://richards-great-adventure.firebaseapp.com"},
+                { "name": "StarCuts",      "students": ["Aaron Brown", "John Martin", "Lawrence Yip"],        "link": "https://grouphomework-35404.firebaseapp.com/"},
+                { "name": "Time Magician",      "students": ["Max An", "Xingyu Mu", "Tingyi Zhao"],        "link": "https://time-magician.firebaseapp.com/benchmark1/"},
+                { "name": "Unknown Space",      "students": ["Honghua Chen", "Shenyi Ye", "Xinglin Zhu"],        "link": "https://unknownspace-66d7f.firebaseapp.com/benchmark1/"},
+                { "name": "Vermillion Labyrinth",      "students": ["Bryan Hauser", "Zachary Koch", "Andrew Lang"],        "link": "https://vermilion-labyrinth.firebaseapp.com/benchmark1"}
+            ]
+        }
+    ],
+     "startingMondayMonth":  "1",
+    "startingMondayDay":    "23",
+    "endingFridayMonth":    "5",
+    "endingFridayDay":      "19",
+    "holidays": [
+        { "month": "2",     "day": "9",     "title": "SNOW DAY<br /><img src='./images/SnowDay.gif' />", "link": "http://funnybizblog.com/funny-stuff/calvin-hobbes-snowman-cartoons" },
+        { "month": "3",     "day": "13",     "title": "SPRING BREAK<br /><br /><br />",                 "link": "http://www.dol.gov/laborday/history.htm" }, 
+        { "month": "3",     "day": "14",     "title": "SPRING BREAK<br /><br /><br />",               "link": "http://www.stonybrook.edu/registrar/calendar-academic.shtml" }, 
+        { "month": "3",     "day": "15",    "title": "SPRING BREAK<br /><br /><br />",                "link": "http://www.travelchannel.com/interests/holidays/articles/thanksgiving-travel-tips" }, 
+        { "month": "3",     "day": "16",    "title": "SPRING BREAK<br /><br /><br />",              "link": "https://www.youtube.com/watch?v=wKGX8EbYarU" },
+        { "month": "3",     "day": "17",    "title": "SPRING BREAK<br /><br /><br />",              "link": "http://blackfridaydeathcount.com" },
+        { "month": "5",     "day": "8",    "title": "READING DAY<br /><br /><br />",               "link": "http://www.stonybrook.edu/commcms/registrar/calendars/academic_calendars.html" },
+        { "month": "5",     "day": "9",    "title": "",                          "link": "" },
+        { "month": "5",     "day": "10",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "11",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "12",    "title": "<a href='http://www.cs.stonybrook.edu/~games'>Game Programming<br />Competition</a><br />(6pm SAC Auditorium)<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "15",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "16",    "title": "<br /><br /><br /><br />",                          "link": "" },
+        { "month": "5",     "day": "17",    "title": "<br /><br /><br /><br />",                          "link": "" }
+    ],
+    "lectures":[
+        { "month": "1",     "day": "24",    "title": "Lecture 1",       "topic": "Introduction<br /><br /><br />",      "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4029676-dt-content-rid-26376785_1/xid-26376785_1"},
+        { "month": "1",     "day": "26",    "title": "Lecture 2",       "topic": "Introduction<br />(continued)<br /><br /><br />",           "link": "none" },
+        { "month": "1",     "day": "31",    "title": "Lecture 3",       "topic": "JavaScript<br /><br /><br /><br />",                        "link": "https://prezi.com/4k-6n0ekkae8/javascript/" },
+        { "month": "2",     "day": "2",     "title": "Lecture 4",       "topic": "Engine Support Systems<br /><br /><br />",       "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4020446-dt-content-rid-26265731_1/xid-26265731_1" },
+        { "month": "2",     "day": "7",     "title": "Lecture 5",       "topic": "Engine Support<br />Systems<br />(continued)<br /><br /><br /><br /><br />",                      "link": "none" },
+        { "month": "2",     "day": "14",    "title": "Lecture 7",       "topic": "Sprite<br />Animation<br /><br /><br />",   "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4029675-dt-content-rid-26376780_1/xid-26376780_1" },
+        { "month": "2",     "day": "16",    "title": "Lecture 8",       "topic": "Sprite<br />Animation<br />(continued)<br />",                    "link": "none" },
+        { "month": "2",    "day": "21",     "title": "Lecture 9",      "topic": "Pathfinding<br /><br /><br /><br />", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4034254-dt-content-rid-26450195_1/xid-26450195_1" },
+        { "month": "2",     "day": "23",    "title": "Lecture 10",       "topic": "Tile-Based<br />Graphics<br />&amp; Scrolling<br /><br /><br />", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4032853-dt-content-rid-26425427_1/xid-26425427_1" },
+        { "month": "2",     "day": "28",    "title": "Lecture 11",      "topic": "Tile-Based<br />Graphics<br />&amp; Scrolling<br />(continued)<br /><br /><br /><br /><br />",                        "link": "none" },
+        { "month": "3",     "day": "2",    "title": "Lecture 12",      "topic": "Physics<br />Primer<br /><br /><br /><br /><br />",                        "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4038018-dt-content-rid-26526602_1/xid-26526602_1" },
+        { "month": "3",    "day": "7",      "title": "Lecture 13",      "topic": "Physics<br />Primer<br />(continued)<br /><br />",           "link": "none" },
+        { "month": "3",    "day": "9",      "title": "Lecture 14",      "topic": "Collision<br />Detection &amp; Response<br /><br /><br /><br />",                      "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4043643-dt-content-rid-26654263_1/xid-26654263_1" },
+        { "month": "3",    "day": "21",     "title": "Lecture 15",      "topic": "Game<br />Design<br /><br /><br /><br /><br />",                               "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4047978-dt-content-rid-26745156_1/xid-26745156_1" },
+        { "month": "3",    "day": "23",     "title": "Lecture 16",    "topic": "Sweep &amp; Prune<br />",                            "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4051796-dt-content-rid-26806320_1/xid-26806320_1" },
+        { "month": "3",    "day": "28",     "title": "Lecture 17",      "topic": "AI Systems<br /><br /><br /><br /><br /><br />",                  "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4054384-dt-content-rid-26858637_1/xid-26858637_1" },
+        { "month": "3",    "day": "30",     "title": "Lecture 18",      "topic": "Real-Time Game<br />Architecture<br /><br /><br /><br />",                "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4054680-dt-content-rid-26860603_1/xid-26860603_1" },
+        { "month": "4",    "day": "4",      "title": "Lecture 19",      "topic": "Real-Time Game<br />Architecture<br />(continued)<br /><br />",                                             "link": "none" },
+        { "month": "4",    "day": "6",      "title": "Lecture 20",      "topic": "Graphics<br />Devices<br /><br /><br /><br />",                                             "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4058946-dt-content-rid-26947069_1/xid-26947069_1" },
+        { "month": "4",    "day": "11",     "title": "Lecture 21",      "topic": "Graphics<br />Devices<br />(continued)<br /><br /><br /><br />",                                             "link": "none" },
+        { "month": "4",    "day": "13",     "title": "Lecture 22",      "topic": "Render<br />Threading<br /><br /><br /><br />",                           "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-4070590-dt-content-rid-27048695_1/xid-27048695_1" },
+        { "month": "4",    "day": "18",     "title": "Lecture 23",      "topic": "Game<br />Design<br />Exercise<br /><br /><br /><br />",          "link": "none" },
+        { "month": "4",    "day": "20",     "title": "MIDTERM EXAM",   "topic": "(Lectures 1-22)<br /><br /><br /><br /><br />",                                           "link": "none" },
+        { "month": "4",    "day": "25",     "title": "Lecture 25",  "topic": "Game<br />Design<br />Exercise<br /><br /><br /><br />",             "link": "none" },
+        { "month": "4",    "day": "27",     "title": "NO LECTURE",      "topic": "Playtest Night<br />7pm, NCS 120<br /><br /><br /><br /><br />",               "link": "none" },
+        { "month": "5",    "day": "2",      "title": "Lecture 27",      "topic": "Games History<br /><br /><br /><br />",               "link": "none" },
+        { "month": "5",    "day": "4",      "title": "Lecture 28",      "topic": "Guest Lecture<br /><br /><br />",                     "link": "none" }
+    ],
+    "references": [
+        { "month": "4",     "day": "18",    "title": "Reference",   "topic": "Midterm Review",      "link": "./exams/CSE 380 Exam Topics.html" },
+        { "month": "9",     "day": "16",    "title": "Reference",   "topic": "JavaFX Examples", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3870769-dt-content-rid-24893045_1/xid-24893045_1" },
+        { "month": "9",     "day": "19",    "title": "Reference",   "topic": "Web Page Maker", "link": "./lectures/WebPageMaker.zip" },
+        { "month": "9",     "day": "19",    "title": "Reference",   "topic": "Pose Maker", "link": "./lectures/PoseMaker.zip" },
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Factory", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910788-dt-content-rid-25675399_1/xid-25675399_1"},
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Singleton", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910789-dt-content-rid-25675702_1/xid-25675702_1" },
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Builder", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910790-dt-content-rid-25675703_1/xid-25675703_1" },
+        { "month": "11",    "day": "21",    "title": "Video",       "topic": "-Prototype", "link": "https://blackboard.stonybrook.edu/bbcswebdav/pid-3910791-dt-content-rid-25675704_1/xid-25675704_1" }
+    ],
+    "hws": [
+        { "month": "2",     "day": "8",    "title": "Individual HW 1",    "topic": "due @ 11:59pm",               "link": "./hw/IndividualHW1.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1e7QouuX4CWvF_CYrmVQJQALUm4-pqIL2egya42hlfTo"  },
+        { "month": "2",    "day": "20",    "title": "Individual HW 2",   "topic": "due @ 11:59pm<br />",            "link": "./hw/IndividualHW2.html",  "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1g_JR1mF5sj97FKC6hK2TrGGjA3_VE8pItZG2eqRd6RY"  },
+        { "month": "3",    "day": "14",    "title": "Individual HW 3",    "topic": "due @ 11:59pm<br />",                "link": "./hw/IndividualHW3.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1nq-hRVe9t5AGsRJKaizVJaXbfeSYvzZka0HS5UDyU_0"  },
+        { "month": "3",     "day": "27",    "title": "Group Project<br />(Benchmark 1)",    "topic": "due @ 11:59pm<br />",             "link": "./hw/GroupProjectBenchmark1.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1hzFVch5saCpdMH8BesfXP0EVy2wW40qh8ElijkSZaGs"  },
+        { "month": "4",    "day": "10",    "title": "Group Project<br />(Benchmark 2)",    "topic": "due @ 11:59pm<br />",           "link": "./hw/GroupProjectBenchmark2.html",     "time": "11:59pm",  "criteria": "https://docs.google.com/spreadsheets/d/1HpCh8jHkcc06f865DzmocOgQFa45g1tLDVrBrHpgyvo" },
+        { "month": "4",     "day": "24",    "title": "Group Project<br />(Benchmark 3)",    "topic": "due @ 11:59pm<br />",             "link": "./hw/GroupProjectBenchmark3.html",     "time": "11:59pm",  "criteria": "none"  },
+        { "month": "5",    "day": "9",    "title": "Group Project",    "topic": "(Presentations)",           "link": "./hw/GroupProjectFinalDemo.html",     "time": "./hw/GroupProjectFinalDemo.html",  "criteria": "none" }
+    ],
+    "startHour": "9",
+    "endHour": "20",
+    "officeHours":[
+        {
+            "day":"MONDAY",
+            "time":"9_30am",
+            "name":"bhjj"
+        },
+        {
+            "day":"FRIDAY",
+            "time":"10_30am",
+            "name":"bhjj"
+        },
+        {
+            "day":"WEDNESDAY",
+            "time":"12_30pm",
+            "name":"bhjj"
+        },
+        {
+            "day":"FRIDAY",
+            "time":"2_00pm",
+            "name":"bhjj"
+        }
+    ],
+    "undergrad_tas":[
+        {
+            "name":"bhjj",
+            "email":"zszsz@hh.com",
+            "undergrad_tas":"true"
+        }
+    ]
+}

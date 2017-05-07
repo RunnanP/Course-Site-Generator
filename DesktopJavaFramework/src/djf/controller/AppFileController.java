@@ -142,8 +142,8 @@ public class AppFileController {
 		app.getWorkspaceComponent().activateWorkspace(app.getGUI().getAppPane());
 		
 		// WORK IS NOT SAVED
-               // saved = false;
-               saved = true;
+                saved = false;
+             //  saved = true;
 		currentWorkFile = null;
 
                 // REFRESH THE GUI, WHICH WILL ENABLE AND DISABLE

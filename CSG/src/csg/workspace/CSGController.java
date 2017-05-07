@@ -1546,7 +1546,7 @@ public class CSGController {
               public void handleStudentUpdate(){
                   
                   
-                          CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+       CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
         CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
          CSGData data = (CSGData)app.getDataComponent();
             TableView studentTable = workspace.getStudentsTable();
@@ -1581,6 +1581,7 @@ public class CSGController {
               
          jTPS_Transaction transaction=new Project_AddStudent_Transaction(data, newstu);
             app.getJTPS().addTransaction(transaction);
+            
              markWorkAsEdited();
             
                workspace.getFirstNameTextField().setText("");

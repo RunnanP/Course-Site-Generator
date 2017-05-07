@@ -368,6 +368,15 @@ public class CSGData implements AppDataComponent{
         
 
     }
+     public String getSubjectTest() {
+           
+        return subject;
+        
+
+    }
+    
+    
+    
 
     public void setSubject(String initsubject) {
           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -388,6 +397,11 @@ public class CSGData implements AppDataComponent{
         return 0;
         }
     }
+    public int getNumberTest() {
+         return number;
+    }
+    
+    
 
     public void setNumber(int initnumber) {
           CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -405,6 +419,16 @@ public class CSGData implements AppDataComponent{
         
         return semester;
     }
+    public String getSemesterTest() {
+         
+        
+        return semester;
+    }
+    
+    
+    
+    
+    
 
     public void setSemester(String initsemester) {
              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -425,6 +449,14 @@ public class CSGData implements AppDataComponent{
             return 0;
         }
     }
+    
+        public int getYearTest() {
+       
+        return year;
+      
+    }
+    
+    
 
     public void setYear(int inityear) {
          
@@ -442,6 +474,14 @@ public class CSGData implements AppDataComponent{
        title=workspace.getTitleTextField().getText()+"";
         return title;
     }
+     public String getTitleTest() {
+        
+        return title;
+    }
+     
+     
+     
+     
 
     public void setTitle(String inittitle) {
          
@@ -459,6 +499,14 @@ public class CSGData implements AppDataComponent{
         instructorName=workspace.getInstructorNameTextField().getText()+"";
         return instructorName;
     }
+     public String getInstructorNameTest() {
+       
+        return instructorName;
+    }
+     
+     
+     
+     
 
     public void setInstructorName(String initinstructorName) {
          
@@ -476,7 +524,13 @@ public class CSGData implements AppDataComponent{
         instructorHome=workspace.getInstructorHomeTextField().getText()+"";
         return instructorHome;
     }
-
+  public String getInstructorHomeTest() {
+       
+        return instructorHome;
+    }
+    
+    
+    
     public void setInstructorHome(String initinstructorHome) {
         
              CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
@@ -1042,6 +1096,22 @@ public class CSGData implements AppDataComponent{
         Collections.sort(teachingAssistants);
     }     
           
+       
+       
+             public void addTATest(String initName, String initEmail,boolean initUndergrad) {
+        // MAKE THE TA
+        TeachingAssistant ta = new TeachingAssistant(initName, initEmail,initUndergrad);
+
+        // ADD THE TA
+        if (!containsTA(initName, initEmail)) {
+            teachingAssistants.add(ta);
+            
+        }
+
+        // SORT THE TAS
+        Collections.sort(teachingAssistants);
+    }    
+       
           
               public void removeTA(String name) {
         for (TeachingAssistant ta : teachingAssistants) {
@@ -1377,6 +1447,20 @@ public class CSGData implements AppDataComponent{
             
         }
         
+        
+           public void addRecitationTest(String initSection,String initInstructor,String initDaytime,String initLocation,String initFirstTa,String initSecondTa){
+           Recitation recitation = new Recitation(initSection,initInstructor,initDaytime,initLocation,initFirstTa,initSecondTa);
+            if (!containsRecitation(initSection)) {
+            recitations.add(recitation);
+        }
+
+        
+        Collections.sort(recitations);
+            
+            
+        }
+           
+           
         public boolean containsRecitation(String initSection){
            for (Recitation recitation : recitations) {
             if (recitation.getSection().equals(initSection)) {
@@ -1439,6 +1523,22 @@ public class CSGData implements AppDataComponent{
             }
               
               
+                     public void addScheduleItemTest (String initType,String initDate,String initTitle,String initTopic){
+            ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTitle, initTopic);
+            scheduleItems.add(scheduleItem);
+          
+           Collections.sort(scheduleItems);
+            }
+        
+        
+              public void addScheduleItemTest (String initType,String initDate,String initTime,String initTitle,String initTopic,String initLink,String initCriteria){
+            ScheduleItem scheduleItem=new ScheduleItem(initType, initDate, initTime,initTitle, initTopic,initLink,initCriteria);
+            scheduleItems.add(scheduleItem);
+           
+          Collections.sort(scheduleItems);
+            }
+              
+              
               
               
               
@@ -1474,6 +1574,52 @@ public class CSGData implements AppDataComponent{
                 addTeamtoProjectCombobox(initTeam.getTeamname());
                 Collections.sort(teams);
         }
+        
+        
+           public void addTeamTest(String initName,String initColor,String initTextColor,String initLink){
+            Team team=new Team(initName,initColor,initTextColor,initLink);
+            if (!containsTeam(initName)){
+                teams.add(team);
+               
+            }
+           Collections.sort(teams);
+        }
+        
+        
+        public void addTeamTest(Team initTeam){
+            
+            teams.add(initTeam);
+               
+                Collections.sort(teams);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public boolean containsTeam(String initName){
             
             for (Team team:teams){
@@ -1490,6 +1636,33 @@ public class CSGData implements AppDataComponent{
             Student student=new Student(initFirstName, initLastName, initTeam, initRole);
             if(!containsStudent(initFirstName,initLastName)){
                 students.add(student);
+                 String stuname=student.getFirstName()+" "+student.getLastName();       
+               for (Team te:teams){
+               if (student.getTeamString().equals(te.getTeamname())){
+                te.getStudentList().add(stuname);
+                
+            }
+        }
+                
+                
+            }
+            Collections.sort(students);
+        }
+              
+        public void addStudentTest(String initFirstName,String initLastName,String initTeam,String initRole){
+            Student student=new Student(initFirstName, initLastName, initTeam, initRole);
+            if(!containsStudent(initFirstName,initLastName)){
+                students.add(student);
+                
+            String stuname=student.getFirstName()+" "+student.getLastName();       
+        for (Team te:teams){
+            if (student.getTeamString().equals(te.getTeamname())){
+                te.getStudentList().add(stuname);
+                
+            }
+        }
+                
+                
             }
             Collections.sort(students);
         }
@@ -1515,6 +1688,13 @@ public class CSGData implements AppDataComponent{
         
         public void removeStudent(Student stu){
             students.remove(stu);
+             String stuname=stu.getFirstName()+" "+stu.getLastName();       
+        for (Team te:teams){
+            if (stu.getTeamString().equals(te.getTeamname())){
+                te.getStudentList().remove(stuname);
+                
+            }
+        }
         }
         
         

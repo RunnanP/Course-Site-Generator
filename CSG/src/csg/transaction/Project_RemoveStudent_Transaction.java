@@ -16,16 +16,19 @@ import jtps.jTPS_Transaction;
 public class Project_RemoveStudent_Transaction implements jTPS_Transaction{
   CSGData data;
   Student st;
+  String stuname;
     public Project_RemoveStudent_Transaction(CSGData initdata,Student initst) {
         
         data=initdata;
         st=initst;
+        stuname=st.getFirstName()+" "+st.getLastName();
     }
    
     
     @Override
     public void doTransaction() {
        data.removeStudent(st);
+       
     }
 
     @Override

@@ -1,0 +1,33 @@
+{
+    "work": [
+        {
+            "semester": "Spring 2017",
+            "projects": [
+                { "name": "Accelerando",      "students": ["Nick Castello", "Timothy Hart", "Charles Phillips"],        "link": "https://accelerando-12e70.firebaseapp.com"},
+                { "name": "AquaCycle",      "students": ["Freddy Estevez", "Devon Maguire", "Kwaku Owusu"],        "link": "https://aquacycle-af5df.firebaseapp.com/GameDesignDocument/GameDesignDocument.html"},
+                { "name": "Back Together",      "students": ["Ronit Roy", "Eifu Tomita", "Christopher Wong"],        "link": "https://back-together.firebaseapp.com/benchmark1.html"},
+                { "name": "Balanced",      "students": ["Francois Adam", "Emerson Biro", "Anthony Roy"],        "link": "https://thebalancedgame.firebaseapp.com/"},
+                { "name": "Base Runner",      "students": ["Mark Ebert", "Ivan Hernandez", "Maksym Trojanowski"],        "link": "https://base-runner-7c2bf.firebaseapp.com/benchmark1/"},
+                { "name": "Beyond You",      "students": ["Karl Dill", "Reese Rosenweig", "Raymond Yu"],        "link": "https://we-have-feelings-too-a0c0f.firebaseapp.com/"},
+                { "name": "Cap'n Morgan's Revenge",      "students": ["Jacob Evans", "Edward Jiang", "Nathan Wood"],        "link": "https://capnmorgansrevenge.firebaseapp.com/benchmark1.html"},
+                { "name": "Get Off My Lawn",      "students": ["Edward Fan", "Mark Koshkin", "Joseph Levesque"],        "link": "https://get-off-my-lawn.firebaseapp.com/benchmark1.html"},
+                { "name": "Id",      "students": ["Yixiu Liu", "Nicholas Lombardi", "Hyun Ouk Nam"],        "link": "?"},
+                { "name": "Labyrinth",      "students": ["James Hoffman", "Eunho Kim", "Cheng Pan"],        "link": "https://labyrinth-1d4d2.firebaseapp.com/benchmark1/GDD.html"},
+                { "name": "Misuse of Magic",      "students": ["Victoria Baeza", "Anika Martin", "Maedeh Safari"],        "link": "https://misuse-of-magic.firebaseapp.com/benchmark1.html"},
+                { "name": "Mo",      "students": ["Jia Kong He", "Haorui Huang", "Shuojohn Li"],        "link": "https://mo-and-the-five-elements.firebaseapp.com"},
+                { "name": "NSFF",      "students": ["Jacky Lo", "Christopher Wennedy", "Feng Yuan"],        "link": "https://nsff-9496e.firebaseapp.com/benchmark1.html"},
+                { "name": "Parry Pop",      "students": ["Jazzy Guo", "Steven Li", "Jackie Wang"],        "link": "https://parry-pop.firebaseapp.com/benchmark1.html"},
+                { "name": "Pentagramum",      "students": ["Masaya Mizuno", "Anatoly Stankyavichyus", "Jacky Yue"],        "link": "https://pentagramum-e9860.firebaseapp.com/benchmark1/"},
+                { "name": "Phase Shifter",      "students": ["Johnson Lu", "John Benedict Vera", "Jonathan Yin"],        "link": "https://phaseshifter-e07d4.firebaseapp.com/"},
+                { "name": "Pongala",      "students": ["Peter Ly", "Minh Nguyen", "Runnan Pan"],        "link": "https://pongala-rpm.firebaseapp.com/benchmark1"},
+                { "name": "Protector",      "students": ["Noam Dorogoyer", "Daniel Gomm", "Tristen Terracciano"],        "link": "https://protector-a3c88.firebaseapp.com/"},
+                { "name": "Ribbit",      "students": ["Kevin Kuan", "Steven Marturano", "Steven Simione"],        "link": "https://ribbit-game.firebaseapp.com/benchmark1"},
+                { "name": "Richard's Great Adventure",      "students": ["Mohammad Khan", "Calvin Li", "Bryan Liao"],        "link": "https://richards-great-adventure.firebaseapp.com"},
+                { "name": "StarCuts",      "students": ["Aaron Brown", "John Martin", "Lawrence Yip"],        "link": "https://grouphomework-35404.firebaseapp.com/"},
+                { "name": "Time Magician",      "students": ["Max An", "Xingyu Mu", "Tingyi Zhao"],        "link": "https://time-magician.firebaseapp.com/benchmark1/"},
+                { "name": "Unknown Space",      "students": ["Honghua Chen", "Shenyi Ye", "Xinglin Zhu"],        "link": "https://unknownspace-66d7f.firebaseapp.com/benchmark1/"},
+                { "name": "Vermillion Labyrinth",      "students": ["Bryan Hauser", "Zachary Koch", "Andrew Lang"],        "link": "https://vermilion-labyrinth.firebaseapp.com/benchmark1"}
+            ]
+        }
+    ]
+}
