@@ -205,7 +205,9 @@ function loadStudents(data) {
 	    availableStudents[counter++] = student;
 	else {
 	    var team = teams[student.team];
-	    team.students[student.role] = student;
+        if(team!=undefined){
+            console.log("1");
+	    team.students[student.role] = student;}
 	}
     }
 }

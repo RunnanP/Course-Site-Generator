@@ -20,28 +20,16 @@
                     "name":"atoim",
                     "students":[
                         {
+                            "stu":"123333333333 "
+                        },
+                        {
                             "stu":"c'c'c c'c'c"
                         },
                         {
                             "stu":"e'e d'd"
                         },
                         {
-                            "stu":"qq ww"
-                        },
-                        {
                             "stu":"qq'q qq"
-                        },
-                        {
-                            "stu":"s's's a's's"
-                        },
-                        {
-                            "stu":"saas sa's"
-                        },
-                        {
-                            "stu":"w'w'we'e'e'e'e "
-                        },
-                        {
-                            "stu":"123333333333 "
                         }
                     ],
                     "link":"ss"
@@ -51,6 +39,24 @@
                     "students":[
                     ],
                     "link":"ff"
+                },
+                {
+                    "name":"ggg",
+                    "students":[
+                        {
+                            "stu":"qq ww"
+                        },
+                        {
+                            "stu":"s's's a's's"
+                        },
+                        {
+                            "stu":"w'w'we'e'e'e'e "
+                        },
+                        {
+                            "stu":"saas sa's"
+                        }
+                    ],
+                    "link":"jkj"
                 }
             ]
         }
@@ -181,13 +187,44 @@
         },
         {
             "name":"dfdf",
-            "red":"153",
-            "green":"51",
-            "blue":"0",
-            "text_color":"#669999"
+            "red":"255",
+            "green":"153",
+            "blue":"153",
+            "text_color":"#1a4d4d"
+        },
+        {
+            "name":"ggg",
+            "red":"179",
+            "green":"230",
+            "blue":"230",
+            "text_color":"#e6994d"
         }
     ],
     "students":[
+        {
+            "lastName":"ww",
+            "firstName":"qq",
+            "team":"ggg",
+            "role":"Lead Programmer"
+        },
+        {
+            "lastName":"a's's",
+            "firstName":"s's's",
+            "team":"ggg",
+            "role":"Data Designer"
+        },
+        {
+            "lastName":"sa's",
+            "firstName":"saas",
+            "team":"ggg",
+            "role":"Lead Designer"
+        },
+        {
+            "lastName":"",
+            "firstName":"w'w'we'e'e'e'e",
+            "team":"ggg",
+            "role":"Project Manager"
+        },
         {
             "lastName":"",
             "firstName":"123333333333",
@@ -207,32 +244,8 @@
             "role":""
         },
         {
-            "lastName":"ww",
-            "firstName":"qq",
-            "team":"atoim",
-            "role":""
-        },
-        {
             "lastName":"qq",
             "firstName":"qq'q",
-            "team":"atoim",
-            "role":""
-        },
-        {
-            "lastName":"a's's",
-            "firstName":"s's's",
-            "team":"atoim",
-            "role":""
-        },
-        {
-            "lastName":"sa's",
-            "firstName":"saas",
-            "team":"atoim",
-            "role":""
-        },
-        {
-            "lastName":"",
-            "firstName":"w'w'we'e'e'e'e",
             "team":"atoim",
             "role":""
         }

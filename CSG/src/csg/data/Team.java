@@ -28,7 +28,7 @@ public class Team <E extends Comparable<E>> implements Comparable<E>{
         color=new SimpleStringProperty(initcolor.substring(0,6));
         textcolor = new SimpleStringProperty(inittextcolor.substring(0, 6));
         link = new SimpleStringProperty(initlink);
-        studentList=new ArrayList<>();
+        studentList=new ArrayList<String>();
        // initColor();
         
     }

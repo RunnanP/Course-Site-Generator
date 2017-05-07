@@ -860,7 +860,7 @@ public class CSGController {
                   jTPS_Transaction transaction=new Recitation_AddRecutation_Transaction(data, newreci,initsection);
                   app.getJTPS().addTransaction(transaction);
                   
-                  
+                   workspace.getRecitationTable().getSelectionModel().clearSelection();
                             workspace.getSectionTextField().setText("");
                                             workspace.getInstructorTextField().setText("");
                                                  workspace.getDaytimeTextField().setText("");
@@ -882,7 +882,7 @@ public class CSGController {
          
          jTPS_Transaction transaction=new Recitation_ChangeRecitationInfo_Transaction(data, newreci,oldreci);
                   app.getJTPS().addTransaction(transaction);
-         
+         workspace.getRecitationTable().getSelectionModel().clearSelection();
             workspace.getSectionTextField().setText("");
        workspace.getInstructorTextField().setText("");
         workspace.getDaytimeTextField().setText("");
@@ -1121,6 +1121,7 @@ public class CSGController {
            workspace.getDatePicker().setValue(null);
        }
                 // workspace.getDatePicker().setValue(null);
+               
         workspace.getTimeTextField().setText(time);
        workspace.getTitleTextField().setText(title);
         workspace.getTopicTextField().setText(topic);
@@ -1266,6 +1267,7 @@ public class CSGController {
                      // data.getScheduleItems().add(newschedule);
                       jTPS_Transaction transaction=new Schedule_AddScheduleItem_Transaction(data, newschedule);
                   app.getJTPS().addTransaction(transaction);
+                  workspace.getScheduleItemsTable().getSelectionModel().clearSelection();
           markWorkAsEdited();
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(LocalDate.now());
@@ -1282,6 +1284,7 @@ public class CSGController {
          
           jTPS_Transaction transaction=new Schedule_ChangeScheduleItemInfo_Transaction(data, newschedule,oldsche);
                   app.getJTPS().addTransaction(transaction);
+                  workspace.getScheduleItemsTable().getSelectionModel().clearSelection();
           markWorkAsEdited();
           workspace.getTypeComboBox().setValue("");
        workspace.getDatePicker().setValue(LocalDate.now());
@@ -1375,6 +1378,7 @@ public class CSGController {
       //   data.addTeam(name,color,textcolor,link);
          jTPS_Transaction transaction=new Project_AddTeam_Transaction(data, newte);
             app.getJTPS().addTransaction(transaction);
+            workspace.getTeamsTable().getSelectionModel().clearSelection();
           markWorkAsEdited();
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(Color.WHITE);
@@ -1389,6 +1393,7 @@ public class CSGController {
       
            jTPS_Transaction transaction=new Project_ChangeTeamInfo_Transaction(data, newte,oldteam);
             app.getJTPS().addTransaction(transaction);
+            workspace.getTeamsTable().getSelectionModel().clearSelection();
           markWorkAsEdited();
           workspace.getNameTextField().setText("");
                             workspace.getColorColorPicker().setValue(Color.WHITE);
@@ -1581,7 +1586,7 @@ public class CSGController {
               
          jTPS_Transaction transaction=new Project_AddStudent_Transaction(data, newstu);
             app.getJTPS().addTransaction(transaction);
-            
+            workspace.getStudentsTable().getSelectionModel().clearSelection();
              markWorkAsEdited();
             
                workspace.getFirstNameTextField().setText("");
@@ -1596,6 +1601,7 @@ public class CSGController {
          
          jTPS_Transaction transaction=new Project_ChangeStudentInfo_Transaction(data, newstu,oldstu);
             app.getJTPS().addTransaction(transaction);
+              workspace.getStudentsTable().getSelectionModel().clearSelection();
           markWorkAsEdited();
              workspace.getFirstNameTextField().setText("");
                             workspace.getLastNameTextField().setText("");

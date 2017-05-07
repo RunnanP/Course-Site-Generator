@@ -78,5 +78,8 @@ public class Student <E extends Comparable<E>> implements Comparable<E>{
     public int compareTo(E o) {
         return getFirstName().compareTo(((Student)o).getFirstName());
     }
-    
+    @Override
+    public String toString(){
+        return getFirstName()+" "+getLastName();
+    }
 }

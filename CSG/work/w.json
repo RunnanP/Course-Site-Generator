@@ -145,8 +145,8 @@
         },
         {
             "project_team_name":"dfdf",
-            "project_team_color":"ff9999",
-            "project_team_textcolor":"1a4d4d",
+            "project_team_color":"993300",
+            "project_team_textcolor":"669999",
             "project_team_link":"ff"
         },
         {
@@ -157,30 +157,6 @@
         }
     ],
     "students":[
-        {
-            "project_student_firstname":"qq",
-            "project_student_lastname":"ww",
-            "project_student_team":"ggg",
-            "project_student_role":"Lead Programmer"
-        },
-        {
-            "project_student_firstname":"s's's",
-            "project_student_lastname":"a's's",
-            "project_student_team":"ggg",
-            "project_student_role":"Data Designer"
-        },
-        {
-            "project_student_firstname":"saas",
-            "project_student_lastname":"sa's",
-            "project_student_team":"ggg",
-            "project_student_role":"Lead Designer"
-        },
-        {
-            "project_student_firstname":"w'w'we'e'e'e'e",
-            "project_student_lastname":"",
-            "project_student_team":"ggg",
-            "project_student_role":"Project Manager"
-        },
         {
             "project_student_firstname":"123333333333",
             "project_student_lastname":"",
@@ -204,6 +180,30 @@
             "project_student_lastname":"qq",
             "project_student_team":"atoim",
             "project_student_role":""
+        },
+        {
+            "project_student_firstname":"qq",
+            "project_student_lastname":"ww",
+            "project_student_team":"ggg",
+            "project_student_role":"Lead Programmer"
+        },
+        {
+            "project_student_firstname":"s's's",
+            "project_student_lastname":"a's's",
+            "project_student_team":"ggg",
+            "project_student_role":"Data Designer"
+        },
+        {
+            "project_student_firstname":"w'w'we'e'e'e'e",
+            "project_student_lastname":"",
+            "project_student_team":"ggg",
+            "project_student_role":"Project Manager"
+        },
+        {
+            "project_student_firstname":"saas",
+            "project_student_lastname":"sa's",
+            "project_student_team":"ggg",
+            "project_student_role":"Lead Designer"
         }
     ]
 }

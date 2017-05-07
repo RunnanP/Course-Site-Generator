@@ -1101,8 +1101,8 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
        public JsonArray makeStudentArray(CSGData dataManager,Team temp){
            
        JsonArrayBuilder studentArrayBuilder = Json.createArrayBuilder();
-	ArrayList<String> st = temp.getStudentList();
-	for (String ts : st) {	    
+	ArrayList<String> stu = temp.getStudentList();
+	for (String ts : stu) {	    
 	    JsonObject studentJson = Json.createObjectBuilder()
 		    .add("stu", ts)
 		    .build();
