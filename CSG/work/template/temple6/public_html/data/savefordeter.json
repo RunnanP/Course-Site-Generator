@@ -16,7 +16,7 @@
     "course_template_dir":"C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\template\\temple6\\public_html",
     "course_first_image_address":"file:C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\brands\\About.png",
     "course_second_image_address":"file:C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\brands\\TAManagerLogo.png",
-    "course_third_image_address":"file:.\\work\\brands\\3.png",
+    "course_third_image_address":"file:C:\\Users\\runnan\\Desktop\\cse219 hw\\hw6\\CSG\\work\\brands\\GoogleAppEngineJava.png",
     "course_stytle_sheet":"sea_wolf.css",
     "startHour":"10",
     "endHour":"20",
@@ -118,20 +118,29 @@
             "schedule_criteria":""
         },
         {
-            "schedule_type":"HW",
-            "schedule_date":"2017-05-09",
-            "schedule_time":"df",
-            "schedule_title":"",
-            "schedule_topic":"",
-            "schedule_link":"",
-            "schedule_criteria":""
-        },
-        {
             "schedule_type":"Holiday",
             "schedule_date":"2017-05-15",
             "schedule_time":"",
             "schedule_title":"holiday",
             "schedule_topic":"",
+            "schedule_link":"",
+            "schedule_criteria":""
+        },
+        {
+            "schedule_type":"HW",
+            "schedule_date":"2017-05-09",
+            "schedule_time":"df",
+            "schedule_title":"dd",
+            "schedule_topic":"",
+            "schedule_link":"",
+            "schedule_criteria":""
+        },
+        {
+            "schedule_type":"Reference",
+            "schedule_date":"2017-05-07",
+            "schedule_time":"jj",
+            "schedule_title":"kk",
+            "schedule_topic":".ll",
             "schedule_link":"",
             "schedule_criteria":""
         }
@@ -158,30 +167,6 @@
     ],
     "students":[
         {
-            "project_student_firstname":"qq",
-            "project_student_lastname":"ww",
-            "project_student_team":"ggg",
-            "project_student_role":"Lead Programmer"
-        },
-        {
-            "project_student_firstname":"s's's",
-            "project_student_lastname":"a's's",
-            "project_student_team":"ggg",
-            "project_student_role":"Data Designer"
-        },
-        {
-            "project_student_firstname":"saas",
-            "project_student_lastname":"sa's",
-            "project_student_team":"ggg",
-            "project_student_role":"Lead Designer"
-        },
-        {
-            "project_student_firstname":"w'w'we'e'e'e'e",
-            "project_student_lastname":"",
-            "project_student_team":"ggg",
-            "project_student_role":"Project Manager"
-        },
-        {
             "project_student_firstname":"123333333333",
             "project_student_lastname":"",
             "project_student_team":"atoim",
@@ -200,10 +185,34 @@
             "project_student_role":""
         },
         {
+            "project_student_firstname":"qq",
+            "project_student_lastname":"ww",
+            "project_student_team":"ggg",
+            "project_student_role":"Lead Programmer"
+        },
+        {
             "project_student_firstname":"qq'q",
             "project_student_lastname":"qq",
             "project_student_team":"atoim",
             "project_student_role":""
+        },
+        {
+            "project_student_firstname":"s's's",
+            "project_student_lastname":"a's's",
+            "project_student_team":"ggg",
+            "project_student_role":"Data Designer"
+        },
+        {
+            "project_student_firstname":"saas",
+            "project_student_lastname":"sa's",
+            "project_student_team":"ggg",
+            "project_student_role":"Lead Designer"
+        },
+        {
+            "project_student_firstname":"w'w'we'e'e'e'e",
+            "project_student_lastname":"",
+            "project_student_team":"ggg",
+            "project_student_role":"Project Manager"
         }
     ]
 }

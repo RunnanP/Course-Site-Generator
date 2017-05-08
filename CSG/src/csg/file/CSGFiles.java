@@ -891,6 +891,7 @@ static final String JSON_COURSE_JSPROJECTS="course_project";
           }
         }
         JsonArray holidayArray = holidaysBuilder.build();
+        
         JsonArray lectureArray = lecturesBuilder.build();
         JsonArray referenceArray = referencesBuilder.build();
 	JsonArray hwArray = hwsBuilder.build();
