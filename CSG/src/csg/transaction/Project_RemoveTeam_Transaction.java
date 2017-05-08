@@ -6,7 +6,10 @@
 package csg.transaction;
 
 import csg.data.CSGData;
+import csg.data.Student;
 import csg.data.Team;
+import csg.workspace.CSGProjectWorkspace;
+import java.util.ArrayList;
 import jtps.jTPS_Transaction;
 
 /**
@@ -17,11 +20,16 @@ public class Project_RemoveTeam_Transaction implements jTPS_Transaction{
 
     CSGData data;
     Team te;
-    
-    
-    public Project_RemoveTeam_Transaction(CSGData initdata,Team initte){
+    String teamname;
+
+    ArrayList<Student> stlist;
+    CSGProjectWorkspace workspace;
+    public Project_RemoveTeam_Transaction(CSGData initdata,Team initte,CSGProjectWorkspace initworkspace){
+        workspace=initworkspace;
         data=initdata;
         te=initte;
+        teamname=te.getTeamname();
+         stlist=data.getHaveTeamStus(te);
     }
     @Override
     public void doTransaction() {
@@ -30,7 +38,11 @@ public class Project_RemoveTeam_Transaction implements jTPS_Transaction{
 
     @Override
     public void undoTransaction() {
-        data.addTeam(te);  
+        data.addTeam(te); 
+          for(Student st:stlist){
+            st.setTeam(teamname);
+        }
+          workspace.getStudentsTable().refresh();
     }
     
 }

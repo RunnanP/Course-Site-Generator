@@ -465,9 +465,9 @@ public class CSGController {
                  EmailValidator emailValidator=new EmailValidator();
           if(  emailValidator.validate(newEmail)){
             
-             data.removeTA(taName);
+           //  data.removeTA(taName);
          //    removeTAfromReciCombobox(taName);
-                 data.addTA(newName, newEmail);
+             //    data.addTA(newName, newEmail);
          //   addTAtoReciCombobox(newName);
             
                   HashMap<String, Label> labels = workspace.getOfficeHoursGridTACellLabels();
@@ -489,7 +489,7 @@ public class CSGController {
                  workspace.getAddBox().getChildren().remove(workspace.getClearButton());
                  workspace.getAddBox().getChildren().add(workspace.getAddButton());
             
-               jTPS_Transaction transaction=new TA_ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray);
+               jTPS_Transaction transaction=new TA_ChangeTAInfo_Transaction(data,workspace,taName,taEmail,newName,newEmail,labels,jtpsarray,ta,app);
                app.getJTPS().addTransaction(transaction);
                
                
@@ -549,7 +549,7 @@ public class CSGController {
                     }
                 }
                 // WE'VE CHANGED STUFF
-                jTPS_Transaction transaction=new TA_RemoveTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+                jTPS_Transaction transaction=new TA_RemoveTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray,ta,app);
                 app.getJTPS().addTransaction(transaction);
                 markWorkAsEdited();
             }
@@ -587,7 +587,7 @@ public class CSGController {
                     }
                 }
                 // WE'VE CHANGED STUFF
-              jTPS_Transaction transaction=new TA_RemoveTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray);
+              jTPS_Transaction transaction=new TA_RemoveTA_Transaction(data, jtpstaname,jtpstaemail,labels,jtpsarray,ta,app);
                 app.getJTPS().addTransaction(transaction);
                 markWorkAsEdited();
             }
@@ -1391,7 +1391,7 @@ public class CSGController {
       //   data.removeTeam(oldteam);
       //   data.addTeam(name,color,textcolor,link);
       
-           jTPS_Transaction transaction=new Project_ChangeTeamInfo_Transaction(data, newte,oldteam);
+           jTPS_Transaction transaction=new Project_ChangeTeamInfo_Transaction(data, newte,oldteam,workspace);
             app.getJTPS().addTransaction(transaction);
             workspace.getTeamsTable().getSelectionModel().clearSelection();
           markWorkAsEdited();
@@ -1446,7 +1446,7 @@ public class CSGController {
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
              //   data.removeTeam(te);       
               
-                 jTPS_Transaction transaction=new Project_RemoveTeam_Transaction(data, te);
+                 jTPS_Transaction transaction=new Project_RemoveTeam_Transaction(data, te,workspace);
             app.getJTPS().addTransaction(transaction);
             
        
@@ -1533,7 +1533,7 @@ public class CSGController {
               //  data.removeScheduleItem(type,date,time,title,topic,link,criteria);
             //    data.removeTeam(te);    
             
-            jTPS_Transaction transaction=new Project_RemoveTeam_Transaction(data, te);
+            jTPS_Transaction transaction=new Project_RemoveTeam_Transaction(data, te,workspace);
             app.getJTPS().addTransaction(transaction);
         
        

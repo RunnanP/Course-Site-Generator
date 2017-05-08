@@ -5,7 +5,12 @@
  */
 package csg.transaction;
 
+import csg.CSGApp;
 import csg.data.CSGData;
+import csg.data.Recitation;
+import csg.data.TeachingAssistant;
+import csg.workspace.CSGRecitationWorkspace;
+import csg.workspace.CSGWorkspace;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.control.Label;
@@ -16,19 +21,28 @@ import jtps.jTPS_Transaction;
  * @author runnan
  */
 public class TA_RemoveTA_Transaction implements jTPS_Transaction{
-    
+    CSGApp app;
       CSGData olddata;
    String oldname;
    String oldemail;
    HashMap<String, Label> oldlabels;
     ArrayList<Label> oldarray;
-    
-    public TA_RemoveTA_Transaction(CSGData data,String initName,String initEmail,HashMap<String, Label> labels,ArrayList<Label> initarray){
+      ArrayList<Recitation> firstTaRec;
+      ArrayList<Recitation> secondTaRec;
+      TeachingAssistant ta;
+    CSGRecitationWorkspace rworkspace;
+    public TA_RemoveTA_Transaction(CSGData data,String initName,String initEmail,HashMap<String, Label> labels,ArrayList<Label> initarray,TeachingAssistant initta,CSGApp initapp){
+       app=initapp;
+        ta=initta;
         olddata=data;
        oldname=initName;
       oldemail=initEmail;
       oldlabels=labels;
      oldarray=initarray;
+      firstTaRec=data.getHaveFirstTaRec(ta);
+      secondTaRec=data.getHaveSecondTaRec(ta);
+       CSGWorkspace temp = (CSGWorkspace)app.getWorkspaceComponent();
+        rworkspace=temp.getCsgRecitationWorkspace();
     }
 
     @Override
@@ -60,6 +74,13 @@ public class TA_RemoveTA_Transaction implements jTPS_Transaction{
         
         }
         
+          for (Recitation re:firstTaRec){
+                    re.setFirstTa(oldname);
+                }
+                  for (Recitation re:secondTaRec){
+                    re.setSecondTa(oldname);
+                }
+          rworkspace.getRecitationTable().refresh();
         
     }
     

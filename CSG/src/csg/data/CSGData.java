@@ -1756,5 +1756,55 @@ public class CSGData implements AppDataComponent{
             workspace.getStudentsTable().refresh();
             
         }
-
+        
+        public ArrayList<Student>  getHaveTeamStus(Team oldte){
+                 CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+              CSGProjectWorkspace workspace=temp.getCsgProjectWorkspace();
+           // workspace.getTeamsComboBox().getItems().remove(initteamname);
+            ArrayList<Student> stuisttemp=new ArrayList<>();
+            for(Student st:students){
+                if(st.getTeamString().equals(oldte.getTeamname())){
+                    stuisttemp.add(st);
+                }
+            }
+            return stuisttemp;
+        }
+        
+        
+         public ArrayList<Recitation> getHaveFirstTaRec(TeachingAssistant ta){
+                 
+                  CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+            CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+        
+            ArrayList<Recitation> rectemp=new ArrayList<>();
+                 
+            for (Recitation re:recitations){
+                if (re.getFirstTa().equals(ta.getName())){
+                    rectemp.add(re);
+                }
+                
+               
+            
+             }
+            return rectemp;
+}
+         
+         
+           public ArrayList<Recitation> getHaveSecondTaRec(TeachingAssistant ta){
+                 
+                  CSGWorkspace temp=(CSGWorkspace)app.getWorkspaceComponent();
+            CSGRecitationWorkspace workspace=temp.getCsgRecitationWorkspace();
+        
+            ArrayList<Recitation> rectemp=new ArrayList<>();
+                 
+            for (Recitation re:recitations){
+                if (re.getSecondTa().equals(ta.getName())){
+                    rectemp.add(re);
+                }
+                
+               
+            
+             }
+            return rectemp;
+}
 }
